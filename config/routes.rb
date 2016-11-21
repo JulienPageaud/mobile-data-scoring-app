@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :loans, only: [ :new, :create, :edit, :update, :show ]
-
+  resources :users, only: [ :show, :edit, :update ] do
+    resources :loans, only: [ :new, :create, :edit, :update, :show ]
+  end
 end
