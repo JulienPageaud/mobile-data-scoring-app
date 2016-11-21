@@ -10,6 +10,6 @@ class Loan < ApplicationRecord
   validates :type, presence: true
   validates :purpose, presence: true
   validates :description, presence: true, length: { minimum: 100,
-    too_long: "You need to exceed %{count} characters in your description" }
+    too_short: "You need to exceed %{count} characters in your description" }
 
 end
