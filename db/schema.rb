@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121161319) do
+ActiveRecord::Schema.define(version: 20161121162713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 20161121161319) do
     t.index ["user_id"], name: "index_loans_on_user_id", using: :btree
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.datetime "due_date"
+    t.boolean  "paid"
+    t.datetime "paid_date"
+    t.integer  "loan_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "amount_cents", default: 0, null: false
+    t.index ["loan_id"], name: "index_payments_on_loan_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
@@ -84,8 +95,8 @@ ActiveRecord::Schema.define(version: 20161121161319) do
     t.string   "employment"
     t.string   "photo_id"
     t.string   "credit_score"
-    t.boolean  "details_completed?"
-    t.boolean  "facebook_account?"
+    t.boolean  "details_completed"
+    t.boolean  "facebook_account"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -95,4 +106,5 @@ ActiveRecord::Schema.define(version: 20161121161319) do
   add_foreign_key "bank_users", "banks"
   add_foreign_key "loans", "banks"
   add_foreign_key "loans", "users"
+  add_foreign_key "payments", "loans"
 end
