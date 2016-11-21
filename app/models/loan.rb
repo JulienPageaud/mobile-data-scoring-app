@@ -4,4 +4,9 @@ class Loan < ApplicationRecord
   monetize :requested_amount_cents
   monetize :proposed_amount_cents
   monetize :agreed_amount_cents
+  validates :requested_amount, presence: true
+  validates :type, presence: true
+  validates :purpose, presence: true
+  validates :description, presence: true
+
 end
