@@ -13,6 +13,5 @@ Rails.application.routes.draw do
   # Routes for the bank's side of the application
   resources :bank_users, only:[:show] do
     resources :loans, only: [:index, :show, :edit, :update], controller: :bank_users
-    resources :users, only: [:show]
   end
 end
