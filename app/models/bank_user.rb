@@ -4,4 +4,7 @@ class BankUser < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:email]
+
+  belongs_to :bank
+  has_many :loans, through: :bank
 end
