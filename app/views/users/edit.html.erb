@@ -1,2 +1,14 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+<%= simple_form_for user_path, { method: :patch }  do |f| %>
+  <%= f.input :gender, as: :radio_buttons %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :address  %>
+  <%= f.input :city %>
+  <%= f.input :postcode %>
+  <%= f.input :employment %>
+  <%= f.input :dob %>
+  <%= f.input :photo_id %>
+  <%= f.button :submit %>
+<% end %>
