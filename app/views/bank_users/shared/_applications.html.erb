@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <h1>New Applications</h1>
+      <div class="table-responsive">
+        <table class="table-bordered table-hover">
+          <thead>
+            <th>Application Date</th>
+            <th>Mobile Number</th>
+            <th>Requested Amount</th>
+            <th>Category</th>
+            <th>Purpose</th>
+            <th>Score</th>
+          </thead>
+          <tbody>
+          <% @loans.where(status: "Application Pending").each do |application|%>
+            <tr>
+              <td><%= application.datetime %></td>
+              <td><%= application.user.mobile_number %></td>
+              <td><%= application.requested_amount_cents %></td>
+              <td><%= application.category %></td>
+              <td><%= application.purpose %></td>
+              <td><%= application.user.credit_score %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+    <div class="row">
+    <h1>Accepted Applications</h1>
+      <div class="table-responsive">
+        <table class="table-bordered table-hover">
+          <thead>
+            <th>Application Date</th>
+            <th>Mobile Number</th>
+            <th>Proposed Amount</th>
+            <th>Category</th>
+            <th>Duration</th>
+            <th>Score</th>
+          </thead>
+          <tbody>
+          <% @loans.where(status: "Application Accepted").each do |application|%>
+            <tr>
+              <td><%= application.created_at %></td>
+              <td><%= application.user.mobile_number %></td>
+              <td><%= application.proposed_amount_cents %></td>
+              <td><%= application.category %></td>
+              <td><%= application.final_date - application.start_date %></td>
+              <td><%= application.user.credit_score %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
