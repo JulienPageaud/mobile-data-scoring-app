@@ -1,0 +1,20 @@
+
+<div id="status-header">
+  <h2>Your Current Situation</h2>
+  <p>Below is a summary of your current loans.</p>
+</div>
+
+<div class="container">
+  <% if user.loans.last.status == "Application Pending" %>
+    <%= render 'pending' %>
+  <% elsif user.loans.last.status == "Application Accepted" %>
+    <%= render 'accepted' %>
+  <% elsif user.loans.last.status == "Loan Outstanding" %>
+    <%= render 'oustanding' %>
+  <% elsif user.loans.last.status == "Application Declined" %>
+    <%= render 'declined' %>
+  <% elsif user.loans.last.status == "Loan Repaid" %>
+    <%= render 'repaid' %>
+  <% end %>
+</div>
+

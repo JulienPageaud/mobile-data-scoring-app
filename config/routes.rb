@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   get 'client-profile/:id', to: 'bank_users#user_show'
 
   # User 'Current Situation' page
-  get 'user/:id/status', to: 'users#status'
+  get 'users/:id/status', to: 'users#status'
 end
