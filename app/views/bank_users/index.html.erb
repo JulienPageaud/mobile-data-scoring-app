@@ -1,20 +1,21 @@
 <div class="container">
   <div class="tabs">
   <a class="tab active" href="#">
-    <h3>New Applications</3>
-      <% render 'applications'%>
+    <h3>Applications</3>
+      <% render 'loan_applications', loans: @loans.where(status: "Application Pending")%>
+      <% render 'loan_applications', loans: @loans.where(status: "Application Accepted")%>
   </a>
   <a class="tab" href="#">
-    <h3>Live Loans</h3>
-      <% render 'loans'%>
+    <h3>Loans Outstanding</h3>
+      <% render 'loans', loans: @loans.where(status: "Loan Outstanding")%>
   </a>
   <a class="tab" href="#">
     <h3>Declined Applications</h3>
-      <% render 'applications'%>
+      <% render 'loan_applications', loans: @loans.where(status: "Application Rejected")%>
   </a>
   <a class="tab" href="#">
     <h3>Closed Loans</h3>
-      <% render 'loans'%>
+      <% render 'loans', loans: @loans.where(status: "Loan Closed")%>
   </a>
   <a class="tab" href="#">
     <h3>Portfolio</h3>
