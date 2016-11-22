@@ -23,23 +23,13 @@
 
 
     <div class="container active">
-      <div class="row">
-        <%= render 'loan_applications'%>
-      </div>
+      <%= render 'loan_applications'%>
 
-      <div class="row">
-        <%= render 'loans'%>
-      </div>
-
-      <div class="row">
-        <%= render 'loan_applications_declined'%>
-      </div>
-
-    <div class="row">
       <%= render 'loans'%>
-    </div>
 
-    <div class="row">
+      <%= render 'loan_applications_declined'%>
+
+      <%= render 'repaid_loans'%>
+
       <%#= render 'portfolio'%>
-    </div>
   </div>
