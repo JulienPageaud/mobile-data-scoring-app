@@ -4,7 +4,7 @@
     <h1>Manda</h1>
     <p>Fast, easy loan applications straight from your mobile.</p>
 
-    <%= simple_form_for SIGN_UP_FORM do |f| %>
+    <%= simple_form_for(:user, url: user_registration_path) do |f| %>
       <%= f.input :mobile_number, label: 'Mobile phone number', error: 'Please enter a mobile phone number' %>
       <%= f.button :submit %>
     <% end %>
