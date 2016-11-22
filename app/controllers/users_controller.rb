@@ -3,17 +3,12 @@ class UsersController < ApplicationController
   # Authentication is on user not bank_user in this case
   skip_before_filter :authenticate_bank_user!
 
-  before_action :show, :edit, :update
+  before_action :set_user, only: [:show, :edit, :update]
 
   def show
   end
 
   def edit
-    if current_user.id == @user.id
-      return
-    else
-      redirect_to root_path
-    end
   end
 
   def update
@@ -30,4 +25,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def user_params
+    params.require(:user).permit(:mobile_number, :gender, :first_name, :last_name,
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id)
+  end
 end
