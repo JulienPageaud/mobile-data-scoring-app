@@ -18,6 +18,10 @@ class BankUsersController < ApplicationController
   def update
   end
 
+  def user_show
+    @user = User.find(params[:id])
+  end
+
   private
 
   def set_loan
