@@ -1,0 +1,14 @@
+<div class="container">
+  <% case @loan.status %>
+    <% when "Application Pending" %>
+      <%= render 'bank_users/show_partials/application_pending'%>
+    <% when "Application Accepted" %>
+      <%= render 'bank_users/show_partials/application_accepted'%>
+    <% when "Loan Oustanding" %>
+      <%= render 'bank_users/show_partials/loan_outstanding'%>
+    <% when "Application Declined" %>
+      <%= render 'bank_users/show_partials/application_declined'%>
+    <% when "Loan Repaid" %>
+      <%#= render %>
+  <% end %>
+</div>
