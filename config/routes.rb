@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   devise_for :bank_users
 
   root to: 'pages#home'
@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :bank_users, only:[:show] do
     resources :loans, only: [:index, :show, :edit, :update], controller: :bank_users
   end
+
+  get 'client-profile/:id', to: 'bank_users#user_show'
 end
