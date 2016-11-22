@@ -1,0 +1,10 @@
+<%= simple_form_for @loan do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :final_date %>
+    <%= f.input :decline_rationale %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Decline", class: "navbar-wagon-button" %>
+    </div>
+  <% end %>
