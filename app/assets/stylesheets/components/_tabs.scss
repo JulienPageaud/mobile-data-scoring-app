@@ -1,5 +1,4 @@
 .tabs {
-  background: #53443F;
   display: flex;
   padding: 10px 10px 0 10px
 }
@@ -21,8 +20,8 @@
   margin-bottom: 0;
 }
 .tab {
-  background: #756A66;
-  flex: 0 0 25%;
+  background: #3A97EC;
+  flex: 0 0 20%;
   text-align: center;
   padding: 20px 0;
 }
@@ -33,6 +32,6 @@
   border-radius: 0 10px 0 0;
 }
 .tab.active {
-  background: white;
-  color: black;
+  background: #8CC6FC;
+  color: white;
 }

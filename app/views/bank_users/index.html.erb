@@ -1,28 +1,45 @@
-<div class="container">
+
   <div class="tabs">
-  <a class="tab active" href="#">
-    <h3>Applications</3>
-      <% render 'loan_applications', loans: @loans.where(status: "Application Pending")%>
-      <% render 'loan_applications', loans: @loans.where(status: "Application Accepted")%>
-  </a>
-  <a class="tab" href="#">
-    <h3>Loans Outstanding</h3>
-      <% render 'loans', loans: @loans.where(status: "Loan Outstanding")%>
-  </a>
-  <a class="tab" href="#">
-    <h3>Declined Applications</h3>
-      <% render 'loan_applications', loans: @loans.where(status: "Application Rejected")%>
-  </a>
-  <a class="tab" href="#">
-    <h3>Closed Loans</h3>
-      <% render 'loans', loans: @loans.where(status: "Loan Closed")%>
-  </a>
-  <a class="tab" href="#">
-    <h3>Portfolio</h3>
-      <%# render 'portfolio'%>
-  </a>
+    <a class="tab active" href="#">
+      <h3>Applications</h3>
+    </a>
 
-</div>
+    <a class="tab" href="#">
+      <h3>Loans Outstanding</h3>
+    </a>
+
+    <a class="tab" href="#">
+      <h3>Applications Declined</h3>
+    </a>
+
+    <a class="tab" href="#">
+      <h3>Loans Repaid</h3>
+    </a>
+
+    <a class="tab" href="#">
+      <h3>Portfolio</h3>
+    </a>
+  </div>
 
 
-</div>
+    <div class="container active">
+      <div class="row">
+        <%= render 'loan_applications'%>
+      </div>
+
+      <div class="row">
+        <%= render 'loans'%>
+      </div>
+
+      <div class="row">
+        <%= render 'loan_applications_declined'%>
+      </div>
+
+    <div class="row">
+      <%= render 'loans'%>
+    </div>
+
+    <div class="row">
+      <%#= render 'portfolio'%>
+    </div>
+  </div>

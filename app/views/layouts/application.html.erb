@@ -9,7 +9,11 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+    <% if bank_user_signed_in? %>
+    <%= render 'shared/bank_navbar' %>
+    <% else %>
     <%= render 'shared/navbar' %>
+    <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
