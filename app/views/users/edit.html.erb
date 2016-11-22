@@ -3,7 +3,7 @@
 
 <br><p>Connect with Facebook</p><br>
 
-<%= simple_form_for user_path, { method: :patch }  do |f| %>
+<%= simple_form_for current_user do |f| %>
   <%= f.input :gender, as: :radio_buttons %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
@@ -11,7 +11,7 @@
   <%= f.input :city %>
   <%= f.input :postcode %>
   <%= f.input :employment %>
-  <%= f.input :dob %>
+  <%= f.input :date_of_birth %>
   <%= f.input :photo_id %>
   <%= f.button :submit %>
 <% end %>
