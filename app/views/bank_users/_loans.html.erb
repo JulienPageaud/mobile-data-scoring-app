@@ -12,7 +12,7 @@
           <th>Credit Score</th>
         </thead>
         <tbody>
-        <% @loans.joins(:payments).where(payments: { "due_date < ?"}, (DateTime.now - 7)).where(payments: { paid: false }.each do |loan|%>
+        <% @missed_payment_loans.each do |loan|%>
           <tr>
             <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
 
@@ -45,7 +45,7 @@
           <th>Credit Score</th>
         </thead>
         <tbody>
-        <% @loans.joins(:payments).where(payments: { "due_date < ?"}, DateTime.now).where(payments: { paid: false }.each do |loan|%>
+        <% @delayed_payment_loans.each do |loan|%>
           <tr>
             <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
             <% loan.payments.each do |payment| %>
