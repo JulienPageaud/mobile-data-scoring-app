@@ -8,6 +8,13 @@ class LoansController < ApplicationController
   end
 
   def create
+
+  end
+
+  def new
+  end
+
+  def create
   end
 
   def show
@@ -21,9 +28,7 @@ class LoansController < ApplicationController
 
   private
 
-  def set_loan
-  end
-
-  def strong_params
+  def loan_params
+    params.require(:loan).permit(:requested_amount_cents, :category, :purpose, :description)
   end
 end
