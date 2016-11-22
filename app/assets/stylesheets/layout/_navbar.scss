@@ -1,7 +1,7 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  background: $sky-blue;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
@@ -35,16 +35,16 @@
 .navbar-wagon-item {
   flex: 0 1 auto;
   cursor: pointer;
-  padding: 0 20px;
+  margin-left: 40px;
 }
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: white;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $royal-blue;
   text-decoration: none;
 }
 
@@ -128,4 +128,10 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.navbar-wagon {
+  .greyed-out {
+    color: $title-grey;
+  }
 }
