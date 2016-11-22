@@ -1,5 +1,5 @@
 class Loan < ApplicationRecord
-  belongs_to :bank
+  belongs_to :bank, optional: true
   belongs_to :user
 
   monetize :requested_amount_cents
