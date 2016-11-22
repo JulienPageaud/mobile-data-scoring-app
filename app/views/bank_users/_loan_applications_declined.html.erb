@@ -1,0 +1,27 @@
+<div class="row">
+    <h3>Declined Applications</h3>
+      <div class="table table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <th>Application Date</th>
+            <th>Mobile Number</th>
+            <th>Resquested Amount</th>
+            <th>Decline Date</th>
+            <th>Rationale for the Decline</th>
+            <th>Score</th>
+          </thead>
+          <tbody>
+          <% @loans.where(status: "Application Declined").each do |application|%>
+            <tr>
+              <td><%= application.created_at %></td>
+              <td><%= application.user.mobile_number %></td>
+              <td><%= application.requested_amount_cents %></td>
+              <td><%= application.final_date %></td>
+              <td><%= application.decline_reasons %></td>
+              <td><%= application.user.credit_score %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
