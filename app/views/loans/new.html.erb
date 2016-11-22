@@ -1,6 +1,6 @@
 <h1>Application Form</h1>
 
-<div class="loan-form">
+<div id="loan-application-form">
   <%= simple_form_for [current_user, @loan] do |f| %>
     <%= f.input :requested_amount_cents, label: "How much do you want to borrow?", placeholder: "up to R15,000", error: "Please enter an amount between R0 and R15,000" %>
     <%= f.input :category, label: "What would you like to use the loan for?", error: "Please choose a category" %>

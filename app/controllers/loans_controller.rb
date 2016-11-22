@@ -13,7 +13,7 @@ class LoansController < ApplicationController
     @loan.user_id = params[:user_id]
 
     if @loan.save
-      redirect_to user_loan_path(current_user, @loan), notice: 'Loan application was successfully created.'
+      redirect_to user_path(@loan), notice: 'Loan application was successfully created.'
     else
       render :new
     end
