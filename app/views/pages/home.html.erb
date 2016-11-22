@@ -1,2 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('background.jpg');">
+  <div class="banner-content">
+    <h1>Manda</h1>
+    <p>Fast, easy loan applications straight from your mobile.</p>
+
+    <%= simple_form_for SIGN_UP_FORM do |f| %>
+      <%= f.input :mobile_number, label: 'Mobile phone number', error: 'Please enter a mobile phone number' %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="user-review-samples text-center">
+    <h2>User Reviews</h2>
+  </div>
+
+  <div class="extra-details text-center">
+    <h2>Details</h2>
+  </div>
+
+  etc...
+
+</div>
