@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="text-center"><%=@loan.status%> Overview</h1>
+  <div class="row">
+    <h2>Details</h2>
+      <p><strong>Date of Acceptance:</strong> <%= @loan.updated_at.strftime("%e %b %Y") %></p>
+      <p><strong>Mobile Number:</strong> <%= @loan.user.mobile_number %></p>
+      <p><strong>Amount proposed:</strong> <%= @loan.proposed_amount_cents %></p>
+      <p><strong>Category:</strong> <%= @loan.category %></p>
+      <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
+      <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
+      <p><strong>Description:</strong> <%= @loan.description %></p>
+  </div>
+</div>
