@@ -19,7 +19,7 @@ class Loan < ApplicationRecord
   end
 
   def self.good_loans
-    all.joins(:payments).where("payment.due_date <  #{DateTime.now}").where("payments.paid" => true)
+    all.joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})
   end
 
   def remaining_capital
@@ -28,5 +28,13 @@ class Loan < ApplicationRecord
       payments_total += payment.amount_cents if payment.paid == true
     end
     return agreed_amount_cents - payments_total
+  end
+
+  def self.missed_payment_loans
+    all.joins(:payments).where('payments.due_date < ?', (DateTime.now - 7.day)).where(payments: { paid: false })
+  end
+
+  def self.delayed_payment_loans
+    all.joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
   end
 end
