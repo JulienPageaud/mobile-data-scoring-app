@@ -5,16 +5,18 @@ class LoansController < ApplicationController
   end
 
   def new
+    @loan = Loan.new
   end
 
   def create
+    @loan = current_user.loans.build(loan_params)
+    @loan.user_id = params[:user_id]
 
-  end
-
-  def new
-  end
-
-  def create
+    if @loan.save
+      redirect_to user_loan_path(current_user, @loan), notice: 'Loan application was successfully created.'
+    else
+      render :new
+    end
   end
 
   def show
