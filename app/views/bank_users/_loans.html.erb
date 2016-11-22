@@ -1,91 +1,89 @@
-<div class="container">
-  <div class="row">
-    <h3>Loans - Missed Payment</h3>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <th>Client Name</th>
-          <th>Amount Owed</th>
-          <th>Missed Payment Date</th>
-          <th>Next Payment </th>
-          <th>Final Payment Date</th>
-          <th>Credit Score</th>
-        </thead>
-        <tbody>
-        <% @missed_payment_loans.each do |loan|%>
-          <tr>
-            <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+<div class="row">
+  <h3>Loans - Missed Payment</h3>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <th>Client Name</th>
+        <th>Amount Owed</th>
+        <th>Missed Payment Date</th>
+        <th>Next Payment </th>
+        <th>Final Payment Date</th>
+        <th>Credit Score</th>
+      </thead>
+      <tbody>
+      <% @missed_payment_loans.each do |loan|%>
+        <tr>
+          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
 
-            <% loan.payments.each do |payment| %>
-              <% if payment.missed_payment? %>
-                <td><%= payment.amount %></td>
-                <td><%= payment.due_date %></td>
-              <% end %>
+          <% loan.payments.each do |payment| %>
+            <% if payment.missed_payment? %>
+              <td><%= payment.amount %></td>
+              <td><%= payment.due_date %></td>
             <% end %>
+          <% end %>
 
-            <td><%= loan.next_payment_date %></td>
-            <td><%= loan.payments.last.due_date %></td>
-            <td><%= loan.user.credit_score %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+          <td><%= loan.next_payment_date %></td>
+          <td><%= loan.payments.last.due_date %></td>
+          <td><%= loan.user.credit_score %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-  <div class="row">
-    <h3>Loans - Delayed Payment</h3>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <th>Client Name</th>
-          <th>Amount Owed</th>
-          <th>Missed Payment Date</th>
-          <th>Next Payment </th>
-          <th>Final Payment Date</th>
-          <th>Credit Score</th>
-        </thead>
-        <tbody>
-        <% @delayed_payment_loans.each do |loan|%>
-          <tr>
-            <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
-            <% loan.payments.each do |payment| %>
-              <% if payment.missed_payment? %>
-                <td><%= payment.amount %></td>
-                <td><%= payment.due_date %></td>
-              <% end %>
+</div>
+<div class="row">
+  <h3>Loans - Delayed Payment</h3>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <th>Client Name</th>
+        <th>Amount Owed</th>
+        <th>Missed Payment Date</th>
+        <th>Next Payment </th>
+        <th>Final Payment Date</th>
+        <th>Credit Score</th>
+      </thead>
+      <tbody>
+      <% @delayed_payment_loans.each do |loan|%>
+        <tr>
+          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+          <% loan.payments.each do |payment| %>
+            <% if payment.missed_payment? %>
+              <td><%= payment.amount %></td>
+              <td><%= payment.due_date %></td>
             <% end %>
-            <td><%= loan.next_payment_date %></td>
-            <td><%= loan.payments.last.due_date %></td>
-            <td><%= loan.user.credit_score %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+          <% end %>
+          <td><%= loan.next_payment_date %></td>
+          <td><%= loan.payments.last.due_date %></td>
+          <td><%= loan.user.credit_score %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-    <div class="row">
-    <h3>Loans - Good Book</h3>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <th>Client Name</th>
-          <th>Capital Left</th>
-          <th>Next Payment </th>
-          <th>Final Payment Date</th>
-          <th>Credit Score</th>
-        </thead>
-        <tbody>
-        <% Loan.good_loans.each do |loan| %>
-          <tr>
-            <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
-            <td>loan.remaining_capital</td>
-            <td><%= loan.next_payment_date %></td>
-            <td><%= loan.payments.last.due_date %></td>
-            <td><%= loan.user.credit_score %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+</div>
+  <div class="row">
+  <h3>Loans - Good Book</h3>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <th>Client Name</th>
+        <th>Capital Left</th>
+        <th>Next Payment </th>
+        <th>Final Payment Date</th>
+        <th>Credit Score</th>
+      </thead>
+      <tbody>
+      <% Loan.good_loans.each do |loan| %>
+        <tr>
+          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+          <td>loan.remaining_capital</td>
+          <td><%= loan.next_payment_date %></td>
+          <td><%= loan.payments.last.due_date %></td>
+          <td><%= loan.user.credit_score %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
