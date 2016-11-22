@@ -1,8 +1,8 @@
-<div class="container">
+
   <div class="row">
-    <h1>New Applications</h1>
-      <div class="table-responsive">
-        <table class="table-bordered table-hover">
+    <h3>New Applications</h3>
+      <div class="table table-responsive">
+        <table class="table table-hover">
           <thead>
             <th>Application Date</th>
             <th>Mobile Number</th>
@@ -14,7 +14,7 @@
           <tbody>
           <% @loans.where(status: "Application Pending").each do |application|%>
             <tr>
-              <td><%= application.datetime %></td>
+              <td><%= application.created_at %></td>
               <td><%= application.user.mobile_number %></td>
               <td><%= application.requested_amount_cents %></td>
               <td><%= application.category %></td>
@@ -27,9 +27,9 @@
       </div>
   </div>
     <div class="row">
-    <h1>Accepted Applications</h1>
-      <div class="table-responsive">
-        <table class="table-bordered table-hover">
+    <h3>Accepted Applications</h3>
+      <div class="table table-responsive">
+        <table class="table table-hover">
           <thead>
             <th>Application Date</th>
             <th>Mobile Number</th>
@@ -40,7 +40,7 @@
           </thead>
           <tbody>
           <% @loans.where(status: "Application Accepted").each do |application|%>
-            <tr>
+            <tr><%= link_to %>
               <td><%= application.created_at %></td>
               <td><%= application.user.mobile_number %></td>
               <td><%= application.proposed_amount_cents %></td>
@@ -53,4 +53,4 @@
         </table>
       </div>
   </div>
-</div>
+
