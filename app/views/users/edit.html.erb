@@ -1,5 +1,8 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Your Personal Details</h1>
+<p>Information required to set up your account</p>
+
+<br><p>Connect with Facebook</p><br>
+
 <%= simple_form_for user_path, { method: :patch }  do |f| %>
   <%= f.input :gender, as: :radio_buttons %>
   <%= f.input :first_name %>
