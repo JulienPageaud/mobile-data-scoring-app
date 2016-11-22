@@ -7,6 +7,8 @@ class BankUsersController < ApplicationController
 
   def index
     @loans = current_bank_user.bank.loans
+    @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
+    @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
   end
 
   def show
