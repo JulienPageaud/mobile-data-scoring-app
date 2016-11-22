@@ -1,4 +1,3 @@
-
   <div class="tabs">
     <a class="tab active" href="#">
       <h3>Applications</h3>
@@ -22,24 +21,36 @@
   </div>
 
 
-    <div class="container active">
-      <div class="row">
-        <%= render 'loan_applications'%>
-      </div>
+<div class="container">
+  <div id="tab-content">
 
-      <div class="row">
-        <%= render 'loans'%>
-      </div>
-
-      <div class="row">
-        <%= render 'loan_applications_declined'%>
-      </div>
-
-    <div class="row">
+    <div class="0">
+      <%= render 'loan_applications'%>
+    </div>
+    <div class="1 hidden">
       <%= render 'loans'%>
     </div>
-
-    <div class="row">
+    <div class="2 hidden">
+      <%= render 'loan_applications_declined'%>
+    </div>
+    <div class="3 hidden">
+    <%= render 'repaid_loans'%>
+    </div>
+    <div class="4 hidden">
       <%#= render 'portfolio'%>
     </div>
   </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $('.tab').on('click', function(event){
+      event.preventDefault();
+      $('.tabs').children().removeClass("active");
+      $(this).addClass("active");
+      var childIndex = $(this).index();
+      $('#tab-content').children().addClass("hidden");
+      $('.' +childIndex).removeClass("hidden");
+    })
+  </script>
+<% end %>

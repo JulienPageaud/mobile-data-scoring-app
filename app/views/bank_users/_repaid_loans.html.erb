@@ -1,0 +1,31 @@
+<div class="row">
+  <h3>Loans - Repaid</h3>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <th>Client Name</th>
+        <th>Last Payment Date</th>
+        <th>Total Paid</th>
+        <th>Credit Score</th>
+      </thead>
+      <tbody>
+      <% @missed_payment_loans.each do |loan|%>
+        <tr>
+          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+
+          <% loan.payments.each do |payment| %>
+            <% if payment.missed_payment? %>
+              <td><%= payment.amount %></td>
+              <td><%= payment.due_date %></td>
+            <% end %>
+          <% end %>
+
+          <td><%= loan.next_payment_date %></td>
+          <td><%= loan.payments.last.due_date %></td>
+          <td><%= loan.user.credit_score %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
