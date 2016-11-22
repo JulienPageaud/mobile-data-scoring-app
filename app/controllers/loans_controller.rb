@@ -1,4 +1,6 @@
 class LoansController < ApplicationController
+  skip_before_filter :authenticate_bank_user!
+
   def index
   end
 
