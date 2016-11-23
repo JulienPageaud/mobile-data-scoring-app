@@ -19,7 +19,7 @@ class BankUsersController < ApplicationController
 
   def update
     if @loan.update(loan_params)
-      redirect_to bank_user_loans
+      redirect_to bank_user_loans_path
     else
       render :show
     end
