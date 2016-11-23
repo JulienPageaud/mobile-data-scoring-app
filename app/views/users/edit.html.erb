@@ -1,35 +1,36 @@
-<div class="header-banner">
-  <div class="header-title">
-    <h1>Your Personal Details</h1>
-    <h2>Information required to set up your account</h2>
+<div class="wrapper-blue">
+  <div class="header-banner">
+    <div class="header-title">
+      <h1>Your Personal Details</h1>
+      <h2>Information required to set up your account</h2>
+    </div>
+    <div class="round-icon">
+      <i><span class="glyphicon glyphicon-pencil"></span></i>
+    </div>
   </div>
-  <div class="round-icon">
-    <i><span class="glyphicon glyphicon-pencil"></span></i>
+
+  <div class="facebook-fetching white-box">
+    <a href="#" class="facebook-link bg-facebook">
+      <i class="fa fa-facebook"></i>
+    </a>
+    <button type="button" class="btn btn-facebook">Use your Facebook account</button>
+  </div>
+
+  <div class="container white-box">
+    <div class="details-form">
+      <%= simple_form_for current_user do |f| %>
+        <%= f.input :email %>
+        <%= f.input :gender, as: :radio_buttons %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :address  %>
+        <%= f.input :city %>
+        <%= f.input :postcode %>
+        <%= f.input :employment %>
+        <%= f.input :date_of_birth %>
+        <%= f.input :photo_id %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<div class="facebook-fetching white-box">
-  <a href="#" class="facebook-link bg-facebook">
-    <i class="fa fa-facebook"></i>
-  </a>
-  <button type="button" class="btn btn-facebook">Use your Facebook account</button>
-</div>
-
-<div class="container white-box">
-  <div class="details-form">
-    <%= simple_form_for current_user do |f| %>
-      <%= f.input :email %>
-      <%= f.input :gender, as: :radio_buttons %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :address  %>
-      <%= f.input :city %>
-      <%= f.input :postcode %>
-      <%= f.input :employment %>
-      <%= f.input :date_of_birth %>
-      <%= f.input :photo_id %>
-      <%= f.button :submit %>
-    <% end %>
-  </div>
-</div>
-
