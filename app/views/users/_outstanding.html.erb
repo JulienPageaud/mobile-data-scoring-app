@@ -7,7 +7,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= @user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
   <div>
@@ -15,28 +15,38 @@
   </div>
 
   <div class="payment-date">
-    <p><strong><%= @user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
-  <div class="repayments-flexbox">
-    <!-- div for each row (header, row, row, row) each row flexed -->
-    <!-- div for each cell inside row, each cell of one column will have the same class -->
-    <div class="repayments-header">
-
+  <div class="standard-flexbox">
+    <div class="flexrow text-center">
+      <div class="flexcell oustanding-cell blue-header">
+        <p>Due date</p>
+      </div>
+      <div class="flexcell oustanding-cell blue-header">
+        <p>Amount due</p>
+      </div>
+      <div class="flexcell oustanding-cell blue-header">
+        <p>Paid</p>
+      </div>
     </div>
 
-    <div class="first-month">
-
-    </div>
-
-    <div class="second-month">
-
-    </div>
-
-    <div class="third-month">
-
-    </div>
+    <% current_user.loans.last.payments.each do |payment| %>
+      <div class="flexrow text-center">
+        <div class="flexcell oustanding-cell">
+          <%= payment.due_date %>
+        </div>
+        <div class="flexcell oustanding-cell">
+          <%= payment.amount_cents %>
+        </div>
+        <div class="flexcell oustanding-cell">
+          <%= payment.paid ? 'tick' : 'cross' %>
+        </div>
+      </div>
+    <% end %>
   </div>
+
+  <br>
 
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>

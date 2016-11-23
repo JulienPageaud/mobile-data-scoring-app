@@ -8,6 +8,15 @@ Rails.application.routes.draw do
   # Routes for customer's side of the application
   resources :users, only: [ :show, :edit, :update ] do
     resources :loans, only: [ :new, :create, :edit, :update, :show ]
+
+    # User 'Current Situation' page
+    get 'status', to: 'users#status'
+
+    # User 'Your Profile' page
+    get 'profile', to: 'users#profile'
+
+    # User 'Share' page
+    get 'share', to: 'users#share'
   end
 
   # Routes for the bank's side of the application
@@ -17,13 +26,5 @@ Rails.application.routes.draw do
 
   get 'client-profile/:id', to: 'bank_users#user_show'
 
-  # User 'Current Situation' page
-  get 'users/:id/status', to: 'users#status'
-
-  # User 'Your Profile' page
-  get 'users/:id/profile', to: 'users#profile'
-
-  # User 'Share' page
-  get 'users/:id/share', to: 'users#share'
 
 end
