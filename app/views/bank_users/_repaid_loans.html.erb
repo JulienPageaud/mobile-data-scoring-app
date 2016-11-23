@@ -1,33 +1,53 @@
-<div class="row">
+<div class="container">
   <h3>Loans - Repaid</h3>
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <th>Client Name</th>
-        <th>Last Payment Date</th>
-        <th>Last Payment Amount</th>
-        <th>Total Paid</th>
-        <th>Credit Score</th>
-      </thead>
-      <tbody>
-      <% @missed_payment_loans.each do |loan|%>
-        <tr>
-          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+    <div class="loan-flexbox">
+      <div class="flexrow loans-header-row text-center">
+        <div class="flexcell loans-header">
+          Client Name
+        </div>
+        <div class="flexcell loans-header">
+          Initial Capital
+        </div>
+        <div class="flexcell loans-header">
+          Last Payment Date
+        </div>
+        <div class="flexcell loans-header">
+          Last Payment Amount
+        </div>
+        <div class="flexcell loans-header">
+          Total Paid
+        </div>
+        <div class="flexcell loans-header">
+          Credit Score
+        </div>
+      </div>
 
-          <% loan.payments.each do |payment| %>
-            <% if payment.missed_payment? %>
-              <td><%= payment.display_money %></td>
-              <td><%= payment.due_date.strftime("%e %b %Y") %></td>
-            <% end %>
-          <% end %>
-
-          <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
-          <td><%= loan.next_payment.display_money %></td>
-          <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
-          <td><%= loan.user.credit_score %></td>
-        </tr>
+        <% Loan.where(status: "Loan Repaid").each do |loan|%>
+        <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do%>
+        <div class="flexrow loans text-center">
+          <div class="flexcell loans-cell text-center">
+            <%= loan.user.first_name + ' ' + loan.user.last_name %>
+          </div>
+          <div class="flexcell loans-cell text-center">
+            <%= loan.display_capital %>
+          </div>
+          <div class="flexcell loans-cell text-center">
+            <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
+          </div>
+          <div class="flexcell loans-cell text-center">
+            <%= loan.payments.last.display_money %>
+          </div>
+          <div class="flexcell loans-cell text-center">
+            <% sum = 0 %>
+            <% loan.payments.each { |payment| sum += payment.amount }%>
+            <%= sum.currency.to_s + ' ' + sum.to_s %>
+          </div>
+          <div class="flexcell loans-cell text-center">
+            <%= loan.user.credit_score %>
+          </div>
+        </div>
       <% end %>
-      </tbody>
-    </table>
+    <% end %>
   </div>
 </div>
+

@@ -75,4 +75,8 @@ class Loan < ApplicationRecord
       counter += 1
     end
   end
+
+  def display_capital
+    agreed_amount.currency.to_s + ' ' + agreed_amount.to_s
+  end
 end
