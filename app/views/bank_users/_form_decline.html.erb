@@ -4,7 +4,8 @@
     <%= f.hidden_field :final_date, value: DateTime.now %>
     <%= f.input :decline_reason %>
     <%= f.hidden_field :status, value: "Application Declined" %>
-    <div class="form-actions">
-      <%#= f.button :submit, "Decline", class: "btn btn-danger" %>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-danger">Decline Application</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   <% end %>
