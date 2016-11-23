@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122142352) do
+ActiveRecord::Schema.define(version: 20161123132057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20161122142352) do
     t.integer  "requested_amount_cents", default: 0, null: false
     t.integer  "proposed_amount_cents",  default: 0, null: false
     t.integer  "agreed_amount_cents",    default: 0, null: false
+    t.integer  "duration_months",        default: 3
+    t.string   "decline_reason"
     t.index ["bank_id"], name: "index_loans_on_bank_id", using: :btree
     t.index ["user_id"], name: "index_loans_on_user_id", using: :btree
   end
