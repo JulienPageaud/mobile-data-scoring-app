@@ -22,7 +22,7 @@ class Loan < ApplicationRecord
     result = (where(status: "Loan Outstanding").joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})).to_a
     new_loans = []
     all.each do |loan|
-      if loan.payments.first.due_date > DateTime.now
+      if loan.payments.present? && loan.payments.first.due_date > DateTime.now
         new_loans << loan
       end
     end

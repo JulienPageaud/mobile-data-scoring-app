@@ -6,12 +6,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
+    authorize @user
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -20,12 +23,15 @@ class UsersController < ApplicationController
   end
 
   def status
+    authorize @user
   end
 
   def profile
+    authorize @user
   end
 
   def share
+    authorize @user
   end
 
   private
