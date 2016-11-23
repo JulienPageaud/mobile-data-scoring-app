@@ -4,17 +4,17 @@
 </div>
 
 <div class="container">
-  <% if @user.loans == [] %>
+  <% if current_user.loans == [] %>
     <%= render 'empty' %>
-  <% elsif @user.loans.last.status == "Application Pending" %>
+  <% elsif current_user.loans.last.status == "Application Pending" %>
     <%= render 'pending' %>
-  <% elsif @user.loans.last.status == "Application Accepted" %>
+  <% elsif current_user.loans.last.status == "Application Accepted" %>
     <%= render 'accepted' %>
-  <% elsif @user.loans.last.status == "Loan Outstanding" %>
+  <% elsif current_user.loans.last.status == "Loan Outstanding" %>
     <%= render 'oustanding' %>
-  <% elsif @user.loans.last.status == "Application Declined" %>
+  <% elsif current_user.loans.last.status == "Application Declined" %>
     <%= render 'declined' %>
-  <% elsif @user.loans.last.status == "Loan Repaid" %>
+  <% elsif current_user.loans.last.status == "Loan Repaid" %>
     <%= render 'repaid' %>
   <% end %>
 </div>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= @user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
   <div>
@@ -36,12 +36,10 @@
   </div>
 
   <div class="payment-date">
-    <p><strong><%= @user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
   <div class="repayments-flexbox">
-    <!-- div for each row (header, row, row, row) each row flexed -->
-    <!-- div for each cell inside row, each cell of one column will have the same class -->
     <div class="repayments-header-row">
       <div class="repayments-header">
         <p>Due date</p>
@@ -54,32 +52,19 @@
       </div>
     </div>
 
-    <div class="first-month">
-      <div class="first-month-cell">
-        <%= Date.now %>
+    <% current_user.loans.last.payments.each do |payment| %>
+      <div class="month">
+        <div class="month-cell">
+          <%= payment.due_date  %>
+        </div>
+        <div class="month-cell">
+          <%= payment.amount_cents %>
+        </div>
+        <div class="month-cell">
+          <%= payment.paid ? 'tick' : 'cross' %>
+        </div>
       </div>
-      <div class="first-month-cell">
-        <%=  %>
-      </div>
-    </div>
-
-    <div class="second-month">
-      <div class="second-month-cell">
-        <%=  %>
-      </div>
-      <div class="second-month-cell">
-        <%=  %>
-      </div>
-    </div>
-
-    <div class="third-month">
-      <div class="third-month-cell">
-        <%=  %>
-      </div>
-      <div class="third-month-cell">
-        <%=  %>
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <div>
@@ -95,5 +80,3 @@
   </div>
 
 </div>
-
-
