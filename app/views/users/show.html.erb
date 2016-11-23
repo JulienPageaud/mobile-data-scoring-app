@@ -10,18 +10,25 @@
   </div>
 </div>
 
-<div id="tab-monitor">
-  <h2>Monitor your situation</h2>
-  <p>Track your progress over time</p>
-  <p>VIEW YOUR STATUS</p>
-</div>
+<%= link_to('status') do %>
+  <div id="tab-monitor">
+    <h2>Monitor your situation</h2>
+    <p>Track your progress over time</p>
+    <%= link_to('VIEW YOUR STATUS', controller: 'users', action: 'status') %>
+    <button>VIEW YOUR STATUS</button>
+  </div>
+<% end %>
 
-<div id="tab-details">
-  <h2>Edit your personal details</h2>
-  <p>Your details are important to us</p>
-</div>
+<%= link_to('profile') do %>
+  <div id="tab-details">
+    <h2>Your Profile</h2>
+    <p>Your details are important to us</p>
+  </div>
+<% end %>
 
-<div id="tab-share">
-  <h2>Share Manda with people you know</h2>
-  <p>Get benefits from sharing with your friends</p>
-</div>
+<%= link_to('share') do %>
+  <div id="tab-share">
+    <h2>Share Manda with people you know</h2>
+    <p>Get benefits from sharing with your friends</p>
+  </div>
+<% end %>

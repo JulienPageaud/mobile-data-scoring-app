@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # Authentication is on user not bank_user in this case
   skip_before_filter :authenticate_bank_user!
 
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :status, :profile, :share]
 
   def show
   end
@@ -17,6 +17,15 @@ class UsersController < ApplicationController
     else
       redirect_to edit_user_path(@user), notice: "Sorry, something went wrong"
     end
+  end
+
+  def status
+  end
+
+  def profile
+  end
+
+  def share
   end
 
   private
