@@ -1,0 +1,22 @@
+.header-banner {
+  background-color: $royal-blue;
+  color: white;
+  height: 50vhpx;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.header-banner h1 {
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0;
+}
+
+.header-banner h2 {
+  font-size: 12px;
+  text-align: left;
+  margin: 0;
+}
