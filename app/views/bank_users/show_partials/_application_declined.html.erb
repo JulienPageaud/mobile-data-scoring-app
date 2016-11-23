@@ -9,6 +9,6 @@
       <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
       <p><strong>Date of the Decline:</strong> <%= @loan.updated_at.strftime("%e %b %Y") %></p>
-      <p><strong>Rationale for the decline:</strong> <%= @loan.decline_reasons %></p>
+      <p><strong>Rationale for the decline:</strong> <%= @loan.decline_reason %></p>
   </div>
 </div>
