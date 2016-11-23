@@ -1,2 +1,20 @@
 <h2>Application Pending</h2>
-<p>Below is a summary of your current loans.</p>
+
+<div class="container">
+  <div class="status-button">
+    <i>HOURGLASS ICON</i>
+  </div>
+
+  <div>
+    <p>You have applied for:</p>
+  </div>
+
+  <div>
+    <p><%= @user.loans.amount_requested_cents %></p>
+  </div>
+
+  <div>
+    <p>We are currently reviewing your details and we will be getting back to you soon.</p>
+  </div>
+
+</div>
