@@ -47,7 +47,7 @@
               <td><%= application.user.mobile_number %></td>
               <td><%= application.proposed_amount_cents %></td>
               <td><%= application.category %></td>
-              <td><%#= application.final_date - application.start_date %></td>
+              <td><%= application.duration_months %></td>
               <td><%= application.user.credit_score %></td>
             </tr>
           <% end %>
