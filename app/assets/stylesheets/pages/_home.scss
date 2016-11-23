@@ -25,11 +25,11 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.banner p {
+#home-banner p {
   font-size: 18px;
   text-align: left;
   color: white;
-  margin-bottom: 40px;
+  position: top;
 }
 
 .btn-transparent {
@@ -46,3 +46,22 @@
   text-align: center;
 }
 
+.container-values {
+  padding-top: 20px;
+  text-align: center;
+  color: $title-grey;
+  font-size: 12.5px;
+  font-weight: 250;
+}
+
+.container-values i {
+  font-size: 18px;
+  font-weight: 400;
+  color: $royal-blue;
+}
+
+.user-review-samples p {
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+}
