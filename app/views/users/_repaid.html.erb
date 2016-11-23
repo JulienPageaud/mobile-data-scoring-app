@@ -1,2 +1,28 @@
 <h2>Loan Repaid</h2>
-<p>Below is a summary of your current loans.</p>
+
+<div class="container">
+  <div class="status-button">
+    <i>PAID ICON</i>
+  </div>
+
+  <div>
+    <p>As of <%= @user.loans.last.payments.last.paid_date %></p>
+  </div>
+
+  <div>
+    <p>Your loan of</p>
+  </div>
+
+  <div class="loan-amount">
+    <p><%= @user.loans.last.agreed_amount_cents %></p>
+  </div>
+
+  <div>
+    <p>has been repaid.</p>
+  </div>
+
+</div>
+
+  <div class="banner">
+    <button class="btn btn-secondary">Apply for a new loan</button>
+  </div>
