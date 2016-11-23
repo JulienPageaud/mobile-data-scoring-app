@@ -13,15 +13,16 @@ class LoansController < ApplicationController
   end
 
   def new
-    @loan = Loan.new
+    @loan = current_user.loans.build
+    authorize @loan
   end
 
   def create
     @loan = current_user.loans.build(loan_params)
-    @loan.user_id = params[:user_id]
+    authorize @loan
 
     if @loan.save
-      redirect_to user_path(@loan), notice: 'Loan application was successfully created.'
+      redirect_to user_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
     end

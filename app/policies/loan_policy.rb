@@ -9,6 +9,10 @@ class LoanPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    record.user == user
+  end
+
   def show?
     loan_user_or_bank_user?
   end

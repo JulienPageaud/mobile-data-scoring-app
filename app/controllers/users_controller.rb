@@ -23,12 +23,15 @@ class UsersController < ApplicationController
   end
 
   def status
+    authorize @user
   end
 
   def profile
+    authorize @user
   end
 
   def share
+    authorize @user
   end
 
   private
