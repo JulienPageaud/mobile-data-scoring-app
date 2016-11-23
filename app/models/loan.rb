@@ -37,4 +37,27 @@ class Loan < ApplicationRecord
   def self.delayed_payment_loans
     all.joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
   end
+
+  def create_payments_proposed
+    payment_amount = ((proposed_amount.amount * (1 + interest_rate.fdiv(100))) / duration_months) * 100
+
+    counter = 1
+    duration_months.times do
+      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month))
+      payment.save
+      counter += 1
+    end
+  end
+
+  def update_payments_to_agreed_amount
+    payments.destroy_all
+
+    payment_amount = ((agreed_amount.amount * (1 + interest_rate.fdiv(100))) / duration_months) * 100
+    counter = 1
+    duration_months.times do
+      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month))
+      payment.save
+      counter += 1
+    end
+  end
 end
