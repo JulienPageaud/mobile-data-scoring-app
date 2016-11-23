@@ -1,10 +1,10 @@
-<%= simple_form_for @loan do |f| %>
+<%= simple_form_for [current_bank_user, @loan] do |f| %>
     <%= f.error_notification %>
 
-    <%= f.input :final_date %>
-    <%= f.input :decline_reasons %>
-    <%= f.hidden_field :status, value: "Applicaton Declined" %>
+    <%= f.hidden_field :final_date, value: DateTime.now %>
+    <%= f.input :decline_reason %>
+    <%= f.hidden_field :status, value: "Application Declined" %>
     <div class="form-actions">
-      <%= f.button :submit, "Decline", class: "navbar-wagon-button" %>
+      <%#= f.button :submit, "Decline", class: "btn btn-danger" %>
     </div>
   <% end %>

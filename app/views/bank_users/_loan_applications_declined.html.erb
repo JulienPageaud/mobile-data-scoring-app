@@ -14,11 +14,11 @@
         <% @loans.where(status: "Application Declined").each do |application|%>
 
           <tr>
-            <td><%= application.created_at %></td>
+            <td><%= application.created_at.strftime("%e %b %Y") %></td>
             <td><%= application.user.mobile_number %></td>
             <td><%= application.requested_amount_cents %></td>
-            <td><%= application.final_date %></td>
-            <td><%= application.decline_reasons %></td>
+            <td><%= application.final_date.strftime("%e %b %Y") %></td>
+            <td><%= application.decline_reason %></td>
             <td><%= application.user.credit_score %></td>
           </tr>
         <% end %>
