@@ -9,8 +9,8 @@
     <p>You have applied for:</p>
   </div>
 
-  <div>
-    <p><%= @user.loans.amount_requested_cents %></p>
+  <div class="loan-amount">
+    <p><strong><%= @user.loans.last.requested_amount_cents %></strong></p>
   </div>
 
   <div>
