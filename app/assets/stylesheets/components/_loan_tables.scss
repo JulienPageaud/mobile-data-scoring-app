@@ -1,0 +1,35 @@
+.loan-flexbox {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  background-color: $icon-grey;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.flexrow .loans {
+  display: flex;
+  justify-content: space-around;
+  flex-basis: 100%;
+}
+
+.loans-cell {
+  flex: 1 1 0;
+}
+.loans-header {
+  flex: 1 1 0;
+}
+
+.loans-header-row {
+  background-color:#3A97EC;
+  color: white;
+  padding: 4px 0;
+}
+
+.loan-link:hover {
+  text-decoration: none;
+}
+
+.loan-link {
+  color:black;
+}

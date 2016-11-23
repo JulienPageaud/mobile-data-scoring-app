@@ -1,92 +1,96 @@
 <div class="container">
   <h3>New Applications</h3>
-    <div class="standard-flexbox">
-      <div class="flexrow applications-header-row text-center">
-        <div class="flexcell applications-header">
-          <p>Application Date</p>
+    <div class="loan-flexbox">
+      <div class="flexrow loans-header-row text-center">
+        <div class="flexcell loans-header">
+          Application Date
         </div>
-        <div class="flexcell applications-header">
-          <p>Mobile Number</p>
+        <div class="flexcell loans-header">
+          Mobile Number
         </div>
-        <div class="flexcell applications-header">
-          <p>Requested Amount</p>
+        <div class="flexcell loans-header">
+          Requested Amount
         </div>
-        <div class="flexcell applications-header">
-          <p>Category</p>
+        <div class="flexcell loans-header">
+          Category
         </div>
-        <div class="flexcell applications-header">
-          <p>Purpose</p>
+        <div class="flexcell loans-header">
+          Purpose
         </div>
-        <div class="flexcell applications-header">
-          <p>Score</p>
+        <div class="flexcell loans-header">
+          Credit Score
         </div>
       </div>
 
       <% @loans.where(status: "Application Pending").each do |application|%>
-      <%= link_to bank_user_loan_path(current_bank_user, application) do%>
-      <div class="flexrow applications text-center">
-        <div class="flexcell applications-cell">
+      <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
+      <div class="flexrow loans text-center">
+        <div class="flexcell loans-cell text-center">
           <%= application.created_at.strftime("%e %b %Y") %>
         </div>
-        <div class="flexcell applications-cell">
+        <div class="flexcell loans-cell text-center">
           <%= application.user.mobile_number %>
         </div>
-        <div class="flexcell applications-cell">
+        <div class="flexcell loans-cell text-center">
           <%= application.requested_amount_cents %>
         </div>
-        <div class="flexcell applications-cell">
+        <div class="flexcell loans-cell text-center">
           <%= application.category %>
         </div>
-        <div class="flexcell applications-cell">
+        <div class="flexcell loans-cell text-center">
           <%= application.purpose %>
         </div>
-        <div class="flexcell applications-cell">
+        <div class="flexcell loans-cell text-center">
           <%= application.user.credit_score %>
         </div>
       </div>
     <% end %>
   <% end %>
-  <h3>Accepted Applications</h3>
-    <div class="flexrow applications-header-row text-center">
-      <div class="flexcell applications-header">
-        <p>Application Date</p>
+</div>
+</div>
+<div class="container">
+<h3>Accepted Applications</h3>
+<div class="loan-flexbox">
+    <div class="flexrow loans-header-row text-center">
+      <div class="flexcell loans-header">
+       Application Date
       </div>
-      <div class="flexcell applications-header">
-        <p>Mobile Number</p>
+      <div class="flexcell loans-header">
+        Mobile Number
       </div>
-      <div class="flexcell applications-header">
-        <p>Proposed Amount</p>
+      <div class="flexcell loans-header">
+        Proposed Amount
       </div>
-      <div class="flexcell applications-header">
-        <p>Category</p>
+      <div class="flexcell loans-header">
+        Category
       </div>
-      <div class="flexcell applications-header">
-        <p>Duration</p>
+      <div class="flexcell loans-header">
+        Duration
       </div>
-      <div class="flexcell applications-header">
-        <p>Score</p>
+      <div class="flexcell loans-header">
+        Credit Score
       </div>
     </div>
 
         <% @loans.where(status: "Application Accepted").each do |application|%>
-        <%= link_to bank_user_loan_path(current_bank_user, application) do %>
-        <div class="flexrow applications text-center">
-          <div class="flexcell applications-cell">
+       <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do %>
+        <div class="flexrow loans text-center">
+          <div class="flexcell loans-cell">
             <%= application.created_at.strftime("%e %b %Y") %>
           </div>
-          <div class="flexcell applications-cell">
+          <div class="flexcell loans-cell">
             <%= application.user.mobile_number %>
           </div>
-          <div class="flexcell applications-cell">
+          <div class="flexcell loans-cell">
             <%= application.proposed_amount_cents %>
           </div>
-          <div class="flexcell applications-cell">
+          <div class="flexcell loans-cell">
             <%= application.category %>
           </div>
-          <div class="flexcell applications-cell">
+          <div class="flexcell loans-cell">
             <%= application.duration_months %>
           </div>
-          <div class="flexcell applications-cell">
+          <div class="flexcell loans-cell">
             <%= application.user.credit_score %>
           </div>
         </div>
