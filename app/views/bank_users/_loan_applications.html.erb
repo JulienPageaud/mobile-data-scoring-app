@@ -1,58 +1,96 @@
-
-  <div class="row">
-    <h3>New Applications</h3>
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <th>Application Date</th>
-            <th>Mobile Number</th>
-            <th>Requested Amount</th>
-            <th>Category</th>
-            <th>Purpose</th>
-            <th>Score</th>
-          </thead>
-          <tbody>
-          <% @loans.where(status: "Application Pending").each do |application|%>
-
-            <tr>
-              <td><%= link_to application.created_at.strftime("%e %b %Y"), bank_user_loan_path(current_bank_user, application) %></td>
-              <td><%= application.user.mobile_number %></td>
-              <td><%= application.requested_amount_cents %></td>
-              <td><%= application.category %></td>
-              <td><%= application.purpose %></td>
-              <td><%= application.user.credit_score %></td>
-            </tr>
-
-          <% end %>
-          </tbody>
-        </table>
+<div class="container">
+  <h3>New Applications</h3>
+    <div class="standard-flexbox">
+      <div class="flexrow applications-header-row text-center">
+        <div class="flexcell applications-header">
+          <p>Application Date</p>
+        </div>
+        <div class="flexcell applications-header">
+          <p>Mobile Number</p>
+        </div>
+        <div class="flexcell applications-header">
+          <p>Requested Amount</p>
+        </div>
+        <div class="flexcell applications-header">
+          <p>Category</p>
+        </div>
+        <div class="flexcell applications-header">
+          <p>Purpose</p>
+        </div>
+        <div class="flexcell applications-header">
+          <p>Score</p>
+        </div>
       </div>
-  </div>
-    <div class="row">
-    <h3>Accepted Applications</h3>
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <th>Application Date</th>
-            <th>Mobile Number</th>
-            <th>Proposed Amount</th>
-            <th>Category</th>
-            <th>Duration</th>
-            <th>Score</th>
-          </thead>
-          <tbody>
-          <% @loans.where(status: "Application Accepted").each do |application|%>
-            <tr>
-              <td><%= application.created_at.strftime("%e %b %Y") %></td>
-              <td><%= application.user.mobile_number %></td>
-              <td><%= application.proposed_amount_cents %></td>
-              <td><%= application.category %></td>
-              <td><%= application.duration_months %></td>
-              <td><%= application.user.credit_score %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-  </div>
 
+      <% @loans.where(status: "Application Pending").each do |application|%>
+      <%= link_to bank_user_loan_path(current_bank_user, application) do%>
+      <div class="flexrow applications text-center">
+        <div class="flexcell applications-cell">
+          <%= application.created_at.strftime("%e %b %Y") %>
+        </div>
+        <div class="flexcell applications-cell">
+          <%= application.user.mobile_number %>
+        </div>
+        <div class="flexcell applications-cell">
+          <%= application.requested_amount_cents %>
+        </div>
+        <div class="flexcell applications-cell">
+          <%= application.category %>
+        </div>
+        <div class="flexcell applications-cell">
+          <%= application.purpose %>
+        </div>
+        <div class="flexcell applications-cell">
+          <%= application.user.credit_score %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <h3>Accepted Applications</h3>
+    <div class="flexrow applications-header-row text-center">
+      <div class="flexcell applications-header">
+        <p>Application Date</p>
+      </div>
+      <div class="flexcell applications-header">
+        <p>Mobile Number</p>
+      </div>
+      <div class="flexcell applications-header">
+        <p>Proposed Amount</p>
+      </div>
+      <div class="flexcell applications-header">
+        <p>Category</p>
+      </div>
+      <div class="flexcell applications-header">
+        <p>Duration</p>
+      </div>
+      <div class="flexcell applications-header">
+        <p>Score</p>
+      </div>
+    </div>
+
+        <% @loans.where(status: "Application Accepted").each do |application|%>
+        <%= link_to bank_user_loan_path(current_bank_user, application) do %>
+        <div class="flexrow applications text-center">
+          <div class="flexcell applications-cell">
+            <%= application.created_at.strftime("%e %b %Y") %>
+          </div>
+          <div class="flexcell applications-cell">
+            <%= application.user.mobile_number %>
+          </div>
+          <div class="flexcell applications-cell">
+            <%= application.proposed_amount_cents %>
+          </div>
+          <div class="flexcell applications-cell">
+            <%= application.category %>
+          </div>
+          <div class="flexcell applications-cell">
+            <%= application.duration_months %>
+          </div>
+          <div class="flexcell applications-cell">
+            <%= application.user.credit_score %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
