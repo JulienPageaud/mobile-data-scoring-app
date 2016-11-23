@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="text-center"><%=@loan.status%> Overview</h1>
+  <div class="row">
+    <h2>Details</h2>
+      <p><strong>Start date:</strong> <%= @loan.start_date %></p>
+      <p><strong>Initial capital:</strong> <%= @loan.agreed_amount_cents %></p>
+      <p><strong>Remaining capital:</strong> <%= @loan.remaining_capital %></p>
+      <p><strong>Next payment date:</strong> <%= @loan.next_payment_date %></p>
+      <p><strong>Next payment amount:</strong> <%= @loan.payments.first.amount %></p>
+      <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
+  </div>
+</div>
