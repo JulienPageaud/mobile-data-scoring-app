@@ -12,7 +12,7 @@
       <%= simple_form_for [current_bank_user, @loan] do |f| %>
        <%= f.input :proposed_amount_cents, value: @loan.requested_amount_cents %>
        <%#Ò= f.input :duration, placeholder: "12 months" %>
-       <%= f.hidden_field :status, value: "Applicaton Accepted" %>
+       <%= f.hidden_field :status, value: "Application Accepted" %>
         <div class="form-actions">
         <%= f.button :submit, "Accept", class: "btn btn-royal-blue" %>
 
