@@ -4,18 +4,17 @@
 </div>
 
 <div class="container">
-  <% if @user.loans == [] %>
+  <% if current_user.loans == [] %>
     <%= render 'empty' %>
-  <% elsif @user.loans.last.status == "Application Pending" %>
+  <% elsif current_user.loans.last.status == "Application Pending" %>
     <%= render 'pending' %>
-  <% elsif @user.loans.last.status == "Application Accepted" %>
+  <% elsif current_user.loans.last.status == "Application Accepted" %>
     <%= render 'accepted' %>
-  <% elsif @user.loans.last.status == "Loan Outstanding" %>
+  <% elsif current_user.loans.last.status == "Loan Outstanding" %>
     <%= render 'oustanding' %>
-  <% elsif @user.loans.last.status == "Application Declined" %>
+  <% elsif current_user.loans.last.status == "Application Declined" %>
     <%= render 'declined' %>
-  <% elsif @user.loans.last.status == "Loan Repaid" %>
+  <% elsif current_user.loans.last.status == "Loan Repaid" %>
     <%= render 'repaid' %>
   <% end %>
 </div>
-
