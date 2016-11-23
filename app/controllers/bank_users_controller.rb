@@ -18,6 +18,11 @@ class BankUsersController < ApplicationController
   end
 
   def update
+    if @loan.update(loan_params)
+      redirect_to bank_user_path(current_bank_user)
+    else
+      render :show
+    end
   end
 
   def user_show
@@ -28,5 +33,9 @@ class BankUsersController < ApplicationController
 
   def set_loan
     @loan = Loan.find(params[:id])
+  end
+
+  def loan_params
+    params.require(:loan).permit(:status, :proposed_amount_cents)
   end
 end
