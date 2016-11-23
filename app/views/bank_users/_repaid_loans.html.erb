@@ -5,6 +5,7 @@
       <thead>
         <th>Client Name</th>
         <th>Last Payment Date</th>
+        <th>Last Payment Amount</th>
         <th>Total Paid</th>
         <th>Credit Score</th>
       </thead>
@@ -15,12 +16,13 @@
 
           <% loan.payments.each do |payment| %>
             <% if payment.missed_payment? %>
-              <td><%= payment.amount.currency.to_s + ' ' + payment.amount.to_s %></td>
+              <td><%= payment.amount.display_money %></td>
               <td><%= payment.due_date.strftime("%e %b %Y") %></td>
             <% end %>
           <% end %>
 
           <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+          <td><%= loan.next_payment.display_money %></td>
           <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
           <td><%= loan.user.credit_score %></td>
         </tr>
