@@ -19,64 +19,35 @@
   <% end %>
 </div>
 
-<h2>Loan Outstanding</h2>
-
-<div class="container">
-
-  <div>
-    <p>Your current balance is</p>
-  </div>
-
-  <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
-  </div>
-
-  <div>
-    <p>Your next payment is due by the</p>
-  </div>
-
-  <div class="payment-date">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
-  </div>
+  <br>
 
   <div class="repayments-flexbox">
-    <div class="repayments-header-row">
-      <div class="repayments-header">
+    <div class="flexrow repayments-header-row text-center">
+      <div class="flexcell repayments-header">
         <p>Due date</p>
       </div>
-      <div class="repayments-header">
+      <div class="flexcell repayments-header">
         <p>Amount due</p>
       </div>
-      <div class="repayments-header">
+      <div class="flexcell repayments-header">
         <p>Paid</p>
       </div>
     </div>
 
-    <% current_user.loans.last.payments.each do |payment| %>
-      <div class="month">
-        <div class="month-cell">
-          <%= payment.due_date  %>
+    <% 3.times do %>
+      <div class="flexrow month text-center">
+        <div class="flexcell month-cell">
+          23-11-2016
         </div>
-        <div class="month-cell">
-          <%= payment.amount_cents %>
+        <div class="flexcell month-cell">
+          100
         </div>
-        <div class="month-cell">
-          <%= payment.paid ? 'tick' : 'cross' %>
+        <div class="flexcell month-cell">
+          tick
         </div>
       </div>
     <% end %>
-  </div>
 
-  <div>
-    <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
-  </div>
+    <br>
 
-  <div>
-    <p>Repayments must be operated from your eWallet account.</p>
   </div>
-
-  <div>
-    <p>You must complete the full repayment of your existing laon before being eligle for a new loan application.</p>
-  </div>
-
-</div>

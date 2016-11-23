@@ -18,23 +18,31 @@
   </div>
 
   <div class="repayments-flexbox">
-    <!-- div for each row (header, row, row, row) each row flexed -->
-    <!-- div for each cell inside row, each cell of one column will have the same class -->
-    <div class="repayments-header">
-
+    <div class="flexrow repayments-header-row">
+      <div class="repayments-header">
+        <p>Due date</p>
+      </div>
+      <div class="repayments-header">
+        <p>Amount due</p>
+      </div>
+      <div class="repayments-header">
+        <p>Paid</p>
+      </div>
     </div>
 
-    <div class="first-month">
-
-    </div>
-
-    <div class="second-month">
-
-    </div>
-
-    <div class="third-month">
-
-    </div>
+    <% current_user.loans.last.payments.each do |payment| %>
+      <div class="flexrow month">
+        <div class="month-cell">
+          <%= payment.due_date %>
+        </div>
+        <div class="month-cell">
+          <%= payment.amount_cents %>
+        </div>
+        <div class="month-cell">
+          <%= payment.paid ? 'tick' : 'cross' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div>

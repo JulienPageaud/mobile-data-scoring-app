@@ -1,0 +1,32 @@
+.repayments-flexbox {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  background-color: $icon-grey;
+  margin: 0 auto;
+}
+.confirm-repayments {
+  width: 80%;
+}
+.flexrow {
+  display: flex;
+  justify-content: space-between;
+}
+ .flexrow:nth-child(even) {
+  background-color: $table-grey;
+ }
+.flexcell {
+  padding: 0 20px;
+  width: 33.4%;
+}
+.repayments-header {
+  background-color: $royal-blue;
+  color: white;
+}
+.repayments-header-row {
+}
+.month {
+}
+.month-cell {
+
+}
