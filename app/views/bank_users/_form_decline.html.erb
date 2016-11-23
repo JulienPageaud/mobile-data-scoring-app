@@ -1,4 +1,4 @@
-<%= simple_form_for [current_bank_user, @loan] do |f| %>
+<%= simple_form_for @loan do |f| %>
     <%= f.error_notification %>
 
     <%= f.hidden_field :final_date, value: DateTime.now %>
