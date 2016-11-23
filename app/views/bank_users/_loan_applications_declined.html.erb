@@ -1,28 +1,51 @@
-<div class="row">
+<div class="container">
   <h3>Declined Applications</h3>
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <th>Application Date</th>
-          <th>Mobile Number</th>
-          <th>Resquested Amount</th>
-          <th>Decline Date</th>
-          <th>Rationale for the Decline</th>
-          <th>Score</th>
-        </thead>
-        <tbody>
-        <% @loans.where(status: "Application Declined").each do |application|%>
+    <div class="loan-flexbox">
+      <div class="flexrow loans-header-row text-center">
+        <div class="flexcell loans-header">
+          Application Date
+        </div>
+        <div class="flexcell loans-header">
+          Mobile Number
+        </div>
+        <div class="flexcell loans-header">
+          Requested Amount
+        </div>
+        <div class="flexcell loans-header">
+          Decline Date
+        </div>
+        <div class="flexcell loans-header">
+          Rationale for the Decline
+        </div>
+        <div class="flexcell loans-header">
+          Credit Score
+        </div>
+      </div>
 
-          <tr>
-            <td><%= application.created_at.strftime("%e %b %Y") %></td>
-            <td><%= application.user.mobile_number %></td>
-            <td><%= application.requested_amount_cents %></td>
-            <td><%= application.final_date.strftime("%e %b %Y") %></td>
-            <td><%= application.decline_reason %></td>
-            <td><%= application.user.credit_score %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+      <% @loans.where(status: "Application Declined").each do |application|%>
+      <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
+      <div class="flexrow loans text-center">
+        <div class="flexcell loans-cell text-center">
+          <%= application.created_at.strftime("%e %b %Y") %>
+        </div>
+        <div class="flexcell loans-cell text-center">
+          <%= application.user.mobile_number %>
+        </div>
+        <div class="flexcell loans-cell text-center">
+          <%= application.requested_amount_cents %>
+        </div>
+        <div class="flexcell loans-cell text-center">
+          <%= application.final_date.strftime("%e %b %Y") %>
+        </div>
+        <div class="flexcell loans-cell text-center">
+          <%= application.decline_reason %>
+        </div>
+        <div class="flexcell loans-cell text-center">
+          <%= application.user.credit_score %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+</div>
+
