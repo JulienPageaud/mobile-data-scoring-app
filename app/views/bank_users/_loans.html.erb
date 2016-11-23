@@ -11,21 +11,23 @@
         <th>Credit Score</th>
       </thead>
       <tbody>
-      <% @missed_payment_loans.each do |loan|%>
-        <tr>
-          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+      <% if @missed_payment_loans.present? %>
+        <% @missed_payment_loans.each do |loan|%>
+          <tr>
+            <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
 
-          <% loan.payments.each do |payment| %>
-            <% if payment.missed_payment? %>
-              <td><%= payment.amount %></td>
-              <td><%= payment.due_date %></td>
+            <% loan.payments.each do |payment| %>
+              <% if payment.missed_payment? %>
+                <td><%= payment.amount.currency.to_s + ' ' + payment.amount.to_s %></td>
+                <td><%= payment.due_date.strftime("%e %b %Y") %></td>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <td><%= loan.next_payment_date %></td>
-          <td><%= loan.payments.last.due_date %></td>
-          <td><%= loan.user.credit_score %></td>
-        </tr>
+            <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.user.credit_score %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
@@ -44,19 +46,21 @@
         <th>Credit Score</th>
       </thead>
       <tbody>
-      <% @delayed_payment_loans.each do |loan|%>
-        <tr>
-          <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
-          <% loan.payments.each do |payment| %>
-            <% if payment.missed_payment? %>
-              <td><%= payment.amount %></td>
-              <td><%= payment.due_date %></td>
+      <% if @delayed_payment_loans.present? %>
+        <% @delayed_payment_loans.each do |loan|%>
+          <tr>
+            <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
+            <% loan.payments.each do |payment| %>
+              <% if payment.missed_payment? %>
+                <td><%= payment.amount.currency.to_s + ' ' + payment.amount.to_s %></td>
+                <td><%= payment.due_date.strftime("%e %b %Y") %></td>
+              <% end %>
             <% end %>
-          <% end %>
-          <td><%= loan.next_payment_date %></td>
-          <td><%= loan.payments.last.due_date %></td>
-          <td><%= loan.user.credit_score %></td>
-        </tr>
+            <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.user.credit_score %></td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
@@ -77,9 +81,9 @@
       <% Loan.good_loans.each do |loan| %>
         <tr>
           <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
-          <td>loan.remaining_capital</td>
-          <td><%= loan.next_payment_date %></td>
-          <td><%= loan.payments.last.due_date %></td>
+          <td><%= loan.next_payment.amount.currency.to_s + ' ' + loan.remaining_capital.to_s %></td>
+          <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+          <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
           <td><%= loan.user.credit_score %></td>
         </tr>
       <% end %>

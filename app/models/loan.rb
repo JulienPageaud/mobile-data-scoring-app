@@ -10,32 +10,43 @@ class Loan < ApplicationRecord
   validates :requested_amount, presence: true
   validates :category, presence: true
   validates :purpose, presence: true
-  validates :description, presence: true, length: { minimum: 100,
+  validates :description, presence: true, length: { minimum: 50,
     too_short: "You need to exceed %{count} characters in your description" }
 
 
-  def next_payment_date
-    payments.where('due_date < ?', DateTime.now).first
+  def next_payment
+    payments.where('due_date > ?', DateTime.now).first
   end
 
   def self.good_loans
-    all.joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})
+    result = (where(status: "Loan Outstanding").joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})).to_a
+    new_loans = []
+    all.each do |loan|
+      if loan.payments.first.due_date > DateTime.now
+        new_loans << loan
+      end
+    end
+    if result.present?
+      return result << new_loans
+    else
+      return new_loans
+    end
   end
 
   def remaining_capital
     payments_total = 0
     payments.each do |payment|
-      payments_total += payment.amount_cents if payment.paid == true
+      payments_total += payment.amount if payment.paid == true
     end
-    return agreed_amount_cents - payments_total
+    return agreed_amount - payments_total
   end
 
   def self.missed_payment_loans
-    all.joins(:payments).where('payments.due_date < ?', (DateTime.now - 7.day)).where(payments: { paid: false })
+    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?', (DateTime.now - 7.day)).where(payments: { paid: false })
   end
 
   def self.delayed_payment_loans
-    all.joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
+    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
   end
 
 
