@@ -13,14 +13,16 @@
           </thead>
           <tbody>
           <% @loans.where(status: "Application Pending").each do |application|%>
+
             <tr>
-              <td><%= application.created_at.strftime("%e %b %Y") %></td>
+              <td><%= link_to application.created_at.strftime("%e %b %Y"), bank_user_loan_path(current_bank_user, application) %></td>
               <td><%= application.user.mobile_number %></td>
               <td><%= application.requested_amount_cents %></td>
               <td><%= application.category %></td>
               <td><%= application.purpose %></td>
               <td><%= application.user.credit_score %></td>
             </tr>
+
           <% end %>
           </tbody>
         </table>
@@ -40,12 +42,12 @@
           </thead>
           <tbody>
           <% @loans.where(status: "Application Accepted").each do |application|%>
-            <tr><%= link_to %>
-              <td><%= application.created_at %></td>
+            <tr>
+              <td><%= application.created_at.strftime("%e %b %Y") %></td>
               <td><%= application.user.mobile_number %></td>
               <td><%= application.proposed_amount_cents %></td>
               <td><%= application.category %></td>
-              <td><%= application.final_date - application.start_date %></td>
+              <td><%= application.duration_months %></td>
               <td><%= application.user.credit_score %></td>
             </tr>
           <% end %>
