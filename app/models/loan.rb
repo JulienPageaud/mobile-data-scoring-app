@@ -38,24 +38,28 @@ class Loan < ApplicationRecord
     all.joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
   end
 
+
+  # This method is used to create the payments which are shown to the user before confirming/accepting the loan
   def create_payments_proposed
     payment_amount = ((proposed_amount.amount * (1 + interest_rate.fdiv(100))) / duration_months) * 100
 
     counter = 1
     duration_months.times do
-      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month))
+      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month)) # DateTime.now used as start_date will be set later
       payment.save
       counter += 1
     end
   end
 
+  # This method is used to create the final payments based on the agreed amount which is entered by the user
+  # Old payments are destroyed and replaced by new ones based on this new amount
   def update_payments_to_agreed_amount
     payments.destroy_all
 
     payment_amount = ((agreed_amount.amount * (1 + interest_rate.fdiv(100))) / duration_months) * 100
     counter = 1
     duration_months.times do
-      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month))
+      payment = payments.build(amount_cents: payment_amount, due_date: (start_date + counter.month))
       payment.save
       counter += 1
     end
