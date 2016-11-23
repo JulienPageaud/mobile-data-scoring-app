@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || controller_name == "pages"
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(User)
+      user_path(resource)
+    elsif resource.is_a?(BankUser)
+      bank_user_loans_path(resource)
+    end
+  end
 end
