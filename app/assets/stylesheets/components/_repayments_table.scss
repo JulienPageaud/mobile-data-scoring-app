@@ -1,0 +1,28 @@
+.standard-flexbox {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  background-color: $icon-grey;
+  width: 80%;
+  margin: 0 auto;
+}
+.flexrow {
+  display: flex;
+  justify-content: space-between;
+}
+ .flexrow:nth-child(even) {
+  background-color: $table-grey;
+ }
+.flexcell {
+  padding: 0 20px;
+}
+.confirm-cell {
+  width: 50%;
+}
+.oustanding-cell {
+  width: 33.4%;
+}
+.blue-header {
+  background-color: $royal-blue;
+  color: white;
+}

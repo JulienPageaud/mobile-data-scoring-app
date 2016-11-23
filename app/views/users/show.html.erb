@@ -2,13 +2,15 @@
   <div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('home_background.jpg') %>);">
 
     <div class="banner-content">
-      <p><strong>Apply now.</strong> The new way<br>to access a loan.</p>
-      <button class="btn btn-transparent">Apply for a loan</button>
+      <%= link_to(new_user_loan_path(@user)) do %>
+        <p><strong>Apply now.</strong> The new way<br>to access a loan.</p>
+        <button class="btn btn-transparent">Apply for a loan</button>
+      <% end %>
     </div>
   </div>
 
   <div class="header-banner-white">
-    <%= link_to('status') do %>
+    <%= link_to(user_status_path(@user)) do %>
       <div id="tab-monitor">
         <h1>Monitor your situation</h1>
         <p>Track your progress over time</p>
