@@ -19,4 +19,11 @@ Rails.application.routes.draw do
 
   # User 'Current Situation' page
   get 'users/:id/status', to: 'users#status'
+
+  # User 'Your Profile' page
+  get 'users/:id/profile', to: 'users#profile'
+
+  # User 'Share' page
+  get 'users/:id/share', to: 'users#share'
+
 end
