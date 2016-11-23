@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller?
+    devise_controller? || controller_name == "pages"
   end
 end
