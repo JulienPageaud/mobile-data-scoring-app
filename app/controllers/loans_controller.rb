@@ -1,11 +1,14 @@
 class LoansController < ApplicationController
-  skip_before_filter :authenticate_bank_user!
+  skip_before_action :authenticate_bank_user!
+  skip_before_action :authenticate_user!
+  before_action :set_loan, only: [:update]
 
   def index
     if params[:bank_user_id]
-      @loans = current_bank_user.bank.loans
+      @loans = policy_scope(Loan)
       @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
       @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
+      render 'bank_users/index'
     end
   end
 
@@ -27,6 +30,8 @@ class LoansController < ApplicationController
   def show
     if params[:bank_user_id]
       @loan = Loan.find(params[:id])
+      authorize @loan
+      render 'bank_users/show'
     end
   end
 
@@ -34,14 +39,14 @@ class LoansController < ApplicationController
   end
 
   def update
-    if params[loan: {:status}] == "Application Approved" || params[loan: {:status}] == "Application Declined"
+    if params[:loan][:status] == "Application Accepted" || params[:loan][:status] == "Application Declined"
       authorize @loan
       if @loan.update(loan_bank_params)
-      redirect_to bank_user_loans_path
+        redirect_to bank_user_loans_path
       else
-      render :show
+        render :show
       end
-    elsif params[loan: {:agreed_amount_cents}] || params[loan: {:status}] == "Loan Outstanding"
+    elsif params[loan: :agreed_amount_cents] || params[loan: :status] == "Loan Outstanding"
       # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
   end
@@ -62,5 +67,9 @@ class LoansController < ApplicationController
     elsif bank_user_signed_in?
       current_bank_user
     end
+  end
+
+  def set_loan
+    @loan = Loan.find(params[:id])
   end
 end
