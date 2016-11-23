@@ -2,6 +2,11 @@ class LoansController < ApplicationController
   skip_before_filter :authenticate_bank_user!
 
   def index
+    if params[:bank_user_id]
+      @loans = current_bank_user.bank.loans
+      @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
+      @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
+    end
   end
 
   def new
@@ -20,6 +25,9 @@ class LoansController < ApplicationController
   end
 
   def show
+    if params[:bank_user_id]
+      @loan = Loan.find(params[:id])
+    end
   end
 
   def edit
