@@ -12,6 +12,9 @@ gem 'redis'
 # Money gem for amounts
 gem 'money-rails'
 
+# Protection/authentication
+gem 'pundit'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
