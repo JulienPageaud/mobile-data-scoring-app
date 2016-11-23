@@ -17,24 +17,26 @@
     <p>with repayments scheduled on</p>
   </div>
 
-  <div class="repayments-flexbox">
-    <!-- div for each row (header, row, row, row) each row flexed -->
-    <!-- div for each cell inside row, each cell of one column will have the same class -->
-    <div class="repayments-header">
-
+  <div class="confirm-repayments standard-flexbox">
+    <div class="flexrow repayments-header-row text-center">
+      <div class="flexcell confirm-cell blue-header">
+        <p>Due date</p>
+      </div>
+      <div class="flexcell confirm-cell blue-header">
+        <p>Amount due</p>
+      </div>
     </div>
 
-    <div class="first-month">
-
-    </div>
-
-    <div class="second-month">
-
-    </div>
-
-    <div class="third-month">
-
-    </div>
+    <% current_user.loans.last.duration_months.times do %>
+      <div class="flexrow month text-center">
+        <div class="flexcell confirm-cell">
+          <%= DateTime.now %>
+        </div>
+        <div class="flexcell confirm-cell">
+          <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div>

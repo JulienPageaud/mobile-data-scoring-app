@@ -1,0 +1,19 @@
+.round-icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $icon-grey;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3)
+}
+
+.round-icon .glyphicon {
+  font-size: 14px;
+  color: $royal-blue;
+}

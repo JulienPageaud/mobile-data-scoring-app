@@ -6,7 +6,8 @@
         <th>Client Name</th>
         <th>Amount Owed</th>
         <th>Missed Payment Date</th>
-        <th>Next Payment </th>
+        <th>Next Payment Date</th>
+        <th>Next Payment Amount</th>
         <th>Final Payment Date</th>
         <th>Credit Score</th>
       </thead>
@@ -18,12 +19,13 @@
 
             <% loan.payments.each do |payment| %>
               <% if payment.missed_payment? %>
-                <td><%= payment.amount.currency.to_s + ' ' + payment.amount.to_s %></td>
+                <td><%= payment.display_money %></td>
                 <td><%= payment.due_date.strftime("%e %b %Y") %></td>
               <% end %>
             <% end %>
 
             <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.next_payment.display_money %></td>
             <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
             <td><%= loan.user.credit_score %></td>
           </tr>
@@ -41,7 +43,8 @@
         <th>Client Name</th>
         <th>Amount Owed</th>
         <th>Missed Payment Date</th>
-        <th>Next Payment </th>
+        <th>Next Payment Date</th>
+        <th>Next Payment Amount</th>
         <th>Final Payment Date</th>
         <th>Credit Score</th>
       </thead>
@@ -52,11 +55,12 @@
             <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
             <% loan.payments.each do |payment| %>
               <% if payment.missed_payment? %>
-                <td><%= payment.amount.currency.to_s + ' ' + payment.amount.to_s %></td>
+                <td><%= payment.display_money %></td>
                 <td><%= payment.due_date.strftime("%e %b %Y") %></td>
               <% end %>
             <% end %>
             <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+            <td><%= loan.next_payment.display_money %></td>
             <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
             <td><%= loan.user.credit_score %></td>
           </tr>
@@ -73,7 +77,8 @@
       <thead>
         <th>Client Name</th>
         <th>Capital Left</th>
-        <th>Next Payment </th>
+        <th>Next Payment Date</th>
+        <th>Next Payment Amount</th>
         <th>Final Payment Date</th>
         <th>Credit Score</th>
       </thead>
@@ -81,8 +86,9 @@
       <% Loan.good_loans.each do |loan| %>
         <tr>
           <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
-          <td><%= loan.next_payment.amount.currency.to_s + ' ' + loan.remaining_capital.to_s %></td>
+          <td><%= loan.next_payment.display_money %></td>
           <td><%= loan.next_payment.due_date.strftime("%e %b %Y") %></td>
+          <td><%= loan.next_payment.display_money %></td>
           <td><%= loan.payments.last.due_date.strftime("%e %b %Y") %></td>
           <td><%= loan.user.credit_score %></td>
         </tr>

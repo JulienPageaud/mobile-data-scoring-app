@@ -9,5 +9,6 @@
       <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
       <p><strong>Description:</strong> <%= @loan.description %></p>
+  <%= link_to 'Go back', bank_user_loans_path %>
   </div>
 </div>
