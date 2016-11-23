@@ -12,6 +12,7 @@
         </thead>
         <tbody>
         <% @loans.where(status: "Application Declined").each do |application|%>
+
           <tr>
             <td><%= application.created_at %></td>
             <td><%= application.user.mobile_number %></td>

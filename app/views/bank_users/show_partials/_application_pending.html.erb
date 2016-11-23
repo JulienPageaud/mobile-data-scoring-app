@@ -9,7 +9,15 @@
       <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
       <p><strong>Description:</strong> <%= @loan.description %></p>
-      <div class="btn btn-royal-blue" type="submit">Accept</div>
-      <div class="btn btn-danger" type="submit"><%= link_to "Decline"%></div>
+      <%= simple_form_for [current_bank_user, @loan] do |f| %>
+       <%= f.input :proposed_amount_cents, value: @loan.requested_amount_cents %>
+       <%#Ò= f.input :duration, placeholder: "12 months" %>
+       <%= f.hidden_field :status, value: "Applicaton Accepted" %>
+        <div class="form-actions">
+        <%= f.button :submit, "Accept", class: "btn btn-royal-blue" %>
+
+        <%= link_to 'Decline', "#" , class: "btn btn-danger"%>
+        </div>
+      <% end %>
   </div>
 </div>

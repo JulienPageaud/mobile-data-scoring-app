@@ -2,8 +2,8 @@
     <%= f.error_notification %>
 
     <%= f.input :final_date %>
-    <%= f.input :decline_rationale %>
-
+    <%= f.input :decline_reasons %>
+    <%= f.hidden_field :status, value: "Applicaton Declined" %>
     <div class="form-actions">
       <%= f.button :submit, "Decline", class: "navbar-wagon-button" %>
     </div>
