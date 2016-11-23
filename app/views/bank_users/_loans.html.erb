@@ -19,7 +19,7 @@
 
             <% loan.payments.each do |payment| %>
               <% if payment.missed_payment? %>
-                <td><%= payment.amount.currency.display_money %></td>
+                <td><%= payment.display_money %></td>
                 <td><%= payment.due_date.strftime("%e %b %Y") %></td>
               <% end %>
             <% end %>
@@ -55,7 +55,7 @@
             <td><%= loan.user.first_name + ' ' + loan.user.last_name %></td>
             <% loan.payments.each do |payment| %>
               <% if payment.missed_payment? %>
-                <td><%= payment.amount.display_money %></td>
+                <td><%= payment.display_money %></td>
                 <td><%= payment.due_date.strftime("%e %b %Y") %></td>
               <% end %>
             <% end %>
