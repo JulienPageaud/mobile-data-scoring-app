@@ -6,11 +6,13 @@
     <h2><strong>Apply now.</strong> The new way to access a loan.</h2>
   </div>
   <div class="banner">
-    <button class="btn btn-secondary">Apply for a loan</button>
+    <%= link_to(new_user_loan_path(@user)) do %>
+      <button class="btn btn-secondary">Apply for a loan</button>
+    <% end %>
   </div>
 </div>
 
-<%= link_to('status') do %>
+<%= link_to(user_status_path(@user)) do %>
   <div id="tab-monitor">
     <h2>Monitor your situation</h2>
     <p>Track your progress over time</p>
