@@ -1,0 +1,25 @@
+.banner-content strong {
+  color: $sky-blue;
+}
+
+.banner {
+  color: white;
+  text-align: center;
+  height: 40vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-transparent {
+  border-radius: 20px;
+  width: 220px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 18px;
+}
