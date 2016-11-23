@@ -9,16 +9,16 @@
 
   <% if user_signed_in? %>
     <%= link_to destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="fa fa-user fa-2x"></i>
+      <i class="glyphicon glyphicon-user"></i>
     <% end %>
   <% else %>
     <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="fa fa-user fa-2x"></i>
+      <i class="glyphicon glyphicon-user"></i>
     <% end %>
   <% end %>
 
     <%= link_to root_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="fa fa-home fa-2x"></i>
+      <i class="glyphicon glyphicon-home"></i>
     <% end %>
   </div>
 
