@@ -18,28 +18,28 @@
     <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
-  <div class="confirm-repayments repayments-flexbox">
-    <div class="flexrow repayments-header-row text-center">
-      <div class="flexcell repayments-header">
+  <div class="standard-flexbox">
+    <div class="flexrow text-center">
+      <div class="flexcell oustanding-cell repayments-header">
         <p>Due date</p>
       </div>
-      <div class="flexcell repayments-header">
+      <div class="flexcell oustanding-cell repayments-header">
         <p>Amount due</p>
       </div>
-      <div class="flexcell repayments-header">
+      <div class="flexcell oustanding-cell repayments-header">
         <p>Paid</p>
       </div>
     </div>
 
     <% current_user.loans.last.payments.each do |payment| %>
-      <div class="flexrow month text-center">
-        <div class="flexcell month-cell">
+      <div class="flexrow text-center">
+        <div class="flexcell oustanding-cell">
           <%= payment.due_date %>
         </div>
-        <div class="flexcell month-cell">
+        <div class="flexcell oustanding-cell">
           <%= payment.amount_cents %>
         </div>
-        <div class="flexcell month-cell">
+        <div class="flexcell oustanding-cell">
           <%= payment.paid ? 'tick' : 'cross' %>
         </div>
       </div>

@@ -17,29 +17,23 @@
     <p>with repayments scheduled on</p>
   </div>
 
-  <div class="repayments-flexbox">
-    <div class="flexrow repayments-header-row">
-      <div class="repayments-header">
+  <div class="confirm-repayments standard-flexbox">
+    <div class="flexrow repayments-header-row text-center">
+      <div class="flexcell confirm-cell repayments-header">
         <p>Due date</p>
       </div>
-      <div class="repayments-header">
+      <div class="flexcell confirm-cell repayments-header">
         <p>Amount due</p>
-      </div>
-      <div class="repayments-header">
-        <p>Paid</p>
       </div>
     </div>
 
-    <% current_user.loans.last.payments.each do |payment| %>
-      <div class="flexrow month">
-        <div class="month-cell">
-          <%= payment.due_date %>
+    <% current_user.loans.last.duration_months.times do %>
+      <div class="flexrow month text-center">
+        <div class="flexcell confirm-cell">
+          <%= DateTime.now %>
         </div>
-        <div class="month-cell">
-          <%= payment.amount_cents %>
-        </div>
-        <div class="month-cell">
-          <%= payment.paid ? 'tick' : 'cross' %>
+        <div class="flexcell confirm-cell">
+          <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
         </div>
       </div>
     <% end %>
