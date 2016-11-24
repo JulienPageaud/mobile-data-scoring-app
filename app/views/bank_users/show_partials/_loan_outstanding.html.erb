@@ -3,7 +3,7 @@
   <div class="row">
     <h2>Details</h2>
       <p><strong>Start date:</strong> <%= @loan.start_date %></p>
-      <p><strong>Initial capital:</strong> <%= @loan.agreed_amount_cents %></p>
+      <p><strong>Initial capital:</strong> <%= @loan.display_capital %></p>
       <p><strong>Remaining capital:</strong> <%= @loan.remaining_capital %></p>
       <p><strong>Next payment date:</strong> <%= @loan.next_payment.due_date %></p>
       <p><strong>Next payment amount:</strong> <%= @loan.next_payment.amount %></p>

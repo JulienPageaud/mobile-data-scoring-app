@@ -4,7 +4,7 @@
     <h2>Details</h2>
       <p><strong>Date of the Application:</strong> <%= @loan.created_at.strftime("%e %b %Y") %></p>
       <p><strong>Mobile Number:</strong> <%= @loan.user.mobile_number %></p>
-      <p><strong>Amount requested:</strong> <%= @loan.requested_amount_cents %></p>
+      <p><strong>Amount requested:</strong> <%= @loan.display_requested_capital %></p>
       <p><strong>Category:</strong> <%= @loan.category %></p>
       <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
