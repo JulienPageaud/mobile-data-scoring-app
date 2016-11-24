@@ -6,15 +6,23 @@
 
       <%= simple_form_for(:user, url: user_registration_path) do |f| %>
         <%= f.input :mobile_number, placeholder: 'Mobile phone number', error: 'Please enter a mobile phone number', label: false, input_html: {class: 'round-input'} %>
-        <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', data: { toggle: "modal", target: ".bd-example-modal-sm" } %>
+        <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" } %>
       <% end %>
     </div>
   </div>
 
+  <% content_for(:after_js) do %>
+    <script>
+      $('#modal-button').on('click', function(e) {
+        e.preventDefault();
+      });
+    </script>
+  <% end %>
+
   <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-
+        <%= render 'devise/registrations/new', resource: User.new, resource_name: :user %>
       </div>
     </div>
   </div>
