@@ -64,7 +64,8 @@ class Loan < ApplicationRecord
       end
     end
     if result.present?
-      return result << new_loans
+      new_loans.each { |new_loan| result << new_loan}
+      return result
     else
       return new_loans
     end
@@ -72,12 +73,12 @@ class Loan < ApplicationRecord
 
   # Finds loans which have missed payments (due_date + 7 days)
   def self.missed_payment_loans
-    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?', (DateTime.now - 7.day)).where(payments: { paid: false })
+    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?', (DateTime.now.end_of_day - 7.day)).where(payments: { paid: false })
   end
 
   # Finds loans which have delayed payments (less than 7 days since due date)
   def self.delayed_payment_loans
-    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?',DateTime.now).where(payments: { paid: false })
+    where(status: "Loan Outstanding").joins(:payments).where(payments: {due_date: DateTime.now.end_of_day - 7.day..DateTime.now.end_of_day}).where(payments: { paid: false })
   end
 
 
