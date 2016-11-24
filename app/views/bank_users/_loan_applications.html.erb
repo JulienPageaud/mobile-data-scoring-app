@@ -1,7 +1,7 @@
 <div class="container">
   <h3>New Applications</h3>
     <div class="loan-flexbox">
-      <div class="flexrow loans-header-row text-center">
+      <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
           Application Date
         </div>
@@ -23,30 +23,30 @@
       </div>
 
       <% @loans.where(status: "Application Pending").each do |application|%>
-      <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
-      <div class="flexrow loans text-center">
-        <div class="flexcell loans-cell text-center">
-          <%= application.created_at.strftime("%e %b %Y") %>
-        </div>
-        <div class="flexcell loans-cell text-center">
-          <%= application.user.mobile_number %>
-        </div>
-        <div class="flexcell loans-cell text-center">
-          <%= application.display_requested_capital %>
-        </div>
-        <div class="flexcell loans-cell text-center">
-          <%= application.category %>
-        </div>
-        <div class="flexcell loans-cell text-center">
-          <%= application.purpose %>
-        </div>
-        <div class="flexcell loans-cell text-center">
-          <%= application.user.credit_score %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+        <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
+          <div class="flexrow loans text-left">
+            <div class="flexcell loans-cell ">
+              <%= application.created_at.strftime("%e %b %Y") %>
+            </div>
+            <div class="flexcell loans-cell ">
+              <%= application.user.mobile_number %>
+            </div>
+            <div class="flexcell loans-cell ">
+              <%= application.display_requested_capital %>
+            </div>
+            <div class="flexcell loans-cell ">
+              <%= application.category %>
+            </div>
+            <div class="flexcell loans-cell ">
+              <%= application.purpose %>
+            </div>
+            <div class="flexcell loans-cell ">
+              <%= application.user.credit_score %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 </div>
 <div class="container">
 <h3>Accepted Applications</h3>
