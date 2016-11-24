@@ -45,7 +45,7 @@ class Loan < ApplicationRecord
 
   # Calculate the total repaid capital
   def total_capital_repaid
-    sum = 0
+    sum = BigDecimal.new(0)
     payments.each do |payment|
       sum += payment.amount if payment.paid == true
     end
