@@ -40,7 +40,8 @@ class Loan < ApplicationRecord
     payments.each do |payment|
       payments_total += payment.amount if payment.paid == true
     end
-    return agreed_amount - payments_total
+    remaining_capital_in_ccy = agreed_amount - payments_total
+    remaining_capital_in_ccy.currency.to_s + ' ' + remaining_capital_in_ccy.to_s
   end
 
   # Calculate the total repaid capital
