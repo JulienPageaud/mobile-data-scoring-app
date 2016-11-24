@@ -15,6 +15,11 @@ gem 'money-rails'
 # Protection/authentication
 gem 'pundit'
 
+#Facebook personal details parsing
+gem 'omniauth-facebook'
+# Faker for seeding
+gem 'faker'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

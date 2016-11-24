@@ -32,7 +32,7 @@
           <%= application.user.mobile_number %>
         </div>
         <div class="flexcell loans-cell text-center">
-          <%= application.requested_amount_cents %>
+          <%= application.display_requested_capital %>
         </div>
         <div class="flexcell loans-cell text-center">
           <%= application.category %>
@@ -82,7 +82,7 @@
             <%= application.user.mobile_number %>
           </div>
           <div class="flexcell loans-cell">
-            <%= application.proposed_amount_cents %>
+            <%= application.display_proposed_capital %>
           </div>
           <div class="flexcell loans-cell">
             <%= application.category %>

@@ -44,10 +44,18 @@
               <% end %>
             <% end %>
             <div class="flexcell loans-cell text-center">
-              <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
+              <% if loan.next_payment %>
+                <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
+              <% else %>
+                <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
+              <% end %>
             </div>
             <div class="flexcell loans-cell text-center">
-              <%= loan.next_payment.display_money %>
+              <% if loan.next_payment %>
+                <%= loan.next_payment.display_money %>
+              <% else %>
+                <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
+              <% end %>
             </div>
             <div class="flexcell loans-cell text-center">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
@@ -108,10 +116,18 @@
               <% end %>
             <% end %>
             <div class="flexcell loans-cell text-center">
-              <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
+              <% if loan.next_payment %>
+                <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
+              <% else %>
+                <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
+              <% end %>
             </div>
             <div class="flexcell loans-cell text-center">
-              <%= loan.next_payment.display_money %>
+              <% if loan.next_payment %>
+                <%= loan.next_payment.display_money%>
+              <% else %>
+                <%= loan.payments.last.display_money%>
+              <% end %>
             </div>
             <div class="flexcell loans-cell text-center">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
