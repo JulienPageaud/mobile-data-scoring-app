@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_bank_user!
 
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user_id, only: [:status, :profile, :share]
 
   def show
     authorize @user
@@ -38,6 +39,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_user_id
+    @user = User.find(params[:user_id])
   end
 
   def user_params

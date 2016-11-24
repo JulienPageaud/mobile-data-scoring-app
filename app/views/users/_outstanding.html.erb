@@ -20,26 +20,26 @@
 
   <div class="standard-flexbox">
     <div class="flexrow text-center">
-      <div class="flexcell oustanding-cell blue-header">
+      <div class="flexcell third-cell blue-header">
         <p>Due date</p>
       </div>
-      <div class="flexcell oustanding-cell blue-header">
+      <div class="flexcell third-cell blue-header">
         <p>Amount due</p>
       </div>
-      <div class="flexcell oustanding-cell blue-header">
+      <div class="flexcell third-cell blue-header">
         <p>Paid</p>
       </div>
     </div>
 
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow text-center">
-        <div class="flexcell oustanding-cell">
+        <div class="flexcell third-cell">
           <%= payment.due_date %>
         </div>
-        <div class="flexcell oustanding-cell">
+        <div class="flexcell third-cell">
           <%= payment.amount_cents %>
         </div>
-        <div class="flexcell oustanding-cell">
+        <div class="flexcell third-cell">
           <%= payment.paid ? 'tick' : 'cross' %>
         </div>
       </div>

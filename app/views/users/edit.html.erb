@@ -10,10 +10,7 @@
   </div>
 
   <div class="facebook-fetching white-box">
-    <a href="#" class="facebook-link bg-facebook">
-      <i class="fa fa-facebook"></i>
-    </a>
-    <button type="button" class="btn btn-facebook">Use your Facebook account</button>
+    <%= link_to "Use your facebook account", omniauth_authorize_path(current_user, :facebook) %><br />
   </div>
 
   <div class="container white-box">
