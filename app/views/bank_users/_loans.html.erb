@@ -175,7 +175,7 @@
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.next_payment.display_money %>
+            <%= loan.remaining_capital %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.next_payment.due_date.strftime("%e %b %Y") %>

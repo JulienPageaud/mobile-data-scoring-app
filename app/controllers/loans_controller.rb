@@ -58,6 +58,7 @@ class LoansController < ApplicationController
   def accept
     authorize @loan
     @loan.status = "Loan Outstanding"
+    # SET THE AGREED AMOUNT
     @loan.save
     redirect_to user_status_path(current_user)
   end
