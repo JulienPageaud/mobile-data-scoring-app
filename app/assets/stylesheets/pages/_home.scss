@@ -5,7 +5,6 @@
 
 .wrapper-blue {
   background-color: $background-blue;
-  padding-bottom: 10px;
 }
 
 .banner-content strong {
@@ -47,7 +46,7 @@
 }
 
 .container-values {
-  padding-top: 20px;
+  padding: 20px;
   text-align: center;
   color: $title-grey;
   font-size: 12.5px;
@@ -58,6 +57,11 @@
   font-size: 18px;
   font-weight: 400;
   color: $royal-blue;
+  margin-top: 15px;
+}
+
+.wrapper-grey {
+  background-color: rgb(240,240,240);
 }
 
 .user-review-samples p {
