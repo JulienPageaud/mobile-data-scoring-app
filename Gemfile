@@ -15,6 +15,9 @@ gem 'money-rails'
 # Protection/authentication
 gem 'pundit'
 
+# Faker for seeding
+gem 'faker'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
