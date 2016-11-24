@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 20161124105900) do
 
   create_table "payments", force: :cascade do |t|
     t.datetime "due_date"
-    t.boolean  "paid",         default: false
+    t.boolean  "paid"
     t.datetime "paid_date"
     t.integer  "loan_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "amount_cents", default: 0,     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "amount_cents", default: 0, null: false
     t.index ["loan_id"], name: "index_payments_on_loan_id", using: :btree
   end
 

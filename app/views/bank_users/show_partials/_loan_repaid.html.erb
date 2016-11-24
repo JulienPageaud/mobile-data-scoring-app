@@ -4,9 +4,7 @@
     <h2>Details</h2>
       <p><strong>Start date:</strong> <%= @loan.start_date.strftime("%e %b %Y") %></p>
       <p><strong>Initial capital:</strong> <%= @loan.display_capital %></p>
-      <p><strong>Remaining capital:</strong> <%= @loan.remaining_capital %></p>
-      <p><strong>Next payment date:</strong> <%= @loan.next_payment.due_date.strftime("%e %b %Y") %></p>
-      <p><strong>Next payment amount:</strong> <%= @loan.next_payment.amount %></p>
+      <p><strong>Total Repaid:</strong> <%= @loan.total_capital_repaid %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
   <%= link_to 'Go back', bank_user_loans_path %>
   </div>

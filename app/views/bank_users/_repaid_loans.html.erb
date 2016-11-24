@@ -38,9 +38,7 @@
             <%= loan.payments.last.display_money %>
           </div>
           <div class="flexcell loans-cell text-center">
-            <% sum = 0 %>
-            <% loan.payments.each { |payment| sum += payment.amount }%>
-            <%= sum.currency.to_s + ' ' + sum.to_s %>
+            <%= loan.total_capital_repaid %>
           </div>
           <div class="flexcell loans-cell text-center">
             <%= loan.user.credit_score %>

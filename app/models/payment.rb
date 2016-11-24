@@ -4,9 +4,9 @@ class Payment < ApplicationRecord
 
   def missed_payment?
     if due_date < DateTime.now && paid == false
-      return true
+      true
     else
-      return false
+      false
     end
   end
 

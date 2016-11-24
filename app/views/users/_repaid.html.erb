@@ -6,7 +6,7 @@
   </div>
 
   <div>
-    <p>As of <%= @user.loans.last.payments.last.paid_date %></p>
+    <p>As of <%= current_user.loans.last.payments.last.paid_date %></p>
   </div>
 
   <div>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= @user.loans.last.agreed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.agreed_amount_cents %></strong></p>
   </div>
 
   <div>
