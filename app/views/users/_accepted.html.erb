@@ -33,7 +33,7 @@
           <%= DateTime.now %>
         </div>
         <div class="flexcell confirm-cell">
-          <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
+          <%= current_user.loans.last.requested_amount * current_user.loans.last.interest_rate.fdiv(100) / current_user.loans.last.duration_months %>
         </div>
       </div>
     <% end %>
@@ -46,6 +46,5 @@
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
-
-  <%= link_to "Accept loan", { action: user_loan_accept_path(@user, @loan), data: { confirm: 'Are you sure?') %>
+  <%= link_to "Accept loan", accept_user_loan_path(@user, @user.loans.last), data: { confirm: 'Are you sure?'} %>
 </div>
