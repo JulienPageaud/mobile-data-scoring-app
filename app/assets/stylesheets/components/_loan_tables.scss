@@ -7,24 +7,28 @@
   margin: 0 auto;
 }
 
-.flexrow .loans {
+.flexrow.loans {
   display: flex;
   justify-content: space-between;
   flex-basis: 100%;
+  padding: 0 15px;
 }
 
-.loans-cell {
+
+.loans-cell.flexcell {
   flex: 1 0 0;
+  padding: 0 5px;
 }
-.loans-header {
+.loans-header.flexcell {
   flex: 1 0 0;
   margin: 3px 0;
+  padding: 0 5px;
 }
 
 .loans-header-row {
   background-color:#3A97EC;
   color: white;
-  padding: 4px 0;
+  padding: 4px 15px;
 }
 
 .loan-link:hover {
@@ -38,5 +42,8 @@
   padding: 5px 0;
 }
 #credit-score, #category{
-  max-width: 100px;
+  max-width: 120px;
+}
+#purpose {
+  flex-grow: 2;
 }

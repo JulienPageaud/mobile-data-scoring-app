@@ -20,7 +20,7 @@
         <div class="flexcell loans-header">
           Final Payment Date
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="credit-score">
           Credit Score
         </div>
       </div>
@@ -61,7 +61,7 @@
             <div class="flexcell loans-cell">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
-            <div class="flexcell loans-cell">
+            <div class="flexcell loans-cell" id="credit-score">
               <%= loan.user.credit_score %>
             </div>
           </div>
@@ -93,7 +93,7 @@
         <div class="flexcell loans-header">
           Final Payment Date
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="credit-score">
           Credit Score
         </div>
       </div>
@@ -134,7 +134,7 @@
             <div class="flexcell loans-cell">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
-            <div class="flexcell loans-cell">
+            <div class="flexcell loans-cell" id="credit-score">
               <%= loan.user.credit_score %>
             </div>
           </div>
@@ -163,7 +163,7 @@
       <div class="flexcell loans-header">
         Final Payment Date
       </div>
-      <div class="flexcell loans-header">
+      <div class="flexcell loans-header" id="credit-score">
         Credit Score
       </div>
     </div>
@@ -186,7 +186,7 @@
           <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
           </div>
-          <div class="flexcell loans-cell">
+          <div class="flexcell loans-cell" id="credit-score">
             <%= loan.user.credit_score %>
           </div>
         </div>

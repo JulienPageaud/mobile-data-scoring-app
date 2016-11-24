@@ -14,7 +14,7 @@
         <div class="flexcell loans-header" id="category">
           Category
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="purpose">
           Purpose
         </div>
         <div class="flexcell loans-header" id="credit-score">
@@ -37,11 +37,11 @@
             <div class="flexcell loans-cell" id="category">
               <%= application.category %>
             </div>
-            <div class="flexcell loans-cell">
+            <div class="flexcell loans-cell" id="purpose">
               <%= application.purpose %>
             </div>
             <div class="flexcell loans-cell" id="credit-score">
-              <%= application.user.credit_score %>
+              <%= application.user.credit_score %>100
             </div>
           </div>
         <% end %>
