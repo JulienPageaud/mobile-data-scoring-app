@@ -33,16 +33,14 @@
             <div class="flexcell loans-cell text-center">
               <%= loan.user.first_name + ' ' + loan.user.last_name %>
             </div>
-            <% loan.payments.each do |payment| %>
-              <% if payment.missed_payment? %>
+              <% if loan.most_recent_payment.missed_payment? %>
                 <div class="flexcell loans-cell text-center">
-                  <%= payment.display_money %>
+                  <%= loan.most_recent_payment.display_money %>
                 </div>
                 <div class="flexcell loans-cell text-center">
-                  <%= payment.due_date.strftime("%e %b %Y") %>
+                  <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
               <% end %>
-            <% end %>
             <div class="flexcell loans-cell text-center">
               <% if loan.next_payment %>
                 <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
@@ -105,12 +103,12 @@
             <div class="flexcell loans-cell text-center">
               <%= loan.user.first_name + ' ' + loan.user.last_name %>
             </div>
-              <% if loan.payments.last.missed_payment? %>
+              <% if loan.most_recent_payment.missed_payment? %>
                 <div class="flexcell loans-cell text-center">
-                  <%= payment.display_money %>
+                  <%= loan.most_recent_payment.display_money %>
                 </div>
                 <div class="flexcell loans-cell text-center">
-                  <%= payment.due_date.strftime("%e %b %Y") %>
+                  <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
               <% end %>
             <div class="flexcell loans-cell text-center">
