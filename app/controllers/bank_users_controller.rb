@@ -27,6 +27,7 @@ class BankUsersController < ApplicationController
 
   def user_show
     @user = User.find(params[:id])
+    authorize @user
   end
 
   private
@@ -37,5 +38,11 @@ class BankUsersController < ApplicationController
 
   def loan_params
     params.require(:loan).permit(:status, :proposed_amount_cents, :decline_reason, :final_date)
+  end
+
+  def pundit_user
+    if bank_user_signed_in?
+      current_bank_user
+    end
   end
 end
