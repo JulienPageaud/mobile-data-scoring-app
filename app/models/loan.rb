@@ -128,14 +128,16 @@ class Loan < ApplicationRecord
 
   ## OUTSTANDING LOAN CLASSIFICATION METHODS
   def loan_classification
-    if status == "Loan Outstanding"
+    if status == "Loan Outstanding" && most_recent_payment.present?
       if most_recent_payment.due_date < (DateTime.now.end_of_day - 7.day) && most_recent_payment.paid == false
         "Missed Payment"
       elsif DateTime.now.end_of_day - 7.day < most_recent_payment && most_recent_payment < DateTime.now.end_of_day && most_recent_payment == false
         "Delayed Payment"
       else
-        "Good Loan"
+        "Good Book"
       end
+    elsif status == "Loan Outstanding"
+      "Good Book"
     end
   end
 end
