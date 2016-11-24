@@ -1,4 +1,5 @@
 <div class="wrapper-blue">
+
   <div class="profile-card">
     <div class="profile-picture">
       <!-- If you want a profile picture: Could take from facebook profile -->
@@ -17,33 +18,25 @@
     </div>
   </div>
 
-  <% if @user.loans.last.status == "" %>
-    <div class="current-loan">
-      <%= link_to(user_status_path(@user)) do %>
-        <div id="tab-monitor">
-          <h1>Monitor your situation</h1>
-          <p>Track your progress over time</p>
-          <p style="color: red; text-align: center; font-size: 16px">View your status</p>
-        </div>
-      <% end %>
-    </div>
+  <% if @user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined" %>
+    <%= link_to user_status_path(@user) %>
+      <div class="current-loan">
+        <h5>Current Loan Status:</h5>
+        <% if current_user.loans.last.status == "Application Pending" %>
+          <%= "Pending" %>
+        <% elsif current_user.loans.last.status == "Application Accepted" %>
+          <%= "Accepted" %>
+        <% elsif current_user.loans.last.status == "Loan Outstanding" %>
+          <%= "Outstanding" %>
+        <% elsif current_user.loans.last.status == "Application Declined" %>
+          <%= "Declined" %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 
-  <div class="header-banner-white">
-    <%= link_to('profile') do %>
-      <div id="tab-details">
-        <h1>Your Profile</h1>
-        <p>Your details are important to us</p>
-      </div>
-    <% end %>
+  <div class="loan-history">
+
   </div>
 
-  <div class="header-banner-white">
-    <%= link_to('share') do %>
-      <div id="tab-share">
-        <h1>Share Manda with people you know</h1>
-        <p>Get benefits from sharing with your friends</p>
-      </div>
-    <% end %>
-  </div>
 </div>
