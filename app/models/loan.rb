@@ -22,7 +22,7 @@ class Loan < ApplicationRecord
     result = (where(status: "Loan Outstanding").joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})).to_a
     new_loans = []
     where(status: "Loan Outstanding").each do |loan|
-      if loan.payments.present? && loan.next_payment.present? && loan.next_payment.due_date > DateTime.now
+      if loan.payments.present? && loan.payments.first.due_date > DateTime.now
         new_loans << loan
       end
     end
@@ -56,7 +56,7 @@ class Loan < ApplicationRecord
 
     counter = 1
     duration_months.times do
-      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now + counter.month)) # DateTime.now used as start_date will be set later
+      payment = payments.build(amount_cents: payment_amount, due_date: (DateTime.now.end_of_day + counter.month)) # DateTime.now used as start_date will be set later
       payment.save
       counter += 1
     end
@@ -70,7 +70,7 @@ class Loan < ApplicationRecord
     payment_amount = ((agreed_amount.amount * (1 + interest_rate.fdiv(100))) / duration_months) * 100
     counter = 1
     duration_months.times do
-      payment = payments.build(amount_cents: payment_amount, due_date: (start_date + counter.month))
+      payment = payments.build(amount_cents: payment_amount, due_date: (start_date.end_of_day + counter.month))
       payment.save
       counter += 1
     end
