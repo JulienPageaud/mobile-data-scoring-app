@@ -1,22 +1,31 @@
 <div class="wrapper-blue">
   <div class="profile-card">
     <div class="profile-picture">
-      <img src="" alt="">
+      <!-- If you want a profile picture: Could take from facebook profile -->
     </div>
     <div class="profile-info">
-      <h4></h5>
+      <h4><%= gender == 'male' ? 'Mr' : 'Mrs' + ' ' + @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h4>
+      <h5><%= @user.mobile_number %></h5>
+      <p><%= @user.date_of_birth %></p>
+      <p><%= @user.email %></p>
+      <p><%= @user.address %></p>
+      <p><%= @user.city + ', ' + @user.postcode %></p>
+
+      <p><%= 'COMPLETE YOUR DETAILS' unless @user.details completed? %></p>
     </div>
   </div>
 
-  <div class="header-banner-white">
-    <%= link_to(user_status_path(@user)) do %>
-      <div id="tab-monitor">
-        <h1>Monitor your situation</h1>
-        <p>Track your progress over time</p>
-        <p style="color: red; text-align: center; font-size: 16px">View your status</p>
-      </div>
-    <% end %>
-  </div>
+  <% if @user.loans.last.status == "" %>
+    <div class="current-loan">
+      <%= link_to(user_status_path(@user)) do %>
+        <div id="tab-monitor">
+          <h1>Monitor your situation</h1>
+          <p>Track your progress over time</p>
+          <p style="color: red; text-align: center; font-size: 16px">View your status</p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="header-banner-white">
     <%= link_to('profile') do %>
