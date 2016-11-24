@@ -1,21 +1,21 @@
   <div class="tabs">
-    <a class="tab active" href="#">
+    <a class="tab active" href="#applications">
       <h3>Applications</h3>
     </a>
 
-    <a class="tab" href="#">
+    <a class="tab" href="#oustanding">
       <h3>Loans Outstanding</h3>
     </a>
 
-    <a class="tab" href="#">
+    <a class="tab" href="#declined">
       <h3>Applications Declined</h3>
     </a>
 
-    <a class="tab" href="#">
+    <a class="tab" href="#repaid">
       <h3>Loans Repaid</h3>
     </a>
 
-    <a class="tab" href="#">
+    <a class="tab" href="#portfolio">
       <h3>Portfolio</h3>
     </a>
   </div>
@@ -44,8 +44,19 @@
 
 <% content_for(:after_js) do %>
   <script>
+    var hash = window.location.hash;
+
+    // If page is reloaded then the same tab will be shown
+    if (hash !== "") {
+      $('.tab').removeClass("active");
+      $('a[href="' + hash + '"]').addClass("active");
+      var childIndex = $('a[href="' + hash + '"]').index();
+      $('#tab-content').children().addClass("hidden");
+      $('.' +childIndex).removeClass("hidden");
+    }
+
+    // Clicking on a different tab changes the content shown on the page
     $('.tab').on('click', function(event){
-      event.preventDefault();
       $('.tabs').children().removeClass("active");
       $(this).addClass("active");
       var childIndex = $(this).index();
