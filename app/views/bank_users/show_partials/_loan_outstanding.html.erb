@@ -1,5 +1,7 @@
 <div class="container">
   <h1 class="text-center"><%=@loan.status%> Overview</h1>
+  <% %>
+  <h2 class="text-center"></h2>
   <div class="row">
     <div class="col-sm-6">
       <h2>Client Details</h2>
@@ -19,7 +21,7 @@
       <p><strong>Next payment date:</strong> <%= @loan.next_payment.due_date.strftime("%e %b %Y") %></p>
       <p><strong>Next payment amount:</strong> <%= @loan.next_payment.display_money %></p>
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
-
+    </div>
   <%= link_to 'Go back', bank_user_loans_path(anchor: "outstanding") %>
 
   </div>
