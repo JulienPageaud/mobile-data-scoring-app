@@ -3,7 +3,7 @@
       <h3>Applications</h3>
     </a>
 
-    <a class="tab" href="#oustanding">
+    <a class="tab" href="#outstanding">
       <h3>Loans Outstanding</h3>
     </a>
 
@@ -44,6 +44,8 @@
 
 <% content_for(:after_js) do %>
   <script>
+
+    // stores the anchor from the url in a variable
     var hash = window.location.hash;
 
     // If page is reloaded then the same tab will be shown
