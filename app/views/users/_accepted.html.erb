@@ -10,7 +10,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= @user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
   </div>
 
   <div>
