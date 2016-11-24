@@ -15,6 +15,9 @@ gem 'money-rails'
 # Protection/authentication
 gem 'pundit'
 
+#Facebook personal details parsing
+gem 'omniauth-facebook'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
