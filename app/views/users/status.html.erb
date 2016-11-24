@@ -11,7 +11,7 @@
   <% elsif current_user.loans.last.status == "Application Accepted" %>
     <%= render 'accepted' %>
   <% elsif current_user.loans.last.status == "Loan Outstanding" %>
-    <%= render 'oustanding' %>
+    <%= render 'outstanding' %>
   <% elsif current_user.loans.last.status == "Application Declined" %>
     <%= render 'declined' %>
   <% elsif current_user.loans.last.status == "Loan Repaid" %>
