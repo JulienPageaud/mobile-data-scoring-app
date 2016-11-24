@@ -66,7 +66,7 @@ class LoansController < ApplicationController
   end
 
   def loan_bank_params
-    params.require(:loan).permit(:status, :proposed_amount_cents, :decline_reason, :final_date)
+    params.require(:loan).permit(:status, :proposed_amount, :decline_reason, :final_date)
   end
 
   def pundit_user
