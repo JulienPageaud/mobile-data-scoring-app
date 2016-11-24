@@ -22,6 +22,7 @@ class LoansController < ApplicationController
     authorize @loan
 
     if @loan.save
+      @loan.status = "Application Pending"
       redirect_to user_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
