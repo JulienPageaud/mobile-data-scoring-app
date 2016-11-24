@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   skip_before_action :authenticate_bank_user!
   skip_before_action :authenticate_user!
-  before_action :set_loan, only: [:update]
+  before_action :set_loan, only: [:update, :accept]
 
   def index
     if current_bank_user.present?
@@ -51,6 +51,11 @@ class LoansController < ApplicationController
     elsif params[loan: :agreed_amount_cents] || params[loan: :status] == "Loan Outstanding"
       # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
+  end
+
+  def accept
+    @loan.status = "Loan Outstanding"
+    @loan.save
   end
 
   private
