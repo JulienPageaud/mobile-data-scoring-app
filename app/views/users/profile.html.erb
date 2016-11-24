@@ -1,0 +1,38 @@
+<div class="wrapper-blue">
+  <div class="profile-card">
+    <div class="profile-picture">
+      <img src="" alt="">
+    </div>
+    <div class="profile-info">
+      <h4></h5>
+    </div>
+  </div>
+
+  <div class="header-banner-white">
+    <%= link_to(user_status_path(@user)) do %>
+      <div id="tab-monitor">
+        <h1>Monitor your situation</h1>
+        <p>Track your progress over time</p>
+        <p style="color: red; text-align: center; font-size: 16px">View your status</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="header-banner-white">
+    <%= link_to('profile') do %>
+      <div id="tab-details">
+        <h1>Your Profile</h1>
+        <p>Your details are important to us</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="header-banner-white">
+    <%= link_to('share') do %>
+      <div id="tab-share">
+        <h1>Share Manda with people you know</h1>
+        <p>Get benefits from sharing with your friends</p>
+      </div>
+    <% end %>
+  </div>
+</div>
