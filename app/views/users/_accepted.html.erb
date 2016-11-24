@@ -47,4 +47,5 @@
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
 
+  <%= button_to "Accept loan", { action: "accept", url: user_path(:user), data: { confirm: 'Are you sure?') %>
 </div>
