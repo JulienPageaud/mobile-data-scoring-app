@@ -10,7 +10,7 @@ class Loan < ApplicationRecord
   validates :requested_amount, presence: true
   validates :category, presence: true
   validates :purpose, presence: true
-  validates :description, presence: true, length: { minimum: 50,
+  validates :description, presence: true, length: { minimum: 20,
     too_short: "You need to exceed %{count} characters in your description" }
 
   ## PAYMENT METHODS
