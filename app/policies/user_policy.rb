@@ -24,4 +24,8 @@ class UserPolicy < ApplicationPolicy
   def share?
     show?
   end
+
+  def user_show?
+    record.loans.last.bank == user.bank
+  end
 end
