@@ -17,7 +17,7 @@
     <div class="details-form">
       <%= simple_form_for current_user do |f| %>
         <%= f.input :email %>
-        <%= f.input :gender, as: :radio_buttons %>
+        <%= f.input :gender, as: 'radio_buttons', collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']] %>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
         <%= f.input :address  %>
