@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
 }
- .flexrow:nth-child(even) {
+.flexrow:nth-child(even) {
   background-color: $table-grey;
  }
 .flexcell {
@@ -19,7 +19,7 @@
 .confirm-cell {
   width: 50%;
 }
-.oustanding-cell {
+.third-cell {
   width: 33.4%;
 }
 .blue-header {
