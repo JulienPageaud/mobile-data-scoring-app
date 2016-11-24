@@ -5,7 +5,7 @@
       <h2>Information required to set up your account</h2>
     </div>
     <div class="round-icon">
-      <i><span class="fa fa-pencil"></span></i>
+      <i><span class="fa fa-id-card"></span></i>
     </div>
   </div>
 
@@ -16,21 +16,21 @@
   <div class="container white-box">
     <div class="details-form">
       <%= simple_form_for current_user do |f| %>
-        <%= f.input :email %>
+        <%= f.input :email, input_html: { class: 'input-rounded'} %>
         <%= f.input :gender,
           as: 'radio_buttons',
           collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']],
           label_method: :first,
           value_method: :last,
           label: false %>
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :address  %>
-        <%= f.input :city %>
-        <%= f.input :postcode %>
-        <%= f.input :employment %>
-        <%= f.input :date_of_birth, as: :date_picker %>
-        <%= f.input :photo_id %>
+        <%= f.input :first_name, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :last_name, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :address, input_html: { class: 'input-rounded'}   %>
+        <%= f.input :city, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :postcode, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :employment, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :photo_id, input_html: { class: 'input-rounded'} %>
         <%= f.button :submit, class: 'btn-royal-blue' %>
       <% end %>
     </div>
