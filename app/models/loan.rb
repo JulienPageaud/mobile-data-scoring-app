@@ -75,4 +75,16 @@ class Loan < ApplicationRecord
       counter += 1
     end
   end
+
+  def display_capital
+    agreed_amount.currency.to_s + ' ' + agreed_amount.to_s
+  end
+
+  def display_proposed_capital
+    proposed_amount.currency.to_s + ' ' + proposed_amount.to_s
+  end
+
+  def display_requested_capital
+    requested_amount.currency.to_s + ' ' + requested_amount.to_s
+  end
 end
