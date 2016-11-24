@@ -14,10 +14,10 @@
         <div class="flexcell loans-header">
           Decline Date
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="decline-reason">
           Rationale for the Decline
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="credit-score">
           Credit Score
         </div>
       </div>
@@ -37,10 +37,10 @@
         <div class="flexcell loans-cell">
           <%= application.final_date.strftime("%e %b %Y") %>
         </div>
-        <div class="flexcell loans-cell">
+        <div class="flexcell loans-cell" id="decline-reason">
           <%= application.decline_reason %>
         </div>
-        <div class="flexcell loans-cell">
+        <div class="flexcell loans-cell" id="credit-score">
           <%= application.user.credit_score %>
         </div>
       </div>
