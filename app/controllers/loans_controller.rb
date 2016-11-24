@@ -4,7 +4,7 @@ class LoansController < ApplicationController
   before_action :set_loan, only: [:update]
 
   def index
-    if params[:bank_user_id]
+    if current_bank_user.present?
       @loans = policy_scope(Loan)
       @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
       @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
