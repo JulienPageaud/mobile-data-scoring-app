@@ -4,14 +4,16 @@
       <!-- If you want a profile picture: Could take from facebook profile -->
     </div>
     <div class="profile-info">
-      <h4><%= gender == 'male' ? 'Mr' : 'Mrs' + ' ' + @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h4>
+      <h4><%= @user.gender == 'male' ? 'Mr' : 'Mrs' %><%= + ' ' + @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h4>
       <h5><%= @user.mobile_number %></h5>
       <p><%= @user.date_of_birth %></p>
       <p><%= @user.email %></p>
       <p><%= @user.address %></p>
       <p><%= @user.city + ', ' + @user.postcode %></p>
-
-      <p><%= 'COMPLETE YOUR DETAILS' unless @user.details completed? %></p>
+      <%= link_to edit_user_path(@user) do %>
+        <p><%= 'EDIT YOUR DETAILS' %></p>
+        <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' unless @user.details_completed? %></p>
+      <% end %>
     </div>
   </div>
 
