@@ -18,7 +18,26 @@ counter = 1
   counter += 1
 end
 
-Loan.create( user_id: 1, status: , category: "personal", purpose)
+Loan.create( user_id: 2, status: "Application Pending", category: "personal", purpose: "Medical Expenses",
+  description: "I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... ",
+  interest_rate: 15, start_date: nil, final_date: nil, requested_amount_cents: 50000,
+  proposed_amount_cents: nil, agreed_amount_cents: nil, duration_months: 3)
+Loan.create( user_id: 3, status: "Application Accepted", category: "personal", purpose: "Medical Expenses",
+  description: "I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... ",
+  interest_rate: 15, start_date: nil, final_date: nil, requested_amount_cents: 50000,
+  proposed_amount_cents: 50000, agreed_amount_cents: nil, duration_months: 3)
+Loan.create( user_id: 4, status: "Loan Outstanding", category: "personal", purpose: "Medical Expenses",
+  description: "I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... ",
+  interest_rate: 15, start_date: nil, final_date: nil, requested_amount_cents: 50000,
+  proposed_amount_cents: 50000, agreed_amount_cents: 50000, duration_months: 3)
+Loan.create( user_id: 5, status: "Application Declined", category: "personal", purpose: "Medical Expenses",
+  description: "I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... ",
+  interest_rate: 15, start_date: nil, final_date: nil, requested_amount_cents: 50000,
+  proposed_amount_cents: nil, agreed_amount_cents: nil, duration_months: 3)
+Loan.create( user_id: 6, status: "Loan Repaid", category: "personal", purpose: "Medical Expenses",
+  description: "I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... I need this loan for spider things... ",
+  interest_rate: 15, start_date: nil, final_date: nil, requested_amount_cents: 50000,
+  proposed_amount_cents: 50000, agreed_amount_cents: 50000, duration_months: 3)
 
 
 User.all.each do |user|
