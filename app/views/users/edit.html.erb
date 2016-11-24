@@ -17,14 +17,19 @@
     <div class="details-form">
       <%= simple_form_for current_user do |f| %>
         <%= f.input :email %>
-        <%= f.input :gender, as: :radio_buttons %>
+        <%= f.input :gender,
+          as: 'radio_buttons',
+          collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']],
+          label_method: :first,
+          value_method: :last,
+          label: false %>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
         <%= f.input :address  %>
         <%= f.input :city %>
         <%= f.input :postcode %>
         <%= f.input :employment %>
-        <%= f.input :date_of_birth %>
+        <%= f.input :date_of_birth, as: :date_picker %>
         <%= f.input :photo_id %>
         <%= f.button :submit, class: 'btn-royal-blue' %>
       <% end %>

@@ -20,6 +20,10 @@ gem 'omniauth-facebook'
 # Faker for seeding
 gem 'faker'
 
+# DateTime Picker Gems
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
