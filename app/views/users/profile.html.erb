@@ -65,6 +65,16 @@
                 <div class="flexcell history-cell">
                   <%= "Declined" %>
                 </div>
+              <%= elsif loan.status == "Loan Outstanding" %>
+                <div class="flexcell history-cell">
+                  <%= loan.final_date %>
+                </div>
+                <div class="flexcell history-cell">
+                  <%= loan.agreed_amount_cents %>
+                </div>
+                <div class="flexcell history-cell">
+                  <%= "Repaid" %>
+                </div>
               <% else %>
                 <div class="flexcell history-cell">
                   <%= loan.final_date %>
