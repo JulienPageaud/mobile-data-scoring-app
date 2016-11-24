@@ -10,7 +10,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.display_proposed_capital %></strong></p>
   </div>
 
   <div>
@@ -27,13 +27,13 @@
       </div>
     </div>
 
-    <% current_user.loans.last.duration_months.times do %>
+    <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow month text-center">
         <div class="flexcell confirm-cell">
-          <%= DateTime.now %>
+          <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
         <div class="flexcell confirm-cell">
-          <%= current_user.loans.last.requested_amount * current_user.loans.last.interest_rate.fdiv(100) / current_user.loans.last.duration_months %>
+          <%= payment.display_money %>
         </div>
       </div>
     <% end %>
