@@ -6,33 +6,47 @@
 
       <%= simple_form_for(:user, url: user_registration_path) do |f| %>
         <%= f.input :mobile_number, placeholder: 'Mobile phone number', error: 'Please enter a mobile phone number', label: false, input_html: {class: 'round-input'} %>
-        <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent' %>
+        <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" } %>
       <% end %>
     </div>
   </div>
 
-<div class="container container-values ">
-  <div class="row">
-    <div class="col-xs-6 col-md-3">
-      <i class="fa fa-money"></i>
-      <p> Access to a lending platform</p>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <i class="fa fa-fighter-jet"></i>
-      <p>Fast application and review process</p>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <i class="fa fa-university"></i>
-      <p>No branch as everything happens on your mobile</p>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <i class="fa fa-handshake-o"></i>
-      <p>Responsible financial behaviours are rewarded</p>
+  <% content_for(:after_js) do %>
+    <script>
+      $('#modal-button').on('click', function(e) {
+        e.preventDefault();
+      });
+    </script>
+  <% end %>
+
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <%= render 'devise/registrations/new', resource: User.new, resource_name: :user %>
+      </div>
     </div>
   </div>
 
-</div>
-
+  <div class="container container-values ">
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <i class="fa fa-money"></i>
+        <p> Access to a lending platform</p>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <i class="fa fa-fighter-jet"></i>
+        <p>Fast application and review process</p>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <i class="fa fa-university"></i>
+        <p>No branch as everything happens on your mobile</p>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <i class="fa fa-handshake-o"></i>
+        <p>Responsible financial behaviours are rewarded</p>
+      </div>
+    </div>
+  </div>
 
   <div class="wrapper wrapper-grey">
     <div class="container">
