@@ -22,14 +22,15 @@
     <%= link_to user_status_path(@user) do %>
       <div class="current-loan">
         <h5>Current Loan Status:</h5>
-        <% if @user.loans.last.status == "Application Pending" %>
-          <%= "Pending" %>
-        <% elsif @user.loans.last.status == "Application Accepted" %>
-          <%= "Accepted" %>
-        <% elsif @user.loans.last.status == "Loan Outstanding" %>
-          <%= "Outstanding" %>
-        <% elsif @user.loans.last.status == "Application Declined" %>
-          <%= "Declined" %>
+        <% case @user.loans.last.status %>
+          <% when "Application Pending" %>
+            <%= "Pending" %>
+          <% when "Application Accepted" %>
+            <%= "Accepted! Click here to confirm." %>
+          <% when "Loan Outstanding" %>
+            <%= "Ongoing" %>
+          <% when "Application Declined" %>
+            <%= "Declined" %>
         <% end %>
       </div>
     <% end %>
@@ -54,36 +55,57 @@
 
       <% @user.loans.each do |loan| %>
         <div class="flexrow text-center">
-          <% if loan.status == "Application Declined" %>
-            <div class="flexcell third-cell">
-              <%= loan.application_date %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= loan.requested_amount_cents %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= "Declined" %>
-            </div>
-          <% elsif loan.status == "Loan Outstanding" %>
-            <div class="flexcell third-cell">
-              <%= loan.final_date %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= loan.agreed_amount_cents %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= "Repaid" %>
-            </div>
-          <% else %>
-            <div class="flexcell third-cell">
-              <%= loan.final_date %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= loan.agreed_amount_cents %>
-            </div>
-            <div class="flexcell third-cell">
-              <%= "Repaid" %>
-            </div>
+          <% case loan.status %>
+            <% when "Application Pending" %>
+              <div class="flexcell third-cell">
+                <%= loan.final_date %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= loan.agreed_amount_cents %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= "Pending" %>
+              </div>
+            <% when "Application Accepted" %>
+              <div class="flexcell third-cell">
+                <%= loan.final_date %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= loan.agreed_amount_cents %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= "Accepted" %>
+              </div>
+            <% when "Loan Outstanding" %>
+              <div class="flexcell third-cell">
+                <%= loan.final_date %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= loan.agreed_amount_cents %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= "Ongoing" %>
+              </div>
+            <% when "Application Declined" %>
+              <div class="flexcell third-cell">
+                <%= loan.application_date %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= loan.requested_amount_cents %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= "Declined" %>
+              </div>
+            <% when "Loan Repaid" %>
+              <div class="flexcell third-cell">
+                <%= loan.final_date %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= loan.agreed_amount_cents %>
+              </div>
+              <div class="flexcell third-cell">
+                <%= "Repaid" %>
+              </div>
           <% end %>
         </div>
       <% end %>
