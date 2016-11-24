@@ -87,4 +87,13 @@ class Loan < ApplicationRecord
   def display_requested_capital
     requested_amount.currency.to_s + ' ' + requested_amount.to_s
   end
+
+  def total_capital_repaid
+    sum = 0
+    payments.each do |payment|
+      sum += payment.amount
+    end
+    sum.currency.to_s + ' ' + sum.to_s
+  end
+
 end
