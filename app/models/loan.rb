@@ -59,23 +59,6 @@ class Loan < ApplicationRecord
   def self.good_loans
     result = where(status: "Loan Outstanding").reject { |loan| Loan.missed_payment_loans.include?(loan) }
     result.reject { |loan| Loan.delayed_payment_loans.include?(loan)}
-    return result
-    # result = (where(status: "Loan Outstanding").joins(:payments).where("payments.due_date < ?", DateTime.now).where(payments: {paid: true})).to_a
-    # binding.pry
-    # new_loans = []
-    # where(status: "Loan Outstanding").each do |loan|
-
-    #   # If the first payment's due date is in the future then it is a new loan and cannot have missed/delayed payments
-    #   if loan.payments.present? && loan.payments.first.due_date > DateTime.now
-    #     new_loans << loan
-    #   end
-    # end
-    # if result.present?
-    #   new_loans.each { |new_loan| result << new_loan}
-    #   return result
-    # else
-    #   return new_loans
-    # end
   end
 
   # Finds loans which have missed payments (due_date + 7 days)
