@@ -27,27 +27,29 @@
                 Postcode
               </div>
           </div>
+        <div class="loan-link">
           <div class="flexrow loans text-left">
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.user.first_name %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.user.last_name %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.user.mobile_number %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.user.address %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.user.city %>
               </div>
-               <div class="flexcell loan-show-cell">
+               <div class="flexcell loans-cell">
                 <%= @loan.user.postcode %>
               </div>
             </div>
           </div>
+        </div>
 <br>
 <br>
     <div class="table-description">
@@ -71,30 +73,32 @@
                 Description
               </div>
               <div class="flexcell loans-header" id="credit-score">
-                Score
+                Credit Score
               </div>
           </div>
+        <div class="loan-link">
           <div class="flexrow loans text-left">
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                <%= @loan.updated_at.strftime("%e %b %Y") %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                <%= @loan.display_proposed_capital %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.category %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.purpose %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.description %>
               </div>
-               <div class="flexcell loan-show-cell" id="credit-score">
+               <div class="flexcell loans-cell" id="credit-score">
                 <%= @loan.user.credit_score %>
               </div>
             </div>
           </div>
+        </div>
 
   <div class="links">
   <%= link_to 'Go back', bank_user_loans_path(anchor: "applications") %>
