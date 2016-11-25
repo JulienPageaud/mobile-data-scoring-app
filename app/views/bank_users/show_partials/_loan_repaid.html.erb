@@ -8,44 +8,46 @@
     <strong>Client Details</strong>
     </div>
         <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                First Name
-              </div>
-              <div class="flexcell loans-header">
-                Last Name
-              </div>
-              <div class="flexcell loans-header">
-                Mobile Number
-              </div>
-              <div class="flexcell loans-header">
-                Address
-              </div>
-              <div class="flexcell loans-header">
-                City
-              </div>
-              <div class="flexcell loans-header">
-                Postcode
-              </div>
-          </div>
-          <div class="flexrow loans text-left">
-              <div class="flexcell loan-show-cell">
-                <%= @loan.user.first_name %>
-              </div>
-              <div class="flexcell loan-show-cell">
-                <%= @loan.user.last_name %>
-              </div>
-              <div class="flexcell loan-show-cell">
-                <%= @loan.user.mobile_number %>
-              </div>
-              <div class="flexcell loan-show-cell">
-                <%= @loan.user.address %>
-              </div>
-              <div class="flexcell loan-show-cell">
-                <%= @loan.user.city %>
-              </div>
-               <div class="flexcell loan-show-cell">
-                <%= @loan.user.postcode %>
+            <div class="flexrow loans-header-row text-left">
+                <div class="flexcell loans-header">
+                  First Name
+                </div>
+                <div class="flexcell loans-header">
+                  Last Name
+                </div>
+                <div class="flexcell loans-header">
+                  Mobile Number
+                </div>
+                <div class="flexcell loans-header">
+                  Address
+                </div>
+                <div class="flexcell loans-header">
+                  City
+                </div>
+                <div class="flexcell loans-header">
+                  Postcode
+                </div>
+            </div>
+          <div class="loan-link">
+            <div class="flexrow loans text-left">
+                <div class="flexcell loans-cell">
+                  <%= @loan.user.first_name %>
+                </div>
+                <div class="flexcell loans-cell">
+                  <%= @loan.user.last_name %>
+                </div>
+                <div class="flexcell loans-cell">
+                  <%= @loan.user.mobile_number %>
+                </div>
+                <div class="flexcell loans-cell">
+                  <%= @loan.user.address %>
+                </div>
+                <div class="flexcell loans-cell">
+                  <%= @loan.user.city %>
+                </div>
+                 <div class="flexcell loans-cell">
+                  <%= @loan.user.postcode %>
+                </div>
               </div>
             </div>
           </div>
@@ -66,24 +68,26 @@
                 Total Repaid
               </div>
               <div class="flexcell loans-header" id="credit-score">
-                Score
+                Credit Score
               </div>
           </div>
+        <div class="loan-link">
           <div class="flexrow loans text-left">
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%=@loan.start_date.strftime("%e %b %Y") %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.display_capital %>
               </div>
-              <div class="flexcell loan-show-cell">
+              <div class="flexcell loans-cell">
                 <%= @loan.total_capital_repaid %>
               </div>
-               <div class="flexcell loan-show-cell" id="credit-score">
+              <div class="flexcell loans-cell" id="credit-score">
                 <%= @loan.user.credit_score %>
               </div>
-            </div>
           </div>
+        </div>
+      </div>
 <br>
 <br>
   <div class="links">

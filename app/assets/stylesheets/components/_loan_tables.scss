@@ -11,13 +11,17 @@
   display: flex;
   justify-content: space-between;
   flex-basis: 100%;
-  padding: 0 15px;
+  padding: 0 5px;
 }
 
+.flexrow.loans:nth-child(even) {
+  background-color: white;
+ }
 
 .loans-cell.flexcell {
   flex: 1 0 0;
   padding: 0 5px;
+  background-color: white;
 }
 .loans-header.flexcell {
   flex: 1 0 0;
@@ -28,12 +32,12 @@
 .loans-header-row {
   background-color:#3A97EC;
   color: white;
-  padding: 4px 15px;
+  padding: 4px 5px;
 }
 
 .loan-link:hover {
   text-decoration: none;
-  background-color: $sky-blue;
+  background-color: #C9E2E9;
   color: black;
 }
 
