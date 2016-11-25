@@ -79,7 +79,8 @@ class Loan < ApplicationRecord
 
   # Finds loans which have delayed payments (less than 7 days since due date)
   def self.delayed_payment_loans
-    where(status: "Loan Outstanding").joins(:payments).where(payments: {due_date: DateTime.now.end_of_day - 7.day..DateTime.now.end_of_day}).where(payments: { paid: false })
+    result = where(status: "Loan Outstanding").joins(:payments).where(payments: {due_date: DateTime.now.end_of_day - 7.day..DateTime.now.end_of_day}).where(payments: { paid: false })
+    result.select { |loan| loan unless missed_payment_loans.include?(loan) }
   end
 
 
@@ -129,9 +130,9 @@ class Loan < ApplicationRecord
   ## OUTSTANDING LOAN CLASSIFICATION METHODS
   def loan_classification
     if status == "Loan Outstanding" && most_recent_payment.present?
-      if most_recent_payment.due_date < (DateTime.now.end_of_day - 7.day) && most_recent_payment.paid == false
+      if Loan.missed_payment_loans.include?(self)
         "Missed Payment"
-      elsif DateTime.now.end_of_day - 7.day < most_recent_payment.due_date && most_recent_payment.due_date < DateTime.now.end_of_day && most_recent_payment == false
+      elsif Loan.delayed_payment_loans.include?(self)
         "Delayed Payment"
       else
         "Good Book"
