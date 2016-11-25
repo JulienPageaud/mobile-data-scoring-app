@@ -19,19 +19,27 @@
           error: "Please enter an amount between R0 and R15,000",
           input_html: { class: 'input-rounded'} %>
         <%= f.input :category,
+          as: 'radio_buttons',
+          collection: [['Personal', 'personal'], ['Business', 'business']],
+          label_method: :first,
+          value_method: :last,
           label: "What would you like to use the loan for?",
           error: "Please choose a category",
           input_html: { class: 'input-rounded'} %>
-        <%= f.input :purpose,
+        <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
           label: "Choose the option that best describes your planned expenses:",
           placeholder: "Medical Expenses",
           error: "Please choose an option",
-          input_html: { class: 'input-rounded dropdown-toggle', id: "dropdownMenuButton" },
-          data: { toggle:"dropdown-menu" },
-          aria: { haspopup: "true", expanded: "false" } %>
-        <%= f.input :description, label: "Further details on your intended loan use:", placeholder: "Enter text here", error: "Please describe in more detail what you plan to use this loan for", input_html: { class: 'input-rounded'} %>
-        <%= f.hidden_field :bank_id, value: Bank.find_by_name("FNB").id %>
-        <%= f.submit 'Submit', class: 'btn-royal-blue' %>
+          input_html: { class: 'input-rounded' } %>
+        <%= f.input :description,
+          label: "Further details on your intended loan use:",
+          placeholder: "Details of your loan purpose",
+          error: "Please describe in more detail what you plan to use this loan for",
+          input_html: { class: 'input-rounded'} %>
+        <%= f.hidden_field :bank_id,
+          value: Bank.find_by_name("FNB").id %>
+        <%= f.submit 'Submit',
+          class: 'btn-royal-blue' %>
       <% end %>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -42,3 +50,9 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+<script>
+
+</script>
+<% end %>
