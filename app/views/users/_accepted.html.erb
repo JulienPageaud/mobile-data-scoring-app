@@ -27,27 +27,27 @@
     </div>
 
 
-    <div class="confirm-repayments standard-flexbox">
-      <div class="flexrow repayments-header-row text-center">
-        <div class="flexcell confirm-cell blue-header">
-          <p>Due date</p>
+  <div class="confirm-repayments standard-flexbox">
+    <div class="flexrow repayments-header-row text-center">
+      <div class="flexcell confirm-cell blue-header">
+        <p>Due date</p>
+      </div>
+      <div class="flexcell confirm-cell blue-header">
+        <p>Amount due</p>
+      </div>
+    </div>
+
+    <% current_user.loans.last.payments.each do |payment| %>
+      <div class="flexrow month text-center">
+        <div class="flexcell confirm-cell">
+          <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
-        <div class="flexcell confirm-cell blue-header">
-          <p>Amount due</p>
+        <div class="flexcell confirm-cell">
+          <%= payment.display_money %>
         </div>
       </div>
-
-      <% current_user.loans.last.duration_months.times do %>
-        <div class="flexrow month text-center">
-          <div class="flexcell confirm-cell">
-            <%= DateTime.now %>
-          </div>
-          <div class="flexcell confirm-cell">
-            <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
   </div>
   <div>
     <p>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</p>
