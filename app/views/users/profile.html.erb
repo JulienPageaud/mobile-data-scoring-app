@@ -12,7 +12,7 @@
       <div class="col-6-xs profile-picture">
         <!-- If you want a profile picture: Could take from facebook profile -->
       </div>
-      <div class=" container profile-info">
+      <div class="profile-info container-centered">
         <h2><%= @user.gender == 'male' ? 'Mr' : 'Mrs' %><%= ' ' + @user.first_name.capitalize if @user.first_name.present? %> <%= ' ' + @user.last_name.capitalize  if @user.last_name.present? %></h2>
         <h3>Your mobile number:<br> <%= @user.mobile_number %></h3>
         <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
@@ -20,7 +20,7 @@
         <p><%= @user.address if @user.address.present? %></p>
         <p><%= @user.city if @user.city.present? %> <%= ', ' + @user.postcode if @user.postcode.present? %></p>
         <%= link_to edit_user_path(@user) do %>
-          <h3><%= 'EDIT YOUR DETAILS' %></h3>
+          <button class="btn-royal-blue"><%= 'EDIT YOUR DETAILS' %></button>
           <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' unless @user.details_completed? %></p>
         <% end %>
       </div>
