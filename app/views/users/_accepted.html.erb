@@ -1,21 +1,30 @@
-<h2>Application Accepted</h2>
+<div class="wrapper-blue">
+    <div class="header-banner">
+      <div class="header-title">
+        <h1>Your current situation</h1>
+      </div>
+      <div class="round-icon">
+        <i><span class="fa fa-bookmark"></span></i>
+      </div>
+    </div>
 
-<div class="container">
-  <div class="status-button">
-    <i>GREEN TICK ICON</i>
-  </div>
+  <div class="container white-box">
+    <h3>Application Accepted</h3>
 
-  <div>
-    <p>You qualify for up to</p>
-  </div>
+    <div class="round-icon">
+      <i><span class="fa fa-check"></span></i>
+    </div>
+    <div>
+      <p>You qualify for up to</p>
+    </div>
 
-  <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
-  </div>
+    <div class="loan-amount">
+      <p><strong><%= current_user.loans.last.display_proposed_capital %></strong></p>
+    </div>
 
-  <div>
-    <p>with repayments scheduled on</p>
-  </div>
+    <div>
+      <p>with repayments scheduled on</p>
+    </div>
 
   <div class="confirm-repayments standard-flexbox">
     <div class="flexrow repayments-header-row text-center">
@@ -26,26 +35,29 @@
         <p>Amount due</p>
       </div>
     </div>
-
-    <% current_user.loans.last.duration_months.times do %>
+    <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow month text-center">
         <div class="flexcell confirm-cell">
-          <%= DateTime.now %>
+          <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
         <div class="flexcell confirm-cell">
-          <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
+          <%= payment.display_money %>
         </div>
       </div>
     <% end %>
   </div>
-
+  </div>
   <div>
     <p>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</p>
   </div>
-
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
 
-  <%= link_to "Accept loan", { action: user_loan_accept_path(@user, @loan), data: { confirm: 'Are you sure?') %>
+  <%= simple_form_for [current_user, current_user.loans.last], url: accept_user_loan_path(current_user, current_user.loans.last) do |f| %>
+    <%= f.hidden_field :agreed_amount, value: current_user.loans.last.proposed_amount %>
+    <%= f.hidden_field :start_date, value: DateTime.now %>
+    <%= f.hidden_field :final_date, value: (DateTime.now.end_of_day + current_user.loans.last.duration_months.month) %>
+    <%= f.submit "Accept loan", data: { confirm: 'Are you sure?'}, class: 'btn-royal-blue' %>
+  <% end %>
 </div>

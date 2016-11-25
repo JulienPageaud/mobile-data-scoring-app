@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # Routes for customer's side of the application
   resources :users, only: [ :show, :edit, :update ] do
     resources :loans, only: [ :new, :create, :edit, :update, :show ] do
-      get 'accept', to: 'users#accept'
+      member do
+        patch 'accept', to: 'loans#accept'
+        put 'accept', to: 'loans#accept'
+      end
     end
 
     # User 'Current Situation' page

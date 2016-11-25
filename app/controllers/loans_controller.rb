@@ -31,7 +31,7 @@ class LoansController < ApplicationController
   end
 
   def show
-    if params[:bank_user_id]
+    if current_bank_user
       @loan = Loan.find(params[:id])
       authorize @loan
       render 'bank_users/show'
@@ -45,6 +45,7 @@ class LoansController < ApplicationController
     if params[:loan][:status] == "Application Accepted" || params[:loan][:status] == "Application Declined"
       authorize @loan
       if @loan.update(loan_bank_params)
+        @loan.create_payments_proposed
         redirect_to bank_user_loans_path
       else
         render :show
@@ -55,14 +56,21 @@ class LoansController < ApplicationController
   end
 
   def accept
+    authorize @loan
     @loan.status = "Loan Outstanding"
-    @loan.save
+    @loan.update(accept_loan_params)
+    @loan.update_payments_to_agreed_amount
+    redirect_to user_status_path(current_user)
   end
 
   private
 
   def loan_params
     params.require(:loan).permit(:requested_amount, :category, :purpose, :description, :bank_id)
+  end
+
+  def accept_loan_params
+    params.require(:loan).permit(:agreed_amount, :start_date, :final_date)
   end
 
   def loan_bank_params

@@ -21,6 +21,10 @@ class LoanPolicy < ApplicationPolicy
     loan_user_or_bank_user?
   end
 
+  def accept?
+    record.user == user
+  end
+
   private
 
   def loan_user_or_bank_user?

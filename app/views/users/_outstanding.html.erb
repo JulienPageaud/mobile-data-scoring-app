@@ -7,15 +7,15 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.display_capital %></strong></p>
   </div>
 
   <div>
-    <p>Your next payment is due by the</p>
+    <p>Your next payment is due on the</p>
   </div>
 
   <div class="payment-date">
-    <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
+    <p><strong><%= current_user.loans.last.next_payment.due_date.strftime("%e %b %Y") %></strong></p>
   </div>
 
   <div class="standard-flexbox">
@@ -34,13 +34,13 @@
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow text-center">
         <div class="flexcell third-cell">
-          <%= payment.due_date %>
+          <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
         <div class="flexcell third-cell">
-          <%= payment.amount_cents %>
+          <%= payment.display_money %>
         </div>
         <div class="flexcell third-cell">
-          <%= payment.paid ? 'tick' : 'cross' %>
+          <%= payment.paid ? icon('check') : icon('times') %>
         </div>
       </div>
     <% end %>
