@@ -12,13 +12,13 @@
       <div class="col-6-xs profile-picture">
         <!-- If you want a profile picture: Could take from facebook profile -->
       </div>
-      <div class="profile-info">
-        <h2><%= @user.gender == 'male' ? 'Mr' : 'Mrs' %><%= + ' ' + @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h2>
+      <div class=" container profile-info">
+        <h2><%= @user.gender == 'male' ? 'Mr' : 'Mrs' %><%= ' ' + @user.first_name.capitalize if @user.first_name.present? %> <%= ' ' + @user.last_name.capitalize  if @user.last_name.present? %></h2>
         <h3>Your mobile number:<br> <%= @user.mobile_number %></h3>
-        <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') %></p>
-        <p><%= @user.email %></p>
-        <p><%= @user.address %></p>
-        <p><%= @user.city + ', ' + @user.postcode %></p>
+        <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
+        <p><%= @user.email if @user.email.present? %></p>
+        <p><%= @user.address if @user.address.present? %></p>
+        <p><%= @user.city if @user.city.present? %> <%= ', ' + @user.postcode if @user.postcode.present? %></p>
         <%= link_to edit_user_path(@user) do %>
           <h3><%= 'EDIT YOUR DETAILS' %></h3>
           <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' unless @user.details_completed? %></p>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <% if @user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined" %>
+    <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
       <%= link_to user_status_path(@user) do %>
         <div class="current-loan">
           <h5>Current Loan Status:</h5>
@@ -49,6 +49,9 @@
     <div class="loan-history">
       <h5>Loan History</h5>
       <p><%= "You haven't previously taken out any loans." if @user.loans == [] %></p>
+
+    <% if @user.loans.present? %>
+
 
       <div class="standard-flexbox">
         <div class="flexrow text-center">
@@ -120,6 +123,7 @@
           </div>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
