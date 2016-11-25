@@ -1,7 +1,9 @@
 Loan.destroy_all
 User.destroy_all
 Bank.create!(name: "FNB") unless Bank.find_by_name("FNB").present?
-BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney", first_name: "Mr.", last_name: "Banks", phone_number: '999-785-$$$', bank: Bank.find_by_name("FNB"))
+BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
+                 first_name: "Mr.", last_name: "Banks", phone_number: '999-785-$$$',
+                 bank: Bank.find_by_name("FNB")) unless BankUser.find_by_email("fnbemployee@gmail.com").present?
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
@@ -13,7 +15,7 @@ description_ary = ["I need to pay for a organ transplant for my son",
                "I want to start my own tech business and I need the money to launch my product",
                "I want to learn how to code Ruby on Rails applications at Le Wagon",
                "I'm really thirsty so I want to buy lots of beer"]
-start_date_outstanding_ary = [(DateTime.now - 3.day), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 15.day), (DateTime.now - 7.day)]
+start_date_outstanding_ary = [(DateTime.now - 3.day), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 15.day), (DateTime.now - 8.day - 1.month)]
 start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 20.day), (DateTime.now -3.day)]
 
 bank = Bank.find_by_name("FNB")
@@ -29,7 +31,7 @@ bank = Bank.find_by_name("FNB")
   when "Loan Outstanding"
     loan.start_date = start_date_outstanding_ary.sample
     loan.final_date = loan.start_date + loan.duration_months.month
-    loan.payments.first.update(paid: true) if loan.most_recent_payment
+    loan.payments.first.update(paid: true) if loan.most_recent_payment.present?
     loan.update_payments_to_agreed_amount
   when "Loan Repaid"
     loan.start_date = start_date_repaid_ary.sample
