@@ -1,4 +1,4 @@
-<div class="wrapper-blue">
+<div class="wrapper-grey">
   <div class="header-banner">
     <div class="header-title">
         <h1>Your Current Situation</h1>
@@ -7,7 +7,7 @@
       <i><span class="fa fa-bookmark"></span></i>
     </div>
   </div>
-  <div class="container white-box">
+  <div class="container white-box text-center">
     <% if current_user.loans == [] %>
       <%= render 'empty' %>
     <% elsif current_user.loans.last.status == "Application Pending" %>
