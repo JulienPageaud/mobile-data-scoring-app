@@ -7,26 +7,25 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
 
-  <% if user_signed_in? %>
-    <%= link_to destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="glyphicon glyphicon-user"></i>
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" do %>
+        <i class="glyphicon glyphicon-user"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+        <i class="glyphicon glyphicon-user"></i>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="glyphicon glyphicon-user"></i>
-    <% end %>
-  <% end %>
 
-
-  <% if user_signed_in? %>
-    <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="glyphicon glyphicon-home"></i>
+    <% if user_signed_in? %>
+      <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
+        <i class="glyphicon glyphicon-home"></i>
+      <% end %>
+    <% else %>
+      <%= link_to root_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+        <i class="glyphicon glyphicon-home"></i>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= link_to root_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-      <i class="glyphicon glyphicon-home"></i>
-    <% end %>
-  <% end %>
 
   </div>
 
