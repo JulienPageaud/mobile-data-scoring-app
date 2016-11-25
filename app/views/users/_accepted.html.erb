@@ -1,21 +1,14 @@
-<div class="wrapper-blue">
-    <div class="header-banner">
-      <div class="header-title">
-        <h1>Your current situation</h1>
-      </div>
-      <div class="round-icon">
-        <i><span class="fa fa-bookmark"></span></i>
+  <div class="container container-flex">
+    <div class="container">
+      <div class="round-icon-status">
+        <i><span class="fa fa-check"></span></i>
       </div>
     </div>
-
-  <div class="container white-box">
     <h3>Application Accepted</h3>
 
-    <div class="round-icon">
-      <i><span class="fa fa-check"></span></i>
-    </div>
+
     <div>
-      <p>You qualify for up to</p>
+      <h4>You qualify for up to</h4>
     </div>
 
     <div class="loan-amount">
@@ -38,21 +31,28 @@
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow month text-center">
         <div class="flexcell confirm-cell">
-          <%= payment.due_date.strftime("%e %b %Y") %>
+          <p><%= payment.due_date.strftime("%e %b %Y") %></p>
         </div>
         <div class="flexcell confirm-cell">
-          <%= payment.display_money %>
+          <p><%= payment.display_money %></p>
         </div>
       </div>
     <% end %>
   </div>
-  </div>
+
   <div>
-    <p>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</p>
+    <p><br><strong>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</strong></p>
   </div>
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
+<<<<<<< HEAD
+  <div class="container container-buttons">
+    <%= link_to "Accept", accept_user_loan_path(@user, @user.loans.last), data: { confirm: 'Are you sure?'}, class: 'btn-royal-blue' %>
+    <%= link_to "Decline", user_path(current_user), data: { confirm: 'Are you sure?'}, class: 'btn-grey' %>
+  </div>
+ </div>
+=======
 
   <%= simple_form_for [current_user, current_user.loans.last], url: accept_user_loan_path(current_user, current_user.loans.last) do |f| %>
     <%= f.hidden_field :agreed_amount, value: current_user.loans.last.proposed_amount %>
@@ -61,3 +61,4 @@
     <%= f.submit "Accept loan", data: { confirm: 'Are you sure?'}, class: 'btn-royal-blue' %>
   <% end %>
 </div>
+>>>>>>> master
