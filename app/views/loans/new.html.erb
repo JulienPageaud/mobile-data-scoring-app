@@ -26,33 +26,34 @@
           label: "What would you like to use the loan for?",
           error: "Please choose a category",
           input_html: { class: 'input-rounded'} %>
+        <%= f.input :purpose, as: :hidden, collection: ['Medical', 'Beer', 'Code School'],
+          label: "Choose the option that best describes your planned expenses:",
+          placeholder: "Medical Expenses",
+          error: "Please choose an option",
+          input_html: { class: 'input-rounded', id: 'personal-dropdown' } %>
         <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
           label: "Choose the option that best describes your planned expenses:",
           placeholder: "Medical Expenses",
           error: "Please choose an option",
-          input_html: { class: 'input-rounded' } %>
+          input_html: { class: 'input-rounded', id: 'business-dropdown' } %>
         <%= f.input :description,
           label: "Further details on your intended loan use:",
           placeholder: "Details of your loan purpose",
           error: "Please describe in more detail what you plan to use this loan for",
-          input_html: { class: 'input-rounded'} %>
+          input_html: { class: 'input-rounded' } %>
         <%= f.hidden_field :bank_id,
           value: Bank.find_by_name("FNB").id %>
         <%= f.submit 'Submit',
           class: 'btn-royal-blue' %>
       <% end %>
-
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
     </div>
   </div>
 </div>
 
 <% content_for(:after_js) do %>
 <script>
-
+  $('#loan_category_personal').onClick(function (e) {
+    $('#personal-dropdown').show
+  });
 </script>
 <% end %>
