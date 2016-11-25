@@ -10,7 +10,7 @@
       <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
       <p><strong>Description:</strong> <%= @loan.description %></p>
       <%= simple_form_for [current_bank_user, @loan] do |f| %>
-       <%= f.input :proposed_amount_cents, value: @loan.requested_amount_cents %>
+       <%= f.input :proposed_amount, input_html: {value: @loan.requested_amount} %>
        <%#Ò= f.input :duration, placeholder: "12 months" %>
        <%= f.hidden_field :status, value: "Application Accepted" %>
         <div class="form-actions">

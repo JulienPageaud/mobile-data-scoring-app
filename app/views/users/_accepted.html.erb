@@ -26,6 +26,7 @@
       <p>with repayments scheduled on</p>
     </div>
 
+
     <div class="confirm-repayments standard-flexbox">
       <div class="flexrow repayments-header-row text-center">
         <div class="flexcell confirm-cell blue-header">
@@ -54,5 +55,5 @@
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
-  <%= link_to "Accept loan", { action: user_loan_accept_path(@user, @loan), data: { confirm: 'Are you sure?'), class: 'btn-royal-blue' %>
+  <%= link_to "Accept loan", accept_user_loan_path(@user, @user.loans.last), data: { confirm: 'Are you sure?'}, class: 'btn-royal-blue' %>
 </div>

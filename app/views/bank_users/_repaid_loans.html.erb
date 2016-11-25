@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Loans - Repaid</h3>
     <div class="loan-flexbox">
-      <div class="flexrow loans-header-row text-center">
+      <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
           Client Name
         </div>
@@ -24,23 +24,23 @@
 
         <% Loan.where(status: "Loan Repaid").each do |loan|%>
         <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do%>
-        <div class="flexrow loans text-center">
-          <div class="flexcell loans-cell text-center">
+        <div class="flexrow loans text-left">
+          <div class="flexcell loans-cell">
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
-          <div class="flexcell loans-cell text-center">
+          <div class="flexcell loans-cell">
             <%= loan.display_capital %>
           </div>
-          <div class="flexcell loans-cell text-center">
+          <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
           </div>
-          <div class="flexcell loans-cell text-center">
+          <div class="flexcell loans-cell">
             <%= loan.payments.last.display_money %>
           </div>
-          <div class="flexcell loans-cell text-center">
+          <div class="flexcell loans-cell">
             <%= loan.total_capital_repaid %>
           </div>
-          <div class="flexcell loans-cell text-center">
+          <div class="flexcell loans-cell">
             <%= loan.user.credit_score %>
           </div>
         </div>
