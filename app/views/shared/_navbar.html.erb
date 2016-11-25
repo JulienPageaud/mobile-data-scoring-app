@@ -1,8 +1,15 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+  <% if user_signed_in? %>
+    <%= link_to user_path(current_user), class: "navbar-wagon-brand" do %>
+      <%= image_tag "logo.png" %>
+    <% end %>
+  <% else %>
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+      <%= image_tag "logo.png" %>
+    <% end %>
   <% end %>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
