@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :edit, :update ] do
     resources :loans, only: [ :new, :create, :edit, :update, :show ] do
       member do
-        get 'accept', to: 'loans#accept'
+        patch 'accept', to: 'loans#accept'
+        put 'accept', to: 'loans#accept'
       end
     end
 

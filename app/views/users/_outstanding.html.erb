@@ -34,7 +34,7 @@
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow text-center">
         <div class="flexcell third-cell">
-          <%= payment.due_date %>
+          <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
         <div class="flexcell third-cell">
           <%= payment.display_money %>
