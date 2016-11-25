@@ -1,13 +1,17 @@
-<h2>Application Declined</h2>
+<div class="wrapper-blue">
+    <div class="header-banner">
+      <h1>Application Declined</h1>
+    </div>
+  <div class="container">
 
-<div class="container">
+    <div class="round-icon">
+      <i><span class="fa fa-times"></span></i>
+    </div>
 
-  <div class="status-button">
-    <i>RED 'X' ICON</i>
+    <div>
+      <p>We thank you for your confidence. Unfortunately, you are not currently eligible for a loan. However, we propose that you try back in a month when we have more data for you.</p>
+    </div>
+    <%= link_to "Go back", current_user_path, class: 'btn-royal-blue' %>
   </div>
-
-  <div>
-    <p>Unfortunately, you are not currently eligible for a loan. However, we propose that you try back in a month when we have more data for you.</p>
-  </div>
-
 </div>
+

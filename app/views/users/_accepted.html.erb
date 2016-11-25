@@ -1,50 +1,59 @@
-<h2>Application Accepted</h2>
-
-<div class="container">
-  <div class="status-button">
-    <i>GREEN TICK ICON</i>
-  </div>
-
-  <div>
-    <p>You qualify for up to</p>
-  </div>
-
-  <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.display_proposed_capital %></strong></p>
-  </div>
-
-  <div>
-    <p>with repayments scheduled on</p>
-  </div>
-
-  <div class="confirm-repayments standard-flexbox">
-    <div class="flexrow repayments-header-row text-center">
-      <div class="flexcell confirm-cell blue-header">
-        <p>Due date</p>
+<div class="wrapper-blue">
+    <div class="header-banner">
+      <div class="header-title">
+        <h1>Your current situation</h1>
       </div>
-      <div class="flexcell confirm-cell blue-header">
-        <p>Amount due</p>
+      <div class="round-icon">
+        <i><span class="fa fa-bookmark"></span></i>
       </div>
     </div>
 
-    <% current_user.loans.last.payments.each do |payment| %>
-      <div class="flexrow month text-center">
-        <div class="flexcell confirm-cell">
-          <%= payment.due_date.strftime("%e %b %Y") %>
+  <div class="container white-box">
+    <h3>Application Accepted</h3>
+
+    <div class="round-icon">
+      <i><span class="fa fa-check"></span></i>
+    </div>
+    <div>
+      <p>You qualify for up to</p>
+    </div>
+
+    <div class="loan-amount">
+      <p><strong><%= current_user.loans.last.proposed_amount_cents %></strong></p>
+    </div>
+
+    <div>
+      <p>with repayments scheduled on</p>
+    </div>
+
+
+    <div class="confirm-repayments standard-flexbox">
+      <div class="flexrow repayments-header-row text-center">
+        <div class="flexcell confirm-cell blue-header">
+          <p>Due date</p>
         </div>
-        <div class="flexcell confirm-cell">
-          <%= payment.display_money %>
+        <div class="flexcell confirm-cell blue-header">
+          <p>Amount due</p>
         </div>
       </div>
-    <% end %>
-  </div>
 
+      <% current_user.loans.last.duration_months.times do %>
+        <div class="flexrow month text-center">
+          <div class="flexcell confirm-cell">
+            <%= DateTime.now %>
+          </div>
+          <div class="flexcell confirm-cell">
+            <%= current_user.loans.last.requested_amount_cents * current_user.loans.last.interest_rate / 100 / current_user.loans.last.duration_months %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div>
     <p>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</p>
   </div>
-
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
   </div>
-  <%= link_to "Accept loan", accept_user_loan_path(@user, @user.loans.last), data: { confirm: 'Are you sure?'} %>
+  <%= link_to "Accept loan", accept_user_loan_path(@user, @user.loans.last), data: { confirm: 'Are you sure?'}, class: 'btn-royal-blue' %>
 </div>
