@@ -25,17 +25,22 @@
           value_method: :last,
           label: "What would you like to use the loan for?",
           error: "Please choose a category",
-          input_html: { class: 'input-rounded'} %>
-        <%= f.input :purpose, as: :hidden, collection: ['Medical', 'Beer', 'Code School'],
-          label: "Choose the option that best describes your planned expenses:",
-          placeholder: "Medical Expenses",
-          error: "Please choose an option",
-          input_html: { class: 'input-rounded', id: 'personal-dropdown' } %>
-        <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
-          label: "Choose the option that best describes your planned expenses:",
-          placeholder: "Medical Expenses",
-          error: "Please choose an option",
-          input_html: { class: 'input-rounded', id: 'business-dropdown' } %>
+          input_html: { class: 'list-inline'} %>
+        <div class="for-personal">
+          <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
+            label: "Choose the option that best describes your planned expenses:",
+            placeholder: "Medical Expenses",
+            error: "Please choose an option",
+            item_wrapper_class: "for-personal",
+            input_html: { class: 'input-rounded', id: 'personal-dropdown' } %>
+        </div>
+        <div class="for-business hidden">
+          <%= f.input :purpose, collection: ['New building', 'Pay off debt', 'Company holiday'],
+            placeholder: "Medical Expenses",
+            error: "Please choose an option",
+            label: "Choose the option that best describes your planned expenses:",
+            input_html: { class: 'input-rounded', id: 'business-dropdown' } %>
+        </div>
         <%= f.input :description,
           label: "Further details on your intended loan use:",
           placeholder: "Details of your loan purpose",
@@ -52,8 +57,17 @@
 
 <% content_for(:after_js) do %>
 <script>
-  $('#loan_category_personal').onClick(function (e) {
-    $('#personal-dropdown').show
-  });
+$(document).ready(function() {
+    $('input[type=radio]').change(function() {
+        if (this.value == 'personal') {
+          $('.for-personal').removeClass('hidden')
+          $('.for-business').addClass('hidden')
+       }
+        else if (this.value == 'business') {
+          $('.for-personal').addClass('hidden')
+          $('.for-business').removeClass('hidden')
+        }
+    });
+});
 </script>
 <% end %>
