@@ -7,7 +7,7 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :mobile_number, autofocus: true %>
+          <%= f.input :mobile_number, autofocus: true, id: "modal-mobile" %>
           <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
           <%= f.input :password_confirmation %>
         </div>
