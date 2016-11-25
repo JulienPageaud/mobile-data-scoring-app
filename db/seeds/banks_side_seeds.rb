@@ -1,19 +1,29 @@
+Loan.destroy_all
+User.destroy_all
+Bank.create!(name: "FNB") unless Bank.find_by_name("FNB").present?
+BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
+                 first_name: "Mr.", last_name: "Banks", phone_number: '999-785-$$$',
+                 bank: Bank.find_by_name("FNB")) unless BankUser.find_by_email("fnbemployee@gmail.com").present?
+User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
+
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
-purpose_ary = ["Medical Expenses", "Start a business", "Open a shop", "Buy equipment for my business"]
-description_ary = ["I really need to pay for a kidney transplant for my eldest son who is suffering from a horrible disease",
+purpose_ary = ["Medical Expenses", "Start a business", "Open a shop", "Coding School", "Beer Money"]
+description_ary = ["I need to pay for a organ transplant for my son",
                "I want to buy a large amount of cooking utensils for my kitchen as the restaurant is expanding",
-               "I would like to open a clothes shop as the locals in the area are complaining and there is a good market",
-               "I want to start my own business which is a belly dancer marketplace so that you can rent a belly dancer for your bar mitzvah"]
-start_date_outstanding_ary = [(DateTime.now), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 7.day)]
+               "I would like to open a clothes shop as there are none in this area",
+               "I want to start my own tech business and I need the money to launch my product",
+               "I want to learn how to code Ruby on Rails applications at Le Wagon",
+               "I'm really thirsty so I want to buy lots of beer"]
+start_date_outstanding_ary = [(DateTime.now - 3.day), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 15.day), (DateTime.now - 8.day - 1.month)]
 start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 20.day), (DateTime.now -3.day)]
 
-bank = Bank.last
+bank = Bank.find_by_name("FNB")
 50.times do
   user = User.create!(mobile_number: Faker::PhoneNumber.cell_phone, password: 'testtest', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
   loan = user.loans.build(status: status_ary.sample, category: category_ary.sample, purpose: purpose_ary.sample,
                    description: description_ary.sample, interest_rate: 15, bank: bank,
-                   requested_amount_cents: rand(1500000).round(-3))
+                   requested_amount: rand(15000).round(-2))
   loan.proposed_amount_cents = loan.requested_amount_cents
   loan.agreed_amount_cents = loan.requested_amount_cents
 
@@ -21,6 +31,7 @@ bank = Bank.last
   when "Loan Outstanding"
     loan.start_date = start_date_outstanding_ary.sample
     loan.final_date = loan.start_date + loan.duration_months.month
+    loan.payments.first.update(paid: true) if loan.most_recent_payment.present? && loan.loan_classification == "Missed Payment"
     loan.update_payments_to_agreed_amount
   when "Loan Repaid"
     loan.start_date = start_date_repaid_ary.sample
