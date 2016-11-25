@@ -1,5 +1,7 @@
 Loan.destroy_all
 User.destroy_all
+Bank.create!(name: "FNB") unless Bank.find_by_name("FNB").present?
+BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney", first_name: "Mr.", last_name: "Banks", phone_number: '999-785-$$$', bank: Bank.find_by_name("FNB"))
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
