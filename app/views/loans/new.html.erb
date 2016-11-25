@@ -13,13 +13,62 @@
   <div class="container white-box">
     <div id="loan-application-form">
       <%= simple_form_for [current_user, @loan] do |f| %>
-        <%= f.input :requested_amount, label: "How much do you want to borrow?", placeholder: "up to R15,000", error: "Please enter an amount between R0 and R15,000", input_html: { class: 'input-rounded'} %>
-        <%= f.input :category, label: "What would you like to use the loan for?", error: "Please choose a category", input_html: { class: 'input-rounded'} %>
-        <%= f.input :purpose, label: "Choose the option that best describes your planned expenses:", placeholder: "Medical Expenses", error: "Please choose an option", input_html: { class: 'input-rounded'} %>
-        <%= f.input :description, label: "Further details on your intended loan use:", placeholder: "Enter text here", error: "Please describe in more detail what you plan to use this loan for", input_html: { class: 'input-rounded'} %>
-        <%= f.hidden_field :bank_id, value: Bank.find_by_name("FNB").id %>
-        <%= f.submit 'Submit', class: 'btn-royal-blue' %>
+        <%= f.input :requested_amount,
+          label: "How much do you want to borrow?",
+          placeholder: "up to R15,000",
+          error: "Please enter an amount between R0 and R15,000",
+          input_html: { class: 'input-rounded'} %>
+        <%= f.input :category,
+          as: 'radio_buttons',
+          collection: [['Personal', 'personal'], ['Business', 'business']],
+          label_method: :first,
+          value_method: :last,
+          label: "What would you like to use the loan for?",
+          label_html: { class: 'radio-label' },
+          error: "Please choose a category",
+          item_wrapper_class: 'radio-inline' %>
+        <div class="for-personal">
+          <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
+            label: "Choose the option that best describes your planned expenses:",
+            placeholder: "Medical Expenses",
+            error: "Please choose an option",
+            item_wrapper_class: "for-personal",
+            input_html: { class: 'input-rounded', id: 'personal-dropdown' } %>
+        </div>
+        <div class="for-business hidden">
+          <%= f.input :purpose, collection: ['New building', 'Pay off debt', 'Company holiday'],
+            placeholder: "Medical Expenses",
+            error: "Please choose an option",
+            label: "Choose the option that best describes your planned expenses:",
+            input_html: { class: 'input-rounded', id: 'business-dropdown' } %>
+        </div>
+        <%= f.input :description,
+          label: "Further details on your intended loan use:",
+          placeholder: "Details of your loan purpose",
+          error: "Please describe in more detail what you plan to use this loan for",
+          input_html: { class: 'input-rounded' } %>
+        <%= f.hidden_field :bank_id,
+          value: Bank.find_by_name("FNB").id %>
+        <%= f.submit 'Submit',
+          class: 'btn-royal-blue' %>
       <% end %>
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+<script>
+$(document).ready(function() {
+    $('input[type=radio]').change(function() {
+        if (this.value == 'personal') {
+          $('.for-personal').removeClass('hidden')
+          $('.for-business').addClass('hidden')
+       }
+        else if (this.value == 'business') {
+          $('.for-personal').addClass('hidden')
+          $('.for-business').removeClass('hidden')
+        }
+    });
+});
+</script>
+<% end %>
