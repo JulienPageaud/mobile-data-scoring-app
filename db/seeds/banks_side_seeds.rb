@@ -1,11 +1,11 @@
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
 purpose_ary = ["Medical Expenses", "Start a business", "Open a shop", "Buy equipment for my business"]
-description_ary = ["I really need to pay for a kidney transplant for my eldest son who is suffering from a horrible disease",
+description_ary = ["I need to pay for a organ transplant for my son",
                "I want to buy a large amount of cooking utensils for my kitchen as the restaurant is expanding",
-               "I would like to open a clothes shop as the locals in the area are complaining and there is a good market",
-               "I want to start my own business which is a belly dancer marketplace so that you can rent a belly dancer for your bar mitzvah"]
-start_date_outstanding_ary = [(DateTime.now), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 7.day)]
+               "I would like to open a clothes shop as there are none in this area",
+               "I want to start my own tech business and I need the money to launch my product"]
+start_date_outstanding_ary = [(DateTime.now - 3.day), (DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 7.day)]
 start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month), (DateTime.now - 3.month), (DateTime.now - 20.day), (DateTime.now -3.day)]
 
 bank = Bank.last
@@ -21,6 +21,8 @@ bank = Bank.last
   when "Loan Outstanding"
     loan.start_date = start_date_outstanding_ary.sample
     loan.final_date = loan.start_date + loan.duration_months.month
+    loan.most_recent_payment.paid = true if loan.most_recent_payment
+    loan.most_recent_payment.save
     loan.update_payments_to_agreed_amount
   when "Loan Repaid"
     loan.start_date = start_date_repaid_ary.sample
