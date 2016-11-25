@@ -131,7 +131,7 @@ class Loan < ApplicationRecord
     if status == "Loan Outstanding" && most_recent_payment.present?
       if most_recent_payment.due_date < (DateTime.now.end_of_day - 7.day) && most_recent_payment.paid == false
         "Missed Payment"
-      elsif DateTime.now.end_of_day - 7.day < most_recent_payment && most_recent_payment < DateTime.now.end_of_day && most_recent_payment == false
+      elsif DateTime.now.end_of_day - 7.day < most_recent_payment.due_date && most_recent_payment.due_date < DateTime.now.end_of_day && most_recent_payment == false
         "Delayed Payment"
       else
         "Good Book"
