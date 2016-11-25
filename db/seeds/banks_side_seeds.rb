@@ -31,7 +31,7 @@ bank = Bank.find_by_name("FNB")
   when "Loan Outstanding"
     loan.start_date = start_date_outstanding_ary.sample
     loan.final_date = loan.start_date + loan.duration_months.month
-    loan.payments.first.update(paid: true) if loan.most_recent_payment.present?
+    loan.payments.first.update(paid: true) if loan.most_recent_payment.present? && loan.loan_classification == "Missed Payment"
     loan.update_payments_to_agreed_amount
   when "Loan Repaid"
     loan.start_date = start_date_repaid_ary.sample
