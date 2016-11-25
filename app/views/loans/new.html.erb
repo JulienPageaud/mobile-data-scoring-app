@@ -24,8 +24,9 @@
           label_method: :first,
           value_method: :last,
           label: "What would you like to use the loan for?",
+          label_html: { class: 'radio-label' },
           error: "Please choose a category",
-          input_html: { class: 'list-inline'} %>
+          item_wrapper_class: 'radio-inline' %>
         <div class="for-personal">
           <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
             label: "Choose the option that best describes your planned expenses:",
