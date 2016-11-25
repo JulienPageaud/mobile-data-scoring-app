@@ -1,6 +1,35 @@
 .btn-royal-blue {
+  text-decoration: none;
   color: white;
   background-color: $royal-blue;
   border-radius: 20px;
   padding: 5px 20px;
+  margin: 10px auto;
+}
+
+.btn-royal-blue:hover {
+  text-decoration: none;
+  color: white;
+  background-color: $sky-blue;
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin: 10px auto;
+}
+
+.btn-grey {
+  text-decoration: none;
+  color: $title-grey;
+  background-color: $table-grey;
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin: 10px auto;
+}
+
+.btn-grey:hover{
+  text-decoration: none;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin: 10px auto;
 }
