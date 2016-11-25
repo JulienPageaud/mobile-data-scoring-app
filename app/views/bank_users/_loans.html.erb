@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Loans - Missed Payment</h3>
     <div class="loan-flexbox">
-      <div class="flexrow loans-header-row text-center">
+      <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
           Client Name
         </div>
@@ -20,7 +20,7 @@
         <div class="flexcell loans-header">
           Final Payment Date
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="credit-score">
           Credit Score
         </div>
       </div>
@@ -28,22 +28,22 @@
       <% if @missed_payment_loans.present? %>
         <% @missed_payment_loans.each do |loan|%>
         <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do%>
-          <div class="flexrow loans text-center">
+          <div class="flexrow loans text-left">
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <%= loan.user.first_name + ' ' + loan.user.last_name %>
             </div>
 
               <% if loan.most_recent_payment.missed_payment? %>
-                <div class="flexcell loans-cell text-center">
+                <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loans-cell text-center">
+                <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.display_money %>
                 </div>
               <% end %>
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <% if loan.next_payment %>
                 <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
               <% else %>
@@ -51,17 +51,17 @@
               <% end %>
             </div>
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <% if loan.next_payment %>
                 <%= loan.next_payment.display_money %>
               <% else %>
                 <%= loan.payments.last.display_money %>
               <% end %>
             </div>
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell" id="credit-score">
               <%= loan.user.credit_score %>
             </div>
           </div>
@@ -74,7 +74,7 @@
 <div class="container">
   <h3>Loans - Delayed Payment</h3>
     <div class="loan-flexbox">
-      <div class="flexrow loans-header-row text-center">
+      <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
           Client Name
         </div>
@@ -93,7 +93,7 @@
         <div class="flexcell loans-header">
           Final Payment Date
         </div>
-        <div class="flexcell loans-header">
+        <div class="flexcell loans-header" id="credit-score">
           Credit Score
         </div>
       </div>
@@ -101,22 +101,22 @@
       <% if @delayed_payment_loans.present? %>
         <% @delayed_payment_loans.each do |loan|%>
         <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do%>
-          <div class="flexrow loans text-center">
+          <div class="flexrow loans text-left">
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <%= loan.user.first_name + ' ' + loan.user.last_name %>
             </div>
 
               <% if loan.most_recent_payment.missed_payment? %>
-                <div class="flexcell loans-cell text-center">
+                <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loans-cell text-center">
+                <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.display_money %>
                 </div>
               <% end %>
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <% if loan.next_payment %>
                 <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
               <% else %>
@@ -124,17 +124,17 @@
               <% end %>
             </div>
 
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <% if loan.next_payment %>
                 <%= loan.next_payment.display_money%>
               <% else %>
                 <%= loan.payments.last.display_money%>
               <% end %>
             </div>
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell">
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
-            <div class="flexcell loans-cell text-center">
+            <div class="flexcell loans-cell" id="credit-score">
               <%= loan.user.credit_score %>
             </div>
           </div>
@@ -147,7 +147,7 @@
 <div class="container">
 <h3>Loans - Good Book</h3>
 <div class="loan-flexbox">
-    <div class="flexrow loans-header-row text-center">
+    <div class="flexrow loans-header-row text-left">
       <div class="flexcell loans-header">
        Client Name
       </div>
@@ -163,19 +163,19 @@
       <div class="flexcell loans-header">
         Final Payment Date
       </div>
-      <div class="flexcell loans-header">
+      <div class="flexcell loans-header" id="credit-score">
         Credit Score
       </div>
     </div>
 
         <% Loan.good_loans.each do |loan| %>
         <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do %>
-        <div class="flexrow loans text-center">
+        <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.next_payment.display_money %>
+            <%= loan.remaining_capital %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
@@ -186,7 +186,7 @@
           <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
           </div>
-          <div class="flexcell loans-cell">
+          <div class="flexcell loans-cell" id="credit-score">
             <%= loan.user.credit_score %>
           </div>
         </div>

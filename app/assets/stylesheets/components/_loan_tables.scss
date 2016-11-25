@@ -7,29 +7,43 @@
   margin: 0 auto;
 }
 
-.flexrow .loans {
+.flexrow.loans {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-basis: 100%;
+  padding: 0 15px;
 }
 
-.loans-cell {
-  flex: 1 1 0;
+
+.loans-cell.flexcell {
+  flex: 1 0 0;
+  padding: 0 5px;
 }
-.loans-header {
-  flex: 1 1 0;
+.loans-header.flexcell {
+  flex: 1 0 0;
+  margin: 3px 0;
+  padding: 0 5px;
 }
 
 .loans-header-row {
   background-color:#3A97EC;
   color: white;
-  padding: 4px 0;
+  padding: 4px 15px;
 }
 
 .loan-link:hover {
   text-decoration: none;
+  background-color: $sky-blue;
+  color: black;
 }
 
 .loan-link {
   color:black;
+  padding: 5px 0;
+}
+#credit-score, #category{
+  max-width: 120px;
+}
+#purpose, #decline-reason {
+  flex-grow: 2;
 }

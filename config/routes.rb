@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # Routes for customer's side of the application
   resources :users, only: [ :show, :edit, :update ] do
-    resources :loans, only: [ :new, :create, :edit, :update, :show ]
+    resources :loans, only: [ :new, :create, :edit, :update, :show ] do
+      member do
+        get 'accept', to: 'loans#accept'
+      end
+    end
 
     # User 'Current Situation' page
     get 'status', to: 'users#status'

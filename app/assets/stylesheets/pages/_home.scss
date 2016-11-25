@@ -29,6 +29,7 @@
   text-align: left;
   color: white;
   position: top;
+  background-position: center;
 }
 
 .btn-transparent {
@@ -68,4 +69,9 @@
   margin: 0;
   text-align: left;
   font-size: 14px;
+}
+
+.width-alter {
+  width: 80%;
+  margin: 0 auto;
 }
