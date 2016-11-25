@@ -105,21 +105,21 @@
                 <%= @loan.remaining_capital %>
               </div>
               <% if @loan.next_payment.present? %>
-                <div class="flexcell loan-show-cell">
+                <div class="flexcell loans-cell">
                   <%= @loan.next_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loan-show-cell">
+                <div class="flexcell loans-cell">
                   <%= @loan.next_payment.display_money %>
                 </div>
               <% else %>
-                <div class="flexcell loan-show-cell">
+                <div class="flexcell loans-cell">
                   <%= @loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loan-show-cell">
+                <div class="fflexcell loans-cell">
                   <%= @loan.most_recent_payment.display_money %>
                 </div>
               <% end %>
-               <div class="flexcell loan-show-cell" id="credit-score">
+               <div class="flexcell loans-cell" id="credit-score">
                 <%= @loan.user.credit_score %>
               </div>
             </div>
