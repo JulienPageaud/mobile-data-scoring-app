@@ -17,9 +17,17 @@
     <% end %>
   <% end %>
 
+
+  <% if user_signed_in? %>
+    <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
+      <i class="glyphicon glyphicon-home"></i>
+    <% end %>
+  <% else %>
     <%= link_to root_path, class: "navbar-wagon-item navbar-wagon-link" do %>
       <i class="glyphicon glyphicon-home"></i>
     <% end %>
+  <% end %>
+
   </div>
 
 </div>
