@@ -1,34 +1,70 @@
-<div class="container">
-  <h1 class="text-center"><%=@loan.status%> Overview</h1>
-  <% if @loan.loan_classification == "Missed Payment"%>
-    <h3 class="missed text-center"><%= @loan.loan_classification%></h3>
-  <% elsif @loan.loan_classification == "Delayed Payment"%>
-    <h3 class="delayed text-center"><%= @loan.loan_classification%></h3>
-  <% else %>
-    <h3 class="good text-center"><%= @loan.loan_classification%></h3>
-  <% end %>
-  <div class="row">
-    <div class="col-sm-6">
-      <h2>Client Details</h2>
-      <p><strong>First Name:</strong> <%= @loan.user.first_name %></p>
-      <p><strong>Last Name:</strong> <%= @loan.user.last_name %></p>
-      <p><strong>Mobile Number:</strong> <%= @loan.user.mobile_number %></p>
-      <p><strong>Address:</strong> <%= @loan.user.address %></p>
-      <p><strong>City:</strong> <%= @loan.user.city %></p>
-      <p><strong>Postcode:</strong> <%= @loan.user.postcode %></p>
-    </div>
+<div class="wrapper-grey">
+  <div class="container">
+      <h1 class="text-center"><%=@loan.status%> Overview</h1>
+      <% if @loan.loan_classification == "Missed Payment"%>
+        <h3 class="missed text-center"><%= @loan.loan_classification%></h3>
+      <% elsif @loan.loan_classification == "Delayed Payment"%>
+        <h3 class="delayed text-center"><%= @loan.loan_classification%></h3>
+      <% else %>
+        <h3 class="good text-center"><%= @loan.loan_classification%></h3>
+      <% end %>
+      <div class="white-box">
+      <h3>Client Details</h3>
+      <div class="standard-loan-flexbox">
+        <div class="flexrow">
+            <div class="cell-header">
+              <p><strong>First Name:</strong></p>
+            </div>
+            <div class="cell-header">
+              <p><strong>Last Name:</strong></p>
+            </div>
+            <div class="cell-header">
+              <p><strong>Mobile Number:</strong></p>
+            </div>
+            <div class="cell-header">
+              <p><strong>Address:</strong></p>
+            </div>
+            <div class="cell-header">
+              <p><strong>City:</strong></p>
+            </div>
+            <div class="cell-header">
+              <p><strong>Postcode:</strong></p>
+            </div>
+        </div>
+        <div class="flexrow">
+            <div class="cell-content">
+              <%= @loan.user.first_name %>
+            </div>
+            <div class="cell-content">
+              <%= @loan.user.last_name %>
+            </div>
+            <div class="cell-content">
+              <%= @loan.user.mobile_number %>
+            </div>
+            <div class="cell-content">
+              <%= @loan.user.address %>
+            </div>
+            <div class="cell-content">
+              <%= @loan.user.city %>
+            </div>
+             <div class="cell-content">
+              <%= @loan.user.postcode %>
+            </div>
+          </div>
+        </div>
 
-    <div class="col-sm-6">
-    <h2>Loan Details</h2>
-      <p><strong>Start date:</strong> <%= @loan.start_date.strftime("%e %b %Y") %></p>
-      <p><strong>Initial capital:</strong> <%= @loan.display_capital %></p>
-      <p><strong>Remaining capital:</strong> <%= @loan.remaining_capital %></p>
-      <p><strong>Next payment date:</strong> <%= @loan.next_payment.due_date.strftime("%e %b %Y") %></p>
-      <p><strong>Next payment amount:</strong> <%= @loan.next_payment.display_money %></p>
-      <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
-    </div>
-  <%= link_to 'Go back', bank_user_loans_path(anchor: "outstanding") %>
 
+        <div class="row">
+        <h3>Loan Details</h3>
+          <p><strong>Start date:</strong> <%= @loan.start_date.strftime("%e %b %Y") %></p>
+          <p><strong>Initial capital:</strong> <%= @loan.display_capital %></p>
+          <p><strong>Remaining capital:</strong> <%= @loan.remaining_capital %></p>
+          <p><strong>Next payment date:</strong> <%= @loan.next_payment.due_date.strftime("%e %b %Y") %></p>
+          <p><strong>Next payment amount:</strong> <%= @loan.next_payment.display_money %></p>
+          <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
+        </div>
+      <%= link_to 'Go back', bank_user_loans_path(anchor: "outstanding") %>
+
+      </div>
   </div>
 </div>
-
