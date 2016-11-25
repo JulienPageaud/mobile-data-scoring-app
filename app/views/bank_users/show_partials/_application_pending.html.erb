@@ -1,14 +1,102 @@
 <div class="container">
-  <h1 class="text-center"><%=@loan.status%> Overview</h1>
-  <div class="row">
-    <h2>Details</h2>
-      <p><strong>Date of the Application:</strong> <%= @loan.created_at.strftime("%e %b %Y") %></p>
-      <p><strong>Mobile Number:</strong> <%= @loan.user.mobile_number %></p>
-      <p><strong>Amount requested:</strong> <%= @loan.display_requested_capital %></p>
-      <p><strong>Category:</strong> <%= @loan.category %></p>
-      <p><strong>Purpose:</strong> <%= @loan.purpose %></p>
-      <p><strong>Score:</strong> <%= @loan.user.credit_score %></p>
-      <p><strong>Description:</strong> <%= @loan.description %></p>
+  <div class="header text-center">
+  <h1><%=@loan.status%> Overview</h1>
+  </div>
+
+    <div class="table-description">
+    <strong>Client Details</strong>
+    </div>
+        <div class="loan-flexbox">
+          <div class="flexrow loans-header-row text-left">
+              <div class="flexcell loans-header">
+                First Name
+              </div>
+              <div class="flexcell loans-header">
+                Last Name
+              </div>
+              <div class="flexcell loans-header">
+                Mobile Number
+              </div>
+              <div class="flexcell loans-header">
+                Address
+              </div>
+              <div class="flexcell loans-header">
+                City
+              </div>
+              <div class="flexcell loans-header">
+                Postcode
+              </div>
+          </div>
+          <div class="flexrow loans text-left">
+              <div class="flexcell loan-show-cell">
+                <%= @loan.user.first_name %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.user.last_name %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.user.mobile_number %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.user.address %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.user.city %>
+              </div>
+               <div class="flexcell loan-show-cell">
+                <%= @loan.user.postcode %>
+              </div>
+            </div>
+          </div>
+<br>
+<br>
+    <div class="table-description">
+    <strong>Application Details</strong>
+    </div>
+        <div class="loan-flexbox">
+          <div class="flexrow loans-header-row text-left">
+              <div class="flexcell loans-header">
+                Date of the Application
+              </div>
+              <div class="flexcell loans-header">
+                Amount requested
+              </div>
+              <div class="flexcell loans-header">
+                Category
+              </div>
+              <div class="flexcell loans-header">
+                Purpose
+              </div>
+              <div class="flexcell loans-header">
+                Description
+              </div>
+              <div class="flexcell loans-header" id="credit-score">
+                Score
+              </div>
+          </div>
+          <div class="flexrow loans text-left">
+              <div class="flexcell loan-show-cell">
+               <%= @loan.created_at.strftime("%e %b %Y") %>
+              </div>
+              <div class="flexcell loan-show-cell">
+               <%= @loan.display_requested_capital %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.category %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.purpose %>
+              </div>
+              <div class="flexcell loan-show-cell">
+                <%= @loan.description %>
+              </div>
+               <div class="flexcell loan-show-cell" id="credit-score">
+                <%= @loan.user.credit_score %>
+              </div>
+            </div>
+          </div>
+
+  <div class="links">
       <%= simple_form_for [current_bank_user, @loan] do |f| %>
        <%= f.input :proposed_amount, input_html: {value: @loan.requested_amount} %>
        <%#Ò= f.input :duration, placeholder: "12 months" %>
@@ -22,7 +110,6 @@
       <% end %>
   </div>
 </div>
-
 <!-- MODAL FOR DECLINE FORM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="decline-modal">
   <div class="modal-dialog" role="document">

@@ -1,14 +1,16 @@
-<div class="container">
-  <% case @loan.status %>
-    <% when "Application Pending" %>
-      <%= render 'bank_users/show_partials/application_pending'%>
-    <% when "Application Accepted" %>
-      <%= render 'bank_users/show_partials/application_accepted'%>
-    <% when "Loan Outstanding" %>
-      <%= render 'bank_users/show_partials/loan_outstanding'%>
-    <% when "Application Declined" %>
-      <%= render 'bank_users/show_partials/application_declined'%>
-    <% when "Loan Repaid" %>
-      <%= render 'bank_users/show_partials/loan_repaid'%>
-  <% end %>
+<div class="wrapper-grey">
+  <div class="container">
+    <% case @loan.status %>
+      <% when "Application Pending" %>
+        <%= render 'bank_users/show_partials/application_pending'%>
+      <% when "Application Accepted" %>
+        <%= render 'bank_users/show_partials/application_accepted'%>
+      <% when "Loan Outstanding" %>
+        <%= render 'bank_users/show_partials/loan_outstanding'%>
+      <% when "Application Declined" %>
+        <%= render 'bank_users/show_partials/application_declined'%>
+      <% when "Loan Repaid" %>
+        <%= render 'bank_users/show_partials/loan_repaid'%>
+    <% end %>
+  </div>
 </div>
