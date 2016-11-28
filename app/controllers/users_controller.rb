@@ -16,6 +16,12 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
+    if params[:user][:title] == "mr"
+      @user.update(gender: "male")
+    else
+      @user.update(gender: "female")
+    end
+
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -46,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:mobile_number, :gender, :first_name, :last_name,
+    params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
       :address, :city, :postcode, :employment, :date_of_birth, :photo_id)
   end
 end
