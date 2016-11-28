@@ -118,4 +118,12 @@ class Loan < ApplicationRecord
     update(arguments)
     update_payments_to_agreed_amount
   end
+
+  def application_sent_confirmation
+    body = "Your loan application for
+            #{ActionController::Base.helpers.humanized_money_with_symbol(requested_amount)}
+            has been sent successfully.
+            You will receive another message once it has been reviewed."
+    Notification.send_sms(user.mobile_number, body.squish)
+  end
 end
