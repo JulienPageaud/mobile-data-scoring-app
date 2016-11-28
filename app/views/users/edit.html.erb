@@ -33,7 +33,7 @@
         <%= f.input :postcode, input_html: { class: 'input-rounded'}, placeholder: "Postcode", label: false %>
         <%= f.input :employment, input_html: { class: 'input-rounded'}, placeholder: "Employment", label: false %>
         <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}, placeholder: 'D.o.B DD/MM/YYYY', label: false %>
-        <%= f.input :photo_id, as: :attachinary, input_html: { class: 'input-rounded'}, label: 'Upload your ID' %>
+        <%= f.input :photo_id, input_html: { class: 'input-rounded'}, label: 'Upload your ID' %>
         <%= f.input :photo_id_cache, as: :hidden %>
         <%= cl_image_tag @user.photo_id, height: 300, width: 400, crop: :fill %>
     <div class="container container-buttons">

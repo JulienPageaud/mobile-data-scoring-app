@@ -36,5 +36,4 @@ Rails.application.routes.draw do
   get 'legal', to: 'users#legal'
   get 'contact', to: 'users#contact'
 
-  mount Attachinary::Engine => "/attachinary"
 end
