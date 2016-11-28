@@ -6,6 +6,17 @@ class User < ApplicationRecord
          authentication_keys: [:mobile_number]
   has_many :loans
 
+  validates :email, presence: true, on: :update,
+              format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
+  validates :title, presence: true, on: :update
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+  validates :address, presence: true, on: :update
+  validates :city, presence: true, on: :update
+  validates :postcode, presence: true, on: :update
+  validates :employment, presence: true, on: :update
+  validates :date_of_birth, presence: true, on: :update
+
   def email_required?
     false
   end
