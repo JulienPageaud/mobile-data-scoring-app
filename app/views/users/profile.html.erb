@@ -13,12 +13,12 @@
         <!-- If you want a profile picture: Could take from facebook profile -->
       </div>
       <div class=" container-centered profile-info">
-        <h2><%= @user.title.capitalize %><%= ' ' + @user.first_name.capitalize if @user.first_name.present? %> <%= ' ' + @user.last_name.capitalize  if @user.last_name.present? %></h2>
+        <h2><%= @user.title.try(:capitalize) %><%= ' ' + @user.first_name.try(:capitalize).to_s %> <%= ' ' + @user.last_name.try(:capitalize).to_s %></h2>
         <h3>Your mobile number:<br> <%= @user.mobile_number %></h3>
         <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
-        <p><%= @user.email if @user.email.present? %></p>
-        <p><%= @user.address if @user.address.present? %></p>
-        <p><%= @user.city if @user.city.present? %> <%= ', ' + @user.postcode if @user.postcode.present? %></p>
+        <p><%= @user.email %></p>
+        <p><%= @user.address %></p>
+        <p><%= @user.city  %> <%= ', ' + @user.postcode.to_s %></p>
         <%= link_to edit_user_path(@user) do %>
           <button class="btn-royal-blue"><%= 'EDIT YOUR DETAILS' %></button>
           <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' unless @user.details_completed? %></p>

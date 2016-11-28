@@ -1,0 +1,25 @@
+<div class="wrapper-grey">
+
+  <div class="header-banner">
+    <div class="header-title">
+      <h1>Contact Us</h1>
+      <h2>Get in contact with the team</h2>
+    </div>
+    <div class="round-icon">
+      <i>PHONE ICON</i>
+    </div>
+  </div>
+
+  <div class="container white-box container-centered">
+    <div class="page-content">
+      <h5>Email:</h5>
+      <h5>Phone:</h5>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Go back", user_path(current_user), class: 'btn-royal-blue' %>
+    <% else %>
+      <%= link_to "Go back", root_path, class: 'btn-royal-blue' %>
+    <% end %>
+  </div>
+
+</div>

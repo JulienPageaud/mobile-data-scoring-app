@@ -29,8 +29,11 @@ Rails.application.routes.draw do
     resources :loans, only: [:index, :show, :update]
   end
 
-
   get 'client-profile/:id', to: 'bank_users#user_show'
 
+  # About, Legal, Contact pages
+  get 'about', to: 'users#about'
+  get 'legal', to: 'users#legal'
+  get 'contact', to: 'users#contact'
 
 end
