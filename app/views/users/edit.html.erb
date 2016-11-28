@@ -28,7 +28,7 @@
         <%= f.input :city, input_html: { class: 'input-rounded'}, placeholder: "City", label: false %>
         <%= f.input :postcode, input_html: { class: 'input-rounded'}, placeholder: "Postcode", label: false %>
         <%= f.input :employment, input_html: { class: 'input-rounded'}, placeholder: "Employment", label: false %>
-        <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}  %>
+        <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}, placeholder: "D.o.B DD/MM/YYYY", label: false  %>
         <%= f.input :photo_id, input_html: { class: 'input-rounded'} %>
     <div class="container container-buttons">
         <%= f.submit 'Save', class: 'btn-royal-blue btn-centered' %>
