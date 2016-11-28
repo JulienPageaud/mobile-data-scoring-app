@@ -24,5 +24,12 @@
   color: white;
   font-size: 16px;
 }
-
-
+.radio_buttons, .check_boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+.radio, .checkbox {
+  margin-top: 0px;
+}
