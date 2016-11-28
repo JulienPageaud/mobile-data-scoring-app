@@ -15,7 +15,7 @@
 
   <div class="container white-box">
     <div class="details-form">
-      <%= simple_form_for current_user do |f| %>
+      <%= simple_form_for @user do |f| %>
         <%= f.input :email, input_html: { class: 'input-rounded'}, placeholder: "Email", label: false %>
         <%= f.input :title,
           as: 'radio_buttons',
