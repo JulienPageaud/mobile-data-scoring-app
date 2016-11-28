@@ -7,11 +7,13 @@ class Loan < ApplicationRecord
   monetize :proposed_amount_cents
   monetize :agreed_amount_cents
 
-  validates :requested_amount, presence: true
+  validates :requested_amount, presence: true,
+              numericality: { less_than_or_equal_to: 15000, greater_than: 0 }
   validates :category, presence: true
   validates :purpose, presence: true
-  validates :description, presence: true, length: { minimum: 20,
-    too_short: "You need to exceed %{count} characters in your description" }
+  validates :description, presence: true,
+              length: { minimum: 20,
+              too_short: "You need to exceed %{count} characters in your description" }
 
   ## PAYMENT METHODS
 
