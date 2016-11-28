@@ -8,12 +8,20 @@ class Notification < ApplicationRecord
   @@client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
 
   def trigger_sms
+    @loan = user.loans.last
     if user.loans.last.status == "Application Accepted"
       sms_message = "Congratulations! Your loan has been accepted.
+                     You qualify for up to
+                     #{ActionController::Base.helpers.humanized_money_with_symbol(@loan.proposed_amount)}
+                     You can reply 'confirm' or 'decline' to this message, or log in
+                     to the website to see the full details and confirm your loan.
                      "
+      sms_message.squish!
     elsif user.loans.last.status == "Application Declined"
       sms_message = "We are sorry to inform you that your loan application has
-                       been declined. Please visit the Manda website for more details"
+                     been declined for the following reason: #{@loan.decline_reason}.\
+                     Please visit the Manda website for more details"
+      sms_message.squish!
     end
     send_text_notification(user.mobile_number, sms_message)
   end

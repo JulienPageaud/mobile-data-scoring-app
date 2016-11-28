@@ -114,7 +114,7 @@ class Loan < ApplicationRecord
   end
 
   def accept(arguments)
-    status = "Loan Outstanding"
+    update(status: "Loan Outstanding")
     update(arguments)
     update_payments_to_agreed_amount
   end
