@@ -43,6 +43,9 @@ class User < ApplicationRecord
     self.update(user_params)
   end
 
+
+  # SMS MESSAGE METHODS
+
   def confirm_loan
     body = "Thank you for confirming your loan\
             (amount: #{ActionController::Base.helpers.humanized_money_with_symbol(loans.last.agreed_amount)}).
@@ -55,6 +58,29 @@ class User < ApplicationRecord
   def decline_loan
     body = "You have chosen to decline your loan.
             We hope you will consider reapplying in the future"
+    Notification.send_sms(mobile_number, body.squish)
+  end
+
+  def other_sms
+    case loans.last.status
+    when "Application Pending"
+      body = "Your loan application is still under review. We will
+            get back to you as soon as the bank has processed your application. "
+    when "Application Accepted"
+      body = "We are sorry, we didn't understand your response. Please
+              reply to use with the word 'confirm' or 'decline' to finalize
+              your loan."
+    when "Application Declined"
+      body = "We understand that having your application declined is frustrating.
+              Please contact our support team who can help you improve your chances
+              of being accepted in the future."
+    when "Loan Outstanding"
+      body = "We are not currently expecting any communication from you.
+              Your next payment details:
+              #{ActionController::Base.helpers.humanized_money_with_symbol(loans.last.try(next_payment).try(amount))}
+              on #{loans.last.try(next_payment).try(due_date).try(strftime("%e %b %Y"))}
+              We will remind you one week before your payment date."
+    end
     Notification.send_sms(mobile_number, body.squish)
   end
 end

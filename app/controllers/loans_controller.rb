@@ -51,7 +51,7 @@ class LoansController < ApplicationController
         render :show
       end
       Notification.create!(user: @loan.user) #notification for the user
-    elsif params[loan: :agreed_amount_cents] || params[loan: :status] == "Loan Outstanding"
+    elsif params[:loan][:agreed_amount].present? || params[:loan][:status] == "Loan Outstanding"
       # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
   end
@@ -63,6 +63,10 @@ class LoansController < ApplicationController
   end
 
   private
+
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
 
   def loan_params
     params.require(:loan).permit(:requested_amount, :category, :purpose, :description, :bank_id)
@@ -84,7 +88,4 @@ class LoansController < ApplicationController
     end
   end
 
-  def set_loan
-    @loan = Loan.find(params[:id])
-  end
 end

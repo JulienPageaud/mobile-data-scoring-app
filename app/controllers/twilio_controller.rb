@@ -14,14 +14,13 @@ class TwilioController < ApplicationController
       user.loans.last.decline
       user.decline_loan
     else
-      #user.error_text
+      user.other_sms
     end
   end
 
   private
 
   def accept_loan_params(user)
-
     loan = user.loans.last
     return {  agreed_amount: loan.proposed_amount,
               start_date: DateTime.now,
