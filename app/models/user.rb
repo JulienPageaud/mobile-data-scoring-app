@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook],
          authentication_keys: [:mobile_number]
   has_many :loans
+  has_many :notifications, dependent: :destroy
 
   def email_required?
     false
