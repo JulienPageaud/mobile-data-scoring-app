@@ -115,8 +115,8 @@
                 <div class="flexcell loans-cell">
                   <%= @loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="fflexcell loans-cell">
-                  <%= @loan.most_recent_payment.display_money %>
+                <div class="flexcell loans-cell">
+                  <%= humanized_money_with_symbol(@loan.most_recent_payment.amount) %>
                 </div>
               <% end %>
                <div class="flexcell loans-cell" id="credit-score">
