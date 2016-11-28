@@ -112,4 +112,10 @@ class Loan < ApplicationRecord
       "Good Book"
     end
   end
+
+  def accept(arguments)
+    status = "Loan Outstanding"
+    update(arguments)
+    update_payments_to_agreed_amount
+  end
 end
