@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'twilio/confirm_loan'
+
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :bank_users
 
