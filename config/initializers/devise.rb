@@ -251,7 +251,7 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
       scope: 'email',
-      info_fields: 'email, first_name, last_name',
+      info_fields: 'email, first_name, last_name'
 
       # Some more information we will need for scoring
       # user_birthday, user_location, gender, age_range, user_education_history, user_relationship',
