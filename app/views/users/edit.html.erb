@@ -15,8 +15,12 @@
 
   <div class="container white-box">
     <div class="details-form">
-      <%= simple_form_for current_user do |f| %>
-        <%= f.input :email, input_html: { class: 'input-rounded'}, placeholder: "Email", label: false %>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :email,
+          input_html: { class: 'input-rounded'},
+          placeholder: "Email",
+          label: false,
+          error: "Please enter a valid email" %>
         <%= f.input :title,
           as: 'radio_buttons',
           collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']],
@@ -38,3 +42,8 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
+<% end %>
+
