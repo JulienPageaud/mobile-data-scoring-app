@@ -15,20 +15,29 @@
   <div class="navbar-wagon-right">
 
     <% if user_signed_in? %>
+      <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
+        <i class="glyphicon glyphicon-home"></i>
+      <% end %>
+
+      <div class="navbar-wagon-item navbar-wagon-link">
+        <div class="badge-container">
+          <% if current_user.notifications.unread.present?  %>
+            <i class="fa fa-envelope-o" data-container="body" data-toggle="popover" data-placement="bottom" title="Your application status has changed!" data-content="Click <a href='/users/<%= current_user.id %>/status'>here</a> to see the details"></i>
+            <div class="badge badge-red"><%= current_user.notifications.unread.length %></div>
+          <% else %>
+            <i class="fa fa-envelope-o" data-container="body" data-toggle="popover" data-placement="bottom" data-content="You have no notifications!"></i>
+          <% end %>
+        </div>
+      </div>
+
       <%= link_to destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" do %>
         <i class="glyphicon glyphicon-user"></i>
       <% end %>
+
     <% else %>
       <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
         <i class="glyphicon glyphicon-user"></i>
       <% end %>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <%= link_to user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
-        <i class="glyphicon glyphicon-home"></i>
-      <% end %>
-    <% else %>
       <%= link_to root_path, class: "navbar-wagon-item navbar-wagon-link" do %>
         <i class="glyphicon glyphicon-home"></i>
       <% end %>
@@ -38,3 +47,12 @@
 
 </div>
 
+
+
+<%= content_for(:after_js) do %>
+  <script>
+    $("[data-toggle=popover]").on('click', function(){
+      $("[data-toggle=popover]").popover({html: true}).popover('toggle');
+    })
+  </script>
+<% end %>
