@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= stylesheet_link_tag    'application', media: 'all' %>
+
   </head>
   <body>
     <% if bank_user_signed_in? %>
@@ -19,6 +20,7 @@
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <%= cloudinary_js_config %>
     <%= yield(:after_js) %>
   </body>
 </html>

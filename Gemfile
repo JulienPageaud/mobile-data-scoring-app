@@ -12,6 +12,10 @@ gem 'redis'
 # Photo upload
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem "attachinary", github: "assembler/attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
+
 
 # Money gem for amounts
 gem 'money-rails'

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook],
          authentication_keys: [:mobile_number]
   has_many :loans
+  has_attachment :photo_id
 
   validates :email, presence: true, on: :update,
               format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
