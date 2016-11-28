@@ -25,6 +25,7 @@ class User < ApplicationRecord
     false
   end
 
+  mount_uploader :photo_id, PhotoUploader
   # def self.find_for_facebook_oauth(auth)
   #   user_params = auth.to_h.slice(:provider, :uid)
   #   user_params.merge! auth.info.slice(:email, :first_name, :last_name)

@@ -30,6 +30,7 @@
         <%= f.input :employment, input_html: { class: 'input-rounded'}, placeholder: "Employment", label: false %>
         <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}  %>
         <%= f.input :photo_id, input_html: { class: 'input-rounded'} %>
+        <%= f.input :photo_id_cache, as: :hidden %>
     <div class="container container-buttons">
         <%= f.submit 'Save', class: 'btn-royal-blue btn-centered' %>
     </div>
