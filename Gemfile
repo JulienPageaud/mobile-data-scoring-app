@@ -20,6 +20,9 @@ gem 'omniauth-facebook'
 # Faker for seeding
 gem 'faker'
 
+# Twilio - SMS
+gem 'twilio-ruby'
+
 # DateTime Picker Gems
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
