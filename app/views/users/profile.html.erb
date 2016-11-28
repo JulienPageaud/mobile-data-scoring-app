@@ -12,8 +12,8 @@
       <div class="col-6-xs profile-picture">
         <!-- If you want a profile picture: Could take from facebook profile -->
       </div>
-      <div class="profile-info container-centered">
-        <h2><%= @user.gender == 'male' ? 'Mr' : 'Mrs' %><%= ' ' + @user.first_name.capitalize if @user.first_name.present? %> <%= ' ' + @user.last_name.capitalize  if @user.last_name.present? %></h2>
+      <div class=" container-centered profile-info">
+        <h2><%= @user.title.capitalize %><%= ' ' + @user.first_name.capitalize if @user.first_name.present? %> <%= ' ' + @user.last_name.capitalize  if @user.last_name.present? %></h2>
         <h3>Your mobile number:<br> <%= @user.mobile_number %></h3>
         <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
         <p><%= @user.email if @user.email.present? %></p>
