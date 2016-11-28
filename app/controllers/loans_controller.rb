@@ -43,7 +43,6 @@ class LoansController < ApplicationController
 
   def update
     if params[:loan][:status] == "Application Accepted" || params[:loan][:status] == "Application Declined"
-      Notification.create!(user: @loan.user) #notification for the user
       authorize @loan
       if @loan.update(loan_bank_params)
         @loan.create_payments_proposed
@@ -51,6 +50,7 @@ class LoansController < ApplicationController
       else
         render :show
       end
+      Notification.create!(user: @loan.user) #notification for the user
     elsif params[loan: :agreed_amount_cents] || params[loan: :status] == "Loan Outstanding"
       # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end

@@ -3,7 +3,7 @@ class Notification < ApplicationRecord
 
   scope :unread, -> { where(read: false) }
 
-  after_commit :trigger_sms
+  after_create :trigger_sms
 
   def trigger_sms
     if user.loans.last.status == "Application Accepted"
@@ -24,7 +24,7 @@ class Notification < ApplicationRecord
 
     client.messages.create(
       from: twilio_number,
-      to: mobile_number,
+      to: '+447990740467',
       body: sms_message)
   end
 end
