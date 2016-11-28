@@ -47,6 +47,7 @@ class User < ApplicationRecord
   def update_with_facebook(auth)
     user_params = auth.to_h.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
+    # :user_birthday, :user_location, :gender, :age_range, :user_education_history, :user_relationship',
     # user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
