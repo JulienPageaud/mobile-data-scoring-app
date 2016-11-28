@@ -29,16 +29,16 @@
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.display_capital %>
+            <%= humanized_money_with_symbol(loan.agreed_amount) %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.payments.last.display_money %>
+            <%= humanized_money_with_symbol(loan.payments.last.amount) %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.total_capital_repaid %>
+            <%= humanized_money_with_symbol(loan.total_capital_repaid) %>
           </div>
           <div class="flexcell loans-cell" id="credit-score">
             <%= loan.user.credit_score %>

@@ -12,7 +12,7 @@
     </div>
 
     <div class="loan-amount">
-      <p><%= current_user.loans.last.display_proposed_capital %></p>
+      <p><%= humanized_money_with_symbol(current_user.loans.last.proposed_amount) %></p>
     </div>
 
     <div>
@@ -36,7 +36,7 @@
           <p><%= payment.due_date.strftime("%e %b %Y") %></p>
         </div>
         <div class="flexcell confirm-cell">
-          <p><%= payment.display_money %></p>
+          <p><%= humanized_money_with_symbol(payment.amount) %></p>
         </div>
       </div>
     <% end %>

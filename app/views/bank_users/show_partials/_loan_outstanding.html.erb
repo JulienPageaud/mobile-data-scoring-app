@@ -99,17 +99,17 @@
                 <%=@loan.start_date.strftime("%e %b %Y") %>
               </div>
               <div class="flexcell loans-cell">
-                <%= @loan.display_capital %>
+                <%= humanized_money_with_symbol(@loan.agreed_amount) %>
               </div>
               <div class="flexcell loans-cell">
-                <%= @loan.remaining_capital %>
+                <%= humanized_money_with_symbol(@loan.remaining_capital) %>
               </div>
               <% if @loan.next_payment.present? %>
                 <div class="flexcell loans-cell">
                   <%= @loan.next_payment.due_date.strftime("%e %b %Y") %>
                 </div>
                 <div class="flexcell loans-cell">
-                  <%= @loan.next_payment.display_money %>
+                  <%= humanized_money_with_symbol(@loan.next_payment.amount) %>
                 </div>
               <% else %>
                 <div class="flexcell loans-cell">
