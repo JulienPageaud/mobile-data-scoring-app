@@ -44,13 +44,17 @@ class User < ApplicationRecord
   end
 
   def confirm_loan
-    body = "Thank you for confirming your loan.
-            Your e-wallet will be credited shortly"
-    Notification.send_sms(mobile_number, body)
+    body = "Thank you for confirming your loan\
+            (amount: #{ActionController::Base.helpers.humanized_money_with_symbol(loans.last.agreed_amount)}).
+            Your e-wallet will be credited shortly!
+            Your next payment:
+            #{ActionController::Base.helpers.humanized_money_with_symbol(loans.last.next_payment.amount)} on #{loans.last.next_payment.due_date.strftime("%e %b %Y")}"
+    Notification.send_sms(mobile_number, body.squish)
   end
 
   def decline_loan
-    body = "Your loan has been declined."
-    Notification.send_sms(mobile_number, body)
+    body = "You have chosen to decline your loan.
+            We hope you will consider reapplying in the future"
+    Notification.send_sms(mobile_number, body.squish)
   end
 end
