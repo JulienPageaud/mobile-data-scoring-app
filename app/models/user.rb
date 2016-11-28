@@ -42,4 +42,15 @@ class User < ApplicationRecord
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     self.update(user_params)
   end
+
+  def confirm_loan
+    body = "Thank you for confirming your loan.
+            Your e-wallet will be credited shortly"
+    Notification.send_sms(mobile_number, body)
+  end
+
+  def decline_loan
+    body = "Your loan has been declined."
+    Notification.send_sms(mobile_number, body)
+  end
 end
