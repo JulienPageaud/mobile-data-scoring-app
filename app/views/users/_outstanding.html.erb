@@ -7,7 +7,7 @@
   </div>
 
   <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.display_capital %></strong></p>
+    <p><strong><%= humanized_money_with_symbol(current_user.loans.last.agreed_amount) %></strong></p>
   </div>
 
   <div>
@@ -37,7 +37,7 @@
           <%= payment.due_date.strftime("%e %b %Y") %>
         </div>
         <div class="flexcell third-cell">
-          <%= payment.display_money %>
+          <%= humanized_money_with_symbol(payment.amount) %>
         </div>
         <div class="flexcell third-cell">
           <%= payment.paid ? icon('check') : icon('times') %>

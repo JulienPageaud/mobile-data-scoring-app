@@ -32,7 +32,7 @@
           <%= application.user.mobile_number %>
         </div>
         <div class="flexcell loans-cell">
-          <%= application.display_requested_capital %>
+          <%= humanized_money_with_symbol(application.requested_amount) %>
         </div>
         <div class="flexcell loans-cell">
           <%= application.final_date.strftime("%e %b %Y") %>

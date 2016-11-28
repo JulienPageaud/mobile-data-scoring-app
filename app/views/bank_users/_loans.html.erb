@@ -39,7 +39,7 @@
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
                 <div class="flexcell loans-cell">
-                  <%= loan.most_recent_payment.display_money %>
+                  <%= humanized_money_with_symbol(loan.most_recent_payment.amount) %>
                 </div>
               <% end %>
 
@@ -53,9 +53,9 @@
 
             <div class="flexcell loans-cell">
               <% if loan.next_payment %>
-                <%= loan.next_payment.display_money %>
+                <%= humanized_money_with_symbol(loan.next_payment.amount) %>
               <% else %>
-                <%= loan.payments.last.display_money %>
+                <%= humanized_money_with_symbol(loan.payments.last.amount)%>
               <% end %>
             </div>
             <div class="flexcell loans-cell">
@@ -112,7 +112,7 @@
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
                 <div class="flexcell loans-cell">
-                  <%= loan.most_recent_payment.display_money %>
+                  <%= humanized_money_with_symbol(loan.most_recent_payment.amount) %>
                 </div>
               <% end %>
 
@@ -126,9 +126,9 @@
 
             <div class="flexcell loans-cell">
               <% if loan.next_payment %>
-                <%= loan.next_payment.display_money%>
+                <%= humanized_money_with_symbol(loan.next_payment.amount)%>
               <% else %>
-                <%= loan.payments.last.display_money%>
+                <%= humanized_money_with_symbol(loan.payments.last.amount)%>
               <% end %>
             </div>
             <div class="flexcell loans-cell">
@@ -175,13 +175,13 @@
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.remaining_capital %>
+            <%= humanized_money_with_symbol(loan.remaining_capital) %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
           </div>
           <div class="flexcell loans-cell">
-            <%= loan.next_payment.display_money %>
+            <%= humanized_money_with_symbol(loan.next_payment.amount) %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>

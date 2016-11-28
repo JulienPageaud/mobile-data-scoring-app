@@ -82,7 +82,7 @@
                <%= @loan.created_at.strftime("%e %b %Y") %>
               </div>
               <div class="flexcell loans-cell">
-               <%= @loan.display_requested_capital %>
+               <%= humanized_money_with_symbol(@loan.requested_amount) %>
               </div>
               <div class="flexcell loans-cell">
                 <%= @loan.category %>

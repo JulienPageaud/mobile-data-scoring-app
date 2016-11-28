@@ -40,8 +40,7 @@ class Loan < ApplicationRecord
     payments.each do |payment|
       payments_total += payment.amount if payment.paid == true
     end
-    remaining_capital_in_ccy = agreed_amount - payments_total
-    remaining_capital_in_ccy.currency.to_s + ' ' + remaining_capital_in_ccy.to_s
+    agreed_amount - payments_total
   end
 
   # Calculate the total repaid capital
@@ -50,7 +49,7 @@ class Loan < ApplicationRecord
     payments.each do |payment|
       sum += payment.amount if payment.paid == true
     end
-    sum.currency.to_s + ' ' + sum.to_s
+    return sum
   end
 
   ## LOAN FILTERS
@@ -97,23 +96,6 @@ class Loan < ApplicationRecord
       payment.save
       counter += 1
     end
-  end
-
-
-  ## MONEY DISPLAYING METHODS
-  # display the agreed capital with currency + amount
-  def display_capital
-    agreed_amount.currency.to_s + ' ' + agreed_amount.to_s
-  end
-
-  # display the proposed capital with currency + amount
-  def display_proposed_capital
-    proposed_amount.currency.to_s + ' ' + proposed_amount.to_s
-  end
-
-  # display the requested capital with currency + amount
-  def display_requested_capital
-    requested_amount.currency.to_s + ' ' + requested_amount.to_s
   end
 
   ## OUTSTANDING LOAN CLASSIFICATION METHODS
