@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || controller_name == "pages"
+    devise_controller? || controller_name == "pages" || controller_name == "twilio"
   end
 
   def after_sign_in_path_for(resource)
