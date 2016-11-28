@@ -6,13 +6,19 @@
       <h2>Legal details about Manda</h2>
     </div>
     <div class="round-icon">
-      <i>'GAVEL ICON</i>
+      <i>GAVEL ICON</i>
     </div>
   </div>
+
   <div class="container white-box container-centered">
     <div class="page-content">
 
     </div>
-    <%= link_to "Go back", user_path(current_user), class: 'btn-royal-blue' %>
+    <% if user_signed_in? %>
+      <%= link_to "Go back", user_path(current_user), class: 'btn-royal-blue' %>
+    <% else %>
+      <%= link_to "Go back", root_path, class: 'btn-royal-blue' %>
+    <% end %>
   </div>
+
 </div>
