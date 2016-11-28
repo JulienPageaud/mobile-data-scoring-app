@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      render 'edit', notice: "Sorry, something went wrong"
+      render :edit
     end
   end
 
