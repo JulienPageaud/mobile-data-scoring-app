@@ -24,13 +24,16 @@ Rails.application.routes.draw do
     get 'share', to: 'users#share'
   end
 
+
   # Routes for the bank's side of the application
   resources :bank_users, only:[:show] do
     resources :loans, only: [:index, :show, :update]
   end
 
-
+  # currently unused
   get 'client-profile/:id', to: 'bank_users#user_show'
 
+  # Twilio routes
+  post '/confirm_loan', to: 'twilio#confirm_loan'
 
 end

@@ -8,7 +8,7 @@ class Notification < ApplicationRecord
   def trigger_sms
     if user.loans.last.status == "Application Accepted"
       sms_message = "Congratulations! Your loan has been accepted.
-                       Please log in to the Manda website to see the details"
+                     "
     elsif user.loans.last.status == "Application Declined"
       sms_message = "We are sorry to inform you that your loan application has
                        been declined. Please visit the Manda website for more details"
@@ -24,7 +24,7 @@ class Notification < ApplicationRecord
 
     client.messages.create(
       from: twilio_number,
-      to: '+447990740467',
+      to: mobile_number,
       body: sms_message)
   end
 end
