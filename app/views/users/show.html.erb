@@ -15,7 +15,7 @@
         <h1>Monitor your situation</h1>
         <p>Track your progress over time</p>
         <br>
-        <p class="sixteen-center text-red"><%= "Something requires your attention" if @user.notifications.present? %></p>
+        <p class="sixteen-center text-red"><%= "Something requires your attention" if @user.notifications.unread.present? %></p>
         <p></p>
       </div>
     <% end %>
