@@ -25,7 +25,7 @@ bank = Bank.find_by_name("FNB")
   user = User.create!(mobile_number: Faker::PhoneNumber.cell_phone,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
-    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(60) + 20).fdiv(100).round(2))
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(20) + 80).fdiv(100).round(2))
   loan = user.loans.build(status: status_ary.sample,
     category: category_ary.sample, purpose: purpose_ary.sample,
     description: description_ary.sample, interest_rate: 15,
