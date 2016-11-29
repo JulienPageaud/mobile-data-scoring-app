@@ -62,6 +62,36 @@ class LoansController < ApplicationController
     redirect_to user_status_path(current_user)
   end
 
+  def applications
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def outstanding
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def declined
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def repaid
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def portfolio
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def set_loan

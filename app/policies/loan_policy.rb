@@ -25,6 +25,26 @@ class LoanPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def applications?
+    record.user == user
+  end
+
+  def outstanding?
+    applications?
+  end
+
+  def declined?
+    applications?
+  end
+
+  def repaid?
+    applications?
+  end
+
+  def portfolio?
+    applications?
+  end
+
   private
 
   def loan_user_or_bank_user?

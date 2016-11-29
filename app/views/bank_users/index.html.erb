@@ -1,42 +1,42 @@
   <div class="tabs">
-    <a class="tab active" href="#applications">
+    <%= link_to applications_bank_user_path(current_bank_user),class: "tab active", remote: true do %>
       <h3>Applications</h3>
-    </a>
+    <% end %>
 
-    <a class="tab" href="#outstanding">
+    <%= link_to outstanding_bank_user_path(current_bank_user), anchor: "outstanding", class: "tab", remote: true do %>
       <h3>Loans Outstanding</h3>
-    </a>
+    <% end %>
 
-    <a class="tab" href="#declined">
+    <%= link_to declined_bank_user_path(current_bank_user), class: "tab", remote: true do %>
       <h3>Applications Declined</h3>
-    </a>
+    <% end %>
 
-    <a class="tab" href="#repaid">
+    <%= link_to repaid_bank_user_path(current_bank_user),class: "tab", remote: true do %>
       <h3>Loans Repaid</h3>
-    </a>
+    <% end %>
 
-    <a class="tab" href="#portfolio">
+    <%= link_to portfolio_bank_user_path(current_bank_user), class: "tab", remote: true do %>
       <h3>Portfolio</h3>
-    </a>
+    <% end %>
   </div>
 
 <div class="wrapper-grey">
   <div class="container">
     <div id="tab-content">
 
-      <div class="0">
+      <div class="0" id="loan-applications-content">
         <%= render 'bank_users/loan_applications'%>
       </div>
-      <div class="1 hidden">
+      <div class="1 hidden" id="loans-content">
         <%= render 'bank_users/loans'%>
       </div>
-      <div class="2 hidden">
+      <div class="2 hidden" id="loans-declined-content">
         <%= render 'bank_users/loan_applications_declined'%>
       </div>
-      <div class="3 hidden">
+      <div class="3 hidden" id="loans-repaid-content">
       <%= render 'bank_users/repaid_loans'%>
       </div>
-      <div class="4 hidden">
+      <div class="4 hidden" id="portfolio-content">
         <%#= render 'portfolio'%>
       </div>
     </div>
