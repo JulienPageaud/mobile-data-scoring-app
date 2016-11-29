@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      redirect_to edit_user_path(@user), notice: "Sorry, something went wrong"
+      render :edit
     end
   end
 
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id)
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
   end
 end

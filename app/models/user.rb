@@ -7,6 +7,17 @@ class User < ApplicationRecord
   has_many :loans
   has_many :notifications, dependent: :destroy
 
+  validates :email, presence: true, on: :update,
+              format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
+  validates :title, presence: true, on: :update
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+  validates :address, presence: true, on: :update
+  validates :city, presence: true, on: :update
+  validates :postcode, presence: true, on: :update
+  validates :employment, presence: true, on: :update
+  validates :date_of_birth, presence: true, on: :update
+
   def email_required?
     false
   end
@@ -15,6 +26,7 @@ class User < ApplicationRecord
     false
   end
 
+  mount_uploader :photo_id, PhotoUploader
   # def self.find_for_facebook_oauth(auth)
   #   user_params = auth.to_h.slice(:provider, :uid)
   #   user_params.merge! auth.info.slice(:email, :first_name, :last_name)
@@ -37,6 +49,7 @@ class User < ApplicationRecord
   def update_with_facebook(auth)
     user_params = auth.to_h.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
+    # :user_birthday, :user_location, :gender, :age_range, :user_education_history, :user_relationship',
     # user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)

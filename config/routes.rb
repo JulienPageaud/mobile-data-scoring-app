@@ -32,10 +32,14 @@ Rails.application.routes.draw do
     resources :loans, only: [:index, :show, :update]
   end
 
-  # currently unused
+  # About, Legal, Contact pages
+  get 'about', to: 'users#about'
+  get 'legal', to: 'users#legal'
+  get 'contact', to: 'users#contact'
+
+    # currently unused
   get 'client-profile/:id', to: 'bank_users#user_show'
 
   # Twilio routes
   post '/confirm_loan', to: 'twilio#confirm_loan'
-
 end

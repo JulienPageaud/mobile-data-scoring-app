@@ -15,8 +15,12 @@
 
   <div class="container white-box">
     <div class="details-form">
-      <%= simple_form_for current_user do |f| %>
-        <%= f.input :email, input_html: { class: 'input-rounded'}, placeholder: "Email", label: false %>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :email,
+          input_html: { class: 'input-rounded'},
+          placeholder: "Email",
+          label: false,
+          error: "Please enter a valid email" %>
         <%= f.input :title,
           as: 'radio_buttons',
           collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']],
@@ -28,8 +32,10 @@
         <%= f.input :city, input_html: { class: 'input-rounded'}, placeholder: "City", label: false %>
         <%= f.input :postcode, input_html: { class: 'input-rounded'}, placeholder: "Postcode", label: false %>
         <%= f.input :employment, input_html: { class: 'input-rounded'}, placeholder: "Employment", label: false %>
-        <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}  %>
-        <%= f.input :photo_id, input_html: { class: 'input-rounded'} %>
+        <%= f.input :date_of_birth, as: :date_picker, input_html: { class: 'input-rounded'}, placeholder: 'D.o.B DD/MM/YYYY', label: false %>
+        <%= f.input :photo_id, input_html: { class: 'input-rounded'}, label: 'Upload your ID' %>
+        <%= f.input :photo_id_cache, as: :hidden %>
+        <%= image_tag @user.photo_id, height: 300, width: 400 %>
     <div class="container container-buttons">
         <%= f.submit 'Save', class: 'btn-royal-blue btn-centered' %>
     </div>
@@ -37,3 +43,8 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
+<% end %>
+

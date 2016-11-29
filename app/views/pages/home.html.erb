@@ -20,15 +20,25 @@
         $('#user_mobile_number').val(mobile);
       });
     </script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        if (window.location.search.includes('sign_up'))
+          $('#sign_up').modal('show');
+    })
+    </script>
+
+
   <% end %>
 
-  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-sm" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <%= render 'devise/registrations/new', resource: User.new, resource_name: :user %>
       </div>
     </div>
   </div>
+
 
   <div class="container container-values ">
     <div class="row">

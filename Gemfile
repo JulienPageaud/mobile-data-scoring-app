@@ -9,6 +9,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 
+# Photo upload
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem "coffee-rails"
+
+
 # Money gem for amounts
 gem 'money-rails'
 
