@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       @user.details_completed = true if @user.photo_id?
+      @user.update(user_params)
       redirect_to user_path(@user)
     else
       render :edit
@@ -55,6 +56,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache, :details_completed)
   end
 end
