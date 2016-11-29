@@ -1,21 +1,30 @@
   <div class="tabs">
-    <%= link_to applications_bank_user_path(current_bank_user), class: "tab active", remote: true do %>
+    <%= link_to applications_bank_user_path(current_bank_user),
+        class: "tab active",
+        id: "applications-tab", remote: true do %>
       <h3>Applications</h3>
     <% end %>
 
-    <%= link_to outstanding_bank_user_path(current_bank_user), class: "tab", remote: true do %>
+    <%= link_to outstanding_bank_user_path(current_bank_user
+), class: "tab", id: "outstanding-tab",
+        remote: true do %>
       <h3>Loans Outstanding</h3>
     <% end %>
 
-    <%= link_to declined_bank_user_path(current_bank_user), class: "tab", remote: true do %>
+    <%= link_to declined_bank_user_path(current_bank_user
+), class: "tab", id: "declined-tab",
+        remote: true do %>
       <h3>Applications Declined</h3>
     <% end %>
 
-    <%= link_to repaid_bank_user_path(current_bank_user), class: "tab", remote: true do %>
+    <%= link_to repaid_bank_user_path(current_bank_user),
+        class: "tab", id: "repaid-tab", remote: true do %>
       <h3>Loans Repaid</h3>
     <% end %>
 
-    <%= link_to portfolio_bank_user_path(current_bank_user), class: "tab", remote: true do %>
+    <%= link_to portfolio_bank_user_path(current_bank_user),
+        class: "tab",
+        id: "portfolio-tab", remote: true do %>
       <h3>Portfolio</h3>
     <% end %>
   </div>
@@ -48,11 +57,14 @@
     // If page is reloaded then the same tab will be shown
     if (hash !== "") {
       $('.tab').removeClass("active");
-      $('a[href="' + hash + '"]').addClass("active");
-      var childIndex = $('a[href="' + hash + '"]').index();
+      $(hash + '-tab').addClass("active");
+      var childIndex = $(hash + '-tab').index();
       $('#tab-content').children().addClass("hidden");
       $('.' +childIndex).removeClass("hidden");
     }
+
+    // This makes sure to load the active tab content when first loading the page
+    $('.active').trigger('click');
 
     // Clicking on a different tab changes the content shown on the page
     $('.tab').on('click', function(event){
