@@ -117,6 +117,12 @@
   background: transparent !important;
   color: black !important;
 }
+
+.navbar-wagon-dropdown-menu a {
+  text-align: center;
+  margin-left: 0;
+}
+
 .navbar-wagon-dropdown-menu:before {
   content: ' ';
   height: 10px;
