@@ -23,10 +23,9 @@
           error: "Please enter a valid email" %>
         <%= f.input :title,
           as: 'radio_buttons',
-          collection: [['Mr', 'mr'], ['Mrs', 'mrs'], ['Ms', 'ms']],
+          collection: [['Mr', 'male'], ['Mrs', 'female'], ['Ms', 'female']],
           label: false %>
-        <%= f.input :first_name, input_html: { class: 'input-rounded'},
-          placeholder: "First name", label: false  %>
+        <%= f.input :first_name, input_html: { class: 'input-rounded'}, placeholder: "First name", label: false  %>
         <%= f.input :last_name, input_html: { class: 'input-rounded'}, placeholder: "Last name", label: false %>
         <%= f.input :address, input_html: { class: 'input-rounded'}, placeholder: "Address", label: false %>
         <%= f.input :city, input_html: { class: 'input-rounded'}, placeholder: "City", label: false %>
