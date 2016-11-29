@@ -15,9 +15,11 @@
     <script>
       $('#modal-button').on('click', function(e) {
         var mobile = $('#mobile-input').val();
+        var prefix = $('.selected-dial-code').val()
         e.preventDefault();
         console.log('stored', mobile);
         $('#user_mobile_number').val(mobile);
+
       });
     </script>
 
@@ -33,8 +35,6 @@
         utilsScript: "assets/libphonenumber/utils.js"
     });
     </script>
-
-
   <% end %>
 
   <div class="modal fade bd-example-modal-sm" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

@@ -57,22 +57,22 @@
 </div>
 
 <% content_for(:after_js) do %>
-<script>
-$(document).ready(function() {
-    $('input[type=radio]').change(function() {
-        if (this.value == 'personal') {
-          $('.for-personal').removeClass('hidden');
-          $('.for-business').addClass('hidden');
-          $('#business-dropdown').prop('disabled', true);
-          $('#personal-dropdown').prop('disabled', false);
-       }
-        else if (this.value == 'business') {
-          $('.for-personal').addClass('hidden')
-          $('.for-business').removeClass('hidden')
-          $('#business-dropdown').prop('disabled', false);
-          $('#personal-dropdown').prop('disabled', true);
-        }
+  <script>
+    $(document).ready(function() {
+        $('input[type=radio]').change(function() {
+            if (this.value == 'personal') {
+              $('.for-personal').removeClass('hidden');
+              $('.for-business').addClass('hidden');
+              $('#business-dropdown').prop('disabled', true);
+              $('#personal-dropdown').prop('disabled', false);
+           }
+            else if (this.value == 'business') {
+              $('.for-personal').addClass('hidden')
+              $('.for-business').removeClass('hidden')
+              $('#business-dropdown').prop('disabled', false);
+              $('#personal-dropdown').prop('disabled', true);
+            }
+        });
     });
-});
-</script>
+  </script>
 <% end %>
