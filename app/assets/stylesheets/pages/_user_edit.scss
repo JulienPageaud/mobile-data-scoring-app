@@ -23,6 +23,20 @@
   background: #3b5998;
   color: white;
   font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    color: white;
+  }
+  .fa {
+    font-size: 19px;
+    padding-right: 20px;
+  }
+  div {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
+  }
 }
 .radio_buttons, .check_boxes{
   display: flex;

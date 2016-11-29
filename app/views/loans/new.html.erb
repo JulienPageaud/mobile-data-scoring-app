@@ -1,8 +1,8 @@
-<div class="wrapper-blue">
+<div style="min-height: 85vh;">
 
   <div class="header-banner">
      <div class="header-title">
-      <h1>Application Form</h1>
+      <h1>Complete your loan request</h1>
       <h2> </h2>
     </div>
     <div class="round-icon">
@@ -32,7 +32,7 @@
         <div class="for-personal">
           <%= f.input :purpose, collection: ['Medical Expenses', 'School Fees', 'Transportation Expenses', 'Other'],
             label: "Choose the option that best describes your planned expenses:",
-            placeholder: "Medical Expenses",
+            prompt: "Choose best option",
             error: "Please choose an option",
             item_wrapper_class: "for-personal",
             input_html: { class: 'input-rounded', id: 'personal-dropdown' },
@@ -40,7 +40,7 @@
         </div>
         <div class="for-business hidden">
           <%= f.input :purpose, collection: ['New Equipment', 'Inventory Purposes', 'Refurbishment Work', 'Liability Management', 'Other'],
-            placeholder: "Choose your business purpose",
+            prompt: "Choose best option",
             error: "Please choose an option",
             label: "Choose the option that best describes your planned expenses:",
             input_html: { class: 'input-rounded', id: 'business-dropdown' },
@@ -54,9 +54,8 @@
           required: false %>
         <%= f.hidden_field :bank_id,
           value: Bank.find_by_name("FNB").id %>
-        <div class="align-center">
-          <%= f.submit 'Submit', class: 'btn-royal-blue' %>
-        </div>
+        <%= f.submit 'Submit',
+          class: 'btn-royal-blue btn', style: "width: 100%" %>
         <div class="back-button text-center">
           <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
         </div>
