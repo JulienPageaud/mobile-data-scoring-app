@@ -65,7 +65,7 @@ class User < ApplicationRecord
     case loans.last.status
     when "Application Pending"
       body = "Your loan application is still under review. We will
-            get back to you as soon as the bank has processed your application. "
+              get back to you as soon as the bank has processed your application."
     when "Application Accepted"
       body = "We are sorry, we didn't understand your response. Please
               reply to use with the word 'confirm' or 'decline' to finalize
