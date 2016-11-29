@@ -16,12 +16,6 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if params[:user][:title] == "mr"
-      @user.update(gender: "male")
-    else
-      @user.update(gender: "female")
-    end
-
     if @user.update(user_params)
       if @user.photo_id?
         @user.details_completed = true
