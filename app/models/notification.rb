@@ -20,7 +20,7 @@ class Notification < ApplicationRecord
     elsif user.loans.last.status == "Application Declined"
       sms_message = "We are sorry to inform you that your loan application has
                      been declined for the following reason: #{@loan.decline_reason}.\
-                     Please visit the Manda website for more details"
+                     Please visit the Stride website for more details"
       sms_message.squish!
     end
     send_text_notification(user.mobile_number, sms_message)
