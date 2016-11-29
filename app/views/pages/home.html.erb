@@ -15,11 +15,9 @@
     <script>
       $('#modal-button').on('click', function(e) {
         var mobile = $('#mobile-input').val();
-        var prefix = $('.selected-dial-code').val()
+        var prefix = $('.selected-dial-code').text();
         e.preventDefault();
-        console.log('stored', mobile);
-        $('#user_mobile_number').val(mobile);
-
+        $('#user_mobile_number').val(prefix + ' ' + mobile);
       });
     </script>
 
