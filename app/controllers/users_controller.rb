@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update(user_params)
+      @user.details_completed = true if @user.photo_id?
       redirect_to user_path(@user)
     else
       render :edit
