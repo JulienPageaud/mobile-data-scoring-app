@@ -52,83 +52,85 @@
     <br>
 
     <div class="loan-history">
-      <h5>Loan History</h5>
+      <h5><strong>Loan History</strong></h5>
       <p><%= "You haven't previously taken out any loans." if @user.loans == [] %></p>
 
-    <% if @user.loans.present? %>
+      <% if @user.loans.present? %>
 
-
-      <div class="standard-flexbox">
-        <div class="flexrow text-center">
-          <div class="flexcell third-cell blue-header">
-            <p>Date</p>
-          </div>
-          <div class="flexcell third-cell blue-header">
-            <p>Amount</p>
-          </div>
-          <div class="flexcell third-cell blue-header">
-            <p>Duration</p>
-          </div>
-        </div>
-
-        <% @user.loans.each do |loan| %>
+        <div class="standard-flexbox">
           <div class="flexrow text-center">
-            <% case loan.status %>
-              <% when "Application Pending" %>
-                <div class="flexcell third-cell">
-                  <%= loan.final_date %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= loan.agreed_amount_cents %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= "Pending" %>
-                </div>
-              <% when "Application Accepted" %>
-                <div class="flexcell third-cell">
-                  <%= loan.final_date %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= loan.agreed_amount_cents %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= "Accepted" %>
-                </div>
-              <% when "Loan Outstanding" %>
-                <div class="flexcell third-cell">
-                  <%= loan.final_date %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= loan.agreed_amount_cents %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= "Ongoing" %>
-                </div>
-              <% when "Application Declined" %>
-                <div class="flexcell third-cell">
-                  <%= loan.application_date %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= loan.requested_amount_cents %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= "Declined" %>
-                </div>
-              <% when "Loan Repaid" %>
-                <div class="flexcell third-cell">
-                  <%= loan.final_date %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= loan.agreed_amount_cents %>
-                </div>
-                <div class="flexcell third-cell">
-                  <%= "Repaid" %>
-                </div>
-            <% end %>
+            <div class="flexcell third-cell blue-header">
+              <p>Date</p>
+            </div>
+            <div class="flexcell third-cell blue-header">
+              <p>Amount</p>
+            </div>
+            <div class="flexcell third-cell blue-header">
+              <p>Duration</p>
+            </div>
           </div>
-        <% end %>
-      </div>
+
+          <% @user.loans.each do |loan| %>
+            <div class="flexrow text-center">
+              <% case loan.status %>
+                <% when "Application Pending" %>
+                  <div class="flexcell third-cell">
+                    <%= loan.final_date %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= loan.agreed_amount_cents %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= "Pending" %>
+                  </div>
+                <% when "Application Accepted" %>
+                  <div class="flexcell third-cell">
+                    <%= loan.final_date %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= loan.agreed_amount_cents %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= "Accepted" %>
+                  </div>
+                <% when "Loan Outstanding" %>
+                  <div class="flexcell third-cell">
+                    <%= loan.final_date %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= loan.agreed_amount_cents %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= "Ongoing" %>
+                  </div>
+                <% when "Application Declined" %>
+                  <div class="flexcell third-cell">
+                    <%= loan.application_date %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= loan.requested_amount_cents %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= "Declined" %>
+                  </div>
+                <% when "Loan Repaid" %>
+                  <div class="flexcell third-cell">
+                    <%= loan.final_date %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= loan.agreed_amount_cents %>
+                  </div>
+                  <div class="flexcell third-cell">
+                    <%= "Repaid" %>
+                  </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
+    </div>
+    <div class="back-button text-center">
+      <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
     </div>
   </div>
 </div>
