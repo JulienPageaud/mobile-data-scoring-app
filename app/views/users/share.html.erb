@@ -1,4 +1,4 @@
-<div class="wrapper-grey">
+<div class="wrapper wrapper-grey" style="min-height: initial">
 
   <div class="header-banner">
     <div class="header-title">
@@ -10,6 +10,27 @@
     </div>
   </div>
   <div class="container white-box container-centered">
+    <div class="user-review-samples text-center">
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-2 col-sm-4">
+            <div class="card home-card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review1.jpg') %>);">
+              <div class="card-description">
+                <p>"Stride made my<br>dream reality"</p>
+              </div>
+              <a class="card-link" href="#" ></a>
+            </div>
+          </div>
+
+          <div class="col-xs-12  col-sm-4">
+            <div class="card home-card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review2.jpg') %>);">
+              <div class="card-description">
+                <p>"I have finally kicked<br>off my own business"</p>
+              </div>
+              <a class="card-link" href="#" ></a>
+            </div>
+          </div>
+        </div>
+      </div>
   <div class="back-button text-center">
     <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
   </div>
