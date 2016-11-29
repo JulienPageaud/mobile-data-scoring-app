@@ -6,7 +6,7 @@ $(document).ajaxComplete(function(){
     if (percent > 50) {
       $ppc.addClass('gt-50');
     }
-    $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
-    $('.ppc-percents span').html(percent+'%');
+    $(item).find('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
+    $(item).find('.ppc-percents span').html(percent+'%');
   })
 });
