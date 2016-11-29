@@ -10,6 +10,12 @@
   padding-bottom: 5em;
 }
 
+.flexboxify {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;

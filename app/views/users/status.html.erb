@@ -1,13 +1,14 @@
-<div class="wrapper-grey">
-  <div class="header-banner">
-    <div class="header-title">
-        <h1>Your Current Situation</h1>
-    </div>
-    <div class="round-icon">
-      <i><span class="fa fa-bookmark"></span></i>
-    </div>
+
+<div class="header-banner">
+  <div class="header-title">
+      <h1>Your Current Situation</h1>
   </div>
-  <div class="container white-box text-center">
+  <div class="round-icon">
+    <i><span class="fa fa-bookmark"></span></i>
+  </div>
+</div>
+<div class="wrapper-grey flexboxify">
+  <div class="container white-box text-center status-box">
     <% if current_user.loans == [] %>
       <%= render 'empty' %>
     <% elsif current_user.loans.last.status == "Application Pending" %>

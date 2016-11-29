@@ -24,7 +24,7 @@ class LoansController < ApplicationController
     if @loan.save
       @loan.update(status: "Application Pending")
       @loan.application_sent_confirmation
-      redirect_to user_path(current_user), notice: 'Loan application was successfully created.'
+      redirect_to user_status_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
     end

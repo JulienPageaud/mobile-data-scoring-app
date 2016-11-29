@@ -2,10 +2,8 @@
   <div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('home_background.jpg') %>);">
 
     <div class="banner-content">
-      <%= link_to(new_user_loan_path(@user)) do %>
-        <p><strong>Apply now.</strong> The new way<br>to access a loan.</p>
-        <button class="btn btn-transparent">Apply for a loan</button>
-      <% end %>
+      <p><strong>Congratulations.</strong> You are ready to <br>borrow money.</p>
+      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
     </div>
   </div>
 

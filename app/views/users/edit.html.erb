@@ -1,18 +1,18 @@
-<div class="wrapper-grey">
+<div class="">
   <div class="header-banner">
     <div class="header-title">
-      <h1>Your Personal Details</h1>
+      <h1>We need more info</h1>
       <h2>Information required to set up your account</h2>
     </div>
     <div class="round-icon">
       <i><span class="fa fa-id-card"></span></i>
     </div>
   </div>
-
-  <div class="facebook-fetching white-box">
-    <%= link_to "Use your facebook account", omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' %><br />
+  <div class="facebook-container" style="padding: 10px;margin-top: 20px;">
+    <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
+    <i class="fa fa-facebook"></i><div>Connect your account</div>
+  <% end %>
   </div>
-
   <div class="container white-box">
     <div class="details-form">
       <%= simple_form_for @user do |f| %>
@@ -38,9 +38,7 @@
         <% if @user.photo_id.present? %>
           <%= image_tag @user.photo_id, height: 300, width: 400 %>
         <% end %>
-    <div class="container container-buttons">
-        <%= f.submit 'Save', class: 'btn-royal-blue btn-centered' %>
-    </div>
+        <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
       <% end %>
     </div>
   </div>
