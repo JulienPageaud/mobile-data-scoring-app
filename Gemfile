@@ -29,6 +29,9 @@ gem 'faker'
 # Twilio - SMS
 gem 'twilio-ruby'
 
+# Intl-Tel-Input
+gem 'rails-intl-tel-input'
+
 # DateTime Picker Gems
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
