@@ -26,7 +26,9 @@
       <div id="tab-details">
         <h1>Your Profile</h1>
         <p>Your details are important to us</p>
-        <p class="sixteen-center text-red"><%= "Details uncompleted" if @user.details_completed != true %></p>
+        <div class="text-center text-red">
+          <p><%= "Details incomplete" if @user.details_completed != true %></p>
+        </div>
       </div>
     <% end %>
   </div>

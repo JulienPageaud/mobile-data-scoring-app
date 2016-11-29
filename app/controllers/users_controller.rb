@@ -17,8 +17,13 @@ class UsersController < ApplicationController
   def update
     authorize @user
     if @user.update(user_params)
-      binding.pry
-      @user.details_completed = true if @user.photo_id?
+      if @user.photo_id?
+        @user.details_completed = true
+        @user.update(user_params)
+      else
+        @user.details_completed = false
+        @user.update(user_params)
+      end
       redirect_to user_path(@user)
     else
       render :edit
@@ -50,6 +55,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache, :details_completed)
   end
 end

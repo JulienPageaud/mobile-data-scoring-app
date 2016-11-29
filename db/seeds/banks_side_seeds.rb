@@ -6,6 +6,8 @@ BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
                  bank: Bank.find_by_name("FNB")) unless BankUser.find_by_email("fnbemployee@gmail.com").present?
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
+cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'East London']
+
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
 purpose_ary = ["Medical Expenses", "Start a business", "Open a shop", "Coding School", "Beer Money"]
@@ -20,10 +22,14 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month), (Da
 
 bank = Bank.find_by_name("FNB")
 50.times do
-  user = User.create!(mobile_number: Faker::PhoneNumber.cell_phone, password: 'testtest', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-  loan = user.loans.build(status: status_ary.sample, category: category_ary.sample, purpose: purpose_ary.sample,
-                   description: description_ary.sample, interest_rate: 15, bank: bank,
-                   requested_amount: rand(15000).round(-2))
+  user = User.create!(mobile_number: Faker::PhoneNumber.cell_phone,
+    password: 'testtest', first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name, city: cities_ary.sample,
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(60) + 20).fdiv(100).round(2))
+  loan = user.loans.build(status: status_ary.sample,
+    category: category_ary.sample, purpose: purpose_ary.sample,
+    description: description_ary.sample, interest_rate: 15,
+    bank: bank, requested_amount: rand(15000).round(-2))
   loan.proposed_amount_cents = loan.requested_amount_cents
   loan.agreed_amount_cents = loan.requested_amount_cents
 
