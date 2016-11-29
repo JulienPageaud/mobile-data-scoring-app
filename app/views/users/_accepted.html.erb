@@ -12,9 +12,8 @@
     </div>
 
     <div class="loan-amount">
-      <p><%= humanized_money_with_symbol(current_user.loans.last.proposed_amount) %></p>
+      <p><strong><%= humanized_money_with_symbol(current_user.loans.last.proposed_amount) %></strong></p>
     </div>
-
     <div>
       <p>with repayments scheduled on</p>
     </div>
