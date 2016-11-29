@@ -9,27 +9,29 @@
   </div>
   <div class="container white-box">
     <div class="row profile-card">
-      <div class="col-6-xs profile-picture">
+      <div class="col-6-xs profile-picture text-center">
         <!-- If you want a profile picture: Could take from facebook profile -->
-      </div>
-      <div class=" container-centered profile-info">
+        <i class="fa fa-user-circle-o profile-icon" aria-hidden="true"></i>
         <h2><%= @user.title.try(:capitalize) %><%= ' ' + @user.first_name.try(:capitalize).to_s %> <%= ' ' + @user.last_name.try(:capitalize).to_s %></h2>
-        <h3>Your mobile number:<br> <%= @user.mobile_number %></h3>
-        <p>DoB: <%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
-        <p><%= @user.email %></p>
-        <p><%= @user.address %></p>
-        <p><%= @user.city  %> <%= ', ' + @user.postcode.to_s %></p>
-        <%= link_to edit_user_path(@user) do %>
-          <button class="btn-royal-blue"><%= 'EDIT YOUR DETAILS' %></button>
-          <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' unless @user.details_completed? %></p>
-        <% end %>
+      </div>
+      <div class="profile-info">
+        <h3><strong>Your mobile number: </strong><%= @user.mobile_number %></h3>
+        <p><strong>Date of Birth: </strong><%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
+        <p><strong>Email: </strong><%= @user.email %></p>
+        <p><strong>Address: </strong> <%= @user.address %>, <%= @user.city  %>, <%= @user.postcode.to_s %></p>
+        <div class="align-center">
+          <%= link_to edit_user_path(@user) do %>
+            <button class="btn-royal-blue"><%= 'EDIT YOUR DETAILS' %></button>
+            <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' if @user.details_completed != true %></p>
+          <% end %>
+        </div>
       </div>
     </div>
 
     <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
       <%= link_to user_status_path(@user) do %>
         <div class="current-loan">
-          <h5>Current Loan Status:</h5>
+          <h5><strong>Current Loan Status: </strong>
           <% case @user.loans.last.status %>
             <% when "Application Pending" %>
               <%= "Pending" %>
@@ -40,11 +42,14 @@
             <% when "Application Declined" %>
               <%= "Declined" %>
           <% end %>
+          </h5>
         </div>
       <% end %>
     <% else %>
       <br>
     <% end %>
+
+    <br>
 
     <div class="loan-history">
       <h5>Loan History</h5>

@@ -1,15 +1,28 @@
 .profile-info {
-  text-align: center;
-  background-color: $table-grey;
-  margin: 20px;
-  padding: 10px;
+  background-color: white;
+  margin: 5px 20px 0 20px;
+  padding: 5px 10px 0 10px;
 }
 
 .profile-info h2 {
   font-size: 20px;
   font-weight: 600;
+  margin-top: 5px;
 }
 
 .profile-info h3 {
   font-size: 16px;
+}
+
+.profile-icon {
+  font-size: 80px;
+  padding-top: 30px;
+}
+
+.loan-history h5 {
+  margin-top: 0;
+}
+
+.align-center {
+  text-align: center;
 }
