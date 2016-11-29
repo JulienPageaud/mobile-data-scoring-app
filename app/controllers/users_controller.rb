@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def status
     authorize @user
+    @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
   end
 
   def profile
@@ -53,6 +54,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id)
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
   end
 end
