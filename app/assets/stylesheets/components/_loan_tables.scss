@@ -12,6 +12,8 @@
   justify-content: space-between;
   flex-basis: 100%;
   padding: 0 5px;
+  align-items: center;
+  height: 36px;
 }
 
 .flexrow.loans:nth-child(even) {
@@ -37,13 +39,23 @@
 
 .loan-link:hover {
   text-decoration: none;
-  background-color: #C9E2E9;
+  border-left: 3px solid $royal-blue;
   color: black;
 }
 
 .loan-link {
+  background: white;
   color:black;
   padding: 5px 0;
+  border-left: 3px solid transparent;
+  margin: 2px 0;
+  font-weight: 100;
+  color: #9e9e9e;
+  font-size: 14px;
+}
+.loans-amount {
+  font-weight: bold;
+  font-size: 15px !important;
 }
 #credit-score, #category{
   max-width: 120px;

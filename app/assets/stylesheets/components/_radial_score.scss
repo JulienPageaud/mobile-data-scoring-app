@@ -1,0 +1,86 @@
+
+
+
+@mixin circle($size) {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - #{$size/2});
+  top: calc(50% - #{$size/2});
+  width: $size;
+  height: $size;
+}
+
+$size: 40px;
+.progress-pie-chart {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: #E5E5E5;
+  position: relative;
+
+}
+.progress-pie-chart.red {
+  &.gt-50, .ppc-progress-fill {
+    background-color: red;
+  }
+}
+.progress-pie-chart.orange {
+  &.gt-50, .ppc-progress-fill {
+    background-color: green;
+  }
+}
+.progress-pie-chart.yellow {
+  &.gt-50, .ppc-progress-fill {
+    background-color: blue;
+  }
+}
+.progress-pie-chart.green {
+  &.gt-50, .ppc-progress-fill {
+    background-color: $royal-blue;
+  }
+}
+.ppc-progress {
+  @include circle($size);
+  clip: rect(0, $size, $size, #{$size/2});
+  .ppc-progress-fill {
+    @include circle($size);
+    clip: rect(0, #{$size/2}, $size, 0);
+    transform: rotate(60deg);
+  }
+  .gt-50 & {
+    clip: rect(0, #{$size/2}, $size, 0);
+    .ppc-progress-fill {
+      clip: rect(0, $size, $size, #{$size/2});
+      background: #E5E5E5;
+    }
+  }
+}
+.ppc-percents {
+  @include circle(#{$size/1.15});
+  background: #fff;
+  text-align: center;
+  display: table;
+  span {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+  }
+}
+.progress-pie-chart.red .ppc-percents span {
+  color: red;
+}
+.progress-pie-chart.orange .ppc-percents span {
+  color: green;
+}
+.progress-pie-chart.yellow .ppc-percents span {
+  color: blue;
+}
+.progress-pie-chart.green .ppc-percents span {
+  color: $royal-blue;
+}
+.pcc-percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+

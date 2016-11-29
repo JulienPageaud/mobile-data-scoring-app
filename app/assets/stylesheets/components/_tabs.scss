@@ -12,7 +12,7 @@
 .tabs h3 {
   font-size: 17px;
   font-weight: bold;
-  margin-top: 0;
+  margin: 0;
 }
 .tabs p {
   opacity: 0.5;
@@ -24,11 +24,13 @@
   text-align: center;
   padding: 20px 0;
   border: solid $sky-blue 1px;
+  opacity: 0.3;
 }
 .tab.active {
   background: $royal-blue;
   color: white;
   text-decoration: none;
+  opacity: 1;
 }
 #tab-content {
   margin: 30px 0;

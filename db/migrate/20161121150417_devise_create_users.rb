@@ -40,7 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :date_of_birth
       t.string :employment
       t.string :photo_id
-      t.string :credit_score
+      t.string :credit_score, default: 0.5
       t.boolean :details_completed?
       t.boolean :facebook_account?
 
