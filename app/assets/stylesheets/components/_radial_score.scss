@@ -24,17 +24,17 @@ $size: 40px;
 }
 .progress-pie-chart.orange {
   &.gt-50, .ppc-progress-fill {
-    background-color: green;
+    background-color: orange;
   }
 }
-.progress-pie-chart.yellow {
+.progress-pie-chart.blue {
   &.gt-50, .ppc-progress-fill {
-    background-color: blue;
+    background-color: $royal-blue;
   }
 }
 .progress-pie-chart.green {
   &.gt-50, .ppc-progress-fill {
-    background-color: $royal-blue;
+    background-color: green;
   }
 }
 .ppc-progress {
@@ -68,13 +68,13 @@ $size: 40px;
   color: red;
 }
 .progress-pie-chart.orange .ppc-percents span {
-  color: green;
+  color: orange;
 }
-.progress-pie-chart.yellow .ppc-percents span {
-  color: blue;
+.progress-pie-chart.blue .ppc-percents span {
+  color: $royal-blue;
 }
 .progress-pie-chart.green .ppc-percents span {
-  color: $royal-blue;
+  color: green;
 }
 .pcc-percents-wrapper {
   display: table-cell;
