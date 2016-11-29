@@ -73,6 +73,7 @@
       var childIndex = $(this).index();
       $('#tab-content').children().addClass("hidden");
       $('.' +childIndex).removeClass("hidden");
+      window.location.hash = $(this).attr('id').split("-")[0]
     })
   </script>
 <% end %>
