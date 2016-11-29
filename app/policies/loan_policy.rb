@@ -26,7 +26,7 @@ class LoanPolicy < ApplicationPolicy
   end
 
   def applications?
-    record.user == user
+    true
   end
 
   def outstanding?

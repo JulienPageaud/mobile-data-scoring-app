@@ -63,30 +63,41 @@ class LoansController < ApplicationController
   end
 
   def applications
+    @loans = policy_scope(Loan)
+    authorize Loan
     respond_to do |format|
       format.js
     end
   end
 
   def outstanding
+    @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
+    @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
+    authorize Loan
     respond_to do |format|
       format.js
     end
   end
 
   def declined
+    @loans = policy_scope(Loan)
+    authorize Loan
     respond_to do |format|
       format.js
     end
   end
 
   def repaid
+    @loans = policy_scope(Loan)
+    authorize Loan
     respond_to do |format|
       format.js
     end
   end
 
   def portfolio
+    @loans = policy_scope(Loan)
+    authorize Loan
     respond_to do |format|
       format.js
     end
