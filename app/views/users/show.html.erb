@@ -14,7 +14,9 @@
       <div id="tab-monitor">
         <h1>Monitor your situation</h1>
         <p>Track your progress over time</p>
-        <p style="color: red; text-align: center; font-size: 16px">View your status</p>
+        <br>
+        <p class="sixteen-center text-red"><%= "Something requires your attention" if @user.notifications.unread? %></p>
+        <p></p>
       </div>
     <% end %>
   </div>
@@ -24,6 +26,7 @@
       <div id="tab-details">
         <h1>Your Profile</h1>
         <p>Your details are important to us</p>
+        <p class="sixteen-center text-red"><%= "Details uncompleted" if @user.details_completed != true %></p>
       </div>
     <% end %>
   </div>
