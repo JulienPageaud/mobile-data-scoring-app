@@ -22,8 +22,8 @@ class LoansController < ApplicationController
     authorize @loan
 
     if @loan.save
-      @loan.status = "Application Pending"
-      @loan.save
+      @loan.update(status: "Application Pending")
+      @loan.application_sent_confirmation
       redirect_to user_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
@@ -50,20 +50,23 @@ class LoansController < ApplicationController
       else
         render :show
       end
-    elsif params[loan: :agreed_amount_cents] || params[loan: :status] == "Loan Outstanding"
+      Notification.create!(user: @loan.user) #notification for the user
+    elsif params[:loan][:agreed_amount].present? || params[:loan][:status] == "Loan Outstanding"
       # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
   end
 
   def accept
     authorize @loan
-    @loan.status = "Loan Outstanding"
-    @loan.update(accept_loan_params)
-    @loan.update_payments_to_agreed_amount
+    @loan.accept(accept_loan_params)
     redirect_to user_status_path(current_user)
   end
 
   private
+
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
 
   def loan_params
     params.require(:loan).permit(:requested_amount, :category, :purpose, :description, :bank_id)
@@ -85,7 +88,4 @@ class LoansController < ApplicationController
     end
   end
 
-  def set_loan
-    @loan = Loan.find(params[:id])
-  end
 end

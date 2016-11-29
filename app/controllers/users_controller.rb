@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def status
     authorize @user
+    @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
   end
 
   def profile
