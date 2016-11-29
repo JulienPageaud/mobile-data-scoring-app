@@ -30,7 +30,15 @@ Rails.application.routes.draw do
   # Routes for the bank's side of the application
   resources :bank_users, only:[:show] do
     resources :loans, only: [:index, :show, :update]
+    member do
+      get 'applications', to: 'loans#applications'
+      get 'outstanding', to: 'loans#outstanding'
+      get 'declined', to: 'loans#declined'
+      get 'repaid', to: 'loans#repaid'
+      get 'portfolio', to: 'loans#portfolio'
+    end
   end
+
 
   # About, Legal, Contact pages
   get 'about', to: 'users#about'
