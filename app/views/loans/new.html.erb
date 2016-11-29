@@ -17,7 +17,8 @@
           label: "How much do you want to borrow?",
           placeholder: "up to R15,000",
           error: "Please enter an amount between R0 and R15,000",
-          input_html: { class: 'input-rounded'} %>
+          input_html: { class: 'input-rounded' },
+          required: false %>
         <%= f.input :category,
           as: 'radio_buttons',
           collection: [['Personal', 'personal'], ['Business', 'business']],
@@ -26,31 +27,38 @@
           label: "What would you like to use the loan for?",
           label_html: { class: 'radio-label' },
           error: "Please choose a category",
-          item_wrapper_class: 'radio-inline' %>
+          item_wrapper_class: 'radio-inline',
+          required: false %>
         <div class="for-personal">
-          <%= f.input :purpose, collection: ['Medical', 'Beer', 'Code School'],
+          <%= f.input :purpose, collection: ['Medical Expenses', 'School Fees', 'Transportation Expenses', 'Other'],
             label: "Choose the option that best describes your planned expenses:",
             prompt: "Choose best option",
             error: "Please choose an option",
             item_wrapper_class: "for-personal",
-            input_html: { class: 'input-rounded', id: 'personal-dropdown' } %>
+            input_html: { class: 'input-rounded', id: 'personal-dropdown' },
+            required: false %>
         </div>
         <div class="for-business hidden">
-          <%= f.input :purpose, collection: ['New building', 'Pay off debt', 'Company holiday'],
+          <%= f.input :purpose, collection: ['New Equipment', 'Inventory Purposes', 'Refurbishment Work', 'Liability Management', 'Other'],
             prompt: "Choose best option",
             error: "Please choose an option",
             label: "Choose the option that best describes your planned expenses:",
-            input_html: { class: 'input-rounded', id: 'business-dropdown' } %>
+            input_html: { class: 'input-rounded', id: 'business-dropdown' },
+            required: false %>
         </div>
         <%= f.input :description,
           label: "Further details on your intended loan use:",
           placeholder: "Details of your loan purpose",
           error: "Please describe in more detail what you plan to use this loan for",
-          input_html: { class: 'input-rounded' } %>
+          input_html: { class: 'input-rounded' },
+          required: false %>
         <%= f.hidden_field :bank_id,
           value: Bank.find_by_name("FNB").id %>
         <%= f.submit 'Submit',
           class: 'btn-royal-blue btn', style: "width: 100%" %>
+        <div class="back-button text-center">
+          <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
+        </div>
       <% end %>
     </div>
   </div>
