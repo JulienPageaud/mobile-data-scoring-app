@@ -23,6 +23,7 @@
 #home-banner p {
   font-size: 18px;
   text-align: left;
+  padding-left: 12%;
   color: white;
   position: top;
   background-position: center;
@@ -71,4 +72,12 @@
 .width-alter {
   width: 80%;
   margin: 0 auto;
+}
+
+.intl-tel-input {
+  color: black;
+}
+
+.iti-arrow {
+  opacity: 0;
 }
