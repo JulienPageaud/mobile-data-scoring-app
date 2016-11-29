@@ -29,7 +29,7 @@ bank = Bank.find_by_name("FNB")
   loan = user.loans.build(status: status_ary.sample,
     category: category_ary.sample, purpose: purpose_ary.sample,
     description: description_ary.sample, interest_rate: 15,
-    bank: bank, requested_amount: rand(15000).round(-2))
+    bank: bank, requested_amount: rand(1000..15000).round(-2))
   loan.proposed_amount_cents = loan.requested_amount_cents
   loan.agreed_amount_cents = loan.requested_amount_cents
 

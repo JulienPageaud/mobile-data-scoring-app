@@ -1,0 +1,25 @@
+<% score = (score.to_f * 100).to_i %>
+<% if score > 0 %>
+  <% color = "red"%>
+<% end %>
+<% if score > 75 %>
+  <% color = "orange"%>
+<% end %>
+<% if score > 90 %>
+  <% color = "yellow"%>
+<% end %>
+<% if score > 95 %>
+  <% color = "green"%>
+<% end %>
+
+
+<div class="progress-pie-chart <%= color %>" data-percent="<%= score %>">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+      <span><%= score %>%</span>
+    </div>
+  </div>
+</div>

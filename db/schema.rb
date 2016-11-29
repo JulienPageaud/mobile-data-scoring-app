@@ -100,16 +100,16 @@ ActiveRecord::Schema.define(version: 20161128172259) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "mobile_number",                       null: false
+    t.string   "mobile_number",                          null: false
     t.string   "gender"
     t.string   "first_name"
     t.string   "last_name"
@@ -119,11 +119,11 @@ ActiveRecord::Schema.define(version: 20161128172259) do
     t.datetime "date_of_birth"
     t.string   "employment"
     t.string   "photo_id"
-    t.string   "credit_score"
+    t.string   "credit_score",           default: "0.5"
     t.boolean  "details_completed"
     t.boolean  "facebook_account"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "token"
