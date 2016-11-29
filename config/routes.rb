@@ -31,11 +31,11 @@ Rails.application.routes.draw do
   resources :bank_users, only:[:show] do
     resources :loans, only: [:index, :show, :update]
     member do
-      get 'applications', to: 'bank_users#applications'
-      get 'outstanding', to: 'bank_users#outstanding'
-      get 'declined', to: 'bank_users#declined'
-      get 'repaid', to: 'bank_users#repaid'
-      get 'portfolio', to: 'bank_users#portfolio'
+      get 'applications', to: 'loans#applications'
+      get 'outstanding', to: 'loans#outstanding'
+      get 'declined', to: 'loans#declined'
+      get 'repaid', to: 'loans#repaid'
+      get 'portfolio', to: 'loans#portfolio'
     end
   end
 
