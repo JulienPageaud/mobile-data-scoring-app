@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Declined Applications</h3>
+  <h3 class="dashboard-title flexboxify">Declined Applications <span class="dashboard-count flexboxify"><%= @loans.where(status: "Application Declined").length %></span></h3>
     <div class="loan-flexbox">
       <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
@@ -31,7 +31,7 @@
         <div class="flexcell loans-cell">
           <%= application.user.mobile_number %>
         </div>
-        <div class="flexcell loans-cell">
+        <div class="flexcell loans-cell loans-amount">
           <%= humanized_money_with_symbol(application.requested_amount) %>
         </div>
         <div class="flexcell loans-cell">
@@ -41,7 +41,7 @@
           <%= application.decline_reason %>
         </div>
         <div class="flexcell loans-cell" id="credit-score">
-          <%= application.user.credit_score %>
+          <%= render "bank_users/radial_score", score: application.user.credit_score %>
         </div>
       </div>
     <% end %>
