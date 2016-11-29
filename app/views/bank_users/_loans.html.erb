@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Loans - Missed Payment</h3>
+  <h3 class="dashboard-title flexboxify">Loans - Missed Payment <span class="dashboard-count flexboxify"> <%= @missed_payment_loans.length %></span></h3>
     <div class="loan-flexbox">
       <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
@@ -38,7 +38,7 @@
                 <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loans-cell">
+                <div class="flexcell loans-cell loans-amount">
                   <%= humanized_money_with_symbol(loan.most_recent_payment.amount) %>
                 </div>
               <% end %>
@@ -51,7 +51,7 @@
               <% end %>
             </div>
 
-            <div class="flexcell loans-cell">
+            <div class="flexcell loans-cell loans-amount">
               <% if loan.next_payment %>
                 <%= humanized_money_with_symbol(loan.next_payment.amount) %>
               <% else %>
@@ -62,7 +62,7 @@
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
             <div class="flexcell loans-cell" id="credit-score">
-              <%= loan.user.credit_score %>
+              <%= render "bank_users/radial_score", score: loan.user.credit_score %>
             </div>
           </div>
         <% end %>
@@ -72,7 +72,7 @@
 </div>
 
 <div class="container">
-  <h3>Loans - Delayed Payment</h3>
+    <h3 class="dashboard-title flexboxify">Loans - Delayed Payment <span class="dashboard-count flexboxify"> <%= @delayed_payment_loans.length %></span></h3>
     <div class="loan-flexbox">
       <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
@@ -111,7 +111,7 @@
                 <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
-                <div class="flexcell loans-cell">
+                <div class="flexcell loans-cell loans-amount">
                   <%= humanized_money_with_symbol(loan.most_recent_payment.amount) %>
                 </div>
               <% end %>
@@ -124,7 +124,7 @@
               <% end %>
             </div>
 
-            <div class="flexcell loans-cell">
+            <div class="flexcell loans-cell loans-amount">
               <% if loan.next_payment %>
                 <%= humanized_money_with_symbol(loan.next_payment.amount)%>
               <% else %>
@@ -135,7 +135,7 @@
               <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
             </div>
             <div class="flexcell loans-cell" id="credit-score">
-              <%= loan.user.credit_score %>
+              <%= render "bank_users/radial_score", score: loan.user.credit_score %>
             </div>
           </div>
         <% end %>
@@ -145,7 +145,7 @@
 </div>
 
 <div class="container">
-<h3>Loans - Good Book</h3>
+<h3 class="dashboard-title flexboxify">Loans - Good Book <span class="dashboard-count flexboxify"> <%= Loan.good_loans.count %></span></h3>
 <div class="loan-flexbox">
     <div class="flexrow loans-header-row text-left">
       <div class="flexcell loans-header">
@@ -174,20 +174,20 @@
           <div class="flexcell loans-cell">
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
           </div>
-          <div class="flexcell loans-cell">
+          <div class="flexcell loans-cell loans-amount">
             <%= humanized_money_with_symbol(loan.remaining_capital) %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.next_payment.due_date.strftime("%e %b %Y") %>
           </div>
-          <div class="flexcell loans-cell">
+          <div class="flexcell loans-cell loans-amount">
             <%= humanized_money_with_symbol(loan.next_payment.amount) %>
           </div>
           <div class="flexcell loans-cell">
             <%= loan.payments.last.due_date.strftime("%e %b %Y") %>
           </div>
           <div class="flexcell loans-cell" id="credit-score">
-            <%= loan.user.credit_score %>
+            <%= render "bank_users/radial_score", score: loan.user.credit_score %>
           </div>
         </div>
       <% end %>
