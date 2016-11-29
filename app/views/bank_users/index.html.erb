@@ -1,9 +1,9 @@
   <div class="tabs">
-    <%= link_to applications_bank_user_path(current_bank_user),class: "tab active", remote: true do %>
+    <%= link_to applications_bank_user_path(current_bank_user), class: "tab active", remote: true do %>
       <h3>Applications</h3>
     <% end %>
 
-    <%= link_to outstanding_bank_user_path(current_bank_user), anchor: "outstanding", class: "tab", remote: true do %>
+    <%= link_to outstanding_bank_user_path(current_bank_user), class: "tab", remote: true do %>
       <h3>Loans Outstanding</h3>
     <% end %>
 
@@ -11,7 +11,7 @@
       <h3>Applications Declined</h3>
     <% end %>
 
-    <%= link_to repaid_bank_user_path(current_bank_user),class: "tab", remote: true do %>
+    <%= link_to repaid_bank_user_path(current_bank_user), class: "tab", remote: true do %>
       <h3>Loans Repaid</h3>
     <% end %>
 
@@ -24,20 +24,16 @@
   <div class="container">
     <div id="tab-content">
 
+      <!-- Tab content is loaded via AJAX -->
       <div class="0" id="loan-applications-content">
-        <%= render 'bank_users/loan_applications'%>
       </div>
-      <div class="1 hidden" id="loans-content">
-        <%= render 'bank_users/loans'%>
+      <div class="1 hidden" id="loans-outstanding-content">
       </div>
       <div class="2 hidden" id="loans-declined-content">
-        <%= render 'bank_users/loan_applications_declined'%>
       </div>
       <div class="3 hidden" id="loans-repaid-content">
-      <%= render 'bank_users/repaid_loans'%>
       </div>
       <div class="4 hidden" id="portfolio-content">
-        <%#= render 'portfolio'%>
       </div>
     </div>
   </div>
