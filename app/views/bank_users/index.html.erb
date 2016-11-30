@@ -29,19 +29,24 @@
     <% end %>
   </div>
 
-<div class="wrapper-grey">
+<div class="wrapper-grey flexboxify">
   <div class="container">
     <div id="tab-content">
       <!-- Tab content is loaded via AJAX -->
       <div class="0" id="loan-applications-content">
+        <div class="spinner"><%= render 'bank_users/spinner' %></div>
       </div>
       <div class="1 hidden" id="loans-outstanding-content">
+        <div class="spinner"><%= render 'bank_users/spinner' %></div>
       </div>
       <div class="2 hidden" id="loans-declined-content">
+        <div class="spinner"><%= render 'bank_users/spinner' %></div>
       </div>
       <div class="3 hidden" id="loans-repaid-content">
+        <div class="spinner"><%= render 'bank_users/spinner' %></div>
       </div>
       <div class="4 hidden" id="portfolio-content">
+        <div class="spinner"><%= render 'bank_users/spinner' %></div>
       </div>
     </div>
   </div>
