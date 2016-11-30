@@ -9,6 +9,7 @@
 // THIS IS FOR THE GRAPHS
 //= require Chart.bundle
 //= require chartkick
+//= require highcharts
 
 // PUT ALL REQUIRES BEFORE THE REQUIRE_TREE LINE
 //= require_tree .
