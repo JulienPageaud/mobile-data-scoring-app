@@ -1,0 +1,52 @@
+<div id="credit-score-graph" style="min-width: 600px; height: 450px; margin: 0 auto"></div>
+
+<script>
+  $(document).ajaxComplete(function () {
+    Highcharts.chart('credit-score-graph', {
+        title: {
+            text: 'Credit score',
+            x: -20 //center
+        },
+        xAxis: {
+            title: {
+                text: 'Credit Score (%)'
+            },
+            categories: ["70 - 75", "75 - 80", "80 - 85", "85 - 90", "90 - 95", "95 - 100"]
+        },
+        yAxis: {
+            title: {
+                text: 'Number of customers'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            formatter: function() {
+              if (this.series.name.includes("pending")) {
+              return 'There are <b>' + this.y + '</b> pending customers with a credit score in the range: <b>' + this.x + '</b>';
+              }
+              else {
+                return 'There are <b>' + this.y + '</b> live customers with a credit score in the range: <b>' + this.x + '</b>';
+              }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Customers with pending applications',
+            data: <%= current_bank_user.bank.credit_score_distribution_pending %>
+        }, {
+            name: 'Customers with live loans',
+            data: <%= current_bank_user.bank.credit_score_distribution_live %>
+        }]
+    });
+  });
+
+</script>
