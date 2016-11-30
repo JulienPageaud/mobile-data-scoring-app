@@ -33,7 +33,7 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month),
   (DateTime.now -3.day)]
 
 # Pending Applications
-30.times do
+41.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -48,7 +48,7 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month),
 end
 
 # Accepted Application
-15.times do
+22.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -59,12 +59,12 @@ end
     status: "Application Accepted", purpose: purpose_ary.sample,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
-  loan.update!(proposed_amount: loan.requested_amount)
+  loan.update!(proposed_amount: loan.requested_amount, updated_at: DateTime.now - rand(0..21).day)
   loan.create_payments_proposed
 end
 
 # Good Book Loans
-30.times do
+92.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -76,8 +76,8 @@ end
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
-    start_date: DateTime.now - (rand(1..50).round.day))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+    start_date: DateTime.now - (rand(1..21).round.day))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
@@ -85,7 +85,7 @@ end
 end
 
 # Missed Payment Loans
-3.times do
+5.times do
     mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -98,7 +98,7 @@ end
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..2).month + (rand(8..50).round.day)))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
@@ -107,7 +107,7 @@ end
 end
 
 # Delayed Payment Loans
-2.times do
+4.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -120,7 +120,7 @@ end
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (1.month + (rand(1..7).round.day)))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
@@ -129,7 +129,7 @@ end
 end
 
 # Repaid Payment Loans
-10.times do
+20.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -151,7 +151,7 @@ end
 
 
 # Declined Payment Loans
-10.times do
+40.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -163,5 +163,7 @@ end
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2),
     decline_reason: decline_reason_ary.sample)
-  loan.update!(created_at: DateTime.now - rand(3..10).day, final_date: DateTime.now - rand(0..2).day)
+  loan.update!(created_at: DateTime.now - rand(0..19).day)
+  loan.update!(final_date: loan.created_at + rand(1..5).day)
+  loan.update!(updated_at: loan.final_date)
 end
