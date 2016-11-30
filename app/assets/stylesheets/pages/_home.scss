@@ -7,10 +7,14 @@
   color: $sky-blue;
 }
 
+.screen-height {
+  height: 92vh;
+}
+
 .banner {
   color: white;
   text-align: center;
-  height: 50vh;
+  min-height: 50vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -46,15 +50,15 @@
   padding: 20px;
   text-align: center;
   color: $title-grey;
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 250;
 }
 
 .container-values i {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
   color: $royal-blue;
-  margin-top: 15px;
+  margin: 10px 0;
 }
 
 .user-review-samples p {
