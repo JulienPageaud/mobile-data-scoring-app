@@ -2,7 +2,7 @@
   <div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('home_background.jpg') %>);">
 
     <div class="banner-content">
-      <p><strong>Congratulations.</strong> You are ready to <br>borrow money.</p>
+      <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
       <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
     </div>
   </div>
@@ -25,7 +25,7 @@
         <h1>Your Profile</h1>
         <p>Your details are important to us</p>
         <div class="text-center text-red">
-          <p><%= "Details incomplete" if @user.details_completed != true %></p>
+          <p><%= "You need to complete your details" if @user.details_completed != true %></p>
         </div>
       </div>
     <% end %>

@@ -16,22 +16,24 @@
       </div>
       <div class="profile-info">
         <h3><strong>Your mobile number: </strong><%= @user.mobile_number %></h3>
-        <p><strong>Date of Birth: </strong><%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></p>
-        <p><strong>Email: </strong><%= @user.email %></p>
-        <p><strong>Address: </strong> <%= @user.address %>, <%= @user.city  %>, <%= @user.postcode.to_s %></p>
+        <h3><strong>Date of Birth: </strong><%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></h3>
+        <h3><strong>Email: </strong><%= @user.email %></h3>
+        <h3><strong>Address: </strong> <%= @user.address %><br><%= @user.city  %><br><%= @user.postcode.to_s %></h3>
         <div class="align-center">
           <%= link_to edit_user_path(@user) do %>
-            <button class="btn-royal-blue"><%= 'EDIT YOUR DETAILS' %></button>
+            <button class="btn-royal-blue">EDIT YOUR DETAILS</button>
             <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' if @user.details_completed != true %></p>
           <% end %>
         </div>
       </div>
     </div>
+     <div class="loan-status">
 
-    <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
+      <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
       <%= link_to user_status_path(@user) do %>
         <div class="current-loan">
-          <h5><strong>Current Loan Status: </strong>
+          <p>Current Loan Status:<br>
+          <strong>
           <% case @user.loans.last.status %>
             <% when "Application Pending" %>
               <%= "Pending" %>
@@ -42,12 +44,11 @@
             <% when "Application Declined" %>
               <%= "Declined" %>
           <% end %>
-          </h5>
+          </strong></p>
         </div>
       <% end %>
     <% end %>
-
-    <br>
+    </div>
 
     <div class="loan-history">
       <h5><strong>Loan History</strong></h5>
@@ -131,4 +132,5 @@
       <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
     </div>
   </div>
+  <br>
 </div>
