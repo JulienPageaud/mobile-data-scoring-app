@@ -5,7 +5,7 @@
     <%= f.input :decline_reason %>
     <%= f.hidden_field :status, value: "Application Declined" %>
     <div class="modal-footer">
-      <div type="submit" class="btn btn-red">Decline Application</div>
+      <%= f.submit "Decline Application", class: "btn btn-red" %>
       <div type="button" class="btn btn-default" data-dismiss="modal">Close</div>
     </div>
   <% end %>
