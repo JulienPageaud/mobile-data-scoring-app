@@ -20,7 +20,6 @@ class LoansController < ApplicationController
   def create
     @loan = current_user.loans.build(loan_params)
     authorize @loan
-
     if @loan.save
       @loan.update(status: "Application Pending")
       @loan.application_sent_confirmation

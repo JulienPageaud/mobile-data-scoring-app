@@ -27,28 +27,28 @@
         </div>
       </div>
     </div>
-     <div class="loan-status">
 
       <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
-      <%= link_to user_status_path(@user) do %>
-        <div class="current-loan">
-          <p>Current Loan Status:</p>
-          <h5>
-          <% case @user.loans.last.status %>
-            <% when "Application Pending" %>
-              <%= "Pending" %>
-            <% when "Application Accepted" %>
-              <%= "Accepted! Click here to confirm." %>
-            <% when "Loan Outstanding" %>
-              <%= "Ongoing" %>
-            <% when "Application Declined" %>
-              <%= "Declined" %>
-          <% end %>
-          </h5>
-        </div>
-      <% end %>
-    <% end %>
+     <div class="loan-status">
+        <%= link_to user_status_path(@user) do %>
+          <div class="current-loan">
+            <p>Current Loan Status:</p>
+            <h5>
+            <% case @user.loans.last.status %>
+              <% when "Application Pending" %>
+                <%= "Pending" %>
+              <% when "Application Accepted" %>
+                <%= "Accepted! Click here to confirm." %>
+              <% when "Loan Outstanding" %>
+                <%= "Ongoing" %>
+              <% when "Application Declined" %>
+                <%= "Declined" %>
+            <% end %>
+            </h5>
+          </div>
+        <% end %>
     </div>
+      <% end %>
 
     <div class="loan-history">
       <h5><strong>Loan History</strong></h5>
