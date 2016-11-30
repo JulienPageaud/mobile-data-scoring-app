@@ -1,21 +1,22 @@
 <div class="white-box">
   <div class="row">
     <div class="devise-container width-alter">
-      <h2>Log in</h2>
+      <h1>Log in</h1>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
         <div class="form-inputs">
-          <%= f.input :mobile_number, required: true, autofocus: true %>
-          <%= f.input :password, required: false %>
+          <%= f.input :mobile_number, required: true, autofocus: true, id: "modal-mobile" %>
+          <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "••••••••" %>
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+          <%= f.button :submit, "Log in", class: 'btn btn-royal-blue', style: "width: 100%" %>
         </div>
       <% end %>
 
-     <%= render "devise/shared/links" %>
+     <%= render "devise/sh  ared/links" %>
 
     </div>
   </div>
