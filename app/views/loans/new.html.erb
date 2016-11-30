@@ -68,13 +68,13 @@
   <script>
     $(document).ready(function() {
         $('input[type=radio]').change(function() {
-            if (this.value == 'personal') {
+            if (this.value == 'Personal') {
               $('.for-personal').removeClass('hidden');
               $('.for-business').addClass('hidden');
               $('#business-dropdown').prop('disabled', true);
               $('#personal-dropdown').prop('disabled', false);
            }
-            else if (this.value == 'business') {
+            else if (this.value == 'Business') {
               $('.for-personal').addClass('hidden')
               $('.for-business').removeClass('hidden')
               $('#business-dropdown').prop('disabled', false);
