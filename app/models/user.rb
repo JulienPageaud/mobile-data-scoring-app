@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :loans, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  phony_normalize :mobile_number, default_country_code: 'ZA'
   # validates :email, presence: true, on: :update,
   #             format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
   # validates :title, presence: true, on: :update

@@ -69,7 +69,7 @@
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function() {
-        $('input[type=radio]:checked').change(function() {
+        $('input[type=radio]').change(function() {
             if (this.value == 'Personal') {
               $('.for-personal').removeClass('hidden');
               $('.for-business').addClass('hidden');

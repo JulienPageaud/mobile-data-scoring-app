@@ -29,6 +29,8 @@
 
     $("#mobile-input").intlTelInput({
         formatOnInit: true,
+        initialCountry: "za",
+        onlyCountries: ["za","na","bw"],
         separateDialCode: true,
         utilsScript: "assets/libphonenumber/utils.js"
     });
