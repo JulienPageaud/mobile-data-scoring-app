@@ -1,34 +1,42 @@
-<div class="portfolio-data">
+<div class="portfolio-data flexboxify">
   <div class="loans-data">
     <div id="net-balance">
-
+      <h3>Net Balance Sheet</h3>
+      <%= current_bank_user.bank.net_balance_sheet %>
     </div>
     <div id="pending-feedback">
-
+      <h3>Number of pending applications</h3>
+      <%= current_bank_user.bank.pending_response %>
     </div>
     <div id="pending-repayment">
-
+      <h3>Number of loans pending repayment</h3>
+      <%= current_bank_user.bank.pending_repayment %>
     </div>
   </div>
 
   <div class="scoring-data">
     <div id="average-score-total">
-
+      <h3>Average credit score of customers with outstanding loans</h3>
+      <%= current_bank_user.bank.average_score_of_active_customers %>
     </div>
     <div id="average-score-pending">
-
+      <h3>Average credit score of users with pending applications</h3>
+      <%= current_bank_user.bank.average_score_of_pending_customers %>
     </div>
   </div>
 
   <div class="client-data">
     <div id="number-current-customers">
-
+      <h3>Total number of customers with outstanding loans</h3>
+      <%= current_bank_user.bank.customers %>
     </div>
     <div id="retention-rate">
-
+      <h3>Customer retention rate</h3>
+      75%
     </div>
     <div id="total-users-historical">
-
+      <h3>Total number of customers</h3>
+      <%= current_bank_user.bank.total_users %>
     </div>
   </div>
 </div>
