@@ -32,8 +32,8 @@
       <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
       <%= link_to user_status_path(@user) do %>
         <div class="current-loan">
-          <p>Current Loan Status:<br>
-          <strong>
+          <p>Current Loan Status:</p>
+          <h5>
           <% case @user.loans.last.status %>
             <% when "Application Pending" %>
               <%= "Pending" %>
@@ -44,7 +44,7 @@
             <% when "Application Declined" %>
               <%= "Declined" %>
           <% end %>
-          </strong></p>
+          </h5>
         </div>
       <% end %>
     <% end %>
