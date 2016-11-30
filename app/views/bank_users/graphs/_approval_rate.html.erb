@@ -1,0 +1,90 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="approval-rate-graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+  $(function () {
+      Highcharts.chart('approval-rate-graph', {
+          chart: {
+              type: 'column',
+              zoomType: 'xy'
+          },
+          title: {
+              text: 'Approval Rate of Loan Request Submissions'
+          },
+          subtitle: {
+              text: 'FNB'
+          },
+          xAxis: {
+              categories: ['09/09 - 16/09', '16/09 - 23/09', '23/09 - 30/09', '30/09 - 07/10', '07/10 - 14/10', '14/10 - 21/10', '21/10 - 28/10', '28/10 - 04/11', '04/11 - 11/11', '11/11 - 18/11', '18/11 - 25/11', '25/11 - 02/12']
+          },
+          yAxis: [{ // Primary yAxis
+              min: 0,
+              title: {
+                  text: 'Volume of Loan Requests'
+              },
+              stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                  }
+              }
+          },  { // Secondary yAxis
+              title: {
+                  text: 'Approval Rate',
+                  style: {
+                      color: Highcharts.getOptions().colors[0]
+                  }
+              },
+              labels: {
+                  format: '{value}%',
+                  style: {
+                      color: Highcharts.getOptions().colors[0]
+                  }
+              },
+              opposite: true
+          }],
+          legend: {
+              align: 'right',
+              x: 5,
+              verticalAlign: 'top',
+              y: 45,
+              floating: true,
+              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+              borderColor: '#CCC',
+              borderWidth: 1,
+              shadow: false
+          },
+          tooltip: {
+              headerFormat: '<b>{point.x}</b><br/>',
+              pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+          },
+          plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                      enabled: true,
+                      color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                      colourByPoint: true
+                  }
+              }
+          },
+          series: [{
+              name: 'Rejected',
+              data: [31, 29, 38, 36, 25, 31, 27, 39, 30, 34, 31, 18], color: '#b23a48'
+          }, {
+              name: 'Approved',
+              data: [57, 38, 37, 44, 29, 40, 48, 64, 67, 49, 38, 52], color: '#4b4e6d'
+          }, {
+              name: 'Approval Rate (%)',
+              type: 'spline',
+              data: [64.8, 56.7, 49.3, 55.0, 53.7, 56.3, 64.0, 62.1, 69.1, 59.0, 55.0, 73.2], color: 'orange',
+              tooltip: {
+                  valueSuffix: '%'
+              }
+          }]
+      });
+  });
+</script>
