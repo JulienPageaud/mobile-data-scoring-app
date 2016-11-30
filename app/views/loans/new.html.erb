@@ -19,16 +19,18 @@
           error: "Please enter an amount between R0 and R15,000",
           input_html: { class: 'input-rounded' },
           required: false %>
-        <%= f.input :category,
-          as: 'radio_buttons',
-          collection: [['Personal', 'Personal'], ['Business', 'Business']],
-          label_method: :first,
-          value_method: :last,
-          label: "What would you like to use the loan for?",
-          label_html: { class: 'radio-label' },
-          error: "Please choose a category",
-          item_wrapper_class: 'radio-inline',
-          required: false %>
+        <div class="category-view">
+          <%= f.input :category,
+            as: 'radio_buttons',
+            collection: [['Personal', 'Personal'], ['Business', 'Business']],
+            label_method: :first,
+            value_method: :last,
+            label: "What would you like to use the loan for?",
+            label_html: { class: 'radio-label' },
+            error: "Please choose a category",
+            item_wrapper_class: 'radio-inline',
+            required: false %>
+        </div>
         <div class="for-personal">
           <%= f.input :purpose, collection: ['Medical Expenses', 'School Fees', 'Transportation Expenses', 'Other'],
             label: "Choose the option that best describes your planned expenses:",
