@@ -18,11 +18,9 @@ class UsersController < ApplicationController
     authorize @user
     if @user.update(user_params)
       if @user.photo_id?
-        @user.details_completed = true
-        @user.update(user_params)
+        @user.update(details_completed: true)
       else
-        @user.details_completed = false
-        @user.update(user_params)
+        @user.update(details_completed: false)
       end
       redirect_to user_path(@user)
     else

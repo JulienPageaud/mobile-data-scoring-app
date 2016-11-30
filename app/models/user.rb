@@ -54,7 +54,6 @@ class User < ApplicationRecord
     # user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
-    binding.pry
     self.update(user_params)
   end
 
