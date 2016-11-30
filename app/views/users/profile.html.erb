@@ -21,7 +21,7 @@
         <h3><strong>Address: </strong> <%= @user.address %><br><%= @user.city  %><br><%= @user.postcode.to_s %></h3>
         <div class="align-center">
           <%= link_to edit_user_path(@user) do %>
-            <button class="btn-royal-blue">EDIT YOUR DETAILS</button>
+            <button class="btn btn-royal-blue">EDIT YOUR DETAILS</button>
             <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' if @user.details_completed != true %></p>
           <% end %>
         </div>
