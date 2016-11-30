@@ -109,4 +109,12 @@ class Bank < ApplicationRecord
     end
     return [seventy, seventy_five, eighty, eighty_five, ninety, ninety_five]
   end
+
+  def applications_accepted
+    loans.where(status: ["Application Accepted", "Loan Outstanding"]).where(updated_at: DateTime.now - 7.day..DateTime.now).count
+  end
+
+  def applications_declined
+    loans.where(status: "Application Declined").where(updated_at: DateTime.now - 7.day..DateTime.now).count
+  end
 end
