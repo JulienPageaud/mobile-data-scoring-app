@@ -15,7 +15,8 @@ cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth
 
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
-purpose_ary = ["Medical Expenses", "Start a business", "Open a shop", "Coding School", "Beer Money"]
+purpose_perso_ary = ["Medical Expenses", "School Fees", "Transportation Expenses", "Other"]
+purpose_business_ary = ["New Equipment", "Inventory Purposes", "Refurbishment Work", "Liability Management", "Other"]
 description_ary = ["I need to pay for a organ transplant for my son",
   "I want to buy a large amount of cooking utensils for my kitchen as the restaurant is expanding",
   "I would like to open a clothes shop as there are none in this area",
@@ -40,11 +41,14 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month),
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(20) + 80).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Application Pending", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Application Pending", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.save!
+  loan.category == "Personal" ? loan.update(purpose: purpose_perso_ary.sample) : loan.update(purpose: purpose_business_ary.sample)
 end
 
 # Accepted Application
@@ -55,11 +59,14 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 90).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Application Accepted", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Application Accepted", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, updated_at: DateTime.now - rand(0..21).day)
+  loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
   loan.create_payments_proposed
 end
 
@@ -71,12 +78,15 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 90).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Loan Outstanding", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Loan Outstanding", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..21).round.day))
+  loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
   loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
@@ -92,12 +102,15 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 80).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Loan Outstanding", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Loan Outstanding", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..2).month + (rand(8..50).round.day)))
+  loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
   loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
@@ -114,12 +127,15 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 80).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Loan Outstanding", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Loan Outstanding", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (1.month + (rand(1..7).round.day)))
+  loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
   loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
@@ -136,12 +152,15 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(5) + 92).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Loan Repaid", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Loan Repaid", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..50).round.day))
+  loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
   loan.update!(final_date: (loan.start_date + loan.duration_months.month))
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
@@ -158,8 +177,10 @@ end
     last_name: Faker::Name.last_name, city: cities_ary.sample,
     date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 80).fdiv(100).round(2))
 
-  loan = user.loans.build(category: category_ary.sample,
-    status: "Application Declined", purpose: purpose_ary.sample,
+  category = category_ary.sample
+  category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
+  loan = user.loans.build(category: category,
+    status: "Application Declined", purpose: purpose,
     description: description_ary.sample, interest_rate: 15,
     bank: bank, requested_amount: rand(100..15000).round(-2),
     decline_reason: decline_reason_ary.sample)
