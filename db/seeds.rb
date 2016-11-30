@@ -1,4 +1,7 @@
 Loan.destroy_all
+"hi"
+"hi"
+"hi"
 User.destroy_all
 BankUser.destroy_all
 Bank.destroy_all
