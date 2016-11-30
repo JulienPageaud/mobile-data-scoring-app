@@ -64,7 +64,7 @@ end
 end
 
 # Good Book Loans
-30.times do
+32.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -77,7 +77,7 @@ end
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..50).round.day))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
@@ -98,7 +98,7 @@ end
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..2).month + (rand(8..50).round.day)))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
@@ -107,7 +107,7 @@ end
 end
 
 # Delayed Payment Loans
-2.times do
+1.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -120,7 +120,7 @@ end
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (1.month + (rand(1..7).round.day)))
-  loan.update!(final_date: (loan.start_date + loan.duration_months.month))
+  loan.update!(final_date: (loan.start_date + loan.duration_months.month), updated_at: loan.start_date)
   loan.update_payments_to_agreed_amount
   loan.payments.each do |payment|
     payment.update!(paid: true) if payment.due_date < DateTime.now
