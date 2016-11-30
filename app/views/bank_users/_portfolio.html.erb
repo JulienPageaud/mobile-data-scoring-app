@@ -28,7 +28,7 @@
   <div class="client-data">
     <div id="number-current-customers">
       <h3>Total number of customers with outstanding loans</h3>
-      <%= current_bank_user.bank.customers %>
+      <%= current_bank_user.bank.customers_count %>
     </div>
     <div id="retention-rate">
       <h3>Customer retention rate</h3>
@@ -36,14 +36,14 @@
     </div>
     <div id="total-users-historical">
       <h3>Total number of customers</h3>
-      <%= current_bank_user.bank.total_users %>
+      <%= current_bank_user.bank.total_users_count %>
     </div>
   </div>
 </div>
 
 <div class="current-portfolio">
   <div class="data-graph" id="loan-repayments">
-
+  <%= render 'bank_users/graphs/credit_score_graph' %>
   </div>
 
   <div class="data-graph" id="scoring-distribution">
