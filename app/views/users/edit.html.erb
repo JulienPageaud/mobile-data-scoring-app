@@ -27,32 +27,39 @@
           <%= f.input :first_name,
             input_html: { class: 'input-rounded'},
             placeholder: "First name",
-            label: false  %>
+            label: false,
+            error: "Please enter a first name" %>
           <%= f.input :last_name,
             input_html: { class: 'input-rounded'},
             placeholder: "Last name",
-            label: false %>
+            label: false,
+            error: "Please enter your last name" %>
           <%= f.input :address,
             input_html: { class: 'input-rounded'},
             placeholder: "Address",
-            label: false %>
+            label: false,
+            error: "Please enter your address" %>
           <%= f.input :city,
             input_html: { class: 'input-rounded'},
             placeholder: "City",
-            label: false %>
+            label: false,
+            error: "Please enter a city" %>
           <%= f.input :postcode,
             input_html: { class: 'input-rounded'},
             placeholder: "Postcode",
-            label: false %>
+            label: false,
+            error: "Please enter a valid postcode" %>
           <%= f.input :employment,
             input_html: { class: 'input-rounded'},
             placeholder: "Employment",
-            label: false %>
+            label: false,
+            error: "Please enter your employment" %>
           <%= f.input :date_of_birth,
             as: :date_picker,
             input_html: { class: 'input-rounded'},
             placeholder: 'Date of Birth',
-            label: false %>
+            label: false,
+            error: "Please enter your date of birth" %>
           <%= f.input :photo_id,
             input_html: { class: 'input-rounded'},
             label: 'Upload your ID' %>
