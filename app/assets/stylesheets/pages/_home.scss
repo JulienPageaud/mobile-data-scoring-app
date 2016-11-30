@@ -61,10 +61,14 @@
   margin: 15px 0;
 }
 
-.user-review-samples p {
+.user-review-samples {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  p {
   margin: 0;
   text-align: left;
   font-size: 14px;
+  }
 }
 
 .width-alter {
