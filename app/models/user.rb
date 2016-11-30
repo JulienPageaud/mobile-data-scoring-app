@@ -8,16 +8,16 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   phony_normalize :mobile_number, default_country_code: 'ZA'
-  # validates :email, presence: true, on: :update,
-  #             format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
-  # validates :title, presence: true, on: :update
-  # validates :first_name, presence: true, on: :update
-  # validates :last_name, presence: true, on: :update
-  # validates :address, presence: true, on: :update
-  # validates :city, presence: true, on: :update
-  # validates :postcode, presence: true, on: :update
-  # validates :employment, presence: true, on: :update
-  # validates :date_of_birth, presence: true, on: :update
+  validates :email, presence: true, on: :update,
+              format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
+  validates :title, presence: true, on: :update
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+  validates :address, presence: true, on: :update
+  validates :city, presence: true, on: :update
+  validates :postcode, presence: true, on: :update
+  validates :employment, presence: true, on: :update
+  validates :date_of_birth, presence: true, on: :update
 
   def email_required?
     false
