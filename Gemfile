@@ -29,6 +29,9 @@ gem 'faker'
 # Twilio - SMS
 gem 'twilio-ruby'
 
+# Phony - Number Format
+gem 'phony_rails'
+
 # Intl-Tel-Input
 gem 'rails-intl-tel-input'
 
