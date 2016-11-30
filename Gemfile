@@ -41,6 +41,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 # Graph/Chart gem
 gem 'chartkick'
+gem 'highcharts-rails'
 
 gem 'sass-rails'
 gem 'jquery-rails'
