@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if @user.update(user_params)
+    if @user.update!(user_params)
       if @user.photo_id?
         @user.update(details_completed: true)
       else
@@ -53,6 +53,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache, :details_completed)
+      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
   end
 end
