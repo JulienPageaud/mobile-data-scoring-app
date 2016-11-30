@@ -1,4 +1,24 @@
-
+<div class="container">
+  <div class="round-icon-status">
+    <i><span class="fa fa-times"></span></i>
+  </div>
+</div>
 <h2>No Loans to Report</h2>
-<p>You haven't taken out a loan yet!</p>
+<br>
+
+
+<div class="container">
+  <% if @user.details_completed == true %>
+      <p>You can now apply for a loan</p>
+
+      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-royal-blue btn-default", style: 'width: 100%' %>
+      <br>
+  <% else %>
+    <p>Your still need to finalise your profile completion before applying for a loan.</p>
+    <br>
+    <%= link_to "Edit your details", user_profile_path(@user), class: "btn btn-royal-blue btn-default", style: 'width: 100%'   %>
+    <br>
+  <% end %>
+</div>
+
 
