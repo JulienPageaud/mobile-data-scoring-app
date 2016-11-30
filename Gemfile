@@ -39,6 +39,9 @@ gem 'rails-intl-tel-input'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
+# Graph/Chart gem
+gem 'chartkick'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

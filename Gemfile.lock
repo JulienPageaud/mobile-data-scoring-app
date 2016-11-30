@@ -60,6 +60,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.1.3)
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
@@ -263,6 +264,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap3-datetimepicker-rails (~> 4.17.43)
   carrierwave (>= 1.0.0.rc, < 2.0)
+  chartkick
   cloudinary (= 1.1.0)
   coffee-rails
   devise
