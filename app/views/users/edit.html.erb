@@ -1,4 +1,3 @@
-<div class="">
   <div class="header-banner">
     <div class="header-title">
       <h1>We need more info</h1>
@@ -13,59 +12,59 @@
     <i class="fa fa-facebook"></i><div>Connect your account</div>
   <% end %>
   </div>
-  <div class="container white-box">
-    <div class="details-form">
-      <%= simple_form_for @user do |f| %>
-        <%= f.input :email,
-          input_html: { class: 'input-rounded'},
-          placeholder: "Email",
-          label: false,
-          error: "Please enter a valid email" %>
-        <%= f.input :title,
-          as: 'radio_buttons',
-          collection: [['Mr', 'male'], ['Mrs', 'female'], ['Ms', 'female']],
-          label: false %>
-        <%= f.input :first_name,
-          input_html: { class: 'input-rounded'},
-          placeholder: "First name",
-          label: false  %>
-        <%= f.input :last_name,
-          input_html: { class: 'input-rounded'},
-          placeholder: "Last name",
-          label: false %>
-        <%= f.input :address,
-          input_html: { class: 'input-rounded'},
-          placeholder: "Address",
-          label: false %>
-        <%= f.input :city,
-          input_html: { class: 'input-rounded'},
-          placeholder: "City",
-          label: false %>
-        <%= f.input :postcode,
-          input_html: { class: 'input-rounded'},
-          placeholder: "Postcode",
-          label: false %>
-        <%= f.input :employment,
-          input_html: { class: 'input-rounded'},
-          placeholder: "Employment",
-          label: false %>
-        <%= f.input :date_of_birth,
-          as: :date_picker,
-          input_html: { class: 'input-rounded'},
-          placeholder: 'Date of Birth',
-          label: false %>
-        <%= f.input :photo_id,
-          input_html: { class: 'input-rounded'},
-          label: 'Upload your ID' %>
-        <%= f.input :photo_id_cache, as: :hidden %>
-        <% if @user.photo_id.present? %>
-          <%= image_tag @user.photo_id, height: 300, width: 400 %>
+    <div class="white-box">
+      <div class="details-form">
+        <%= simple_form_for @user do |f| %>
+          <%= f.input :email,
+            input_html: { class: 'input-rounded'},
+            placeholder: "Email",
+            label: false,
+            error: "Please enter a valid email" %>
+          <%= f.input :title,
+            as: 'radio_buttons',
+            collection: [['Mr', 'male'], ['Mrs', 'female'], ['Ms', 'female']],
+            label: false %>
+          <%= f.input :first_name,
+            input_html: { class: 'input-rounded'},
+            placeholder: "First name",
+            label: false  %>
+          <%= f.input :last_name,
+            input_html: { class: 'input-rounded'},
+            placeholder: "Last name",
+            label: false %>
+          <%= f.input :address,
+            input_html: { class: 'input-rounded'},
+            placeholder: "Address",
+            label: false %>
+          <%= f.input :city,
+            input_html: { class: 'input-rounded'},
+            placeholder: "City",
+            label: false %>
+          <%= f.input :postcode,
+            input_html: { class: 'input-rounded'},
+            placeholder: "Postcode",
+            label: false %>
+          <%= f.input :employment,
+            input_html: { class: 'input-rounded'},
+            placeholder: "Employment",
+            label: false %>
+          <%= f.input :date_of_birth,
+            as: :date_picker,
+            input_html: { class: 'input-rounded'},
+            placeholder: 'Date of Birth',
+            label: false %>
+          <%= f.input :photo_id,
+            input_html: { class: 'input-rounded'},
+            label: 'Upload your ID' %>
+          <%= f.input :photo_id_cache, as: :hidden %>
+          <% if @user.photo_id.present? %>
+            <%= image_tag @user.photo_id, height: 300, width: 400 %>
+          <% end %>
+          <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
         <% end %>
-        <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
-      <% end %>
+      </div>
     </div>
-  </div>
-</div>
+
 
 <%= content_for(:after_js) do %>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=<%= ENV['GOOGLE_API_BROWSER_KEY']%>"></script>
