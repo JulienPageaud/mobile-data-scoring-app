@@ -47,7 +47,8 @@
             data: <%= current_bank_user.bank.credit_score_distribution_pending %>
         }, {
             name: 'Live loans',
-            data: <%= current_bank_user.bank.credit_score_distribution_live %>
+            data: <%= current_bank_user.bank.credit_score_distribution_live %>,
+            color: '#00a9a5'
         }]
     });
   });
