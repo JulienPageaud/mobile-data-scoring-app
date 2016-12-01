@@ -17,7 +17,7 @@
         <%= simple_form_for @user do |f| %>
           <%= f.input :email,
             input_html: { class: 'input-rounded'},
-            placeholder: "Email",
+            placeholder: "Email (not required)",
             label: false,
             error: "Please enter a valid email" %>
           <%= f.input :title,

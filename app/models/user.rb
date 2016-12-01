@@ -9,8 +9,6 @@ class User < ApplicationRecord
 
   phony_normalize :mobile_number, default_country_code: 'ZA'
   validates :mobile_number, presence: true, uniqueness: true
-  validates :email, presence: true, on: :update,
-              format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/  }
   validates :title, presence: true, on: :update
   validates :first_name, presence: true, on: :update
   validates :last_name, presence: true, on: :update
