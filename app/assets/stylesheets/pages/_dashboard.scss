@@ -13,3 +13,17 @@
   border-radius: 50%;
   margin-left: 5px;
 }
+
+.portfolio-data {
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  h3, p {
+    font-size: 14px;
+  }
+}
+
+
+// .loans-data, .scoring-data, .client-data {
+//   justify-content: space-between;
+// }
