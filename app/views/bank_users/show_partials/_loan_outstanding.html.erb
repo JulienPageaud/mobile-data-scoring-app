@@ -1,134 +1,63 @@
-<div class="container">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <div class="header text-center">
-  <h1><%=@loan.status%> Overview</h1>
-    <% if @loan.loan_classification == "Missed Payment"%>
-      <h3 class="missed"><%= @loan.loan_classification%></h3>
-    <% elsif @loan.loan_classification == "Delayed Payment"%>
-      <h3 class="delayed"><%= @loan.loan_classification%></h3>
+    <% if loan.loan_classification == "Missed Payment"%>
+      <h3 class="missed"><%= loan.loan_classification%></h3>
+    <% elsif loan.loan_classification == "Delayed Payment"%>
+      <h3 class="delayed"><%= loan.loan_classification%></h3>
     <% else %>
-      <h3 class="good"><%= @loan.loan_classification%></h3>
+      <h3 class="good"><%= loan.loan_classification%></h3>
     <% end %>
   </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Client Details</strong>
+  <div class="text-center">
+    <div class="text-center loan-header">
+      <h2><%= (loan.user.credit_score.to_f * 100).to_i %>%</h2>
+      <p>Amount: <strong><%= humanized_money_with_symbol(loan.agreed_amount) %></strong></p>
     </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                First Name
-              </div>
-              <div class="flexcell loans-header">
-                Last Name
-              </div>
-              <div class="flexcell loans-header">
-                Mobile Number
-              </div>
-              <div class="flexcell loans-header">
-                Address
-              </div>
-              <div class="flexcell loans-header">
-                City
-              </div>
-              <div class="flexcell loans-header">
-                Postcode
-              </div>
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-                <%= @loan.user.first_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.last_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.mobile_number %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.address %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.city %>
-              </div>
-               <div class="flexcell loans-cell">
-                <%= @loan.user.postcode %>
-              </div>
-            </div>
-          </div>
-        </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Loan Details</strong>
-    </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                Start date
-              </div>
-              <div class="flexcell loans-header">
-                Initial capital
-              </div>
-              <div class="flexcell loans-header">
-                Remaining capital
-              </div>
-              <% if @loan.next_payment.present? %>
-                <div class="flexcell loans-header">
-                  Next payment date
-                </div>
-                <div class="flexcell loans-header">
-                  Next payment amount
-                </div>
-              <% else %>
-                <div class="flexcell loans-header">
-                  Most recent payment date
-                </div>
-                <div class="flexcell loans-header">
-                  Most recent payment amount
-                </div>
-              <% end %>
-              <div class="flexcell loans-header" id="credit-score">
-                Credit Score
-              </div>
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-                <%=@loan.start_date.strftime("%e %b %Y") %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= humanized_money_with_symbol(@loan.agreed_amount) %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= humanized_money_with_symbol(@loan.remaining_capital) %>
-              </div>
-              <% if @loan.next_payment.present? %>
-                <div class="flexcell loans-cell">
-                  <%= @loan.next_payment.due_date.strftime("%e %b %Y") %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= humanized_money_with_symbol(@loan.next_payment.amount) %>
-                </div>
-              <% else %>
-                <div class="flexcell loans-cell">
-                  <%= @loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= humanized_money_with_symbol(@loan.most_recent_payment.amount) %>
-                </div>
-              <% end %>
-               <div class="flexcell loans-cell" id="credit-score">
-                <%= render "bank_users/radial_score_individual", score: @loan.user.credit_score %>
-              </div>
-            </div>
-          </div>
-        </div>
-<br>
-<br>
-      <div class="links">
-        <%= link_to 'Go back', bank_user_loans_path(anchor: "outstanding") %>
-      </div>
   </div>
+</div>
+<div class="modal-body modal-loan">
+
+  <div class="loan-customer">
+    <div class="info">
+      <h3><%= loan.user.first_name %> <%= loan.user.last_name %></h3>
+      <p><%= loan.user.city %></p>
+    </div>
+
+    <div class="tel">
+      <i class="fa fa-mobile"></i> <%= loan.user.mobile_number %>
+    </div>
+  </div>
+
+  <div class="loan-details">
+    <div class="title">
+      <h3>Loan details</h3>
+      <span class="remaining-capital">Remaining Capital:
+      <%= humanized_money_with_symbol(loan.remaining_capital) %>
+      </span>
+      <div class="payment-details text-left">
+        <div class="next-payment item ">
+          <% if loan.next_payment.present? %>
+              <div class="next-payment-date">
+                  Next payment date: <strong><%= loan.next_payment.due_date.strftime("%e %b %Y") %>
+             </strong></div>
+              <div class="next-payment-amount">
+                  Next payment amount: <strong><%= humanized_money_with_symbol(loan.next_payment.amount) %></strong>
+              </div>
+          <% end %>
+        </div>
+        <div class="most-recent-payment item">
+          <% if loan.most_recent_payment.present? %>
+            <div class="most-recent-payment-date">
+              Last payment date: <strong><%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %></strong>
+            </div>
+            <div class="most-recent-payment-amount">
+             Last payment amount: <strong><%= humanized_money_with_symbol(loan.most_recent_payment.amount) %></strong>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

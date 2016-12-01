@@ -1,114 +1,42 @@
-<div class="container">
-  <div class="header text-center">
-  <h1><%=@loan.status%> Overview</h1>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div class="text-center">
+    <div class="text-center loan-header">
+      <h2><%= (loan.user.credit_score.to_f * 100).to_i %>%</h2>
+      <p>Amount: <strong><%= humanized_money_with_symbol(loan.requested_amount) %></strong></p>
+    </div>
+  </div>
+</div>
+<div class="modal-body modal-loan">
+
+  <div class="loan-customer">
+    <div class="info">
+      <h3><%= loan.user.first_name %> <%= loan.user.last_name %></h3>
+      <p><%= loan.user.city %></p>
+    </div>
+
+    <div class="tel">
+      <i class="fa fa-mobile"></i> <%= loan.user.mobile_number %>
+    </div>
   </div>
 
-<div class="table-description">
-    <strong>Client Details</strong>
+  <div class="loan-details">
+    <div class="title">
+      <h3>Loan details</h3>
+      <span class="purpose"><%= loan.purpose %></span>, <span class="category"><%= loan.category %></span>, <span class="date"><%= loan.created_at.strftime("%e %b %Y") %></span>
     </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                First Name
-              </div>
-              <div class="flexcell loans-header">
-                Last Name
-              </div>
-              <div class="flexcell loans-header">
-                Mobile Number
-              </div>
-              <div class="flexcell loans-header">
-                Address
-              </div>
-              <div class="flexcell loans-header">
-                City
-              </div>
-              <div class="flexcell loans-header">
-                Postcode
-              </div>
-          </div>
-          <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-                <%= @loan.user.first_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.last_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.mobile_number %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.address %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.city %>
-              </div>
-               <div class="flexcell loans-cell">
-                <%= @loan.user.postcode %>
-              </div>
-            </div>
-          </div>
-        </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Application Details</strong>
+    <p class="description">
+      <%= loan.description %>
+    </p>
     </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                Date of the Application
-              </div>
-              <div class="flexcell loans-header">
-                Amount requested
-              </div>
-              <div class="flexcell loans-header">
-                Category
-              </div>
-              <div class="flexcell loans-header">
-                Purpose
-              </div>
-              <div class="flexcell loans-header">
-                Date of the Decline
-              </div>
-              <div class="flexcell loans-header">
-                Reason for the decline
-              </div>
-              <div class="flexcell loans-header" id="credit-score">
-                Credit Score
-              </div>
 
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-               <%= @loan.created_at.strftime("%e %b %Y") %>
-              </div>
-              <div class="flexcell loans-cell">
-               <%= humanized_money_with_symbol(@loan.requested_amount) %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.category %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.purpose %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.updated_at.strftime("%e %b %Y") %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.decline_reason %>
-              </div>
-              <div class="flexcell loans-cell" id="credit-score">
-                <%= render "bank_users/radial_score_individual", score: @loan.user.credit_score %>
-              </div>
-            </div>
-          </div>
-        </div>
-<br>
-<br>
-  <div class="links">
-      <%= link_to 'Go back', bank_user_loans_path(anchor: "declined") %>
+  <div class="decline-details">
+    <div class="decline-reason">
+      <h3>Decline info</h3>
+        <p class="description">
+          <%= loan.decline_reason %>
+        </p>
+    </div>
   </div>
+
 </div>

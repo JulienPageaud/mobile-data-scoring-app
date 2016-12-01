@@ -84,7 +84,7 @@
     </div>
 
         <% @loans.order(updated_at: :desc).where(status: "Application Accepted").each do |application|%>
-       <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do %>
+       <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do %>
         <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">
             <%= application.created_at.strftime("%e %b %Y") %>
@@ -106,6 +106,13 @@
           </div>
         </div>
       <% end %>
+          <div class="modal fade" id="<%= "application-#{application.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <%= render "bank_users/show_partials/application_accepted", loan: application %>
+              </div>
+            </div>
+          </div>
     <% end %>
   </div>
 </div>
