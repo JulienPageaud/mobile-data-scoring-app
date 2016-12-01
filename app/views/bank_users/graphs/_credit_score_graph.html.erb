@@ -4,7 +4,7 @@
   $(document).ajaxComplete(function () {
     Highcharts.chart('credit-score-graph', {
         title: {
-            text: 'Credit score',
+            text: '<b>Credit score</b>',
             x: -20 //center
         },
         xAxis: {
@@ -35,15 +35,18 @@
         },
         legend: {
             layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0,
+            floating: true,
+            x: 60,
+            y: 32
         },
         series: [{
-            name: 'Customers with pending applications',
+            name: 'Pending applications',
             data: <%= current_bank_user.bank.credit_score_distribution_pending %>
         }, {
-            name: 'Customers with live loans',
+            name: 'Live loans',
             data: <%= current_bank_user.bank.credit_score_distribution_live %>
         }]
     });
