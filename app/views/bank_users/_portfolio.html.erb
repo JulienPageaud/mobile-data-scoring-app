@@ -1,63 +1,66 @@
-
-  <div class="portfolio-data flexibotify text-center">
-      <div id="net-balance">
-        <h3>Net Balance Sheet</h3>
-        <p><%= humanized_money_with_symbol(current_bank_user.bank.net_balance_sheet) %></p>
-      </div>
-      <div id="pending-feedback">
-        <h3>Number of pending applications</h3>
-        <%= current_bank_user.bank.pending_response %>
-      </div>
-      <div id="pending-repayment">
-        <h3>Number of loans pending repayment</h3>
-        <%= current_bank_user.bank.pending_repayment %>
-      </div>
-      <div id="average-score-total">
-        <h3>Average credit score of customers with outstanding loans</h3>
-        <%= current_bank_user.bank.average_score_of_active_customers.round(2) %>
-      </div>
-      <div id="average-score-pending">
-        <h3>Average credit score of users with pending applications</h3>
-        <%= current_bank_user.bank.average_score_of_pending_customers.round(2) %>
-      </div>
-      <div id="number-current-customers">
-        <h3>Total number of customers with outstanding loans</h3>
-        <%= current_bank_user.bank.customers_count %>
-      </div>
-      <div id="retention-rate">
-        <h3>Customer retention rate</h3>
-        75%
-      </div>
-      <div id="total-users-historical">
-        <h3>Total number of customers</h3>
-        <%= current_bank_user.bank.total_users_count %>
-      </div>
+<div class="dashboard-header">
+  <div class="item">
+    <div>
+      <p><%= humanized_money_with_symbol(current_bank_user.bank.net_balance_sheet) %></p>
+      <h3>Net Balance Sheet</h3>
+    </div>
+    <div>
+      <p><%= current_bank_user.bank.pending_response %></p>
+      <h3>Number of pending applications</h3>
+    </div>
+    <div>
+      <p><%= current_bank_user.bank.pending_repayment %></p>
+      <h3>Number of loans pending repayment</h3>
+    </div>
   </div>
 
-<div class="current-portfolio">
+  <div class="item">
+    <div>
+      <p><%= current_bank_user.bank.average_score_of_active_customers.round(2) %></p>
+      <h3>Average credit score of customers with outstanding loans</h3>
+    </div>
+    <div>
+      <p><%= current_bank_user.bank.average_score_of_pending_customers.round(2) %></p>
+      <h3>Average credit score of users with pending applications</h3>
+    </div>
+  </div>
+
+  <div class="item">
+    <div>
+      <p><%= current_bank_user.bank.customers_count %></p>
+      <h3>Total number of customers with outstanding loans</h3>
+    </div>
+    <div>
+      <p>75%</p>
+      <h3>Customer retention rate</h3>
+    </div>
+    <div>
+      <p><%= current_bank_user.bank.total_users_count %></p>
+      <h3>Total number of customers</h3>
+    </div>
+  </div>
+</div>
+
+
+<div class="dashboard-row">
   <div class="data-graph" id="loan-repayments">
   <%= render 'bank_users/graphs/credit_score_graph' %>
   </div>
-
-  <div class="data-graph" id="scoring-distribution">
-
-  </div>
-
   <div class="data-graph" id="approval-rate">
     <%= render 'bank_users/graphs/approval_rate' %>
   </div>
 </div>
 
-<div class="activity-stats">
+<div class="dashboard-row">
   <div class="data-graph">
     <%= render 'bank_users/graphs/telco_pie' %>
   </div>
-
   <div class="data-graph">
     <%= render 'bank_users/graphs/age_pie' %>
   </div>
-
-  <div class="data-graph" id="user-geolocation">
-    <%= render 'bank_users/graphs/google_map' %>
-  </div>
 </div>
+
+<div class="data-graph" id="user-geolocation">
+  <%= render 'bank_users/graphs/google_map' %>
+</div>
+
