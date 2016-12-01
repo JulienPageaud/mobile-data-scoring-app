@@ -36,20 +36,17 @@
           series: [{
               name: 'Percentage Share',
               data: [
-                  { name: 'Age 18 - 22', y: <%= current_bank_user.bank.eigthteen_twenty %> },
+                  { name: 'Age 18 - 22', y: 8.3 },
                   {
                       name: '23 - 30 years',
-                      y: <%= current_bank_user.bank.twenty_thirty %>
-                  },
-                  { name: '31 - 40 years', y: <%= current_bank_user.bank.thirty_fourty %> },
-                  { name: '41 - 50 years', y: <%= current_bank_user.bank.fourty_fifty %> },
-                  { name: '51 - 60 years', y: <%= current_bank_user.bank.fifty_sixty %> },
-                  {
-                      name: '61+ years',
-                      y: <%= current_bank_user.bank.sixty_plus %>,
+                      y: 25.4,
                       sliced: true,
                       selected: true
-                  }
+                  },
+                  { name: '31 - 40 years', y: 32.4 },
+                  { name: '41 - 50 years', y: 28.6 },
+                  { name: '51 - 60 years', y: 5.6 },
+                  { name: '61+ years', y: 2.6 }
               ]
           }]
       });
