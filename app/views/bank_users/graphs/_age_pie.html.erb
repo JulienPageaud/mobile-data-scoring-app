@@ -1,29 +1,9 @@
+<div id="age-pie" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 <script>
   $(function () {
-
-      // Radialize the colors
-      Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-          return {
-              radialGradient: {
-                  cx: 0.5,
-                  cy: 0.3,
-                  r: 0.7
-              },
-              stops: [
-                  [0, color],
-                  [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-              ]
-          };
-      });
-
-      // Build the chart
-      Highcharts.chart('container', {
+      Highcharts.chart('age-pie', {
           chart: {
               plotBackgroundColor: null,
               plotBorderWidth: null,
@@ -31,10 +11,10 @@
               type: 'pie'
           },
           title: {
-              text: 'Telco Market Share'
+              text: 'Loan Applications by Age'
           },
           subtitle: {
-              text: 'as of 01/12/2016'
+              text: 'to date'
           },
           tooltip: {
               pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -54,17 +34,19 @@
               }
           },
           series: [{
-              name: 'Market Share',
+              name: 'Percentage Share',
               data: [
+                  { name: 'Age 18 - 22', y: 56.33 },
                   {
-                      name: 'Cell C',
-                      y: 23.00,
+                      name: '23 - 30 years',
+                      y: 24.03,
                       sliced: true,
                       selected: true
                   },
-                  { name: 'Vodacom', y: 37.70 },
-                  { name: 'MTN', y: 35.90 },
-                  { name: 'Telkom Mobile', y: 3.40 }
+                  { name: '31 - 40 years', y: 10.38 },
+                  { name: '41 - 50 years', y: 4.77 },
+                  { name: '51 - 60 years', y: 0.91 },
+                  { name: '61+ years', y: 0.2 }
               ]
           }]
       });
