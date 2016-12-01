@@ -59,42 +59,33 @@ class Bank < ApplicationRecord
     total_score / customers_count
   end
 
-<<<<<<< HEAD
-  def sixty_plus_share
-    users.count / users.where('date_of_birth LIKE ?', '%1936%', '%1937%', '%1938%', '%1939%', '%1940%',
-      '%1941%', '%1942%', '%1943%', '%1944%', '%1945%', '%1946%', '%1947%', '%1948%',
-      '%1949%', '%1950%', '%1951%', '%1952%', '%1953%', '%1954%', '%1955%', '%1956%').count * 100
+  # Pie Chart Percentage Methods
+  def sixty_plus
+    User.where(date_of_birth: (Time.now - 100.year)..(Time.now - 61.year)).count.to_f / User.count.to_f  * 100
   end
 
-  def fifty_sixty_share
-    users.count / .join(:users).users.where('user.date_of_birth LIKE ?', '%1957%', '%1958%', '%1959%', '%1960%',
-      '%1961%', '%1962%', '%1963%', '%1964%', '%1965%', '%1966%').count * 100
+  def fifty_sixty
+    User.where(date_of_birth: (Time.now - 60.year)..(Time.now - 51.year)).count.to_f / User.count.to_f  * 100
   end
 
-  def fourty_fifty_share
-    users.count / users.where('date_of_birth LIKE ?', '%1967%', '%1968%', '%1969%', '%1970%',
-      '%1971%', '%1972%', '%1973%', '%1974%', '%1975%', '%1976%').count * 100
+  def fourty_fifty
+    User.where(date_of_birth: (Time.now - 50.year)..(Time.now - 41.year)).count.to_f / User.count.to_f  * 100
   end
 
-  def thirty_fourty_share
-    users.count / users.where('date_of_birth LIKE ?', '%1977%', '%1978%', '%1979%', '%1980%',
-      '%1981%', '%1982%', '%1983%', '%1984%', '%1985%', '%1986%').count * 100
+  def thirty_fourty
+    User.where(date_of_birth: (Time.now - 40.year)..(Time.now - 31.year)).count.to_f / User.count.to_f  * 100
   end
 
-  def twenty_thirty_share
-    users.count / users.where('date_of_birth LIKE ?', '%1987%', '%1988%', '%1989%', '%1990%',
-      '%1991%', '%1992%', '%1993%').count * 100
+  def twenty_thirty
+    User.where(date_of_birth: (Time.now - 30.year)..(Time.now - 23.year)).count.to_f / User.count.to_f  * 100
   end
 
-  def eigthteen_twenty_share
-    users.count / users.where('date_of_birth LIKE ?', '%1994%', '%1995%', '%1996%', '%1997%',
-      '%1998%').count * 100
+  def eigthteen_twenty
+    User.where(date_of_birth: (Time.now - 22.year)..(Time.now - 18.year)).count.to_f / User.count.to_f  * 100
   end
 
-  #Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
-=======
   # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
->>>>>>> master
+
   def credit_score_distribution_pending
     seventy = 0
     seventy_five = 0
