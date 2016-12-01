@@ -75,50 +75,50 @@
                 <% case loan.status %>
                   <% when "Application Pending" %>
                     <div class="flexcell third-cell">
-                      <%= loan.final_date %>
+                      <%= loan.final_date.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
-                      <%= loan.agreed_amount_cents %>
+                      <%= humanized_money_with_symbol(loan.requested_amount) %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= "Pending" %>
                     </div>
                   <% when "Application Accepted" %>
                     <div class="flexcell third-cell">
-                      <%= loan.final_date %>
+                      <%= loan.final_date.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
-                      <%= loan.agreed_amount_cents %>
+                      <%= humanized_money_with_symbol(loan.proposed_amount) %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= "Accepted" %>
                     </div>
                   <% when "Loan Outstanding" %>
                     <div class="flexcell third-cell">
-                      <%= loan.final_date %>
+                      <%= loan.final_date.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
-                      <%= loan.agreed_amount_cents %>
+                      <%= humanized_money_with_symbol(loan.agreed_amount) %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= "Ongoing" %>
                     </div>
                   <% when "Application Declined" %>
                     <div class="flexcell third-cell">
-                      <%= loan.application_date %>
+                      <%= loan.updated_at.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
-                      <%= loan.requested_amount_cents %>
+                      <%= humanized_money_with_symbol(loan.requested_amount) %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= "Declined" %>
                     </div>
                   <% when "Loan Repaid" %>
                     <div class="flexcell third-cell">
-                      <%= loan.final_date %>
+                      <%= loan.final_date.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
-                      <%= loan.agreed_amount_cents %>
+                      <%= humanized_money_with_symbol(loan.agreed_amount) %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= "Repaid" %>
