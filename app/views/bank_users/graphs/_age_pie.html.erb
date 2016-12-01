@@ -1,0 +1,54 @@
+<div id="age-pie" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+<script>
+  $(function () {
+      Highcharts.chart('age-pie', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+              text: 'Loan Applications by Age'
+          },
+          subtitle: {
+              text: 'to date'
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                      style: {
+                          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                      },
+                      connectorColor: 'silver'
+                  }
+              }
+          },
+          series: [{
+              name: 'Percentage Share',
+              data: [
+                  { name: 'Age 18 - 22', y: 56.33 },
+                  {
+                      name: '23 - 30 years',
+                      y: 24.03,
+                      sliced: true,
+                      selected: true
+                  },
+                  { name: '31 - 40 years', y: 10.38 },
+                  { name: '41 - 50 years', y: 4.77 },
+                  { name: '51 - 60 years', y: 0.91 },
+                  { name: '61+ years', y: 0.2 }
+              ]
+          }]
+      });
+  });
+</script>

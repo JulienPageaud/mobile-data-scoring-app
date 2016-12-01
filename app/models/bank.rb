@@ -59,7 +59,7 @@ class Bank < ApplicationRecord
     total_score / customers_count
   end
 
-  #Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
+  # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
   def credit_score_distribution_pending
     seventy = 0
     seventy_five = 0
