@@ -94,7 +94,7 @@
                 <%= @loan.description %>
               </div>
                <div class="flexcell loans-cell" id="credit-score">
-                <%= @loan.user.credit_score %>
+                <%= render "bank_users/radial_score_individual", score: @loan.user.credit_score %>
               </div>
             </div>
           </div>

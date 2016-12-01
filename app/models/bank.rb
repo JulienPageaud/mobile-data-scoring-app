@@ -59,6 +59,7 @@ class Bank < ApplicationRecord
     total_score / customers_count
   end
 
+<<<<<<< HEAD
   def sixty_plus_share
     users.count / users.where('date_of_birth LIKE ?', '%1936%', '%1937%', '%1938%', '%1939%', '%1940%',
       '%1941%', '%1942%', '%1943%', '%1944%', '%1945%', '%1946%', '%1947%', '%1948%',
@@ -91,6 +92,9 @@ class Bank < ApplicationRecord
   end
 
   #Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
+=======
+  # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
+>>>>>>> master
   def credit_score_distribution_pending
     seventy = 0
     seventy_five = 0

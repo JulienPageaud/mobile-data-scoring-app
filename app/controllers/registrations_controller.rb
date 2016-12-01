@@ -4,9 +4,25 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     if resource.save
-      redirect_to after_sign_up_path_for(resource)
+      redirect_to edit_user_path(resource)
     else
       redirect_to root_path(sign_up: true)
+    end
+
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
     end
   end
 

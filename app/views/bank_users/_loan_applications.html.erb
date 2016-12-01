@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <% @loans.where(status: "Application Pending").each do |application|%>
+      <% @loans.order(created_at: :desc).where(status: "Application Pending").each do |application|%>
         <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
           <div class="flexrow loans text-left">
             <div class="flexcell loans-cell">
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-        <% @loans.where(status: "Application Accepted").each do |application|%>
+        <% @loans.order(updated_at: :desc).where(status: "Application Accepted").each do |application|%>
        <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do %>
         <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">
