@@ -97,6 +97,12 @@ class LoansController < ApplicationController
   def portfolio
     @loans = policy_scope(Loan)
     authorize Loan
+
+    @hash = Gmaps4rails.build_markers(Loan.all) do |loan, marker|
+      marker.lat loan.user.latitude
+      marker.lng loan.user.longitude
+    end
+
     respond_to do |format|
       format.js
     end
