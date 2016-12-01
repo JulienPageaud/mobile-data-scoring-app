@@ -1,3 +1,54 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  .item {
+    flex: 33% 0 0;
+    background: white;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    text-align: center;
+    div {
+      padding: 5px;
+    }
+    h3 {
+      font-size: 11px;
+      margin-top: 0px;
+      padding: 5px 0;
+      color: grey;
+      margin-bottom: 0;
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}
+
+.dashboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .data-graph {
+    flex: 49.75% 0 0;
+    margin-bottom: 0.5%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .dashboard-title {
   text-align: center;
   font-size: 20px;
@@ -22,8 +73,3 @@
     font-size: 14px;
   }
 }
-
-
-// .loans-data, .scoring-data, .client-data {
-//   justify-content: space-between;
-// }
