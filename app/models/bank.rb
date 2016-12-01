@@ -61,53 +61,29 @@ class Bank < ApplicationRecord
 
   # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
   def credit_score_distribution_pending
-    seventy = 0
-    seventy_five = 0
-    eighty = 0
-    eighty_five = 0
-    ninety = 0
-    ninety_five = 0
+    results = { 0.98 => 0, 0.96 => 0, 0.94 => 0, 0.92 => 0, 0.90 => 0, 0.88 => 0, 0.86 => 0, 0.84 => 0, 0.82 => 0, 0.8 => 0}
     pending_customers.each do |customer|
-      if customer.credit_score.to_f > 0.95
-        ninety_five += 1
-      elsif customer.credit_score.to_f > 0.90
-        ninety += 1
-      elsif customer.credit_score.to_f > 0.85
-        eighty_five += 1
-      elsif customer.credit_score.to_f > 0.80
-        eighty += 1
-      elsif customer.credit_score.to_f > 0.75
-        seventy_five += 1
-      elsif customer.credit_score.to_f > 0.70
-        seventy +=1
+      results.keys.each do |k|
+        if customer.credit_score.to_f > k
+          results[k] += 1
+          break
+        end
       end
     end
-    return [seventy, seventy_five, eighty, eighty_five, ninety, ninety_five]
+    return results.values.reverse
   end
 
   def credit_score_distribution_live
-    seventy = 0
-    seventy_five = 0
-    eighty = 0
-    eighty_five = 0
-    ninety = 0
-    ninety_five = 0
+    results = { 0.98 => 0, 0.96 => 0, 0.94 => 0, 0.92 => 0, 0.90 => 0, 0.88 => 0, 0.86 => 0, 0.84 => 0, 0.82 => 0, 0.8 => 0}
     live_customers.each do |customer|
-      if customer.credit_score.to_f > 0.95
-        ninety_five += 1
-      elsif customer.credit_score.to_f > 0.90
-        ninety += 1
-      elsif customer.credit_score.to_f > 0.85
-        eighty_five += 1
-      elsif customer.credit_score.to_f > 0.80
-        eighty += 1
-      elsif customer.credit_score.to_f > 0.75
-        seventy_five += 1
-      elsif customer.credit_score.to_f > 0.70
-        seventy +=1
+      results.keys.each do |k|
+        if customer.credit_score.to_f > k
+          results[k] += 1
+          break
+        end
       end
     end
-    return [seventy, seventy_five, eighty, eighty_five, ninety, ninety_five]
+    return results.values.reverse
   end
 
   def applications_accepted
