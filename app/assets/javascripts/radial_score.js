@@ -8,5 +8,12 @@ $(document).ajaxComplete(function(){
     }
     $(item).find('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
     $(item).find('.ppc-percents span').html(percent+'%');
-  })
+  });
+
+  $(".decline-trigger").click(function(e){
+    e.preventDefault();
+    var selector = $(this).attr("target");
+    $(selector).removeClass("hidden");
+  });
+
 });

@@ -1,130 +1,57 @@
-<div class="container">
-  <div class="header text-center">
-  <h1><%=@loan.status%> Overview</h1>
-  </div>
-
-    <div class="table-description">
-    <strong>Client Details</strong>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div class="text-center">
+    <div class="text-center loan-header">
+      <h2><%= (loan.user.credit_score.to_f * 100).to_i %>%</h2>
+      <p>Amount: <strong><%= humanized_money_with_symbol(loan.requested_amount) %></strong></p>
     </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                First Name
-              </div>
-              <div class="flexcell loans-header">
-                Last Name
-              </div>
-              <div class="flexcell loans-header">
-                Mobile Number
-              </div>
-              <div class="flexcell loans-header">
-                Address
-              </div>
-              <div class="flexcell loans-header">
-                City
-              </div>
-              <div class="flexcell loans-header">
-                Postcode
-              </div>
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-                <%= @loan.user.first_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.last_name %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.mobile_number %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.address %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.user.city %>
-              </div>
-               <div class="flexcell loans-cell">
-                <%= @loan.user.postcode %>
-              </div>
-            </div>
-          </div>
-        </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Application Details</strong>
-    </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                Date of the Application
-              </div>
-              <div class="flexcell loans-header">
-                Amount requested
-              </div>
-              <div class="flexcell loans-header">
-                Category
-              </div>
-              <div class="flexcell loans-header">
-                Purpose
-              </div>
-              <div class="flexcell loans-header">
-                Description
-              </div>
-              <div class="flexcell loans-header" id="credit-score">
-                Credit Score
-              </div>
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-               <%= @loan.created_at.strftime("%e %b %Y") %>
-              </div>
-              <div class="flexcell loans-cell">
-               <%= humanized_money_with_symbol(@loan.requested_amount) %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.category %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.purpose %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= @loan.description %>
-              </div>
-               <div class="flexcell loans-cell" id="credit-score">
-                <%= render "bank_users/radial_score_individual", score: @loan.user.credit_score %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-  <div class="links">
-      <%= simple_form_for [current_bank_user, @loan] do |f| %>
-       <%= f.input :proposed_amount, input_html: {value: @loan.requested_amount} %>
-       <%#Ò= f.input :duration, placeholder: "12 months" %>
-       <%= f.hidden_field :status, value: "Application Accepted" %>
-        <div class="form-actions">
-        <%= f.button :submit, "Accept", class: "btn btn-royal-blue" %>
-
-        <%= link_to 'Decline', "#" , class: "btn btn-red", 'data-toggle' => "modal", 'data-target' => "#decline-modal"%>
-        <%= link_to 'Go back', bank_user_loans_path(anchor: "applications") %>
-        </div>
-      <% end %>
   </div>
 </div>
-<!-- MODAL FOR DECLINE FORM -->
-<div class="modal fade" tabindex="-1" role="dialog" id="decline-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Declined Application Form</h4>
+<div class="modal-body modal-loan">
+
+  <div class="loan-customer">
+    <div class="info">
+      <h3><%= loan.user.first_name %> <%= loan.user.last_name %></h3>
+      <p><%= loan.user.city %></p>
+    </div>
+
+    <div class="tel">
+      <i class="fa fa-mobile"></i> <%= loan.user.mobile_number %>
+    </div>
+  </div>
+
+  <div class="loan-details">
+    <div class="title">
+      <h3>Loan details</h3>
+      <span class="purpose"><%= loan.purpose %></span>, <span class="category"><%= loan.category %></span>, <span class="date"><%= loan.created_at.strftime("%e %b %Y") %></span>
+    </div>
+    <p class="description">
+      <%= loan.description %>
+    </p>
+  </div>
+
+  <div class="loan-form">
+    <%= simple_form_for [current_bank_user, loan] do |f| %>
+      <h3>How much do you grant?</h3>
+      <%= f.input :proposed_amount, label: false, input_html: {value: loan.requested_amount} %>
+      <%= f.hidden_field :status, value: "Application Accepted" %>
+      <div class="form-actions">
+      <%= f.button :submit, "Accept", class: "btn btn-royal-blue" %>
+      <%= link_to 'Decline', "#" , class: "btn btn-red decline-trigger", 'target' => "#decline-form-#{loan.id}"%>
       </div>
-      <div class="modal-body">
-        <%= render "bank_users/form_decline" %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    <% end %>
+
+    <div class="hidden" id="decline-form-<%=loan.id%>">
+      <%= simple_form_for [current_bank_user, loan] do |f| %>
+        <%= f.error_notification %>
+        <%= f.hidden_field :final_date, value: DateTime.now %>
+        <%= f.input :decline_reason %>
+        <%= f.hidden_field :status, value: "Application Declined" %>
+        <%= f.submit "Decline Application", class: "btn btn-red" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
