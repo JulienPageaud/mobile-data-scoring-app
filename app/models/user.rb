@@ -97,29 +97,4 @@ class User < ApplicationRecord
     Notification.send_sms(mobile_number, body.squish)
   end
 
-  # Pie Chart Percentage Methods
-  def self.sixty_plus
-    where(date_of_birth: (Time.now - 100.year)..(Time.now - 61.year)).count.to_f / User.count.to_f  * 100
-  end
-
-  def fifty_sixty
-    User.where(date_of_birth: (Time.now - 60.year)..(Time.now - 51.year)).count.to_f / User.count.to_f  * 100
-  end
-
-  def fourty_fifty
-    User.where(date_of_birth: (Time.now - 50.year)..(Time.now - 41.year)).count.to_f / User.count.to_f  * 100
-  end
-
-  def thirty_fourty
-    User.where(date_of_birth: (Time.now - 40.year)..(Time.now - 31.year)).count.to_f / User.count.to_f  * 100
-  end
-
-  def twenty_thirty
-    User.where(date_of_birth: (Time.now - 30.year)..(Time.now - 23.year)).count.to_f / User.count.to_f  * 100
-  end
-
-  def eigthteen_twenty
-    User.where(date_of_birth: (Time.now - 22.year)..(Time.now - 18.year)).count.to_f / User.count.to_f  * 100
-  end
-
 end
