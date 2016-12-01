@@ -33,4 +33,10 @@
   text-align: center;
   font-size: 16px
 }
-
+.user-links {
+  opacity: 1;
+}
+.user-links:hover {
+  text-decoration: none;
+  text-shadow: 1px 1px rgb(200,200,200);
+}
