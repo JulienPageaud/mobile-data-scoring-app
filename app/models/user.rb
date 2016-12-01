@@ -99,4 +99,5 @@ class User < ApplicationRecord
     end
     Notification.send_sms(mobile_number, body.squish)
   end
+
 end
