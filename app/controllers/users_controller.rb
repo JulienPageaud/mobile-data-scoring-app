@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if @user.update!(user_params)
+    if @user.update(user_params)
       if @user.photo_id
         @user.update(details_completed: true)
       else
