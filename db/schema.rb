@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20161201171757) do
     t.string   "title"
     t.float    "latitude"
     t.float    "longitude"
-    t.index ["mobile_number"], name: "index_users_on_mobile_number", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

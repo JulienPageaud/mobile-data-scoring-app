@@ -16,11 +16,11 @@
 
   <div class="item">
     <div>
-      <p><%= current_bank_user.bank.average_score_of_active_customers.round(2) %></p>
+      <p><%= current_bank_user.bank.average_score_of_active_customers.round(2)*100 %>%</p>
       <h3>Average credit score of customers with outstanding loans</h3>
     </div>
     <div>
-      <p><%= current_bank_user.bank.average_score_of_pending_customers.round(2) %></p>
+      <p><%= current_bank_user.bank.average_score_of_pending_customers.round(2)*100 %>%</p>
       <h3>Average credit score of users with pending applications</h3>
     </div>
   </div>
