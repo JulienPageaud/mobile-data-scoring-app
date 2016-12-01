@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :loans, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  geocoded_by :city
+  after_validation :geocode, if: :city_changed?
+
   phony_normalize :mobile_number, default_country_code: 'ZA'
   validates :mobile_number, presence: true, uniqueness: true
   validates :title, presence: true, on: :update
@@ -96,4 +99,5 @@ class User < ApplicationRecord
     end
     Notification.send_sms(mobile_number, body.squish)
   end
+
 end
