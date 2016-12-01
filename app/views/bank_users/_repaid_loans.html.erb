@@ -23,7 +23,7 @@
       </div>
 
         <% Loan.order(final_date: :desc).where(status: "Loan Repaid").each do |loan|%>
-        <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link" do%>
+        <%= link_to bank_user_loan_path(current_bank_user, loan), class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{loan.id}" do %>
         <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">
             <%= loan.user.first_name + ' ' + loan.user.last_name %>
@@ -45,6 +45,13 @@
           </div>
         </div>
       <% end %>
+        <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <%= render "bank_users/show_partials/loan_repaid", loan: loan %>
+            </div>
+          </div>
+        </div>
     <% end %>
   </div>
 </div>

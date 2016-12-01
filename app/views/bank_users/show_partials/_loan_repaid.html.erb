@@ -1,96 +1,35 @@
-<div class="container">
-  <div class="header text-center">
-    <h1><%=@loan.status%> Overview</h1>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div class="text-center">
+    <div class="text-center loan-header">
+      <h2><%= (loan.user.credit_score.to_f * 100).to_i %>%</h2>
+      <p>Amount: <strong><%= humanized_money_with_symbol(loan.agreed_amount) %></strong></p>
+    </div>
   </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Client Details</strong>
+</div>
+<div class="modal-body modal-loan">
+
+  <div class="loan-customer">
+    <div class="info">
+      <h3><%= loan.user.first_name %> <%= loan.user.last_name %></h3>
+      <p><%= loan.user.city %></p>
     </div>
-        <div class="loan-flexbox">
-            <div class="flexrow loans-header-row text-left">
-                <div class="flexcell loans-header">
-                  First Name
-                </div>
-                <div class="flexcell loans-header">
-                  Last Name
-                </div>
-                <div class="flexcell loans-header">
-                  Mobile Number
-                </div>
-                <div class="flexcell loans-header">
-                  Address
-                </div>
-                <div class="flexcell loans-header">
-                  City
-                </div>
-                <div class="flexcell loans-header">
-                  Postcode
-                </div>
-            </div>
-          <div class="loan-link">
-            <div class="flexrow loans text-left">
-                <div class="flexcell loans-cell">
-                  <%= @loan.user.first_name %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= @loan.user.last_name %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= @loan.user.mobile_number %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= @loan.user.address %>
-                </div>
-                <div class="flexcell loans-cell">
-                  <%= @loan.user.city %>
-                </div>
-                 <div class="flexcell loans-cell">
-                  <%= @loan.user.postcode %>
-                </div>
-              </div>
-            </div>
-          </div>
-<br>
-<br>
-    <div class="table-description">
-    <strong>Loan Details</strong>
+
+    <div class="tel">
+      <i class="fa fa-mobile"></i> <%= loan.user.mobile_number %>
     </div>
-        <div class="loan-flexbox">
-          <div class="flexrow loans-header-row text-left">
-              <div class="flexcell loans-header">
-                Start date
-              </div>
-              <div class="flexcell loans-header">
-                Initial capital
-              </div>
-              <div class="flexcell loans-header">
-                Total Repaid
-              </div>
-              <div class="flexcell loans-header" id="credit-score">
-                Credit Score
-              </div>
-          </div>
-        <div class="loan-link">
-          <div class="flexrow loans text-left">
-              <div class="flexcell loans-cell">
-                <%=@loan.start_date.strftime("%e %b %Y") %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= humanized_money_with_symbol(@loan.agreed_amount) %>
-              </div>
-              <div class="flexcell loans-cell">
-                <%= humanized_money_with_symbol(@loan.total_capital_repaid) %>
-              </div>
-              <div class="flexcell loans-cell" id="credit-score">
-                <%= render "bank_users/radial_score_individual", score: @loan.user.credit_score %>
-              </div>
-          </div>
-        </div>
-      </div>
-<br>
-<br>
-  <div class="links">
-    <%= link_to 'Go back', bank_user_loans_path(anchor: "repaid") %>
+  </div>
+
+  <div class="loan-details">
+    <div class="title">
+      <h3>Loan details</h3>
+      <span class="purpose"><%= loan.purpose %></span>, <span class="category"><%= loan.category %></span>, <span class="date"><%= loan.created_at.strftime("%e %b %Y") %></span>
+    </div>
+    <div class="repayment">
+      <p>Repayment Date:
+      <strong><%= loan.final_date.strftime("%e %b %Y") %></strong></p>
+      <p>Total Repaid:
+      <strong><%= humanized_money_with_symbol(loan.total_capital_repaid) %></strong></p>
+    </div>
   </div>
 </div>

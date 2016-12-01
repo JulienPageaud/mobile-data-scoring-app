@@ -32,7 +32,7 @@
 
   <div class="loan-form">
     <%= simple_form_for [current_bank_user, loan] do |f| %>
-      <h3>How much do you grant?</h3>
+      <h3>Confirm loan amount</h3>
       <%= f.input :proposed_amount, label: false, input_html: {value: loan.requested_amount} %>
       <%= f.hidden_field :status, value: "Application Accepted" %>
       <div class="form-actions">

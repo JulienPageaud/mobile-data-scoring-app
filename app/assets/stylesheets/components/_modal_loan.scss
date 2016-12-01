@@ -76,3 +76,34 @@
 .modal-loan {
   padding: 30px 40px !important;
 }
+
+.decline-details {
+  background: transparent;
+  padding: 10px 0;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 25px;
+  h3 {
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  .decline-reason {
+    margin: 10px 0;
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+}
+
+.payment-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  .item {
+    flex: 48% 0 0;
+  }
+}
+
+.repayment p {
+  margin: 0 auto;
+}
