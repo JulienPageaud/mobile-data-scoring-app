@@ -23,7 +23,8 @@
       </div>
 
       <% @loans.order(created_at: :desc).where(status: "Application Pending").each do |application|%>
-        <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link" do%>
+        <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do%>
+
           <div class="flexrow loans text-left">
             <div class="flexcell loans-cell">
               <%= application.created_at.strftime("%e %b %Y") %>
@@ -44,7 +45,17 @@
               <%= render "bank_users/radial_score", score: application.user.credit_score %>
             </div>
           </div>
+
+
+          <!-- Modal -->
         <% end %>
+          <div class="modal fade" id="<%= "application-#{application.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <%= render "bank_users/show_partials/application_pending", loan: application %>
+              </div>
+            </div>
+          </div>
       <% end %>
     </div>
 </div>
