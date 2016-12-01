@@ -11,7 +11,7 @@ BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
   bank: bank)
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
-cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'East London']
+cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein']
 
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
@@ -39,7 +39,7 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month),
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
-    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(20) + 80).fdiv(100).round(2))
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(12) + 88).fdiv(100).round(2))
 
   category = category_ary.sample
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
@@ -76,7 +76,7 @@ end
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
-    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 90).fdiv(100).round(2))
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(5) + 95).fdiv(100).round(2))
 
   category = category_ary.sample
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
@@ -95,7 +95,7 @@ end
 end
 
 # Missed Payment Loans
-5.times do
+2.times do
     mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
@@ -120,12 +120,12 @@ end
 end
 
 # Delayed Payment Loans
-4.times do
+5.times do
   mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
-    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(10) + 80).fdiv(100).round(2))
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(5) + 90).fdiv(100).round(2))
 
   category = category_ary.sample
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
@@ -150,7 +150,7 @@ end
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
-    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(5) + 92).fdiv(100).round(2))
+    date_of_birth: Faker::Date.between(18.years.ago, 80.years.ago), credit_score: (rand(5) + 94).fdiv(100).round(2))
 
   category = category_ary.sample
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample

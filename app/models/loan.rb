@@ -58,18 +58,18 @@ class Loan < ApplicationRecord
 
   # Finds loans which have no missed/delayed payments
   def self.good_loans
-    result = where(status: "Loan Outstanding").reject { |loan| Loan.missed_payment_loans.include?(loan) }
+    result = order(start_date: :desc).where(status: "Loan Outstanding").reject { |loan| Loan.missed_payment_loans.include?(loan) }
     result.reject { |loan| Loan.delayed_payment_loans.include?(loan)}
   end
 
   # Finds loans which have missed payments (due_date + 7 days)
   def self.missed_payment_loans
-    where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?', (DateTime.now.end_of_day - 7.day)).where(payments: { paid: false })
+    order(start_date: :desc).where(status: "Loan Outstanding").joins(:payments).where('payments.due_date < ?', (DateTime.now.end_of_day - 7.day)).where(payments: { paid: false })
   end
 
   # Finds loans which have delayed payments (less than 7 days since due date)
   def self.delayed_payment_loans
-    result = where(status: "Loan Outstanding").joins(:payments).where(payments: {due_date: DateTime.now.end_of_day - 7.day..DateTime.now.end_of_day}).where(payments: { paid: false })
+    result = order(start_date: :desc).where(status: "Loan Outstanding").joins(:payments).where(payments: {due_date: DateTime.now.end_of_day - 7.day..DateTime.now.end_of_day}).where(payments: { paid: false })
     result.select { |loan| loan unless missed_payment_loans.include?(loan) }
   end
 

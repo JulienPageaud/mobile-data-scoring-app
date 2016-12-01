@@ -9,7 +9,7 @@
   </div>
   <div class="facebook-container" style="padding: 10px;margin-top: 20px;">
     <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
-    <i class="fa fa-facebook"></i><div>Connect your account</div>
+    <i class="fa fa-facebook"></i><div>Complete the form using Facebook</div>
   <% end %>
   </div>
     <div class="white-box">
@@ -17,7 +17,7 @@
         <%= simple_form_for @user do |f| %>
           <%= f.input :email,
             input_html: { class: 'input-rounded'},
-            placeholder: "Email",
+            placeholder: "Email (not required)",
             label: false,
             error: "Please enter a valid email" %>
           <%= f.input :title,
@@ -71,9 +71,4 @@
         <% end %>
       </div>
     </div>
-
-
-<%= content_for(:after_js) do %>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=<%= ENV['GOOGLE_API_BROWSER_KEY']%>"></script>
-<% end %>
 
