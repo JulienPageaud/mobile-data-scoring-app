@@ -14,6 +14,13 @@ gem 'cloudinary', '1.1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "coffee-rails"
 
+# Google Map
+gem "geocoder"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 # Money gem for amounts
 gem 'money-rails'
@@ -23,6 +30,7 @@ gem 'pundit'
 
 #Facebook personal details parsing
 gem 'omniauth-facebook'
+
 # Faker for seeding
 gem 'faker'
 
