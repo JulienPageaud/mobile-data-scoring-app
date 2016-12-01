@@ -11,7 +11,7 @@ BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
   bank: bank)
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
-cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein', 'East London']
+cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein']
 
 status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding", "Application Declined", "Loan Repaid"]
 category_ary = ["Personal", "Business"]
