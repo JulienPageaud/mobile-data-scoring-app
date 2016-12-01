@@ -23,7 +23,7 @@
       </div>
 
       <% @loans.where(status: "Application Declined").each do |application|%>
-      <%= link_to bank_user_loan_path(current_bank_user, application), class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do %>
+      <%= link_to "", class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do %>
       <div class="flexrow loans text-left">
         <div class="flexcell loans-cell">
           <%= application.created_at.strftime("%e %b %Y") %>
