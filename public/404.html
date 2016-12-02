@@ -51,17 +51,32 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  div.four-wrapper {
+  background-color: white;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+  <div class="four-wrapper banner">
+    <!-- This file lives in public/404.html -->
+    <div class="four-content">
+      <div>
+        <img src="404.jpg">
+        <h1>Looks like you took a wrong turn!</h1>
+        <p>You may have mistyped the address or the page may have moved.</p>
+        <p>Head back to the previous page to carry on!</p>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>
