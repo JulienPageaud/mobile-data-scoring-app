@@ -14,7 +14,7 @@
     <div id="loan-application-form">
       <%= simple_form_for [current_user, @loan] do |f| %>
         <%= f.input :requested_amount,
-          label: "How much do you want to borrow?",
+          label: "Over 3 months, how much do you want to borrow? (with monthly repayments)",
           placeholder: "up to R15,000",
           error: "Please enter an amount between R0 and R15,000",
           input_html: { class: 'input-rounded' },
