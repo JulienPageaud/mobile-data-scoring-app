@@ -53,7 +53,9 @@
     <%= f.hidden_field :start_date, value: DateTime.now %>
     <%= f.hidden_field :final_date, value: (DateTime.now + current_user.loans.last.duration_months.month) %>
   <div class="container container-buttons">
-    <%= f.submit "Accept", data: { confirm: 'Are you sure?'}, class: 'btn btn-royal-blue' %>
+    <%= f.submit "Accept", data: { confirm: 'By confirming you agree to repay your loan on the scheduled repayment dates.
+
+Stride terms and conditions apply.'}, class: 'btn btn-royal-blue' %>
     <%= link_to "Decline", user_path(current_user), data: { confirm: 'Are you sure?'}, class: 'btn btn-grey' %>
   <% end %>
   </div>
