@@ -10,7 +10,7 @@
         <p><strong>Congratulations.</strong> You've<br> applied for a loan.</p>
         <%= link_to "View your loan status", user_status_path(@user), class: "btn btn-transparent btn-default"  %>
 
-      <% elsif @user.details_completed == false %>
+      <% elsif @user.details_completed == false || @user.details_completed.nil? %>
         <p>Your profile is<strong> nearly<br> complete</strong> for a loan application.</p>
         <%= link_to "Edit your details", edit_user_path(@user), class: "btn btn-transparent btn-default"  %>
 
