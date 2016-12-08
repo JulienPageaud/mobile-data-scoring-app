@@ -53,7 +53,6 @@ gem 'highcharts-rails'
 
 # Email stuff
 gem 'letter_opener', group: :development
-gem 'roadie-rails', '~> 1.0'
 
 # Background job gems
 gem 'sidekiq'

@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
   # with the following lookup:
   #
   #   en.user_mailer.welcome.subject
-  #
+
   def email_has_changed(user)
     @user = user
     mail to: @user.email
