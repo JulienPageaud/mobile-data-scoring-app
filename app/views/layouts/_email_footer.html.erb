@@ -1,0 +1,13 @@
+<div id='footer'>
+  <div class="container">
+    <div style="text-align: center;">
+      <%= image_tag('http://www.strideworld.com/colored_logo.png', class: 'logo') %>
+    </div>
+
+    <p><em>This email was sent to <%= @user.email %>.
+    <br>
+    If you believe that this email was sent to you by mistake please ignore and delete it or contact
+    contact@strideworld.com to report it.</em></p>
+    <p>&copy; StrideWorld 2016 <%= link_to "www.strideworld.com", root_url, class: 'footer-link' %></p>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<h2><%= @greeting + ' ' %> <%= @user.full_name %>,</h2>
+
+<p>Your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
+has been successfully sent. First National Bank will now review your application.<br>
+You will receive both an SMS and an e-mail once this review is complete.
+</p>
+<p>You can also see your application status by clicking <%= link_to "here", user_status_url(@user), target: '_blank' %></p>
+<p>
+If you did not request this loan please click here or send
+and e-mail to contact@strideworld.com
+</p>

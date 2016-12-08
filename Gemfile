@@ -51,6 +51,14 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'chartkick'
 gem 'highcharts-rails'
 
+# Email stuff
+gem 'letter_opener', group: :development
+
+# Background job gems
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra', '>= 2.0.0.beta2', require: false
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

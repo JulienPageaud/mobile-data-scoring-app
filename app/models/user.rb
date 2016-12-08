@@ -20,14 +20,17 @@ class User < ApplicationRecord
   validates :postcode, presence: true, on: :update
   validates :employment, presence: true, on: :update
   validates :date_of_birth, presence: true, on: :update
+  validates :email, presence: { message: 'Email can only be edited - not deleted' },
+            if: -> {email_was.present?},
+            on: :update
 
   def email_required?
     false
   end
 
-  def email_changed?
-    false
-  end
+  # def email_changed?
+  #   false
+  # end
 
   mount_uploader :photo_id, PhotoUploader
   # def self.find_for_facebook_oauth(auth)
@@ -48,6 +51,10 @@ class User < ApplicationRecord
 
   #   return user
   # end
+
+  def full_name
+    (first_name + ' ' + last_name).titleize
+  end
 
   def update_with_facebook(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -100,4 +107,7 @@ class User < ApplicationRecord
     Notification.send_sms(mobile_number, body.squish)
   end
 
+  def send_email_has_changed_email
+    UserMailer.email_has_changed(self).deliver_later
+  end
 end

@@ -75,7 +75,7 @@
                 <% case loan.status %>
                   <% when "Application Pending" %>
                     <div class="flexcell third-cell">
-                      <%= loan.final_date.strftime("%e %b %Y") %>
+                      <%= loan.updated_at.strftime("%e %b %Y") %>
                     </div>
                     <div class="flexcell third-cell">
                       <%= humanized_money_with_symbol(loan.requested_amount) %>

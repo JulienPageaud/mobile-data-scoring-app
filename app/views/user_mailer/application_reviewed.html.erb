@@ -1,0 +1,20 @@
+<h2><%= @greeting + ' ' %> <%= @user.full_name %>,</h2>
+
+<% if @loan.status == "Application Accepted" %>
+  <p>Congratulations! Your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
+  has been accepted.</p>
+  <p>Please click <%= link_to "here", user_status_url(@user), target: '_blank' %> to view your loan details and confirm you would like to accept this money.</p>
+<% else %>
+  <p>Unfortunately your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
+  has been declined for the following reason:</p>
+  <p><em><%= @loan.decline_reason %></em></p>
+  <p>We apologise for this inconvenience as we understand how frustrating it is to have an application accepted.</p>
+  <p>However, Stride provide a few ways for you to improve your chances of being granted a loan in future so don't despair!</p>
+  <ol>
+    <li>You can keep using our app on your mobile phone which will allows us to gather more data</li>
+    <li>You can complete psychometric tests online</li>
+    <li>Try maintaining a good balance in your e-Wallet at all times as this can affect your score</li>
+  </ol>
+  <p>For more information please visit <a href="www.strideworld.com">www.strideworld.com</a> or send us an e-mail at contact@strideworld.com</p>
+<% end %>
+</p>
