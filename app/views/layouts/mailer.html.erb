@@ -4,8 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
       /* Email styles need to be inline */
+      body {
+        background-color: #5BC0BE;
+        padding: 0 60px;
+      }
       #footer {
         background-color: rgb(210,210,210);
+        margin: 0 auto;
       }
       .logo {
         margin: 10px 0;
@@ -18,22 +23,25 @@
         text-decoration: none;
       }
       @media (max-width: 1200px) {
-        .container, .wrapper {
+        .container, .wrapper, #footer {
           width: 900px !important;
         }
       }
       @media (max-width: 992px) {
-        .container, .wrapper {
+        .container, .wrapper, #footer {
           width: 700px !important;
         }
       }
       @media (max-width: 768px) {
-        .container, .wrapper {
+        .container, .wrapper, #footer {
           width: 600px !important;
         }
         .logo {
           max-width: 200px;
           border-radius: 5px;
+        }
+        body {
+          padding: 0 30px !important;
         }
       }
       .container {
@@ -51,7 +59,7 @@
     </style>
   </head>
 
-  <body style="background-color: #5BC0BE; padding: 0 15px;">
+  <body style="">
 
     <!-- main email content -->
     <div class="wrapper">
@@ -61,11 +69,7 @@
     </div>
 
     <!-- footer -->
-    <div style="margin: 0px auto; text-align: center;">
-      <div class="container">
-        <%= render 'layouts/email_footer' %>
-      </div>
-    </div>
+    <%= render 'layouts/email_footer' %>
 
   </body>
 </html>
