@@ -54,6 +54,11 @@ gem 'highcharts-rails'
 # Email viewer
 gem 'letter_opener', group: :development
 
+# Background job gems
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra', '>= 2.0.0.beta2', require: false
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
