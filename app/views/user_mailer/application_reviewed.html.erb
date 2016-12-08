@@ -1,8 +1,5 @@
 <h2><%= @greeting + ' ' %> <%= @user.full_name %>,</h2>
 
-<p>Your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
-has been reviewed.</p>
-
 <% if @loan.status == "Application Accepted" %>
   <p>Congratulations! Your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
   has been accepted.</p>
@@ -13,7 +10,6 @@ has been reviewed.</p>
   <p><em><%= @loan.decline_reason %></em></p>
   <p>We apologise for this inconvenience as we understand how frustrating it is to have an application accepted.</p>
   <p>However, Stride provide a few ways for you to improve your chances of being granted a loan in future so don't despair!</p>
-  <br>
   <ol>
     <li>You can keep using our app on your mobile phone which will allows us to gather more data</li>
     <li>You can complete psychometric tests online</li>
