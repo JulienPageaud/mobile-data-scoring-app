@@ -16,6 +16,12 @@ class UserMailer < ApplicationMailer
     mail to: @user.email
   end
 
+  def application_reviewed(arguments)
+    @user = arguments[:user]
+    @loan = arguments[:loan]
+    mail to: @user.email
+  end
+
   private
 
   def set_greeting

@@ -49,9 +49,9 @@ class LoansController < ApplicationController
       else
         render :show
       end
-      Notification.create!(user: @loan.user) #notification for the user
-    elsif params[:loan][:agreed_amount].present? || params[:loan][:status] == "Loan Outstanding"
-      # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
+      Notification.create!(user: @loan.user) #notifications for the user
+    # elsif params[:loan][:agreed_amount].present? || params[:loan][:status] == "Loan Outstanding"
+    #   # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
   end
 
