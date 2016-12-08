@@ -25,9 +25,9 @@ class User < ApplicationRecord
     false
   end
 
-  def email_changed?
-    false
-  end
+  # def email_changed?
+  #   false
+  # end
 
   mount_uploader :photo_id, PhotoUploader
   # def self.find_for_facebook_oauth(auth)
@@ -48,6 +48,10 @@ class User < ApplicationRecord
 
   #   return user
   # end
+
+  def full_name
+    (first_name + ' ' + last_name).titleize
+  end
 
   def update_with_facebook(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -98,6 +102,10 @@ class User < ApplicationRecord
               We will remind you one week before your payment date."
     end
     Notification.send_sms(mobile_number, body.squish)
+  end
+
+  def send_email_has_changed_email
+    UserMailer.email_has_changed(self).deliver_now
   end
 
 end

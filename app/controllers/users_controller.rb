@@ -16,7 +16,13 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
+
+    # Checks if user email has been changed
+    @user.email = params[:user][:email]
+    send_email = @user.email_changed?
+
     if @user.update(user_params)
+      @user.send_email_has_changed_email if send_email
       if @user.photo_id
         @user.update(details_completed: true)
       else

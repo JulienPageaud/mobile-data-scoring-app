@@ -5,9 +5,15 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def email_has_changed(user)
+    if DateTime.now < DateTime.now.noon
+      @greeting = "Good morning"
+    elsif DateTime.now.hour < 18
+      @greeting = "Good afternoon"
+    else
+      @greeting = "Good evening"
+    end
+    @user = user
+    mail to: @user.email
   end
 end
