@@ -20,6 +20,9 @@ class User < ApplicationRecord
   validates :postcode, presence: true, on: :update
   validates :employment, presence: true, on: :update
   validates :date_of_birth, presence: true, on: :update
+  validates :email, presence: { message: 'Email can only be edited - not deleted' },
+            if: -> {email_was.present?},
+            on: :update
 
   def email_required?
     false
