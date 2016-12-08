@@ -131,7 +131,7 @@ class Loan < ApplicationRecord
 
     #Send e-mail confirmation
     if user.email.present?
-      UserMailer.application_sent_confirmation(user: user, loan: self).deliver_now
+      UserMailer.application_sent_confirmation(user: user, loan: self).deliver_later
     end
   end
 end

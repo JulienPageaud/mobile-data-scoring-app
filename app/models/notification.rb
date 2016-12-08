@@ -38,7 +38,7 @@ class Notification < ApplicationRecord
 
   def trigger_email
     @loan = set_loan
-    UserMailer.application_reviewed(user: user, loan: @loan).deliver_now
+    UserMailer.application_reviewed(user: user, loan: @loan).deliver_later
   end
 
   private

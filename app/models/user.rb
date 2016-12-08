@@ -108,6 +108,6 @@ class User < ApplicationRecord
   end
 
   def send_email_has_changed_email
-    UserMailer.email_has_changed(self).deliver_now
+    UserMailer.email_has_changed(self).deliver_later
   end
 end
