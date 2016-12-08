@@ -51,8 +51,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'chartkick'
 gem 'highcharts-rails'
 
-# Email viewer
+# Email stuff
 gem 'letter_opener', group: :development
+gem 'roadie-rails', '~> 1.0'
 
 # Background job gems
 gem 'sidekiq'

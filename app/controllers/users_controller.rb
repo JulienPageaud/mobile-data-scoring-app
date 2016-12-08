@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       else
         @user.update(details_completed: false)
       end
-      redirect_to user_path(@user)
+      redirect_to user_profile_path(@user)
     else
       render :edit
     end

@@ -4,10 +4,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
       /* Email styles need to be inline */
+      #footer { background-color: ; }
+      .logo { text-align: center; height: 150px; max-width: 100%; }
+      .footer-link { color: white;, text-decoration: none; }
+      .wrapper-grey { background-color: rgb(240,240,240); }
+      @media (max-width: 768px) { .container { width: auto !important; } }
+      @media (max-width: 992px) { .container { width: 970px !important; } }
+      @media (max-width: 1200px) { .container { width: 1170px !important; } }
+      .container { margin: 10px auto; padding: 10px 50px; text-align: center; background: white;}
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper-grey">
+      <div class="container">
+      <%= yield %>
+      </div>
+    </div>
+    <%= render 'layouts/email_footer' %>
+
   </body>
 </html>
