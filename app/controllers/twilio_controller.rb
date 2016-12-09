@@ -4,11 +4,15 @@ class TwilioController < ApplicationController
   skip_before_action :authenticate_bank_user!
 
   def sign_up
-    if params["Body"] == "LOAN"
+    if params["Body"].upcase == "LOAN"
       generated_password = Devise.friendly_token.first(6)
-      user = User.create(mobile_number: params["From"],
+      user = User.new(mobile_number: params["From"],
                       password: generated_password)
-      user.sms_sign_up(generated_password)
+      if user.save
+        user.sms_sign_up(generated_password)
+      else
+        user.already_signed_up
+      end
     else
       user.send_failure_sms
     end
@@ -37,5 +41,9 @@ class TwilioController < ApplicationController
               start_date: DateTime.now,
               final_date: (DateTime.now + loan.duration_months.month)
     }
+  end
+
+  def sign_up_params
+    params.permit("From", "Body")
   end
 end

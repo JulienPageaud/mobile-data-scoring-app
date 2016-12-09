@@ -75,6 +75,18 @@ class User < ApplicationRecord
     Notification.send_sms(mobile_number, body.squish)
   end
 
+  def already_signed_up
+    if details_completed
+      body = "You have already got an account with Stride. Please reply APPLY to
+             apply for a new loan"
+    else
+      body = "You have already got an account with Stride. We require some more details
+              from you before you can apply for a loan. Please reply DETAILS to complete
+              these by SMS or visit www.strideworld.com/profile"
+    end
+    Notification.send_sms(mobile_number, body.squish)
+  end
+
 
   def confirm_loan
     body = "Thank you for confirming your loan\
@@ -115,7 +127,7 @@ class User < ApplicationRecord
   end
 
   def send_failure_sms
-    body = "We're sorry, we didn't understand your message. If you would like toke
+    body = "We're sorry, we didn't understand your message. If you would like to
             create an account with StrideWorld then please send us the text 'LOAN'.
             You can also visit www.strideworld.com or contact us at contact@strideworld.com"
     Notification.send_sms(mobile_number, body.squish)
