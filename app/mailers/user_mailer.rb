@@ -1,9 +1,5 @@
 class UserMailer < ApplicationMailer
   before_action :set_greeting
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.welcome.subject
 
   def email_has_changed(user)
     @user = user
