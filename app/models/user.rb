@@ -114,6 +114,14 @@ class User < ApplicationRecord
     Notification.send_sms(mobile_number, body.squish)
   end
 
+  def send_failure_sms
+    body = "We're sorry, we didn't understand your message. If you would like toke
+            create an account with StrideWorld then please send us the text 'LOAN'.
+            You can also visit www.strideworld.com or contact us at contact@strideworld.com"
+    Notification.send_sms(mobile_number, body.squish)
+  end
+
+  # Email methods
   def send_email_has_changed_email
     UserMailer.email_has_changed(self).deliver_later
   end

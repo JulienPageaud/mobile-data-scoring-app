@@ -9,6 +9,9 @@ class TwilioController < ApplicationController
       user = User.create(mobile_number: params["From"],
                       password: generated_password)
       user.sms_sign_up(generated_password)
+    else
+      user.send_failure_sms
+    end
   end
 
   def confirm_loan
