@@ -3,6 +3,14 @@ class TwilioController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :authenticate_bank_user!
 
+  def sign_up
+    if params["Body"] == "LOAN"
+      generated_password = Devise.friendly_token.first(6)
+      user = User.create(mobile_number: params["From"],
+                      password: generated_password)
+      user.sms_sign_up(generated_password)
+  end
+
   def confirm_loan
     message_body = params["Body"]
     user = User.find_by_mobile_number(params["From"])

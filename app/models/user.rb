@@ -68,6 +68,13 @@ class User < ApplicationRecord
 
 
   # SMS MESSAGE METHODS
+  def sms_sign_up(password)
+    body = "Welcome to StrideWorld. Thank you for signing up with us.
+            To sign in on www.strideworld.com use your mobile number
+            (e.g. +27123456789) and your unique password: #{password}."
+    Notification.send_sms(mobile_number, body.squish)
+  end
+
 
   def confirm_loan
     body = "Thank you for confirming your loan\

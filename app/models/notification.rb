@@ -18,6 +18,8 @@ class Notification < ApplicationRecord
     end
   end
 
+  private
+
   # Triggered when a bank accepts/declines a loan application
   def trigger_sms
     @loan = set_loan
@@ -41,7 +43,6 @@ class Notification < ApplicationRecord
     UserMailer.application_reviewed(user: user, loan: @loan).deliver_later
   end
 
-  private
 
   def send_text_notification(mobile_number, sms_message)
     begin
