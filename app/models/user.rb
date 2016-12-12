@@ -73,6 +73,9 @@ class User < ApplicationRecord
             To sign in on www.strideworld.com use your mobile number
             (e.g. +27123456789) and your unique password: #{password}."
     SmsJob.perform_later(mobile_number, body.squish)
+    body2 = "You will now need to visit www.strideworld.com/users/#{id} to
+            give us some more details about yourself."
+    SmsJob.set(wait: 30.second).perform_later(mobile_number, body2.squish)
     # Notification.send_sms(mobile_number, body.squish)
   end
 
