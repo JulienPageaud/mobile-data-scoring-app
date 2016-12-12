@@ -122,13 +122,6 @@ class Loan < ApplicationRecord
     update_payments_to_agreed_amount
   end
 
-  def application_sent_confirmation
-    #Send e-mail confirmation
-    if user.email.present?
-      UserMailer.application_sent_confirmation(user: user, loan: self).deliver_later
-    end
-  end
-
   protected
 
   def when_declining_a_loan

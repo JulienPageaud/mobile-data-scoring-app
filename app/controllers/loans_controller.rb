@@ -25,7 +25,7 @@ class LoansController < ApplicationController
     if @loan.save
       @loan.update(status: "Application Pending")
       SmsSender.application_sent_sms(current_user, @loan)
-      @loan.application_sent_confirmation
+      UserMailer.application_confirmation_email(user: current_user, loan: @loan).deliver_later
       redirect_to user_status_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
@@ -48,8 +48,7 @@ class LoansController < ApplicationController
       authorize @loan
       if @loan.update(loan_bank_params)
         @loan.create_payments_proposed
-        Notification.create!(user: @loan.user) #notifications for the user
-        SmsSender.application_reviewed_sms(@loan.user, @loan)
+        send_application_reviewed_notifications(@loan)
         redirect_to bank_user_loans_path
       else
         @application_id = @loan.id
@@ -63,6 +62,7 @@ class LoansController < ApplicationController
   def accept
     authorize @loan
     @loan.accept(accept_loan_params)
+    SmsSender.confirm_loan(current_user, @loan)
     redirect_to user_status_path(current_user)
   end
 
@@ -85,6 +85,7 @@ class LoansController < ApplicationController
 
   def declined
     @loans = policy_scope(Loan)
+    SmsSender.decline_loan(current_user)
     authorize Loan
     respond_to do |format|
       format.js
@@ -139,4 +140,9 @@ class LoansController < ApplicationController
     end
   end
 
+  def send_application_reviewed_notifications(loan)
+    Notification.create!(user: loan.user) #notifications for the user
+    SmsSender.application_reviewed_sms(loan.user, loan)
+    UserMailer.application_reviewed(user: loan.user, loan: loan).deliver_later
+  end
 end

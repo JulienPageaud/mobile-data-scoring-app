@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     send_email = @user.email_changed?
 
     if @user.update(user_params)
-      @user.send_email_has_changed_email if send_email
+      UserMailer.email_has_changed(@user).deliver_later if send_email
       if @user.photo_id.metadata.present?
         @user.update(details_completed: true)
       else

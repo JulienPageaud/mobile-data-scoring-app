@@ -87,11 +87,5 @@ class User < ApplicationRecord
               We will remind you one week before your payment date."
     end
     SmsJob.perform_later(mobile_number, body.squish)
-    # Notification.send_sms(mobile_number, body.squish)
-  end
-
-  # Email methods
-  def send_email_has_changed_email
-    UserMailer.email_has_changed(self).deliver_later
   end
 end
