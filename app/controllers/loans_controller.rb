@@ -141,7 +141,7 @@ class LoansController < ApplicationController
   end
 
   def send_application_reviewed_notifications(loan)
-    Notification.create!(user: loan.user) #notifications for the user
+    Notification.create!(user: loan.user)
     SmsSender.application_reviewed_sms(loan.user, loan)
     UserMailer.application_reviewed(user: loan.user, loan: loan).deliver_later
   end

@@ -21,7 +21,6 @@ module SmsSender
     body2 = "You will now need to visit www.strideworld.com/users/#{user.id} to
             give us some more details about yourself."
     SmsJob.set(wait: 20.second).perform_later(user.mobile_number, body2.squish)
-    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def self.already_signed_up(user)
@@ -34,7 +33,6 @@ module SmsSender
               these by SMS or visit www.strideworld.com/profile"
     end
     SmsJob.perform_later(user.mobile_number, body.squish)
-    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def self.confirm_loan(user, loan)
@@ -44,7 +42,6 @@ module SmsSender
             Your next payment:
             #{ActionController::Base.helpers.humanized_money_with_symbol(loan.next_payment.amount)} on #{loan.next_payment.due_date.strftime("%e %b %Y")}"
     SmsJob.perform_later(user.mobile_number, body.squish)
-    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def self.decline_loan(user)
@@ -52,7 +49,6 @@ module SmsSender
             We hope you will consider reapplying in the future. Please contact
             contact@strideworld.com if you would like to leave your feedback"
     SmsJob.perform_later(user.mobile_number, body.squish)
-    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def self.send_failure_sms(user)
@@ -60,7 +56,6 @@ module SmsSender
             create an account with StrideWorld then please send us the text 'LOAN'.
             You can also visit www.strideworld.com or contact us at contact@strideworld.com"
     SmsJob.perform_later(user.mobile_number, body.squish)
-    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def self.application_sent_sms(user, loan)
