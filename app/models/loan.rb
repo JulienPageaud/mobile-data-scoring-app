@@ -14,6 +14,7 @@ class Loan < ApplicationRecord
   validates :description, presence: true,
               length: { minimum: 20,
               too_short: "You need to exceed %{count} characters in your description" }
+  validate :when_declining_a_loan, on: :update
 
   ## PAYMENT METHODS
 
@@ -133,6 +134,14 @@ class Loan < ApplicationRecord
     #Send e-mail confirmation
     if user.email.present?
       UserMailer.application_sent_confirmation(user: user, loan: self).deliver_later
+    end
+  end
+
+  protected
+
+  def when_declining_a_loan
+    if status_was == "Application Pending" && status == "Application Declined"
+      errors.add(:decline_reason, "Please enter a reason for declining the application") if decline_reason.blank?
     end
   end
 end

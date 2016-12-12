@@ -37,7 +37,7 @@
       <%= f.hidden_field :status, value: "Application Accepted" %>
       <div class="form-actions">
       <%= f.button :submit, "Accept", class: "btn btn-royal-blue" %>
-      <%= link_to 'Decline', "#" , class: "btn btn-red decline-trigger", 'target' => "#decline-form-#{loan.id}"%>
+      <%= link_to 'Decline', "#", class: "btn btn-red decline-trigger", 'target' => "#decline-form-#{loan.id}"%>
       </div>
     <% end %>
 
@@ -45,7 +45,8 @@
       <%= simple_form_for [current_bank_user, loan] do |f| %>
         <%= f.error_notification %>
         <%= f.hidden_field :final_date, value: DateTime.now %>
-        <%= f.input :decline_reason %>
+        <%= f.input :decline_reason,
+            hint: 'This field is mandatory' %>
         <%= f.hidden_field :status, value: "Application Declined" %>
         <%= f.submit "Decline Application", class: "btn btn-red" %>
       <% end %>
