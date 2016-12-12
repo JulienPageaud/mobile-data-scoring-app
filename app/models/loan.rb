@@ -123,14 +123,6 @@ class Loan < ApplicationRecord
   end
 
   def application_sent_confirmation
-    # Send SMS confirmation
-    body = "Your loan application for
-            #{ActionController::Base.helpers.humanized_money_with_symbol(requested_amount)}
-            has been sent successfully.
-            You will receive another message once it has been reviewed."
-    SmsJob.perform_later(user.mobile_number, body.squish)
-    #Notification.send_sms(user.mobile_number, body.squish)
-
     #Send e-mail confirmation
     if user.email.present?
       UserMailer.application_sent_confirmation(user: user, loan: self).deliver_later

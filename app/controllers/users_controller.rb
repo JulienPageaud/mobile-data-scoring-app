@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   # Authentication is on user not bank_user in this case
-  skip_before_filter :authenticate_bank_user!
+  skip_before_action :authenticate_bank_user!
 
   before_action :set_user, only: [:show, :edit, :update]
   before_action :set_user_id, only: [:status, :profile, :share]

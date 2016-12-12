@@ -3,6 +3,8 @@ class LoansController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_loan, only: [:update, :accept]
 
+  include SmsSender
+
   def index
     if current_bank_user.present?
       @loans = policy_scope(Loan)
@@ -22,6 +24,7 @@ class LoansController < ApplicationController
     authorize @loan
     if @loan.save
       @loan.update(status: "Application Pending")
+      SmsSender.application_sent_sms(current_user, @loan)
       @loan.application_sent_confirmation
       redirect_to user_status_path(current_user), notice: 'Loan application was successfully created.'
     else
@@ -46,6 +49,7 @@ class LoansController < ApplicationController
       if @loan.update(loan_bank_params)
         @loan.create_payments_proposed
         Notification.create!(user: @loan.user) #notifications for the user
+        SmsSender.application_reviewed_sms(@loan.user, @loan)
         redirect_to bank_user_loans_path
       else
         @application_id = @loan.id

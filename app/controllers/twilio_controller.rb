@@ -3,6 +3,8 @@ class TwilioController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :authenticate_bank_user!
 
+  include SmsSender
+
   def sms_entry_point
     @user = User.find_by_mobile_number(params["From"])
     case params["Body"].upcase
@@ -23,9 +25,9 @@ class TwilioController < ApplicationController
     user = User.new(mobile_number: params["From"],
                     password: generated_password)
     if user.save
-      user.sms_sign_up(generated_password)
+      SmsSender.sign_up(user, generated_password)
     else
-      user.already_signed_up
+      SmsSender.already_signed_up(user)
     end
   end
 
@@ -41,12 +43,12 @@ class TwilioController < ApplicationController
 
   def confirm_loan(user)
     user.loans.last.accept(accept_loan_params(user))
-    user.confirm_loan
+    SmsSender.confirm_loan(user, user.loans.last)
   end
 
   def decline_loan(user)
     user.loans.last.decline
-    user.decline_loan
+    SmsSender.decline_loan(user)
   end
 
   def other_sms(user)
