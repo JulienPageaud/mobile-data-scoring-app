@@ -91,6 +91,7 @@
         $(applicationSelector).on('shown.bs.modal', function(){
           $('[target="#decline-form-' + applicationID + '"]').trigger('click');
           $('#decline-form-' + applicationID + ' .help-block').css("color", "red");
+          $('#loan_decline_reason').attr("placeholder", "Please enter a reason!")
         });
 
       <% end %>
