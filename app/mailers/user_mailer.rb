@@ -6,10 +6,10 @@ class UserMailer < ApplicationMailer
     mail to: @user.email
   end
 
-  def application_sent_confirmation(arguments)
+  def application_confirmation_email(arguments)
     @user = arguments[:user]
     @loan = arguments[:loan]
-    mail to: @user.email
+    mail to: @user.email if @user.email.present?
   end
 
   def application_reviewed(arguments)

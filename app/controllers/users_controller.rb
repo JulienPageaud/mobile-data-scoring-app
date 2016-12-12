@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   # Authentication is on user not bank_user in this case
-  skip_before_filter :authenticate_bank_user!
+  skip_before_action :authenticate_bank_user!
 
   before_action :set_user, only: [:show, :edit, :update]
   before_action :set_user_id, only: [:status, :profile, :share]
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     send_email = @user.email_changed?
 
     if @user.update(user_params)
-      @user.send_email_has_changed_email if send_email
+      UserMailer.email_has_changed(@user).deliver_later if send_email
       if @user.photo_id.metadata.present?
         @user.update(details_completed: true)
       else
