@@ -68,6 +68,30 @@ class User < ApplicationRecord
 
 
   # SMS MESSAGE METHODS
+  def sms_sign_up(password)
+    body = "Welcome to StrideWorld. Thank you for signing up with us.
+            To sign in on www.strideworld.com use your mobile number
+            (e.g. +27123456789) and your unique password: #{password}."
+    SmsJob.perform_later(mobile_number, body.squish)
+    body2 = "You will now need to visit www.strideworld.com/users/#{id} to
+            give us some more details about yourself."
+    SmsJob.set(wait: 30.second).perform_later(mobile_number, body2.squish)
+    # Notification.send_sms(mobile_number, body.squish)
+  end
+
+  def already_signed_up
+    if details_completed
+      body = "You have already got an account with Stride. Please reply APPLY to
+             apply for a new loan"
+    else
+      body = "You have already got an account with Stride. We require some more details
+              from you before you can apply for a loan. Please reply DETAILS to complete
+              these by SMS or visit www.strideworld.com/profile"
+    end
+    SmsJob.perform_later(mobile_number, body.squish)
+    # Notification.send_sms(mobile_number, body.squish)
+  end
+
 
   def confirm_loan
     body = "Thank you for confirming your loan\
@@ -75,13 +99,16 @@ class User < ApplicationRecord
             Your e-wallet will be credited shortly!
             Your next payment:
             #{ActionController::Base.helpers.humanized_money_with_symbol(loans.last.next_payment.amount)} on #{loans.last.next_payment.due_date.strftime("%e %b %Y")}"
-    Notification.send_sms(mobile_number, body.squish)
+    SmsJob.perform_later(mobile_number, body.squish)
+    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def decline_loan
     body = "You have chosen to decline your loan.
-            We hope you will consider reapplying in the future"
-    Notification.send_sms(mobile_number, body.squish)
+            We hope you will consider reapplying in the future. Please contact
+            contact@strideworld.com if you would like to leave your feedback"
+    SmsJob.perform_later(mobile_number, body.squish)
+    # Notification.send_sms(mobile_number, body.squish)
   end
 
   def other_sms
@@ -104,9 +131,19 @@ class User < ApplicationRecord
               on #{loans.last.try(next_payment).try(due_date).try(strftime("%e %b %Y"))}
               We will remind you one week before your payment date."
     end
-    Notification.send_sms(mobile_number, body.squish)
+    SmsJob.perform_later(mobile_number, body.squish)
+    # Notification.send_sms(mobile_number, body.squish)
   end
 
+  def send_failure_sms
+    body = "We're sorry, we didn't understand your message. If you would like to
+            create an account with StrideWorld then please send us the text 'LOAN'.
+            You can also visit www.strideworld.com or contact us at contact@strideworld.com"
+    SmsJob.perform_later(mobile_number, body.squish)
+    # Notification.send_sms(mobile_number, body.squish)
+  end
+
+  # Email methods
   def send_email_has_changed_email
     UserMailer.email_has_changed(self).deliver_later
   end

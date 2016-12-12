@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'twilio/confirm_loan'
-
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :bank_users
 
@@ -51,7 +49,12 @@ Rails.application.routes.draw do
   get 'contact', to: 'users#contact'
 
   # Twilio routes
-  post '/confirm_loan', to: 'twilio#confirm_loan'
+  # get 'twilio/sign_up'
+  # post '/sign_up', to: 'twilio#sign_up'
+  # get 'twilio/confirm_loan'
+  # post '/confirm_loan', to: 'twilio#confirm_loan'
+  get 'twilio/sms_entry_point'
+  post '/sms_entry_point', to: 'twilio#sms_entry_point'
 
   # currently unused
   get 'client-profile/:id', to: 'bank_users#user_show'
