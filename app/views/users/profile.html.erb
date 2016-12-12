@@ -13,7 +13,10 @@
       <div class="col-6-xs profile-picture text-center">
         <!-- If you want a profile picture: Could take from facebook profile -->
         <i class="fa fa-user-circle-o profile-icon" aria-hidden="true"></i>
-        <h2><%= @user.first_name.try(:capitalize).to_s %> <%= ' ' + @user.last_name.try(:capitalize).to_s %></h2>
+        <h2><%= @user.try(:full_name) %></h2>
+        <% if @user.photo_id.present? %>
+          <%= image_tag @user.photo_id%>
+        <% end %>
       </div>
       <div class="profile-info">
         <h3><strong>Your mobile number: </strong><%= @user.mobile_number %></h3>

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       @user.send_email_has_changed_email if send_email
-      if @user.photo_id
+      if @user.photo_id.metadata.present?
         @user.update(details_completed: true)
       else
         @user.update(details_completed: false)
