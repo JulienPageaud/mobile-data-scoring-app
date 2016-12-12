@@ -10,7 +10,7 @@ $(document).ajaxComplete(function(){
     $(item).find('.ppc-percents span').html(percent+'%');
   });
 
-  $(".decline-trigger").click(function(e){
+  $(".decline-trigger").on('click', function(e){
     e.preventDefault();
     var selector = $(this).attr("target");
     $(selector).removeClass("hidden");

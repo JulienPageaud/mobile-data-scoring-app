@@ -54,30 +54,47 @@
 
 <% content_for(:after_js) do %>
   <script>
+      // stores the anchor from the url in a variable
+      var hash = window.location.hash;
 
-    // stores the anchor from the url in a variable
-    var hash = window.location.hash;
+      // If page is reloaded then the same tab will be shown
+      if (hash !== "") {
+        $('.tab').removeClass("active");
+        $(hash + '-tab').addClass("active");
+        var childIndex = $(hash + '-tab').index();
+        $('#tab-content').children().addClass("hidden");
+        $('.' +childIndex).removeClass("hidden");
+      }
 
-    // If page is reloaded then the same tab will be shown
-    if (hash !== "") {
-      $('.tab').removeClass("active");
-      $(hash + '-tab').addClass("active");
-      var childIndex = $(hash + '-tab').index();
-      $('#tab-content').children().addClass("hidden");
-      $('.' +childIndex).removeClass("hidden");
-    }
+      // This makes sure to load the active tab content when first loading the page
+      $('.active').trigger('click');
 
-    // This makes sure to load the active tab content when first loading the page
-    $('.active').trigger('click');
+      // Clicking on a different tab changes the content shown on the page
+      $('.tab').on('click', function(event){
+        $('.tabs').children().removeClass("active");
+        $(this).addClass("active");
+        var childIndex = $(this).index();
+        $('#tab-content').children().addClass("hidden");
+        $('.' +childIndex).removeClass("hidden");
+        window.location.hash = $(this).attr('id').split("-")[0];
+      })
 
-    // Clicking on a different tab changes the content shown on the page
-    $('.tab').on('click', function(event){
-      $('.tabs').children().removeClass("active");
-      $(this).addClass("active");
-      var childIndex = $(this).index();
-      $('#tab-content').children().addClass("hidden");
-      $('.' +childIndex).removeClass("hidden");
-      window.location.hash = $(this).attr('id').split("-")[0];
+
+    $(document).ajaxComplete(function(){
+
+      // Re-opens modal if there was no decline reason entered when declining an application
+      console.log(<%= @application_id %>)
+      <% if @application_id.present? %>
+        var applicationID = <%= @application_id %>
+        var applicationSelector = '#application-' + applicationID;
+        $(applicationSelector).modal('toggle');
+        $(applicationSelector).on('shown.bs.modal', function(){
+          $('[target="#decline-form-' + applicationID + '"]').trigger('click');
+          $('#decline-form-' + applicationID + ' .help-block').css("color", "red");
+          $('#loan_decline_reason').attr("placeholder", "Please enter a reason!")
+        });
+
+      <% end %>
     })
   </script>
 <% end %>

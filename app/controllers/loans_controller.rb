@@ -45,11 +45,12 @@ class LoansController < ApplicationController
       authorize @loan
       if @loan.update(loan_bank_params)
         @loan.create_payments_proposed
+        Notification.create!(user: @loan.user) #notifications for the user
         redirect_to bank_user_loans_path
       else
-        render :show
+        @application_id = @loan.id
+        render 'bank_users/index'
       end
-      Notification.create!(user: @loan.user) #notifications for the user
     # elsif params[:loan][:agreed_amount].present? || params[:loan][:status] == "Loan Outstanding"
     #   # WILL/JULIEN YOU CAN PUT YOUR UPDATE CODE HERE
     end
