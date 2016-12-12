@@ -63,7 +63,7 @@
             input_html: { class: 'input-rounded'},
             label: 'Upload your ID' %>
           <%= f.input :photo_id_cache, as: :hidden %>
-          <% if @user.photo_id.present? %>
+          <% if @user.photo_id.metadata.present? %>
             <%= image_tag @user.photo_id, height: 300, width: 400 %>
           <% end %>
           <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
