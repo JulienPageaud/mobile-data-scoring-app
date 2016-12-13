@@ -33,42 +33,42 @@ describe User do
       expect(subject).to be_valid
     end
 
-    it "requires a title on update" do
+    it "must enter a title" do
       subject.title = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires a first name on update" do
+    it "must enter a first name" do
       subject.first_name = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires a last name on update" do
+    it "must enter a last name" do
       subject.last_name = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires an address on update" do
+    it "must enter an address" do
       subject.address = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires a city on update" do
+    it "must enter a city" do
       subject.city = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires a postcode on update" do
+    it "must enter a postcode" do
       subject.postcode = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires employment details on update" do
+    it "must enter their employment" do
       subject.employment = nil
       expect(subject).to_not be_valid
     end
 
-    it "requires a date of birth on update" do
+    it "must enter their date of birth" do
       subject.date_of_birth = nil
       expect(subject).to_not be_valid
     end
@@ -83,9 +83,19 @@ describe User do
     end
   end
 
-  it "returns a user's full name as a string" do
-    subject.first_name = 'John'
-    subject.last_name = 'Smith'
-    expect(subject.full_name).to eql("John Smith")
+  it "has many loans" do
+    expect(User.reflect_on_association(:loans).macro).to eql(:has_many)
+  end
+
+  it "has many notifications" do
+    expect(User.reflect_on_association(:notifications).macro).to eql(:has_many)
+  end
+
+  describe '#full_name ' do
+    it "should return a user's full name" do
+      subject.first_name = 'John'
+      subject.last_name = 'Smith'
+      expect(subject.full_name).to eql("John Smith")
+    end
   end
 end

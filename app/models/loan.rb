@@ -7,6 +7,8 @@ class Loan < ApplicationRecord
   monetize :proposed_amount_cents
   monetize :agreed_amount_cents
 
+  validates :bank_id, presence: true
+  validates :user_id, presence: true
   validates :requested_amount, presence: true,
               numericality: { less_than_or_equal_to: 15000, greater_than: 0 }
   validates :category, presence: true
