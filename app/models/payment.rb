@@ -9,8 +9,4 @@ class Payment < ApplicationRecord
       false
     end
   end
-
-  def display_money
-    amount.currency.to_s + ' ' + amount.to_s
-  end
 end
