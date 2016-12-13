@@ -1,5 +1,4 @@
 FactoryGirl.define do
-  factory :payment do |p|
-    p.association :loans
+  factory :payment, parent: :loan do |p|
   end
 end

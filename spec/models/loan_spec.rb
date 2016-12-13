@@ -53,24 +53,44 @@ describe Loan do
   end
 
   context "outstanding loan" do
-    subject { FactoryGirl.build(:loan, :outstanding_good_book) }
+    subject { FactoryGirl.create(:loan, :outstanding_good_book) }
 
     describe '#next_payment' do
-      it "returns the next due payment"
-      # expect(subject.next_payment.class).to eql(Payment)
-      # expect(subject.next_payment).not_to be_nil
+      it "returns the next due payment" do
+        expect(subject).to respond_to(:next_payment)
+        expect(subject.next_payment.class).to eql(Payment)
+        expect(subject.next_payment.due_date).to be > DateTime.now
+      end
     end
 
     describe '#most_recent_payment' do
-      it "returns the payment which was most recently due"
+      it "returns the payment which was most recently due" do
+        expect(subject).to respond_to(:most_recent_payment)
+        expect(subject.most_recent_payment.class).to eql(Payment)
+        expect(subject.most_recent_payment.due_date).to be < DateTime.now
+      end
     end
 
     describe '#amount_owed' do
-      it "calculates the sum of unpaid payments"
+      it "calculates the sum of unpaid payments" do
+        subject.payments.each do |p|
+          p.update(paid: true) if p.due_date < DateTime.now
+        end
+        expect(subject).to respond_to(:amount_owed)
+        expect(subject.amount_owed.class).to eql(Money)
+        expect(subject.amount_owed).to eql(766.66.to_money) # HARDCODED
+      end
     end
 
     describe '#remaining_capital' do
-      it "calculates the remaining capital"
+      it "calculates the remaining capital" do
+        subject.payments.each do |p|
+          p.update(paid: true) if p.due_date < DateTime.now
+        end
+        expect(subject).to respond_to(:remaining_capital)
+        expect(subject.remaining_capital.class).to eql(Money)
+        expect(subject.remaining_capital).to eql(616.67.to_money) # HARDCODED
+      end
     end
 
     describe '#total_capital_repaid' do

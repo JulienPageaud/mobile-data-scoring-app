@@ -33,7 +33,7 @@ class Loan < ApplicationRecord
   # Calculate the amount owed (sum of unpaid payments)
   def amount_owed
     amount = 0
-    payments.where('due_date < ?', DateTime.now).where(paid: false).each do |payment|
+    payments.where(paid: false).each do |payment|
       amount += payment.amount
     end
     return amount
