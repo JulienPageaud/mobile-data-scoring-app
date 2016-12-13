@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe User do
-
-
   context "a new user" do
     subject { FactoryGirl.build(:user) }
 
@@ -90,6 +88,4 @@ describe User do
     subject.last_name = 'Smith'
     expect(subject.full_name).to eql("John Smith")
   end
-
-
 end
