@@ -52,28 +52,39 @@ describe Loan do
     end
   end
 
-  describe '#next_payment' do
-    it "returns the next due payment"
+  context "outstanding loan" do
+    subject { FactoryGirl.build(:loan, :outstanding_good_book) }
+
+    describe '#next_payment' do
+      it "returns the next due payment"
+      # expect(subject.next_payment.class).to eql(Payment)
+      # expect(subject.next_payment).not_to be_nil
+    end
+
+    describe '#most_recent_payment' do
+      it "returns the payment which was most recently due"
+    end
+
+    describe '#amount_owed' do
+      it "calculates the sum of unpaid payments"
+    end
+
+    describe '#remaining_capital' do
+      it "calculates the remaining capital"
+    end
+
+    describe '#total_capital_repaid' do
+      it "calculates the total repaid capital"
+    end
   end
 
-  describe '#most_recent_payment' do
-    it "returns the payment which was most recently due"
-  end
-
-  describe '#amount_owed' do
-    it "calculates the sum of unpaid payments"
-  end
-
-  describe '#remaining_capital' do
-    it "calculates the remaining capital"
-  end
-
-  describe '#total_capital_repaid' do
-    it "calculates the total repaid capital"
-  end
 
   describe '#loan_classification' do
-    it "returns loan classification string (Missed Payment, Delayed Payment or Good Book)"
+    it "returns the string 'Good Book' if no missed/delayed payments"
+
+    it "returns the string 'Missed Payment' if a payment has been missed"
+
+    it "returns the string 'Delayed Payment' if a payment is overdue by less than 7 days"
   end
 
   describe '#accept' do
