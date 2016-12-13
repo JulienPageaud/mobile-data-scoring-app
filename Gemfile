@@ -72,6 +72,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 
   gem 'pry-byebug'
   gem 'pry-rails'
