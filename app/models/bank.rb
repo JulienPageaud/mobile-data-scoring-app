@@ -4,6 +4,8 @@ class Bank < ApplicationRecord
   has_many :payments, through: :loans
   has_many :bank_users
 
+  validates :name, presence: true, uniqueness: true
+
   def net_balance_sheet
     balance = 0
     loans.where(status: "Loan Outstanding").each do |loan|
