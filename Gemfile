@@ -71,7 +71,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
-  gem 'minitest-reporters'
+  gem 'rspec-rails', '~> 3.5'
 
   gem 'pry-byebug'
   gem 'pry-rails'
