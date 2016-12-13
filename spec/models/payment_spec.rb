@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Payment, type: :model do
   subject { FactoryGirl.create(:payment) }
 
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+
   it 'has an amount (which is a Money object)' do
     subject.amount = nil
     expect(subject.amount).not_to be_nil

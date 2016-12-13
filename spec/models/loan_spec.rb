@@ -1,11 +1,16 @@
 require 'rails_helper'
 
 describe Loan do
+
+  it 'has a valid factory' do
+    expect(FactoryGirl.build(:loan)).to be_valid
+  end
+
   it "belongs to a user" do
     expect(Loan.reflect_on_association(:user).macro).to eql(:belongs_to)
   end
 
-  it "belong to a bank" do
+  it "belongs to a bank" do
     expect(Loan.reflect_on_association(:bank).macro).to eql(:belongs_to)
   end
 

@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe User do
+
+  it "has a valid factory" do
+    expect(FactoryGirl.build(:user)).to be_valid
+  end
+
   context "a new user" do
     subject { FactoryGirl.build(:user) }
 
-    it "has a valid factory" do
-      expect(subject).to be_valid
-    end
 
     it "is invalid without a mobile number" do
       subject.mobile_number = nil
