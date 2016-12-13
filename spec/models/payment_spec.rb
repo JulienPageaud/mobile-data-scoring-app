@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Payment, type: :model do
   subject { FactoryGirl.create(:payment) }
 
-  it 'has an amount' do
+  it 'has an amount (which is a Money object)' do
     subject.amount = nil
     expect(subject.amount).not_to be_nil
+    expect(subject.amount.class).to eql(Money)
   end
 
   it 'has a due date' do
