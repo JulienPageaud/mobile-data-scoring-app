@@ -85,7 +85,6 @@ class LoansController < ApplicationController
 
   def declined
     @loans = policy_scope(Loan)
-    SmsSender.decline_loan(current_user)
     authorize Loan
     respond_to do |format|
       format.js
