@@ -85,6 +85,7 @@ GEM
     coffee-script-source (1.11.1)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.1)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -334,6 +335,7 @@ DEPENDENCIES
   chartkick
   cloudinary (= 1.1.0)
   coffee-rails
+  database_cleaner
   devise
   factory_girl_rails
   faker
