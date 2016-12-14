@@ -22,7 +22,14 @@ feature 'Home Page' do
     # User forgets to enter password/confirmation
     click_on('Sign up')
     expect(page).to have_content("Apply now")
+    expect(current_url.include?('/?sign_up=true')).to eql(true)
   end
+
+  scenario 'error is shown on form when no mobile number entered'
+
+  scenario 'error is shown on form when no password entered'
+
+  scenario 'error is shown on form when password confirmation doesn\'t match'
 
   private
 
