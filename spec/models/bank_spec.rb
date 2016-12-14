@@ -15,11 +15,19 @@ RSpec.describe Bank, type: :model do
     expect(bank2).to_not be_valid
   end
 
-  it "has many loans"
+  it "has many loans" do
+    expect(Bank.reflect_on_association(:loans).macro).to eql(:has_many)
+  end
 
-  it "has many bank users"
+  it "has many bank users" do
+    expect(Bank.reflect_on_association(:bank_users).macro).to eql(:has_many)
+  end
 
-  it "has many users (through loans)"
+  it "has many users (through loans)" do
+    expect(Bank.reflect_on_association(:users).macro).to eql (:has_many)
+  end
 
-  it "has many payments (through loans)"
+  it "has many payments (through loans)" do
+    expect(Bank.reflect_on_association(:payments).macro).to eql (:has_many)
+  end
 end
