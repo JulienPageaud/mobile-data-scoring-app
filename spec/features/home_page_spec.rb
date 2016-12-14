@@ -5,7 +5,8 @@ feature 'Home Page' do
     visit '/'
     user_can_complete_mobile_number_and_click_apply
     user_can_see_modal_and_complete_sign_up
-
+    user_is_redirected_to_complete_their_details
+    save_and_open_screenshot
   end
 
 
@@ -26,5 +27,9 @@ feature 'Home Page' do
     fill_in 'user_password', with: '123123'
     fill_in 'user_password_confirmation', with: '123123'
     click_on('Sign up')
+  end
+
+  def user_is_redirected_to_complete_their_details
+    expect(page)
   end
 end

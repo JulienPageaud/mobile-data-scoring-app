@@ -6,10 +6,17 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
 require 'support/factory_girl'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
+
+options = { js_errors: false }
+Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, options)
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
