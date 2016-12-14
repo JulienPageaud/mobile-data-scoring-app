@@ -94,7 +94,7 @@ describe User do
   end
 
   describe '#full_name ' do
-    it "should return a user's full name" do
+    it "returns a user's full name" do
       subject.first_name = 'John'
       subject.last_name = 'Smith'
       expect(subject.full_name).to eql("John Smith")
