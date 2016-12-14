@@ -68,8 +68,11 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 
 group :development, :test do
-  gem 'binding_of_caller'
-  gem 'better_errors'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -78,4 +81,7 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-
+group :development do
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
