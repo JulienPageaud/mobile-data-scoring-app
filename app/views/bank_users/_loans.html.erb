@@ -31,7 +31,7 @@
           <div class="flexrow loans text-left">
 
             <div class="flexcell loans-cell">
-              <%= loan.user.first_name + ' ' + loan.user.last_name %>
+              <%= loan.user.full_name %>
             </div>
 
               <% if loan.most_recent_payment.missed_payment? %>

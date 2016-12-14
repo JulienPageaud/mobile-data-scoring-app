@@ -30,13 +30,22 @@ class Loan < ApplicationRecord
     payments.where('due_date < ?', DateTime.now).last
   end
 
-  # Calculate the amount owed (sum of unpaid payments)
   def amount_owed
     amount = 0
-    payments.where(paid: false).each do |payment|
-      amount += payment.amount
+    payments.each do |payment|
+      amount += payment.amount unless payment.paid
     end
     return amount
+  end
+
+  def amount_overdue
+    amount_overdue = 0
+    payments.each do |p|
+      if p.due_date < DateTime.now && p.paid == false
+        amount_overdue += p.amount
+      end
+    end
+    amount_overdue
   end
 
   # Calculate the remaining capital on the loan
@@ -45,7 +54,7 @@ class Loan < ApplicationRecord
     payments.each do |payment|
       payments_total += payment.amount if payment.paid == true
     end
-    agreed_amount - payments_total
+    payments.to_a.reduce(0) { |sum, p| sum += p.amount } - payments_total
   end
 
   # Calculate the total repaid capital
@@ -55,6 +64,11 @@ class Loan < ApplicationRecord
       sum += payment.amount if payment.paid == true
     end
     return sum
+  end
+
+  # Total loan capital to be repaid
+  def total_capital
+    payments.reduce(0) { |sum, p| sum += p.amount }
   end
 
   ## LOAN FILTERS
