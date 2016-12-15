@@ -1,147 +1,153 @@
-<div class="wrapper-grey">
-  <div class="header-banner">
-    <div class="header-title">
-        <h1>Your Personal Details</h1>
-    </div>
-    <div class="round-icon">
-      <i><span class="fa fa-id-card"></span></i>
-    </div>
+<div class="header-banner">
+  <div class="header-title">
+      <h1>Your Personal Details</h1>
   </div>
+  <div class="round-icon">
+    <i><span class="fa fa-id-card"></span></i>
+  </div>
+</div>
+<div class="wrapper-grey">
   <div class="container">
-  <div class="white-box">
-    <div class="row profile-card">
-      <div class="col-6-xs profile-picture text-center">
-        <!-- If you want a profile picture: Could take from facebook profile -->
-        <i class="fa fa-user-circle-o profile-icon" aria-hidden="true"></i>
-        <h2><%= @user.full_name if @user.first_name.present? && @user.last_name.present? %></h2>
-        <% if @user.photo_id.present? %>
-          <div class="photo-id-div">
-            <%= image_tag @user.photo_id, class: "photo_id"%>
-          </div>
-        <% end %>
-      </div>
-      <div class="profile-info">
-        <h3><strong>Your mobile number: </strong><%= @user.mobile_number %></h3>
-        <h3><strong>Date of Birth: </strong><%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></h3>
-        <h3><strong>Email: </strong><%= @user.email %></h3>
-        <h3><strong>Address: </strong> <%= @user.address %><br><%= @user.city  %><br><%= @user.postcode.to_s %></h3>
-        <div class="align-center">
-          <%= link_to edit_user_path(@user) do %>
-            <button class="btn btn-royal-blue", style="width: 100%">Edit your details</button>
-            <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' if @user.details_completed != true %></p>
+    <div class="white-box">
+      <div class="row">
+        <div class="profile-picture text-center loan-section">
+          <!-- If you want a profile picture: Could take from facebook profile -->
+          <i class="fa fa-user-circle-o profile-icon" aria-hidden="true"></i>
+          <h2><%= @user.full_name if @user.first_name.present? && @user.last_name.present? %></h2>
+          <% if @user.photo_id.present? %>
+            <div class="photo-id-div">
+              <%= image_tag @user.photo_id, class: "photo_id"%>
+            </div>
           <% end %>
         </div>
-
-        <div class="text-center">
-          <%= link_to "Change your password", edit_user_registration_path(@user) %>
-        </div>
-
       </div>
-    </div>
-
-      <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
-     <div class="loan-status">
-        <%= link_to user_status_path(@user) do %>
-          <div class="current-loan">
-            <p>Current Loan Status:</p>
-            <h5>
-            <% case @user.loans.last.status %>
-              <% when "Application Pending" %>
-                <%= "Pending" %>
-              <% when "Application Accepted" %>
-                <%= "Accepted! Click here to confirm." %>
-              <% when "Loan Outstanding" %>
-                <%= "Ongoing" %>
-              <% when "Application Declined" %>
-                <%= "Declined" %>
+      <div class="row">
+        <div class="profile-info loan-section">
+          <h3><strong>Your mobile number: </strong><%= @user.mobile_number %></h3>
+          <h3><strong>Date of Birth: </strong><%= @user.date_of_birth.strftime('%e %b %Y') if @user.date_of_birth.present? %></h3>
+          <h3><strong>Email: </strong><%= @user.email %></h3>
+          <h3><strong>Address: </strong> <%= @user.address %><br><%= @user.city  %><br><%= @user.postcode.to_s %></h3>
+          <div class="text-center">
+            <%= link_to edit_user_path(@user) do %>
+              <button class="btn btn-royal-blue", style="width: 100%">Edit your details</button>
+              <p class="text-red"><%= 'Details incomplete. It is important that all of your details are correct.' if @user.details_completed != true %></p>
             <% end %>
-            </h5>
+          </div>
+
+          <div class="text-center">
+            <%= link_to "Change your password", edit_user_registration_path(@user) %>
+          </div>
+        </div>
+      </div>
+
+        <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
+          <div class="row">
+            <div class="loan-status loan-section">
+                <%= link_to user_status_path(@user) do %>
+                  <div class="current-loan text-center">
+                    <p>Current Loan Status:</p>
+                    <h5>
+                    <% case @user.loans.last.status %>
+                      <% when "Application Pending" %>
+                        <%= "Pending" %>
+                      <% when "Application Accepted" %>
+                        <%= "Accepted! Click here to confirm." %>
+                      <% when "Loan Outstanding" %>
+                        <%= "Ongoing" %>
+                      <% when "Application Declined" %>
+                        <%= "Declined" %>
+                    <% end %>
+                    </h5>
+                  </div>
+                <% end %>
+            </div>
           </div>
         <% end %>
-    </div>
-      <% end %>
+        <div class="row">
+          <div class="loan-history loan-section">
+            <h5><strong>Loan History</strong></h5>
+            <p><%= "No previous loan with Stride" if @user.loans == [] %></p>
 
-      <div class="loan-history">
-        <h5><strong>Loan History</strong></h5>
-        <p><%= "No previous loan with Stride" if @user.loans == [] %></p>
+            <% if @user.loans.present? %>
 
-        <% if @user.loans.present? %>
+              <div class="standard-flexbox">
+                <div class="flexrow text-center">
+                  <div class="flexcell third-cell blue-header">
+                    <p>Date</p>
+                  </div>
+                  <div class="flexcell third-cell blue-header">
+                    <p>Amount</p>
+                  </div>
+                  <div class="flexcell third-cell blue-header">
+                    <p>Duration</p>
+                  </div>
+                </div>
 
-          <div class="standard-flexbox">
-            <div class="flexrow text-center">
-              <div class="flexcell third-cell blue-header">
-                <p>Date</p>
-              </div>
-              <div class="flexcell third-cell blue-header">
-                <p>Amount</p>
-              </div>
-              <div class="flexcell third-cell blue-header">
-                <p>Duration</p>
-              </div>
-            </div>
-
-            <% @user.loans.each do |loan| %>
-              <div class="flexrow text-center">
-                <% case loan.status %>
-                  <% when "Application Pending" %>
-                    <div class="flexcell third-cell">
-                      <%= loan.updated_at.strftime("%e %b %Y") %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= humanized_money_with_symbol(loan.requested_amount) %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= "Pending" %>
-                    </div>
-                  <% when "Application Accepted" %>
-                    <div class="flexcell third-cell">
-                      <%= loan.final_date.strftime("%e %b %Y") %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= humanized_money_with_symbol(loan.proposed_amount) %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= "Accepted" %>
-                    </div>
-                  <% when "Loan Outstanding" %>
-                    <div class="flexcell third-cell">
-                      <%= loan.final_date.strftime("%e %b %Y") %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= humanized_money_with_symbol(loan.agreed_amount) %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= "Ongoing" %>
-                    </div>
-                  <% when "Application Declined" %>
-                    <div class="flexcell third-cell">
-                      <%= loan.updated_at.strftime("%e %b %Y") %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= humanized_money_with_symbol(loan.requested_amount) %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= "Declined" %>
-                    </div>
-                  <% when "Loan Repaid" %>
-                    <div class="flexcell third-cell">
-                      <%= loan.final_date.strftime("%e %b %Y") %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= humanized_money_with_symbol(loan.agreed_amount) %>
-                    </div>
-                    <div class="flexcell third-cell">
-                      <%= "Repaid" %>
-                    </div>
+                <% @user.loans.each do |loan| %>
+                  <div class="flexrow text-center">
+                    <% case loan.status %>
+                      <% when "Application Pending" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.updated_at.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.requested_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Pending" %>
+                        </div>
+                      <% when "Application Accepted" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.final_date.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.proposed_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Accepted" %>
+                        </div>
+                      <% when "Loan Outstanding" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.final_date.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.agreed_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Ongoing" %>
+                        </div>
+                      <% when "Application Declined" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.updated_at.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.requested_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Declined" %>
+                        </div>
+                      <% when "Loan Repaid" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.final_date.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.agreed_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Repaid" %>
+                        </div>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             <% end %>
           </div>
-        <% end %>
+        </div>
+      <div class="row">
+        <div class="back-button text-center small-margin">
+          <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
+        </div>
       </div>
-    <div class="back-button text-center small-margin">
-      <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
-    </div>
-  </div>
-  </div>
-</div>
+    </div> <!-- white-box -->
+  </div> <!-- container -->
+</div> <!-- wrapper -->

@@ -1,10 +1,11 @@
 .profile-info {
   background-color: #F2F2F2;
-  border-radius: 4px;
-  margin: 0 20px 10px 20px;
-  padding: 5px;
+  border-radius: 2px;
+  padding: 10px 5px;
 }
-
+.loan-section {
+  margin: 10px 5px;
+}
 .profile-picture h2 {
   font-size: 20px;
   font-weight: 400;
@@ -26,10 +27,6 @@
   color: $royal-blue;
 }
 
-.current-loan h5 {
-  text-align: center;
-}
-
 .loan-history {
   background-color: #F2F2F2;
   border-radius: 4px;
@@ -40,7 +37,7 @@
 
 .loan-status {
   border: 1px solid #353535;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-bottom: 10px;
   padding: 10px;
   text-align: center;
@@ -55,17 +52,11 @@
   margin-top: 0;
   color:#333333;
 }
-
 .loan-status h5 {
   margin: 0;
   color: $royal-blue;
   font-weight: 700;
 }
-
-.align-center {
-  text-align: center;
-}
-
 .back-button {
   margin: 10px 0;
   font-size: 90%;
