@@ -27,7 +27,6 @@ class UsersController < ApplicationController
         @user.update(details_completed: true)
         redirect_to user_path(@user)
       else
-        @user.update(details_completed: false)
         redirect_to user_profile_path(@user)
       end
     else

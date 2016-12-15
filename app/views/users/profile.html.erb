@@ -15,7 +15,9 @@
         <i class="fa fa-user-circle-o profile-icon" aria-hidden="true"></i>
         <h2><%= @user.full_name if @user.first_name.present? && @user.last_name.present? %></h2>
         <% if @user.photo_id.present? %>
-          <%= image_tag @user.photo_id%>
+          <div class="photo-id-div">
+            <%= image_tag @user.photo_id, class: "photo_id"%>
+          </div>
         <% end %>
       </div>
       <div class="profile-info">
