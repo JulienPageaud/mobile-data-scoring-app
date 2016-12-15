@@ -1,62 +1,54 @@
-  <div class="container container-flex">
-    <div class="container">
-      <div class="round-icon-status">
-        <i><span class="fa fa-check"></span></i>
-      </div>
+<div class="container text-center">
+    <div class="round-icon-status">
+      <i><span class="fa fa-check"></span></i>
     </div>
-    <h3>Application Accepted</h3>
+    <div class="status-content">
+      <h3><strong>Application Accepted</strong></h3>
 
-
-    <div>
       <h4>You qualify for up to</h4>
-    </div>
 
-    <div class="loan-amount">
       <p><strong><%= humanized_money_with_symbol(current_user.loans.last.proposed_amount) %></strong></p>
-    </div>
-    <div>
+
       <p>with repayments scheduled on</p>
     </div>
-
-
-  <div class="confirm-repayments standard-flexbox">
-    <div class="flexrow repayments-header-row text-center">
-      <div class="flexcell confirm-cell blue-header">
-        <p>Due date</p>
-      </div>
-      <div class="flexcell confirm-cell blue-header">
-        <p>Amount due</p>
-      </div>
-    </div>
-
-    <% current_user.loans.last.payments.each do |payment| %>
-      <div class="flexrow month text-center">
-        <div class="flexcell confirm-cell">
-          <p><%= payment.due_date.strftime("%e %b %Y") %></p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+      <div class="confirm-repayments standard-flexbox">
+        <div class="flexrow repayments-header-row blue-header">
+          <div class="flexcell confirm-cell">
+            <p>Due date</p>
+          </div>
+          <div class="flexcell confirm-cell">
+            <p>Amount due</p>
+          </div>
         </div>
-        <div class="flexcell confirm-cell">
-          <p><%= humanized_money_with_symbol(payment.amount) %></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-  <div>
-    <p><br><strong>If you proceed, your eWallet account will be credited immediately by your choosen amount above.</strong></p>
-  </div>
-  <div>
-    <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
-  </div>
+        <% current_user.loans.last.payments.each do |payment| %>
+          <div class="flexrow month">
+            <div class="flexcell confirm-cell">
+              <%= payment.due_date.strftime("%e %b ") %>
+            </div>
+            <div class="flexcell confirm-cell">
+              <%= humanized_money_with_symbol(payment.amount) %>
+            </div>
+          </div>
+        <% end %>
+      </div> <!-- standard-flexbox -->
+    </div> <!-- col-xs-12 -->
+  </div> <!-- row -->
+  <p><br><strong>If you proceed, your eWallet account will be credited immediately by your chosen amount above.</strong></p>
+
+  <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>
 
   <%= simple_form_for [current_user, current_user.loans.last], url: accept_user_loan_path(current_user, current_user.loans.last) do |f| %>
     <%= f.hidden_field :agreed_amount, value: current_user.loans.last.proposed_amount %>
     <%= f.hidden_field :start_date, value: DateTime.now %>
     <%= f.hidden_field :final_date, value: (DateTime.now + current_user.loans.last.duration_months.month) %>
-  <div class="container container-buttons">
+    <div class="container-buttons">
     <%= f.submit "Accept", data: { confirm: 'By confirming you agree to repay your loan on the scheduled repayment dates.
 
 Stride terms and conditions apply.'}, class: 'btn btn-royal-blue' %>
     <%= link_to "Decline", user_path(current_user), data: { confirm: 'Are you sure?'}, class: 'btn btn-grey' %>
+    </div> <!-- container-buttons -->
   <% end %>
-  </div>
- </div>
+</div> <!-- container -->

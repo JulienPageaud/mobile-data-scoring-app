@@ -1,22 +1,14 @@
-
-
-<div class="container container-flex">
+<div class="container text-center">
   <div class="round-icon-status">
     <i class="fa fa-hourglass" aria-hidden="true"></i>
   </div>
+  <div class="status-content">
+    <h3><strong>Application Pending</strong></h3>
 
-  <h3>Application Pending</h3>
-
-  <div>
     <h4>You have applied for:</h4>
-  </div>
 
-  <div class="loan-amount">
     <p><strong><%= humanized_money_with_symbol(current_user.loans.last.requested_amount) %></strong></p>
-  </div>
-
-  <div>
     <p class="status-notice">We are currently reviewing your details and we will be getting back to you soon.</p>
-  </div>
 
+  </div>
 </div>

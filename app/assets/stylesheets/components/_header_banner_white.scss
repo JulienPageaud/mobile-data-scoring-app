@@ -2,26 +2,25 @@
   background-color: white;
   min-height: 87px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  margin: 10px 0;
+  margin: 10px 5px;
+  border-radius: 2px;
   padding: 10px;
-  position: relative;
+  text-align: left;
 }
 
 .header-banner-white h1 {
   font-size: 16px;
-  text-align: left;
   font-weight: bold;
   color: $royal-blue;
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .header-banner-white p {
   font-size: 12px;
-  text-align: left;
   margin: 0;
   color: $title-grey;
 }
 
-.header-banner-white:last-child {
-  margin-bottom: 0;
-}
+// .header-banner-white:last-child {
+//   margin-bottom: 0;
+// }

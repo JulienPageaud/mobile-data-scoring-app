@@ -1,4 +1,4 @@
-w/* -------------------------------------
+/* -------------------------------------
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
@@ -7,14 +7,10 @@ w/* -------------------------------------
   color: $sky-blue;
 }
 
-.screen-height {
-  height: 100vh;
-}
-
 .banner {
   color: white;
   text-align: center;
-  min-height: 50vh;
+  min-height: 55vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -26,10 +22,6 @@ w/* -------------------------------------
 
 #home-banner p {
   font-size: 21px;
-  text-align: center;
-  color: white;
-  position: top;
-  background-position: center;
 }
 
 .btn-transparent {
@@ -62,8 +54,8 @@ w/* -------------------------------------
 }
 
 .user-review-samples {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   p {
   margin: 0;
   text-align: left;

@@ -1,52 +1,45 @@
-<h2>Loan Outstanding</h2>
+<div class="container text-center">
+  <h2>Loan Outstanding</h2>
 
-<div class="container">
+  <p>Your current balance is</p>
 
-  <div>
-    <p>Your current balance is</p>
-  </div>
+  <p><strong><%= humanized_money_with_symbol(current_user.loans.last.agreed_amount) %></strong></p>
 
-  <div class="loan-amount">
-    <p><strong><%= humanized_money_with_symbol(current_user.loans.last.agreed_amount) %></strong></p>
-  </div>
+  <p>Your next payment is due on the</p>
 
-  <div>
-    <p>Your next payment is due on the</p>
-  </div>
+  <p><strong><%= current_user.loans.last.next_payment.due_date.strftime("%e %b %Y") %></strong></p>
 
-  <div class="payment-date">
-    <p><strong><%= current_user.loans.last.next_payment.due_date.strftime("%e %b %Y") %></strong></p>
-  </div>
-
-  <div class="standard-flexbox">
-    <div class="flexrow text-center">
-      <div class="flexcell third-cell blue-header">
-        <p>Due date</p>
-      </div>
-      <div class="flexcell third-cell blue-header">
-        <p>Amount due</p>
-      </div>
-      <div class="flexcell third-cell blue-header">
-        <p>Paid</p>
-      </div>
-    </div>
-
-    <% current_user.loans.last.payments.each do |payment| %>
-      <div class="flexrow text-center">
-        <div class="flexcell third-cell">
-          <%= payment.due_date.strftime("%e %b %Y") %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+      <div class="standard-flexbox">
+        <div class="flexrow blue-header">
+          <div class="flexcell third-cell">
+            <p>Due date</p>
+          </div>
+          <div class="flexcell third-cell">
+            <p>Amount due</p>
+          </div>
+          <div class="flexcell third-cell">
+            <p>Paid</p>
+          </div>
         </div>
-        <div class="flexcell third-cell">
-          <%= humanized_money_with_symbol(payment.amount) %>
-        </div>
-        <div class="flexcell third-cell">
-          <%= payment.paid ? icon('check') : icon('times') %>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-  <br>
+        <% current_user.loans.last.payments.each do |payment| %>
+          <div class="flexrow">
+            <div class="flexcell third-cell">
+              <%= payment.due_date.strftime("%e %b") %>
+            </div>
+            <div class="flexcell third-cell">
+              <%= humanized_money_with_symbol(payment.amount) %>
+            </div>
+            <div class="flexcell third-cell">
+              <%= payment.paid ? icon('check') : icon('times') %>
+            </div>
+          </div>
+        <% end %>
+      </div> <!-- standard-flexbox -->
+    </div> <!-- col-xs-12 -->
+  </div> <!-- row -->
 
   <div>
     <p>If you do not make loan repayments by the specified due date additional fees may apply.</p>

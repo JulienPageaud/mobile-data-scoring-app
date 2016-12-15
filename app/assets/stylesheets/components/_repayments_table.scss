@@ -1,14 +1,12 @@
 .standard-flexbox {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
   background-color: $icon-grey;
-  width: 100%;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 .flexrow {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .flexrow:nth-child(even) {
   background-color: $table-grey;
@@ -25,4 +23,7 @@
 .blue-header {
   background-color: $royal-blue;
   color: white;
+  p {
+    margin: 5px 0;
+  }
 }

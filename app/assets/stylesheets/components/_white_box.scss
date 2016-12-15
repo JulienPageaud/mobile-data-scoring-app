@@ -1,7 +1,7 @@
 .white-box {
   background-color: white;
   margin: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 4px #666666;
   border-shadow: 4px #808080;
 }
@@ -14,7 +14,7 @@
 .status-icon {
   width: 50px;
   height: 50px;
-  margin: 10px auto;
+  margin: 20px auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -22,8 +22,4 @@
   color: white;
   border-radius: 50%;
 }
-.status-notice {
-  font-weight: lighter;
-  color: #c5c5c5;
-  padding: 20px;
-}
+

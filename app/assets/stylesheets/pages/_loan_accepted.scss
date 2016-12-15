@@ -1,42 +1,18 @@
-.round-icon-status {
-  margin: auto;
-}
-
 .fa-check {
   font-size: 16px;
   color: green;
 }
-
-.container-flex h3 {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.container-flex h4 {
-  text-align: center;
-  font-size: 16px;
-
-}
-
-.loan-amount {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.confirm-repayments {
-  margin: 0;
-}
-
-.confirm-repayments p {
-  font-size: 12px;
-}
-
 .container-buttons {
   display: flex;
 }
-
 .container-buttons .btn-royal-blue {
   justify-content: center;
+}
+.status-content {
+  h3{
+    font-size: 18px;
+  }
+  h4{
+    font-size: 16px;
+  }
 }

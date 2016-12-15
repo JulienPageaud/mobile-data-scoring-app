@@ -1,14 +1,14 @@
-<div class="wrapper-blue screen-height">
+<div class="wrapper-blue">
   <div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('background.jpg') %>);">
 
-    <div class="banner-content">
-      <p><strong>Apply now</strong>. A new way<br> to access a loan.</p>
+      <div class="banner-content">
+        <p><strong>Apply now</strong>. A new way<br> to access a loan.</p>
 
-      <%= simple_form_for(:user, url: user_registration_path) do |f| %>
-        <%= f.input :mobile_number, placeholder: 'Mobile phone number', error: 'Please enter a mobile phone number', label: false, input_html: {class: 'round-input', id: "mobile-input"} %>
-        <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" }, style: "width: 100%" %>
-      <% end %>
-    </div>
+        <%= simple_form_for(:user, url: user_registration_path) do |f| %>
+          <%= f.input :mobile_number, placeholder: 'Mobile phone number', error: 'Please enter a mobile phone number', label: false, input_html: {class: 'round-input', id: "mobile-input"} %>
+          <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" }, style: "width: 100%" %>
+        <% end %>
+      </div>
   </div>
 
   <div class="modal fade bd-example-modal-sm" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -20,33 +20,35 @@
   </div>
 
 
-  <div class="container container-values ">
-    <div class="row">
-      <div class="col-xs-6 col-md-3">
-        <i class="fa fa-money bigger-icons"></i>
-        <p> Get access to your lending platform</p>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <i class="fa fa-fighter-jet bigger-icons"></i>
-        <p>Fast application and review process</p>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <i class="fa fa-university bigger-icons"></i>
-        <p>No branch as everything happens on your mobile</p>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <i class="fa fa-handshake-o bigger-icons"></i>
-        <p>Responsible financial behaviours are rewarded</p>
+  <div class="container">
+    <div class="container-values">
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <i class="fa fa-money bigger-icons"></i>
+          <p> Get access to your lending platform</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <i class="fa fa-fighter-jet bigger-icons"></i>
+          <p>Fast application and review process</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <i class="fa fa-university bigger-icons"></i>
+          <p>No branch as everything happens on your mobile</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <i class="fa fa-handshake-o bigger-icons"></i>
+          <p>Responsible financial behaviours are rewarded</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="wrapper-grey" style="min-height: initial">
+  <div class="wrapper-grey-no-height">
     <div class="container">
       <div class="user-review-samples text-center">
         <div class="row">
-          <div class="col-xs-12 col-sm-offset-2 col-sm-4">
-            <div class="card home-card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review1.jpg') %>);">
+          <div class="col-xs-12 col-sm-6">
+            <div class="card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review1.jpg') %>);">
               <div class="card-category">Read more...</div>
               <div class="card-description">
                 <p>"Stride made my<br>dream reality"</p>
@@ -55,8 +57,8 @@
             </div>
           </div>
 
-          <div class="col-xs-12  col-sm-4">
-            <div class="card home-card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review2.jpg') %>);">
+          <div class="col-xs-12 col-sm-6">
+            <div class="card" style="background-image: linear-gradient(rgba(120,120,100,0.3), rgba(108,105,113,0.2)), url(<%= image_path('review2.jpg') %>);">
               <div class="card-category">Read more...</div>
               <div class="card-description">
                 <p>"I have finally kicked<br>off my own business"</p>
@@ -66,12 +68,9 @@
           </div>
         </div>
       </div>
-
-      <div class="extra-details text-center">
-      </div>
-
     </div>
   </div>
+</div>
 
 <% content_for(:after_js) do %>
   <script>
