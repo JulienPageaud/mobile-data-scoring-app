@@ -1,5 +1,5 @@
 .card {
-  height: 150px;
+  height: 200px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;
@@ -7,6 +7,7 @@
   position: relative;
   border-radius: 4px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 10px 0;
 }
 .card-user {
   position: absolute;
@@ -44,11 +45,6 @@
 .card-link:hover{
   opacity: 0.1;
 }
-
-.home-card {
-  margin-top: 10px;
-}
-
 .share-card {
   height: 175px;
   background-size: cover !important;
