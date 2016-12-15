@@ -1,28 +1,28 @@
-<div class="wrapper-grey">
-  <div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.3) 0%, rgba(0,36,61,0.5) 50%), url(<%= image_path('home_background.jpg') %>);">
+<div class="banner" id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.3) 0%, rgba(0,36,61,0.5) 50%), url(<%= image_path('home_background.jpg') %>);">
 
-    <div class="banner-content">
-      <% if @user.details_completed == true && @user.loans.blank? %>
-        <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
-        <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
+  <div class="banner-content">
+    <% if @user.details_completed == true && @user.loans.blank? %>
+      <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
+      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
 
-      <% elsif @user.details_completed == true && @user.loans.last.status == ("Application Pending" || "Application Accepted" || "Loan Outstanding") %>
-        <p><strong>Congratulations.</strong> You've<br> applied for a loan.</p>
-        <%= link_to "View your loan status", user_status_path(@user), class: "btn btn-transparent btn-default"  %>
+    <% elsif @user.details_completed == true && @user.loans.last.status == ("Application Pending" || "Application Accepted" || "Loan Outstanding") %>
+      <p><strong>Congratulations.</strong> You've<br> applied for a loan.</p>
+      <%= link_to "View your loan status", user_status_path(@user), class: "btn btn-transparent btn-default"  %>
 
-      <% elsif @user.details_completed == false || @user.details_completed.nil? %>
-        <p>Your profile is<strong> nearly<br> complete</strong> for a loan application.</p>
-        <%= link_to "Edit your details", edit_user_path(@user), class: "btn btn-transparent btn-default"  %>
+    <% elsif @user.details_completed == false || @user.details_completed.nil? %>
+      <p>Your profile is<strong> nearly<br> complete</strong> for a loan application.</p>
+      <%= link_to "Edit your details", edit_user_path(@user), class: "btn btn-transparent btn-default"  %>
 
-      <% else %>
-        <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
-        <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
-      <% end %>
-
-    </div>
+    <% else %>
+      <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
+      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
+    <% end %>
   </div>
+</div>
 
+<div class="wrapper-grey-no-height">
   <div class="header-banner-white">
+    <div class="container">
     <%= link_to(user_status_path(@user), class: "user-links") do %>
       <div id="tab-monitor">
         <h1>Monitor your situation</h1>
@@ -30,9 +30,11 @@
         <p class="sixteen-center text-red"><%= "Something requires your attention" if @user.notifications.unread.present? %></p>
       </div>
     <% end %>
+    </div>
   </div>
 
   <div class="header-banner-white">
+    <div class="container">
     <%= link_to(user_profile_path(@user), class: "user-links") do %>
       <div id="tab-details">
         <h1>Your Profile</h1>
@@ -42,14 +44,17 @@
         </div>
       </div>
     <% end %>
+    </div>
   </div>
 
   <div class="header-banner-white">
+    <div class="container">
     <%= link_to(user_share_path(@user), class: "user-links") do %>
       <div id="tab-share">
         <h1>Share Stride with people you know</h1>
         <p>Get benefits from sharing with your friends</p>
       </div>
     <% end %>
+    </div>
   </div>
-</div>
+</div> <!-- wrapper -->
