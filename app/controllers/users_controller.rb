@@ -25,10 +25,11 @@ class UsersController < ApplicationController
       UserMailer.email_has_changed(@user).deliver_later if send_email
       if @user.photo_id.metadata.present?
         @user.update(details_completed: true)
+        redirect_to user_path(@user)
       else
         @user.update(details_completed: false)
+        redirect_to user_profile_path(@user)
       end
-      redirect_to user_profile_path(@user)
     else
       render :edit
     end

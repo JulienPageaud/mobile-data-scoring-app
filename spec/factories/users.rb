@@ -6,18 +6,18 @@ FactoryGirl.define do
     f.password { Faker::Internet.password(6) }
 
     trait :with_details do
-      f.title { ['mr', 'mrs', 'ms'].sample }
-      f.first_name { Faker::Name.first_name }
-      f.last_name { Faker::Name.last_name }
-      f.address { Faker::Address.street_address }
-      f.city { Faker::Address.city }
-      f.postcode { Faker::Address.postcode }
-      f.employment { Faker::Company.profession }
-      f.date_of_birth { Faker::Date.between(65.years.ago, 18.years.ago) }
+      title { ['mr', 'mrs', 'ms'].sample }
+      first_name { Faker::Name.first_name }
+      last_name { Faker::Name.last_name }
+      address { Faker::Address.street_address }
+      city { Faker::Address.city }
+      postcode { Faker::Address.postcode }
+      employment { Faker::Company.profession }
+      date_of_birth { Faker::Date.between(65.years.ago, 18.years.ago) }
     end
 
     trait :with_email do
-      f.email { Faker::Internet.free_email }
+      email { Faker::Internet.free_email }
     end
   end
 end
