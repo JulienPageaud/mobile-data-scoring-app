@@ -14,11 +14,9 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-
       end
     else
       clean_up_passwords resource
@@ -31,5 +29,9 @@ class RegistrationsController < Devise::RegistrationsController
   # Redirect to personal details page
   def after_sign_up_path_for(resource)
     edit_user_path(resource)
+  end
+
+  def after_update_path_for(resource)
+    user_path(resource)
   end
 end
