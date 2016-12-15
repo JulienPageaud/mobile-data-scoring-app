@@ -6,7 +6,7 @@
 
         <%= simple_form_for(:user, url: user_registration_path) do |f| %>
           <%= f.input :mobile_number, placeholder: 'Mobile phone number', error: 'Please enter a mobile phone number', label: false, input_html: {class: 'round-input', id: "mobile-input"} %>
-          <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" }, style: { width: "100%;" } %>
+          <%= f.button :submit , 'Apply for a loan', class: 'btn btn-transparent', id: 'modal-button', data: { toggle: "modal", target: ".bd-example-modal-sm" }, style: "width: 100%" %>
         <% end %>
       </div>
   </div>
