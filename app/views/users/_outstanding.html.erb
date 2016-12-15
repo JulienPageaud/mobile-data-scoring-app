@@ -1,32 +1,28 @@
-<h2>Loan Outstanding</h2>
-
 <div class="container">
 
-  <div>
-    <p>Your current balance is</p>
-  </div>
+  <h2>Loan Outstanding</h2>
 
-  <div class="loan-amount">
+  <p>Your current balance is</p>
+
+  <div class="text-center">
     <p><strong><%= humanized_money_with_symbol(current_user.loans.last.agreed_amount) %></strong></p>
   </div>
 
-  <div>
-    <p>Your next payment is due on the</p>
-  </div>
+  <p>Your next payment is due on the</p>
 
-  <div class="payment-date">
+  <div class="text-center">
     <p><strong><%= current_user.loans.last.next_payment.due_date.strftime("%e %b %Y") %></strong></p>
   </div>
 
   <div class="standard-flexbox">
-    <div class="flexrow text-center">
-      <div class="flexcell third-cell blue-header">
+    <div class="flexrow text-center blue-header">
+      <div class="flexcell third-cell">
         <p>Due date</p>
       </div>
-      <div class="flexcell third-cell blue-header">
+      <div class="flexcell third-cell">
         <p>Amount due</p>
       </div>
-      <div class="flexcell third-cell blue-header">
+      <div class="flexcell third-cell">
         <p>Paid</p>
       </div>
     </div>
@@ -34,7 +30,7 @@
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow text-center">
         <div class="flexcell third-cell">
-          <%= payment.due_date.strftime("%e %b %Y") %>
+          <%= payment.due_date.strftime("%e %b") %>
         </div>
         <div class="flexcell third-cell">
           <%= humanized_money_with_symbol(payment.amount) %>

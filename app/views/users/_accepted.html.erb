@@ -20,11 +20,11 @@
 
 
   <div class="confirm-repayments standard-flexbox">
-    <div class="flexrow repayments-header-row text-center">
-      <div class="flexcell confirm-cell blue-header">
+    <div class="flexrow repayments-header-row text-center blue-header">
+      <div class="flexcell confirm-cell">
         <p>Due date</p>
       </div>
-      <div class="flexcell confirm-cell blue-header">
+      <div class="flexcell confirm-cell">
         <p>Amount due</p>
       </div>
     </div>
@@ -32,10 +32,10 @@
     <% current_user.loans.last.payments.each do |payment| %>
       <div class="flexrow month text-center">
         <div class="flexcell confirm-cell">
-          <p><%= payment.due_date.strftime("%e %b %Y") %></p>
+          <%= payment.due_date.strftime("%e %b ") %>
         </div>
         <div class="flexcell confirm-cell">
-          <p><%= humanized_money_with_symbol(payment.amount) %></p>
+          <%= humanized_money_with_symbol(payment.amount) %>
         </div>
       </div>
     <% end %>
@@ -52,11 +52,13 @@
     <%= f.hidden_field :agreed_amount, value: current_user.loans.last.proposed_amount %>
     <%= f.hidden_field :start_date, value: DateTime.now %>
     <%= f.hidden_field :final_date, value: (DateTime.now + current_user.loans.last.duration_months.month) %>
-  <div class="container container-buttons">
+  <div class="container">
+    <div class="container-buttons">
     <%= f.submit "Accept", data: { confirm: 'By confirming you agree to repay your loan on the scheduled repayment dates.
 
 Stride terms and conditions apply.'}, class: 'btn btn-royal-blue' %>
     <%= link_to "Decline", user_path(current_user), data: { confirm: 'Are you sure?'}, class: 'btn btn-grey' %>
   <% end %>
+    </div>
   </div>
  </div>
