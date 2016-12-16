@@ -14,14 +14,16 @@ Rails.application.routes.draw do
       end
     end
 
-    # User 'Current Loan Situation' page
-    get 'status', to: 'users#status'
+    member do
+      # User 'Current Loan Situation' page
+      get 'status', to: 'users#status'
 
-    # User profile page
-    get 'profile', to: 'users#profile'
+      # User profile page
+      get 'profile', to: 'users#profile'
 
-    # User 'Share' page
-    get 'share', to: 'users#share'
+      # User 'Share' page
+      get 'share', to: 'users#share'
+    end
   end
 
 

@@ -27,7 +27,7 @@ class LoansController < ApplicationController
       @loan.update(status: "Application Pending")
       SmsSender.application_sent_sms(current_user, @loan)
       UserMailer.application_confirmation_email(user: current_user, loan: @loan).deliver_later
-      redirect_to user_status_path(current_user), notice: 'Loan application was successfully created.'
+      redirect_to status_user_path(current_user), notice: 'Loan application was successfully created.'
     else
       render :new
     end
@@ -64,7 +64,7 @@ class LoansController < ApplicationController
     authorize @loan
     @loan.accept(accept_loan_params)
     SmsSender.confirm_loan(current_user, @loan)
-    redirect_to user_status_path(current_user)
+    redirect_to status_user_path(current_user)
   end
 
   def applications

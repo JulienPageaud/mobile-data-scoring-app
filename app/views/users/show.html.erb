@@ -5,9 +5,9 @@
       <p><strong>Congratulations.</strong> You are<br> ready to borrow money.</p>
       <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-transparent btn-default"  %>
 
-    <% elsif @user.details_completed == true && @user.loans.last.status == ("Application Pending" || "Application Accepted" || "Loan Outstanding") %>
+    <% elsif @user.details_completed == true && @latest_loan.status == ("Application Pending" || "Application Accepted" || "Loan Outstanding") %>
       <p><strong>Congratulations.</strong> You've<br> applied for a loan.</p>
-      <%= link_to "View your loan status", user_status_path(@user), class: "btn btn-transparent btn-default"  %>
+      <%= link_to "View your loan status", status_user_path(@user), class: "btn btn-transparent btn-default"  %>
 
     <% elsif @user.details_completed == false || @user.details_completed.nil? %>
       <p>Your profile is<strong> nearly<br> complete</strong> for a loan application.</p>
@@ -23,7 +23,7 @@
 <div class="wrapper-grey-no-height">
   <div class="header-banner-white">
     <div class="container">
-    <%= link_to(user_status_path(@user), class: "user-links") do %>
+    <%= link_to(status_user_path(@user), class: "user-links") do %>
       <div id="tab-monitor">
         <h1>Monitor your situation</h1>
         <p>Track your progress over time</p>
@@ -35,7 +35,7 @@
 
   <div class="header-banner-white">
     <div class="container">
-    <%= link_to(user_profile_path(@user), class: "user-links") do %>
+    <%= link_to(profile_user_path(@user), class: "user-links") do %>
       <div id="tab-details">
         <h1>Your Profile</h1>
         <p>Your details are important to us</p>
@@ -49,7 +49,7 @@
 
   <div class="header-banner-white">
     <div class="container">
-    <%= link_to(user_share_path(@user), class: "user-links") do %>
+    <%= link_to(share_user_path(@user), class: "user-links") do %>
       <div id="tab-share">
         <h1>Share Stride with people you know</h1>
         <p>Get benefits from sharing with your friends</p>

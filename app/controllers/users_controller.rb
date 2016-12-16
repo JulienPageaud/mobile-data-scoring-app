@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   # Authentication is on user not bank_user in this case
   skip_before_action :authenticate_bank_user!
 
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :set_user_id, only: [:status, :profile, :share]
+  before_action :set_user_and_latest_loan, only: [:show, :profile]
+  before_action :set_user, only: [:edit, :update, :status, :share]
 
   def show
     authorize @user
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         @user.update(details_completed: true)
         redirect_to user_path(@user)
       else
-        redirect_to user_profile_path(@user)
+        redirect_to profile_user_path(@user)
       end
     else
       render :edit
@@ -53,8 +53,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def set_user_id
-    @user = User.find(params[:user_id])
+  def set_user_and_latest_loan
+    @user = User.find(params[:id])
+    @latest_loan = @user.loans.last
   end
 
   def user_params
