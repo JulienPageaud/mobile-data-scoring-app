@@ -107,10 +107,7 @@ class LoansController < ApplicationController
     @loans = policy_scope(Loan)
     authorize Loan
 
-    @hash = Gmaps4rails.build_markers(Loan.all) do |loan, marker|
-      marker.lat loan.user.latitude
-      marker.lng loan.user.longitude
-    end
+    @hash = google_maps_markers
 
     respond_to do |format|
       format.js
@@ -147,5 +144,13 @@ class LoansController < ApplicationController
     Notification.create!(user: loan.user)
     SmsSender.application_reviewed_sms(loan.user, loan)
     UserMailer.application_reviewed(user: loan.user, loan: loan).deliver_later
+  end
+
+  def google_maps_markers
+    markers = Gmaps4rails.build_markers(Loan.all) do |loan, marker|
+      marker.lat loan.user.latitude
+      marker.lng loan.user.longitude
+    end
+    markers
   end
 end
