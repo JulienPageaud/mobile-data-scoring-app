@@ -46,9 +46,9 @@ Rails.application.routes.draw do
   end
 
   # About, Legal, Contact pages
-  get 'about', to: 'users#about'
-  get 'legal', to: 'users#legal'
-  get 'contact', to: 'users#contact'
+  get 'about', to: 'pages#about'
+  get 'legal', to: 'pages#legal'
+  get 'contact', to: 'pages#contact'
 
   # Twilio routes
   # get 'twilio/sign_up'
