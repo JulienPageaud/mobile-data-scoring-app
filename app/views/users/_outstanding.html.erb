@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <% current_user.loans.last.payments.each do |payment| %>
+        <% current_user.loans.last.payments.order(due_date: 'ASC').each do |payment| %>
           <div class="flexrow">
             <div class="flexcell third-cell">
               <%= payment.due_date.strftime("%e %b") %>
