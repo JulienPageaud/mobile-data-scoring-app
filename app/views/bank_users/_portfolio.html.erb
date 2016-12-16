@@ -1,33 +1,33 @@
 <div class="dashboard-header">
   <div class="item">
     <div>
-      <p><%= humanized_money_with_symbol(current_bank_user.bank.net_balance_sheet) %></p>
+      <p><%= humanized_money_with_symbol(@bank.net_balance_sheet) %></p>
       <h3>Net Balance Sheet</h3>
     </div>
     <div>
-      <p><%= current_bank_user.bank.pending_response %></p>
+      <p><%= @bank.pending_response %></p>
       <h3>Number of pending applications</h3>
     </div>
     <div>
-      <p><%= current_bank_user.bank.pending_repayment %></p>
+      <p><%= @bank.pending_repayment %></p>
       <h3>Number of loans pending repayment</h3>
     </div>
   </div>
 
   <div class="item">
     <div>
-      <p><%= current_bank_user.bank.average_score_of_active_customers.round(2)*100 %>%</p>
+      <p><%= @bank.average_score_of_active_customers.round(2)*100 %>%</p>
       <h3>Average credit score of customers with outstanding loans</h3>
     </div>
     <div>
-      <p><%= current_bank_user.bank.average_score_of_pending_customers.round(2)*100 %>%</p>
+      <p><%= @bank.average_score_of_pending_customers.round(2)*100 %>%</p>
       <h3>Average credit score of users with pending applications</h3>
     </div>
   </div>
 
   <div class="item">
     <div>
-      <p><%= current_bank_user.bank.customers_count %></p>
+      <p><%= @bank.customers_count %></p>
       <h3>Total number of customers with outstanding loans</h3>
     </div>
     <div>
@@ -35,7 +35,7 @@
       <h3>Customer retention rate</h3>
     </div>
     <div>
-      <p><%= current_bank_user.bank.total_users_count %></p>
+      <p><%= @bank.total_users_count %></p>
       <h3>Total number of customers</h3>
     </div>
   </div>

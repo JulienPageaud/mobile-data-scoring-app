@@ -64,7 +64,9 @@ class Bank < ApplicationRecord
   # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
 
   def credit_score_distribution_pending
-    results = { 0.98 => 0, 0.96 => 0, 0.94 => 0, 0.92 => 0, 0.90 => 0, 0.88 => 0, 0.86 => 0, 0.84 => 0, 0.82 => 0, 0.8 => 0}
+    results = { 0.98 => 0, 0.96 => 0, 0.94 => 0, 0.92 => 0,
+                0.90 => 0, 0.88 => 0, 0.86 => 0, 0.84 => 0,
+                0.82 => 0, 0.8 => 0}
     pending_customers.each do |customer|
       results.keys.each do |k|
         if customer.credit_score.to_f > k

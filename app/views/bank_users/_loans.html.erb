@@ -69,7 +69,7 @@
         <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@
         <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@
       <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>

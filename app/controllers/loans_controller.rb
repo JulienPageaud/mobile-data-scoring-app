@@ -110,9 +110,9 @@ class LoansController < ApplicationController
   end
 
   def portfolio
-    @loans = policy_scope(Loan)
     authorize Loan
-
+    @loans = policy_scope(Loan)
+    @bank = current_bank_user.bank
     @hash = google_maps_markers
 
     respond_to do |format|
