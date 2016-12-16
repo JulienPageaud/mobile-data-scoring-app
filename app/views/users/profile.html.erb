@@ -40,10 +40,10 @@
         </div>
       </div>
 
-        <% if @user.loans.present? && (@user.loans.last.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
+        <% if @user.loans.present? && (@latest_loan.status == "Application Pending" || "Application Accepted" || "Loan Outstanding" || "Application Declined") %>
           <div class="row">
             <div class="loan-status loan-section">
-                <%= link_to user_status_path(@user) do %>
+                <%= link_to status_user_path(@user) do %>
                   <div class="current-loan text-center">
                     <p>Current Loan Status:</p>
                     <h5>
@@ -66,7 +66,7 @@
         <div class="row">
           <div class="loan-history loan-section">
             <h5><strong>Loan History</strong></h5>
-            <p><%= "No previous loan with Stride" if @user.loans == [] %></p>
+            <p><%= "No previous loan with Stride" if @user.loans.blank? %></p>
 
             <% if @user.loans.present? %>
 

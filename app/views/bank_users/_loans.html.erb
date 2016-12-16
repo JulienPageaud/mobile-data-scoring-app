@@ -69,7 +69,7 @@
         <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@
         <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@
 </div>
 
 <div class="container">
-<h3 class="dashboard-title flexboxify">Loans - Good Book <span class="dashboard-count flexboxify"> <%= Loan.good_loans.count %></span></h3>
+<h3 class="dashboard-title flexboxify">Loans - Good Book <span class="dashboard-count flexboxify"> <%= @good_book_loans.length %></span></h3>
 <div class="loan-flexbox">
     <div class="flexrow loans-header-row text-left">
       <div class="flexcell loans-header">
@@ -182,7 +182,7 @@
       </div>
     </div>
 
-        <% Loan.good_loans.each do |loan| %>
+        <% @good_book_loans.each do |loan| %>
         <%= link_to "", class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{loan.id}" do %>
         <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">
@@ -208,7 +208,7 @@
       <div class="modal fade" id="<%= "application-#{loan.id}" %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <%= render "bank_users/show_partials/loan_outstanding", loan: loan %>
+                <%= render "bank_users/show_partials/loan_outstanding", loan: loan, user: loan.user %>
               </div>
             </div>
           </div>

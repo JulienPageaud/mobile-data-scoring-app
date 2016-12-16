@@ -14,14 +14,16 @@ Rails.application.routes.draw do
       end
     end
 
-    # User 'Current Loan Situation' page
-    get 'status', to: 'users#status'
+    member do
+      # User 'Current Loan Situation' page
+      get 'status', to: 'users#status'
 
-    # User profile page
-    get 'profile', to: 'users#profile'
+      # User profile page
+      get 'profile', to: 'users#profile'
 
-    # User 'Share' page
-    get 'share', to: 'users#share'
+      # User 'Share' page
+      get 'share', to: 'users#share'
+    end
   end
 
 
@@ -44,9 +46,9 @@ Rails.application.routes.draw do
   end
 
   # About, Legal, Contact pages
-  get 'about', to: 'users#about'
-  get 'legal', to: 'users#legal'
-  get 'contact', to: 'users#contact'
+  get 'about', to: 'pages#about'
+  get 'legal', to: 'pages#legal'
+  get 'contact', to: 'pages#contact'
 
   # Twilio routes
   # get 'twilio/sign_up'

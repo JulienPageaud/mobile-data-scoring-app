@@ -52,7 +52,7 @@ class TwilioController < ApplicationController
   end
 
   def other_sms(user)
-    user.other_sms
+    SmsSender.other_sms
   end
 
   def accept_loan_params(user)

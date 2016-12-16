@@ -60,8 +60,15 @@
 
 <%= content_for(:after_js) do %>
   <script>
-    $("[data-toggle=popover]").on('click', function(){
-      $("[data-toggle=popover]").popover({html: true}).popover('toggle');
+    $('body').on('click', function(evt){
+      var target = $(evt.target)
+      if (target.is('[data-toggle=popover')) {
+        $('[data-toggle=popover]').popover('toggle');
+      }
+      else {
+        console.log('else')
+        $('[data-toggle=popover]').popover('hide');
+      }
     })
   </script>
 <% end %>
