@@ -1,16 +1,20 @@
 class LoansController < ApplicationController
   skip_before_action :authenticate_bank_user!
   skip_before_action :authenticate_user!
-  before_action :set_loan, only: [:update, :accept]
+  before_action :set_loan, only: [:show, :update, :accept]
 
   include SmsSender
 
   def index
+    @loans = policy_scope(Loan)
+
     if current_bank_user.present?
-      @loans = policy_scope(Loan)
       @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
       @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
       render 'bank_users/index'
+    else
+      flash[:alert] = "You need to be signed in"
+      redirect_to new_bank_user_session_path
     end
   end
 
@@ -35,7 +39,6 @@ class LoansController < ApplicationController
 
   def show
     if current_bank_user
-      @loan = Loan.find(params[:id])
       authorize @loan
       render 'bank_users/show'
     end
