@@ -55,7 +55,7 @@
           input_html: { class: 'input-rounded' },
           required: false %>
         <%= f.hidden_field :bank_id,
-          value: Bank.find_by_name("FNB").id %>
+          value: @bank.id %>
         <%= f.submit 'Submit',
           class: 'btn-royal-blue btn', style: "width: 100%" %>
         <div class="back-button text-center">

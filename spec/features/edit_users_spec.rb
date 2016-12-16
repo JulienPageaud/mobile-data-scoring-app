@@ -52,7 +52,7 @@ feature 'User Edit Page', js: false do
     expect(page).to have_field('user_photo_id', type: 'file')
   end
 
-  scenario 'user can fill in and submit their details' do
+  scenario 'user who fills in and submits all their details is eligible to apply for a loan' do
     user_fills_in_details
     user_uploads_photo_id
     click_on 'Save'

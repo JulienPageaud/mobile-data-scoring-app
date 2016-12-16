@@ -15,7 +15,16 @@ feature 'Home Page' do
     user_is_redirected_to_complete_their_details
   end
 
-  scenario 'registered user can sign in'
+  scenario 'registered user can sign in' do
+    user = FactoryGirl.create(:user)
+    page.find('.glyphicon-user').click
+    click_on('Sign in')
+    expect(page).to have_field('user[mobile_number]')
+    expect(page).to have_field('user[password]')
+    fill_in 'user[mobile_number]', with: user.mobile_number
+    fill_in 'user[password]', with: user.password
+    click_on('Log in')
+  end
 
   scenario 'failed sign up returns user to sign up form' do
     user_can_complete_mobile_number_and_click_apply

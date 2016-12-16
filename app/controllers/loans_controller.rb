@@ -16,6 +16,7 @@ class LoansController < ApplicationController
 
   def new
     @loan = current_user.loans.build
+    @bank = Bank.find_by_name("FNB")
     authorize @loan
   end
 
