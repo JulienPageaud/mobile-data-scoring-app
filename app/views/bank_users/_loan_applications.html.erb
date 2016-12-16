@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="dashboard-title flexboxify">New Applications <span class="dashboard-count flexboxify"><%= @loans.where(status: "Application Pending").count %></span></h3>
+  <h3 class="dashboard-title flexboxify">New Applications <span class="dashboard-count flexboxify"><%= @pending_loans.count %></span></h3>
     <div class="loan-flexbox">
       <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <% @loans.order(created_at: :desc).where(status: "Application Pending").each do |application|%>
+      <% @pending_loans.each do |application|%>
         <%= link_to "", class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do%>
 
           <div class="flexrow loans text-left">
@@ -60,7 +60,7 @@
     </div>
 </div>
 <div class="container">
-<h3 class="dashboard-title flexboxify">Accepted Applications <span class="dashboard-count flexboxify"><%= @loans.where(status: "Application Accepted").count %></span></h3>
+<h3 class="dashboard-title flexboxify">Accepted Applications <span class="dashboard-count flexboxify"><%= @accepted_loans.count %></span></h3>
 <div class="loan-flexbox">
     <div class="flexrow loans-header-row text-left">
       <div class="flexcell loans-header">
@@ -83,7 +83,7 @@
       </div>
     </div>
 
-        <% @loans.order(updated_at: :desc).where(status: "Application Accepted").each do |application|%>
+        <% @accepted_loans.each do |application|%>
        <%= link_to "", class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do %>
         <div class="flexrow loans text-left">
           <div class="flexcell loans-cell">

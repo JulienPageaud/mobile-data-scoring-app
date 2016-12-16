@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="dashboard-title flexboxify">Declined Applications <span class="dashboard-count flexboxify"><%= @loans.where(status: "Application Declined").length %></span></h3>
+  <h3 class="dashboard-title flexboxify">Declined Applications <span class="dashboard-count flexboxify"><%= @declined_loans.length %></span></h3>
     <div class="loan-flexbox">
       <div class="flexrow loans-header-row text-left">
         <div class="flexcell loans-header">
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <% @loans.where(status: "Application Declined").each do |application|%>
+      <% @declined_loans.each do |application|%>
       <%= link_to "", class: "loan-link", "data-toggle" => "modal", "data-target" => "#application-#{application.id}" do %>
       <div class="flexrow loans text-left">
         <div class="flexcell loans-cell">

@@ -71,33 +71,39 @@ class LoansController < ApplicationController
   end
 
   def applications
-    @loans = policy_scope(Loan)
     authorize Loan
+    loans = policy_scope(Loan)
+    @pending_loans = loans.order(created_at: :desc).where(status: "Application Pending")
+    @accepted_loans = loans.order(created_at: :desc).where(status: "Application Accepted")
     respond_to do |format|
       format.js
     end
   end
 
   def outstanding
-    @missed_payment_loans = current_bank_user.bank.loans.missed_payment_loans
-    @delayed_payment_loans = current_bank_user.bank.loans.delayed_payment_loans
     authorize Loan
+    loans = policy_scope(Loan)
+    @missed_payment_loans = loans.missed_payment_loans
+    @delayed_payment_loans = loans.delayed_payment_loans
+    @good_book_loans = loans.good_loans
     respond_to do |format|
       format.js
     end
   end
 
   def declined
-    @loans = policy_scope(Loan)
     authorize Loan
+    loans = policy_scope(Loan)
+    @declined_loans = loans.order(created_at: :desc).where(status: "Application Declined")
     respond_to do |format|
       format.js
     end
   end
 
   def repaid
-    @loans = policy_scope(Loan)
     authorize Loan
+    loans = policy_scope(Loan)
+    @repaid_loans = loans.order(created_at: :desc).where(status: "Loan Repaid")
     respond_to do |format|
       format.js
     end
