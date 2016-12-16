@@ -19,7 +19,6 @@ feature 'Home Page' do
     user = FactoryGirl.create(:user)
     page.find('.glyphicon-user').click
     click_on('Sign in')
-    save_and_open_screenshot
     expect(page).to have_field('user[mobile_number]')
     expect(page).to have_field('user[password]')
     fill_in 'user[mobile_number]', with: user.mobile_number

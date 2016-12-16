@@ -19,5 +19,9 @@ FactoryGirl.define do
     trait :with_email do
       email { Faker::Internet.free_email }
     end
+
+    trait :details_complete do
+      details_completed { true }
+    end
   end
 end
