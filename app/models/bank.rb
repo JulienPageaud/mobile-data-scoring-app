@@ -7,7 +7,7 @@ class Bank < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def net_balance_sheet
-    balance = 0
+    balance = 0.to_money
     loans.where(status: "Loan Outstanding").each do |loan|
       balance += loan.remaining_capital
     end
@@ -61,8 +61,7 @@ class Bank < ApplicationRecord
     total_score / customers_count
   end
 
-  # Returns an array with frequency of customer in credit score brackets (75, 80, 85... etc.)
-
+  # Returns an array with frequency of customer in credit score brackets (98, 96, 94, 92 ... etc.)
   def credit_score_distribution_pending
     results = { 0.98 => 0, 0.96 => 0, 0.94 => 0, 0.92 => 0,
                 0.90 => 0, 0.88 => 0, 0.86 => 0, 0.84 => 0,
@@ -89,14 +88,6 @@ class Bank < ApplicationRecord
       end
     end
     return results.values.reverse
-  end
-
-  def applications_accepted
-    loans.where(status: ["Application Accepted", "Loan Outstanding"]).where(updated_at: DateTime.now - 7.day..DateTime.now).count
-  end
-
-  def applications_declined
-    loans.where(status: "Application Declined").where(updated_at: DateTime.now - 7.day..DateTime.now).count
   end
 
   def applications_accepted

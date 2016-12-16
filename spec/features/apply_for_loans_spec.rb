@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Apply For A Loan" do
+feature "Apply For A Loan", js: false do
   let(:user) { FactoryGirl.create(:user, :with_details, :details_complete) }
 
   scenario "user with details completed can apply for a loan" do
