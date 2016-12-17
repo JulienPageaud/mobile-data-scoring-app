@@ -38,7 +38,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
 
   config.include Warden::Test::Helpers
@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
+    Capybara.current_driver = Capybara.javascript_driver
     DatabaseCleaner.strategy = :truncation
   end
 
