@@ -10,7 +10,7 @@ feature "Apply For A Loan" do
     visit "/users/#{user.id}"
 
     click_on 'Ask for a loan'
-    expect(page).to have_content('Complete')
+    expect(page.status_code).to eq(200)
     expect(page).to have_field('loan[requested_amount]')
     expect(page).to have_field('loan[category]')
     expect(page).to have_field('loan[purpose]')
