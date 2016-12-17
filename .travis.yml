@@ -1,4 +1,8 @@
 language: ruby
-services: postgresql
+services:
+  - postgresql
+  - redis-server
+env:
+  - secure: "L5yo5Sz+8Qr71gCIwTosDkUUdZ2kR3pVspbGiq1oKyo5iz8CVIIyt3AunYTASB6ChIFhcT2a2FMfHTBTphLcFfvL3lptnfDrRuginTl0sv1AhtDdBHTzgwH5RZMF3Y+bBCOFovsNBOtklEjdX84KhOZL/2VqSXE6pytcOPuwD6k1oINMy/HX3tOhvId/Ss43tzt2c8qMeUaa4SzsByg8iUwtLcyVtsT3joKUXWdxinPGaA+o4Ku+1Xq6h5++xSFJ60qgoJ+GltbAXvSuWqMkSs0WLURiipaGyx4pEU+4iBOzhYrgAxq/3kEXyZFhn9Sjo+SBTbUvZ3IWQSElcxMY+TvEKiIZzEJoEzUAVW75Hg8YzjcCnL1exflHWaLViVWODDRWs8UzV9/wsWo1QwLjlttSCIYwcllvObnrRFbCNCnKMHyj6DRfZzulcv8uZ/Ck7BTX41xIlciwts1zmlI0Lk22H6FiegWwBQ+mC5Ft/eRORmrJEJRxOoC210/U3zgjqb82mtd0iLpxnKb8DooIDIr6znXrPtX87fWNGh47ZSnLw6QLi3sF+f6RKIBCubfUZJ7d7x+F8LFuwpNcOl1vlIjLDHUJzSP2VihGUPO8tXg312biwGnKqFI+zbAn2rDj7G1FYAku1DycgSziNWKw8FZsuo4r5zDivs/eHk1xAdA="
 before_script:
   - psql -c 'create database mobile_data_scoring_app_test;' -U postgres
