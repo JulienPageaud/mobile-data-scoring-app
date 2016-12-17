@@ -13,9 +13,9 @@ require 'capybara/poltergeist'
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 
-options = { js_errors: false }
+options = { js_errors: false, timeout: 20 }
 Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: 20)
+    Capybara::Poltergeist::Driver.new(app, options)
 end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
