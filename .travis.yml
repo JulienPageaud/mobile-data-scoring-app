@@ -1,3 +1,4 @@
 language: ruby
+services: postgresql
 before_script:
-  - psql -c 'create database mobile-data-scoring-app_test;' -U postgres
+  - psql -c 'create database mobile_data_scoring_app_test;' -U postgres
