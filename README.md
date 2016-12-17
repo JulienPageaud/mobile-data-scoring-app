@@ -1,4 +1,4 @@
-STRIDE
+STRIDE WORLD [![Build Status](https://travis-ci.org/JulienPageaud/mobile-data-scoring-app.svg?branch=master)](https://travis-ci.org/JulienPageaud/mobile-data-scoring-app)
 
 An application designed to provide people with a way to access loans who would otherwise be unable to due to a lack of financial history.
 
