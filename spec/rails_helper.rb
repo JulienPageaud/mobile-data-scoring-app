@@ -12,10 +12,11 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 15
 
-options = { js_errors: false }
+options = { js_errors: false, timeout: 25 }
 Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: 20)
+    Capybara::Poltergeist::Driver.new(app, options)
 end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -38,7 +39,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
 
   config.include Warden::Test::Helpers

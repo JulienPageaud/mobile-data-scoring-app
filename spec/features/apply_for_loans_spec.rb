@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Apply For A Loan", js: false do
+feature "Apply For A Loan" do
   let(:user) { FactoryGirl.create(:user, :with_details, :details_complete) }
 
   scenario "user with details completed can apply for a loan" do
@@ -10,6 +10,7 @@ feature "Apply For A Loan", js: false do
     visit "/users/#{user.id}"
 
     click_on 'Ask for a loan'
+    expect(page.status_code).to eq(200)
     expect(page).to have_field('loan[requested_amount]')
     expect(page).to have_field('loan[category]')
     expect(page).to have_field('loan[purpose]')
