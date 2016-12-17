@@ -10,6 +10,7 @@ feature "Apply For A Loan", js: false do
     visit "/users/#{user.id}"
 
     click_on 'Ask for a loan'
+    save_and_open_screenshot
     expect(page).to have_field('loan[requested_amount]')
     expect(page).to have_field('loan[category]')
     expect(page).to have_field('loan[purpose]')
