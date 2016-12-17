@@ -1,3 +1,3 @@
 language: ruby
 before_script:
-  - psql -c 'create database product_hunt_clone_test;' -U postgres
+  - psql -c 'create database mobile_scoring_app_test;' -U postgres
