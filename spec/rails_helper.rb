@@ -12,8 +12,9 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 15
 
-options = { js_errors: false, timeout: 60 }
+options = { js_errors: false, timeout: 25 }
 Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, options)
 end
