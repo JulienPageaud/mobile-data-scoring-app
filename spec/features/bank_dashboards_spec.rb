@@ -41,7 +41,9 @@ feature "BankDashboards" do
 
     find('.loan-link').click
     find('.decline-trigger').click
+    # page.execute_script("$('#decline-form-41').removeClass('hidden')")
     fill_in 'loan[decline_reason]', with: "Credit score too low"
+    save_and_open_screenshot
     click_on 'Decline Application'
     expect(page.status_code).to eq(200)
   end
