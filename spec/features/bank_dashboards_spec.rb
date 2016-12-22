@@ -28,6 +28,7 @@ feature "BankDashboards" do
     application.update(start_date: DateTime.now,
       final_date: DateTime.now + application.duration_months.month)
     click_on 'Accept'
+    expect(page.status_code).to eq(200)
   end
 
   scenario "bank user can decline a loan application" do
@@ -39,14 +40,21 @@ feature "BankDashboards" do
     visit "bank_users/#{subject.id}/loans"
 
     find('.loan-link').click
-
-    click_on 'Decline'
-
+    find('.decline-trigger').click
     fill_in 'loan[decline_reason]', with: "Credit score too low"
     click_on 'Decline Application'
+    expect(page.status_code).to eq(200)
   end
 
-  scenario "bank user can view outstanding loan details"
+  scenario "bank user can view outstanding loan details" do
+    login_as(subject, :scope => :bank_user)
+    visit "bank_users/#{subject.id}/loans"
+
+    save_and_open_screenshot
+    find('#outstanding-tab').trigger('click')
+    expect(page.status_code).to eq(200)
+    expect(page).to have_content('Loans - Good Book')
+  end
 
   scenario "bank user can view the portfolio tab"
 
