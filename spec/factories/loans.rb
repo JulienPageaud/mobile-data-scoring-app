@@ -7,6 +7,10 @@ FactoryGirl.define do
     loan.purpose { ["Medical Expenses", "New Equipment", "Transportation"].sample }
     loan.description { "This is a generic string which is long enough" }
 
+    trait :pending_application do
+      status { "Application Pending" }
+    end
+
     trait :accepted_application do
       status { "Application Accepted" }
       start_date { DateTime.now }
