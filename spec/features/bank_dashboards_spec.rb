@@ -50,13 +50,23 @@ feature "BankDashboards" do
     login_as(subject, :scope => :bank_user)
     visit "bank_users/#{subject.id}/loans"
 
-    save_and_open_screenshot
     find('#outstanding-tab').trigger('click')
     expect(page.status_code).to eq(200)
+    expect(page).to have_css('.spinner')
+    expect(page).not_to have_css('.spinner')
     expect(page).to have_content('Loans - Good Book')
   end
 
-  scenario "bank user can view the portfolio tab"
+  scenario "bank user can view the portfolio tab" do
+    login_as(subject, :scope => :bank_user)
+    visit "bank_users/#{subject.id}/loans"
+
+    find('#portfolio-tab').trigger('click')
+    expect(page.status_code).to eq(200)
+    expect(page).to have_css('.spinner')
+    expect(page).not_to have_css('.spinner', wait: 10)
+    expect(page).to have_css('.data-graph')
+  end
 
 end
 

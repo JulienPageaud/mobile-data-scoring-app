@@ -48,8 +48,11 @@ class Bank < ApplicationRecord
     users.joins(:loans).where("loans.status" => "Application Pending").each do |user|
       total_credit_score += user.credit_score.to_f
     end
-
-    total_credit_score / users.joins(:loans).where("loans.status" => "Application Pending").count
+    if total_credit_score == 0
+      return 0
+    else
+      return total_credit_score / users.joins(:loans).where("loans.status" => "Application Pending").count
+    end
   end
 
   def average_score_of_active_customers
@@ -57,8 +60,11 @@ class Bank < ApplicationRecord
       users.joins(:loans).where("loans.status" => ["Application Accepted", "Loan Outstanding"]).each do |user|
         total_score += user.credit_score.to_f
       end
-
-    total_score / customers_count
+    if customers_count == 0
+      return 0
+    else
+      return total_score / customers_count
+    end
   end
 
   # Returns an array with frequency of customer in credit score brackets (98, 96, 94, 92 ... etc.)
