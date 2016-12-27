@@ -68,6 +68,8 @@ class User < ApplicationRecord
     result = Indico.facial_localization(photo_id.metadata["url"], {sensitivity: 0.4})
     if result.present?
       update(details_completed: true)
+    else
+      update(details_completed: false)
     end
   end
 end
