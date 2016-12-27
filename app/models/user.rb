@@ -24,6 +24,7 @@ class User < ApplicationRecord
             if: -> {email_was.present?},
             on: :update
 
+
   def email_required?
     false
   end
@@ -60,5 +61,13 @@ class User < ApplicationRecord
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     self.update(user_params)
+  end
+
+  def check_facial_recognition_and_mark_complete
+    Indico.api_key = ENV['INDICO_API_KEY']
+    result = Indico.facial_localization(photo_id.metadata["url"], {sensitivity: 0.4})
+    if result.present?
+      update(details_completed: true)
+    end
   end
 end

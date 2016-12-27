@@ -20,15 +20,10 @@ class UsersController < ApplicationController
     # Checks if user email has been changed
     @user.email = params[:user][:email]
     send_email = @user.email_changed?
-
     if @user.update(user_params)
       UserMailer.email_has_changed(@user).deliver_later if send_email
-      if @user.photo_id.metadata.present?
-        @user.update(details_completed: true)
-        redirect_to user_path(@user)
-      else
-        redirect_to profile_user_path(@user)
-      end
+      @user.check_facial_recognition_and_mark_complete
+      redirect_to user_path(@user)
     else
       render :edit
     end
