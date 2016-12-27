@@ -23,7 +23,9 @@ class User < ApplicationRecord
   validates :email, presence: { message: 'Email can only be edited - not deleted' },
             if: -> {email_was.present?},
             on: :update
-
+  validates :photo_id, presence: { message: 'Please upload a photo ID' },
+            unless: -> {photo_id_was.present?},
+            on: :update
 
   def email_required?
     false
@@ -63,13 +65,15 @@ class User < ApplicationRecord
     self.update(user_params)
   end
 
-  def check_facial_recognition_and_mark_complete
+  def check_facial_recognition
     Indico.api_key = ENV['INDICO_API_KEY']
-    result = Indico.facial_localization(photo_id.metadata["url"], {sensitivity: 0.4})
-    if result.present?
-      update(details_completed: true)
-    else
-      update(details_completed: false)
+    if photo_id.file.present?
+      result = Indico.facial_localization(photo_id.file.file, {sensitivity: 0.4})
+      if result.present?
+        return true
+      else
+        errors.add(:photo_id, :no_face_recognised, message: "Your photo failed face recognition. Please upload a valid photo ID")
+      end
     end
   end
 end
