@@ -23,7 +23,12 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       UserMailer.email_has_changed(@user).deliver_later if send_email
       @user.check_facial_recognition_and_mark_complete
-      redirect_to user_path(@user)
+      if @user.details_completed
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "Your photo failed face recognition. Please upload a valid photo ID"
+        render :edit
+      end
     else
       render :edit
     end

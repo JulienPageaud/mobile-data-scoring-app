@@ -7,6 +7,7 @@
       <i><span class="fa fa-id-card"></span></i>
     </div>
   </div>
+  <%= render "shared/flashes" %>
   <div class="facebook-container" style="padding: 10px;margin-top: 20px;">
     <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
     <i class="fa fa-facebook"></i><div>Complete using Facebook</div>
@@ -63,8 +64,8 @@
             input_html: { class: 'input-rounded'},
             label: 'Upload your ID' %>
           <%= f.input :photo_id_cache, as: :hidden %>
-          <% if @user.photo_id.metadata.present? %>
-            <%= image_tag @user.photo_id, height: 300, width: 400 %>
+          <% if @user.photo_id.url.present? %>
+            <%= cl_image_tag(@user.photo_id, height: 300, width: 400) %>
           <% end %>
           <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
         <% end %>
