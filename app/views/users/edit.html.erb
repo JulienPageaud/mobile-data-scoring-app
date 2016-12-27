@@ -70,9 +70,9 @@
               label: 'Upload your ID' %>
             <%= f.input :photo_id_cache, as: :hidden %>
           </div>
-          <% if @user.photo_id.url.present? %>
+          <% if @user.photo_id && @user.errors.blank? %>
             <div class="col-xs-5 col-xs-offset-2 col-sm-6">
-              <%= cl_image_tag(@user.photo_id.filename, height: 100, width: 150, crop: :limit, class: "photo-id") %>
+              <%= cl_image_tag(@user.photo_id, height: 100, width: 150, crop: :limit, class: "photo-id") %>
             </div>
           <% end %>
         </div>

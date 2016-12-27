@@ -69,9 +69,7 @@ class User < ApplicationRecord
     Indico.api_key = ENV['INDICO_API_KEY']
     if photo_id.file.present?
       result = Indico.facial_localization(photo_id.file.file, {sensitivity: 0.4})
-      if result.present?
-        return true
-      else
+      if result.blank?
         errors.add(:photo_id, :no_face_recognised, message: "Your photo failed face recognition. Please upload a valid photo ID")
       end
     end
