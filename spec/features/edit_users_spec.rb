@@ -68,7 +68,7 @@ feature 'User Edit Page', js: false do
   scenario 'user has not uploaded a photo ID' do
     user_fills_in_details
     click_on 'Save'
-    expect(page).to have_content('Details incomplete')
+    expect(page).to have_content('Please upload a photo ID')
   end
 
   private
@@ -85,7 +85,7 @@ feature 'User Edit Page', js: false do
   end
 
   def user_uploads_photo_id
-    attach_file 'user_photo_id', 'public/lewagonsnap.jpg'
+    attach_file 'user_photo_id', 'spec/files/testpassport.jpg'
   end
 
   def user_forgets_date_of_birth

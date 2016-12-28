@@ -13,6 +13,8 @@ gem 'redis'
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "coffee-rails"
+# face recognition
+gem 'indico'
 
 # Google Map
 gem "geocoder"

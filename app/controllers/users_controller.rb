@@ -21,14 +21,12 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     send_email = @user.email_changed?
 
-    if @user.update(user_params)
+    @user.check_facial_recognition if user_photo_id_changed?
+
+    if @user.errors.messages[:photo_id].blank? && @user.update(user_params)
       UserMailer.email_has_changed(@user).deliver_later if send_email
-      if @user.photo_id.metadata.present?
-        @user.update(details_completed: true)
-        redirect_to user_path(@user)
-      else
-        redirect_to profile_user_path(@user)
-      end
+      @user.update!(details_completed: true)
+      redirect_to user_path(@user)
     else
       render :edit
     end
@@ -61,5 +59,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
       :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
+  end
+
+  def user_photo_id_changed?
+    if params[:user][:photo_id].present?
+      @user.photo_id = params[:user][:photo_id]
+      return true
+    else
+      return false
+    end
   end
 end

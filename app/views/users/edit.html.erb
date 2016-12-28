@@ -1,73 +1,84 @@
-  <div class="header-banner">
-    <div class="header-title">
-      <h1>We need more info</h1>
-      <h2>Information required to set up your account</h2>
-    </div>
-    <div class="round-icon">
-      <i><span class="fa fa-id-card"></span></i>
-    </div>
+<div class="header-banner">
+  <div class="header-title">
+    <h1>We need more info</h1>
+    <h2>Information required to set up your account</h2>
   </div>
-  <div class="facebook-container" style="padding: 10px;margin-top: 20px;">
-    <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
-    <i class="fa fa-facebook"></i><div>Complete using Facebook</div>
-  <% end %>
+  <div class="round-icon">
+    <i><span class="fa fa-id-card"></span></i>
   </div>
-    <div class="white-box">
-      <div class="details-form">
-        <%= simple_form_for @user do |f| %>
-          <%= f.input :email,
-            input_html: { class: 'input-rounded'},
-            placeholder: "Email (not required)",
-            label: false%>
-          <%= f.input :title,
-            as: 'radio_buttons',
-            collection: [['Mr', 'male'], ['Mrs', 'female'], ['Ms', 'female']],
-            label: false %>
-          <%= f.input :first_name,
-            input_html: { class: 'input-rounded'},
-            placeholder: "First name",
-            label: false,
-            error: "Please enter a first name" %>
-          <%= f.input :last_name,
-            input_html: { class: 'input-rounded'},
-            placeholder: "Last name",
-            label: false,
-            error: "Please enter your last name" %>
-          <%= f.input :address,
-            input_html: { class: 'input-rounded'},
-            placeholder: "Address",
-            label: false,
-            error: "Please enter your address" %>
-          <%= f.input :city,
-            input_html: { class: 'input-rounded'},
-            placeholder: "City",
-            label: false,
-            error: "Please enter a city" %>
-          <%= f.input :postcode,
-            input_html: { class: 'input-rounded'},
-            placeholder: "Postcode",
-            label: false,
-            error: "Please enter a valid postcode" %>
-          <%= f.input :employment,
-            input_html: { class: 'input-rounded'},
-            placeholder: "Employment",
-            label: false,
-            error: "Please enter your employment" %>
-          <%= f.input :date_of_birth,
-            as: :date_picker,
-            input_html: { class: 'input-rounded'},
-            placeholder: 'Date of Birth',
-            label: false,
-            error: "Please enter your date of birth (DD/MM/YYYY)" %>
-          <%= f.input :photo_id,
-            input_html: { class: 'input-rounded'},
-            label: 'Upload your ID' %>
-          <%= f.input :photo_id_cache, as: :hidden %>
-          <% if @user.photo_id.metadata.present? %>
-            <%= image_tag @user.photo_id, height: 300, width: 400 %>
+</div>
+<%= render "shared/flashes" %>
+<div class="facebook-container" style="padding: 10px;margin-top: 20px;">
+  <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
+  <i class="fa fa-facebook"></i><div>Complete using Facebook</div>
+<% end %>
+</div>
+<div class="white-box">
+  <div class="details-form">
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :email,
+        input_html: { class: 'input-rounded'},
+        placeholder: "Email (not required)",
+        label: false%>
+      <%= f.input :title,
+        as: 'radio_buttons',
+        collection: [['Mr', 'male'], ['Mrs', 'female'], ['Ms', 'female']],
+        label: false %>
+      <%= f.input :first_name,
+        input_html: { class: 'input-rounded'},
+        placeholder: "First name",
+        label: false,
+        error: "Please enter a first name" %>
+      <%= f.input :last_name,
+        input_html: { class: 'input-rounded'},
+        placeholder: "Last name",
+        label: false,
+        error: "Please enter your last name" %>
+      <%= f.input :address,
+        input_html: { class: 'input-rounded'},
+        placeholder: "Address",
+        label: false,
+        error: "Please enter your address" %>
+      <%= f.input :city,
+        input_html: { class: 'input-rounded'},
+        placeholder: "City",
+        label: false,
+        error: "Please enter a city" %>
+      <%= f.input :postcode,
+        input_html: { class: 'input-rounded'},
+        placeholder: "Postcode",
+        label: false,
+        error: "Please enter a valid postcode" %>
+      <%= f.input :employment,
+        input_html: { class: 'input-rounded'},
+        placeholder: "Employment",
+        label: false,
+        error: "Please enter your employment" %>
+      <%= f.input :date_of_birth,
+        as: :date_picker,
+        input_html: { class: 'input-rounded'},
+        placeholder: 'Date of Birth',
+        label: false,
+        error: "Please enter your date of birth (DD/MM/YYYY)" %>
+
+      <!-- Photo ID field and preview -->
+      <div class="container">
+        <div class="row">
+          <div class= "col-xs-5 col-sm-6">
+            <%= f.input :photo_id,
+              input_html: { class: 'input-rounded'},
+              label: 'Upload your ID' %>
+            <%= f.input :photo_id_cache, as: :hidden %>
+          </div>
+          <% if @user.photo_id && @user.errors.blank? %>
+            <div class="col-xs-5 col-xs-offset-2 col-sm-6">
+              <%= cl_image_tag(@user.photo_id, height: 100, width: 150, crop: :limit, class: "photo-id") %>
+            </div>
           <% end %>
-          <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
-        <% end %>
+        </div>
       </div>
-    </div>
+      <%= f.submit 'Save', class: 'btn btn-royal-blue', style: "width: 100%" %>
+    <% end %>
+  </div>
+</div>
 
