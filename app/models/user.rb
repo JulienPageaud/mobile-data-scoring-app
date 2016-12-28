@@ -23,8 +23,7 @@ class User < ApplicationRecord
   validates :email, presence: { message: 'Email can only be edited - not deleted' },
             if: -> {email_was.present?},
             on: :update
-  validates :photo_id, presence: { message: 'Please upload a photo ID' },
-            unless: -> {photo_id_was.present?},
+  validate :photo_id, :id_present?,
             on: :update
 
   def email_required?
@@ -72,6 +71,16 @@ class User < ApplicationRecord
       if result.blank?
         errors.add(:photo_id, :no_face_recognised, message: "Your photo failed face recognition. Please upload a valid photo ID")
       end
+    end
+  end
+
+  private
+
+  def id_present?
+    if photo_id.present? || photo_id.metadata.present?
+      return
+    else
+      errors.add(:photo_id, :blank, message: 'Please upload a photo ID')
     end
   end
 end

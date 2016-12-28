@@ -14,7 +14,7 @@ FactoryGirl.define do
       postcode { Faker::Address.postcode }
       employment { Faker::Company.profession }
       date_of_birth { Faker::Date.between(65.years.ago, 18.years.ago) }
-      photo_id { File.open(Rails.root.join("spec/files/testpassport.jpg"))}
+      photo_id { File.open(Rails.root.join("spec/files/testpassport.jpg")) }
     end
 
     trait :with_email do
