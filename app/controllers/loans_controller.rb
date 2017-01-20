@@ -26,6 +26,7 @@ class LoansController < ApplicationController
 
   def create
     @loan = current_user.loans.build(loan_params)
+    @bank = Bank.find_by_name("FNB")
     authorize @loan
     if @loan.save
       @loan.update(status: "Application Pending")
