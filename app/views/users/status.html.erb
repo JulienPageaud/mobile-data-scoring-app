@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="wrapper-grey flexboxify">
-  <div class="white-box status-box">
+  <div class="white-box status-box text-center">
     <% if current_user.loans == [] %>
       <%= render 'empty' %>
     <% elsif current_user.loans.last.status == "Application Pending" %>
