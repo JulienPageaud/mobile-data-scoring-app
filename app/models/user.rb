@@ -69,7 +69,7 @@ class User < ApplicationRecord
     if photo_id.file.present?
       result = Indico.facial_localization(photo_id.file.file, {sensitivity: 0.4})
       if result.blank?
-        errors.add(:photo_id, :no_face_recognised, message: "Your photo failed face recognition. Please upload a valid photo ID")
+        errors.add(:photo_id, :no_face_recognised, message: "Face recognition failed. Please upload a valid photo ID")
       end
     end
   end
@@ -78,6 +78,7 @@ class User < ApplicationRecord
 
   def id_present?
     if photo_id.present? || photo_id.metadata.present?
+      check_facial_recognition
       return
     else
       errors.add(:photo_id, :blank, message: 'Please upload a photo ID')
