@@ -26,19 +26,21 @@ feature 'Home Page' do
     click_on('Log in')
   end
 
-  scenario 'failed sign up returns user to sign up form' do
+  scenario 'error is shown on form when no mobile number entered'
+
+  scenario 'error is shown on form when no password entered' do
     user_can_complete_mobile_number_and_click_apply
     # User forgets to enter password/confirmation
     click_on('Sign up')
-    expect(page).to have_content("Apply now")
-    expect(current_url.include?('/?sign_up=true')).to eql(true)
+    expect(page).to have_content("invalid password")
   end
 
-  scenario 'error is shown on form when no mobile number entered'
-
-  scenario 'error is shown on form when no password entered'
-
-  scenario 'error is shown on form when password confirmation doesn\'t match'
+  scenario 'error is shown on form when password confirmation doesn\'t match' do
+    user_can_complete_mobile_number_and_click_apply
+    # User forgets to enter password/confirmation
+    click_on('Sign up')
+    expect(page).to have_css('label.text-red')
+  end
 
   private
 
