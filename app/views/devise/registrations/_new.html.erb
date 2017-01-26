@@ -3,12 +3,12 @@
     <div class="devise-container width-alter">
       <h1>Complete your account</h1>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'login-form'}) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
           <%= f.input :mobile_number, autofocus: true, id: "modal-mobile" %>
-          <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "••••••••" %>
+          <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "6 characters minimum" %>
           <%= f.input :password_confirmation, placeholder: "••••••••" %>
         </div>
 
@@ -19,3 +19,45 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script>
+  $(document).ready(function() {
+
+    var password_input = $('input#user_password');
+    var confirmation_input = $('input#user_password_confirmation');
+
+    $('form.login-form').submit(function(e){
+
+      // Check that password length and confirmation are correct before submitting
+      if (password_input.val().length < 6) {
+        e.preventDefault();
+        $('label[for="user_password"]').text('Password - invalid password!');
+        $('label[for="user_password"]').addClass('text-red');
+
+      }
+      if (password_input.val() !== confirmation_input.val()) {
+        e.preventDefault();
+        $('label[for="user_password_confirmation').addClass('text-red');
+      }
+    })
+
+    //re-enable submit button when they change the failed password
+    $('input#user_password').on('input', function() {
+      $('input[type="submit"]').attr('disabled', false);
+      if (password_input.val().length >= 6) {
+        $('label[for="user_password').text('Password');
+        $('label[for="user_password').removeClass('text-red');
+      }
+    });
+
+    //re-enable submit button when they change the failed password
+    $('input#user_password_confirmation').on('input', function() {
+      $('input[type="submit"]').attr('disabled', false);
+      if (confirmation_input.val() === password_input.val()) {
+        $('label[for="user_password_confirmation').removeClass('text-red');
+      }
+    });
+  })
+  </script>
+<% end %>
