@@ -23,25 +23,41 @@
 <% content_for(:after_js) do %>
   <script>
   $(document).ready(function() {
+
+    var password_input = $('input#user_password');
+    var confirmation_input = $('input#user_password_confirmation');
+
     $('form.login-form').submit(function(e){
-      var password = $('input#user_password').val();
-      var confirmation = $('input#user_password_confirmation');
 
       // Check that password length and confirmation are correct before submitting
-      if (password.length < 6) {
+      if (password_input.val().length < 6) {
         e.preventDefault();
         $('label[for="user_password"]').text('Password - invalid password!');
         $('label[for="user_password"]').addClass('text-red');
-        $('input[type="submit"]').attr('disabled', false);
+
       }
-      else if (password !== confirmation) {
+      if (password_input.val() !== confirmation_input.val()) {
         e.preventDefault();
-        $('label[for="user_password_confirmation').text('Password confirmation doesn\'t match!')
         $('label[for="user_password_confirmation').addClass('text-red');
-        $('input[type="submit"]').prop('disabled', false);
-        $('input[type="submit"]').attr('disabled', false);
       }
     })
+
+    //re-enable submit button when they change the failed password
+    $('input#user_password').on('input', function() {
+      $('input[type="submit"]').attr('disabled', false);
+      if (password_input.val().length >= 6) {
+        $('label[for="user_password').text('Password');
+        $('label[for="user_password').removeClass('text-red');
+      }
+    });
+
+    //re-enable submit button when they change the failed password
+    $('input#user_password_confirmation').on('input', function() {
+      $('input[type="submit"]').attr('disabled', false);
+      if (confirmation_input.val() === password_input.val()) {
+        $('label[for="user_password_confirmation').removeClass('text-red');
+      }
+    });
   })
   </script>
 <% end %>
