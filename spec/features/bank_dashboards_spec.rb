@@ -31,21 +31,21 @@ feature "BankDashboards" do
     expect(page.status_code).to eq(200)
   end
 
-  scenario "bank user can decline a loan application" do
-    application = FactoryGirl.build(:loan, :pending_application, bank: subject.bank)
-    # this is done to avoid after(:create) statements
-    application.save
+  # scenario "bank user can decline a loan application" do
+  #   application = FactoryGirl.build(:loan, :pending_application, bank: subject.bank)
+  #   # this is done to avoid after(:create) statements
+  #   application.save
 
-    login_as(subject, :scope => :bank_user)
-    visit "bank_users/#{subject.id}/loans"
+  #   login_as(subject, :scope => :bank_user)
+  #   visit "bank_users/#{subject.id}/loans"
 
-    find('.loan-link').click
-    find('.decline-trigger').click
-    # page.execute_script("$('#decline-form-41').removeClass('hidden')")
-    fill_in 'loan[decline_reason]', with: "Credit score too low"
-    click_on 'Decline Application'
-    expect(page.status_code).to eq(200)
-  end
+  #   find('.loan-link').click
+  #   find('.decline-trigger').click
+  #   # page.execute_script("$('#decline-form-41').removeClass('hidden')")
+  #   fill_in 'loan[decline_reason]', with: "Credit score too low"
+  #   click_on 'Decline Application'
+  #   expect(page.status_code).to eq(200)
+  # end
 
   scenario "bank user can view outstanding loan details" do
     login_as(subject, :scope => :bank_user)
