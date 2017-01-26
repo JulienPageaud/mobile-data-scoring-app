@@ -8,6 +8,11 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
+    if @latest_loan.present?
+      @loan_is_live = @latest_loan.live?
+    else
+      @loan_is_live = false
+    end
   end
 
   def edit
