@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     # Checks if user email has been changed
     @user.email = params[:user][:email]
     send_email = @user.email_changed?
-
+    # @user.photo_id = params[:user][:photo_id]
     if @user.update(user_params) && @user.errors.messages[:photo_id].blank?
       UserMailer.email_has_changed(@user).deliver_later if send_email
       @user.update!(details_completed: true)
