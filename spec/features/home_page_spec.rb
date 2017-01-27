@@ -32,7 +32,7 @@ feature 'Home Page' do
     user_can_complete_mobile_number_and_click_apply
     # User forgets to enter password/confirmation
     click_on('Sign up')
-    expect(page).to have_content("invalid password")
+    expect(page).to have_content("Invalid password")
   end
 
   scenario 'error is shown on form when password confirmation doesn\'t match' do
