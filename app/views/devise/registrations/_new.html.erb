@@ -32,7 +32,7 @@
       // Check that password length and confirmation are correct before submitting
       if (password_input.val().length < 6) {
         e.preventDefault();
-        $('label[for="user_password"]').text('Password - invalid password!');
+        $('label[for="user_password"]').text('Invalid password');
         $('label[for="user_password"]').addClass('text-red');
 
       }
