@@ -2,13 +2,11 @@
   <br>
   <div class="row white-box">
     <div class="devise-container width-alter">
-      <br>
+      <%= render 'shared/flashes' %>
       <h1>Log in</h1>
-
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-form'}) do |f| %>
         <div class="form-inputs">
-          <%= f.input :mobile_number, required: true, label: false, placeholder: 'Mobile number', autofocus: true, id: "modal-mobile" %>
+          <%= f.input :mobile_number, required: true, label: false, placeholder: 'Mobile (+27112334556)', autofocus: true, id: "modal-mobile" %>
           <%= f.input :password, label: false, placeholder: 'Password',hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
@@ -25,3 +23,35 @@
     </div>
   </div>
 </div>
+
+<% content_for (:after_js)  do%>
+  <script>
+    $(document).ready(function() {
+
+      var phoneInputField = $('input#user_mobile_number');
+      var errorLabel = '<label class="control-label text-red" id="error-label" for="user_mobile_number">Number must include country code (e.g. +27123456789)</label>';
+
+      $('form.login-form').submit(function(e) {
+        var userPhoneNumber = phoneInputField.val();
+
+        if (!userPhoneNumber.includes('+')) {
+          e.preventDefault();
+          $('#error-label').remove();
+          $('.user_mobile_number').prepend(errorLabel)
+        }
+        // remove spaces from input
+        userPhoneNumber = userPhoneNumber.replace(/\s+/g, '');
+        phoneInputField.val(userPhoneNumber);
+        console.log(userPhoneNumber);
+      });
+
+      phoneInputField.on('input', function(e) {
+        userPhoneNumber = phoneInputField.val();
+        $('input[type="submit"]').attr('disabled', false);
+        if (userPhoneNumber.includes('+')) {
+          $('#error-label').remove();
+        }
+      })
+    })
+  </script>
+<% end %>
