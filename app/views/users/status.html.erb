@@ -16,13 +16,13 @@
     <div class="container">
       <div class="large-screen-progress-bar">
         <ul class="status-progress-bar text-center padded">
-          <li class="status-progress-item active" id="1-lg">
+          <li class="status-progress-item" id="1-lg">
             <span class="status-header">Applied</span>
           </li>
-          <li class="status-progress-item active" id="2-lg">
+          <li class="status-progress-item" id="2-lg">
             <span class="status-header">Approved</span>
           </li>
-          <li class="status-progress-item active" id="3-lg">
+          <li class="status-progress-item" id="3-lg">
             <span class="status-header">Granted</span>
           </li>
           <li class="status-progress-item" id="4-lg">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="mobile-progress-bar text-center">
-      <div class="progress-quarter active" id="1-m">
+      <div class="progress-quarter" id="1-m">
         <span>Applied</span>
         <div class="progress-box">1</div>
       </div>
@@ -70,3 +70,27 @@
 </div>
 
 
+<% content_for(:after_js) do %>
+  <script>
+
+    $(document).ready(function() {
+      var status_id = <%= @status_id %>;
+      console.log(status_id);
+      switch(status_id) {
+        case 1:
+          $('#1-lg, #1-m').addClass('active');
+          break;
+        case 2:
+          $('#1-lg, #2-lg, #1-m, #2-m').addClass('active');
+          break;
+        case 3:
+          $('#1-lg, #2-lg, #3-lg, #1-m, #2-m, #3-m').addClass('active');
+          break;
+        case 4:
+          $('#1-lg, #2-lg, #3-lg, #4-lg, #1-m, #2-m, #3-m, #4-m').addClass('active');
+          break;
+      }
+    })
+
+  </script>
+<% end %>

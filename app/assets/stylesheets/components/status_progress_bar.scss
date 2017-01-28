@@ -52,13 +52,14 @@
   color: #55b776;
 }
 .status-progress-item.active:before {
- border-color: #55b776;
- color: #3FA361;
- font-weight: bolder;
- width: 45px;
- height: 45px;
- top: 120%;
- left: 40%;
+  border-color: #55b776;
+  color: #3FA361;
+  font-weight: bolder;
+  width: 45px;
+  height: 45px;
+  top: 120%;
+  left: 40%;
+  transition: all 0.5s ease-in;
 }
 .status-progress-item.active:after {
   background-color: #55b776;
@@ -94,10 +95,12 @@
 .progress-quarter.active {
   .progress-box {
     background-color: #55b776;
+    transition: all 0.7s ease-in;
   }
 
   span {
     color: #55b776;
+    transition: all 0.7s ease-in;
   }
 }
 @media (min-width: 768px) {
