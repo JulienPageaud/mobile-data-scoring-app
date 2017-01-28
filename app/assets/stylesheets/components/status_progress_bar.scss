@@ -68,7 +68,7 @@
   list-style: none;
   color: rgba(100, 100, 100, 0.9);
 }
-@media (max-width: 768px) {
+@media (max-width: 880px) {
   .large-screen-progress-bar {
     display: none;
   }
@@ -103,7 +103,7 @@
     transition: all 0.7s ease-in;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 880px) {
   .mobile-progress-bar {
     display: none;
   }
