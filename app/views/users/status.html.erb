@@ -6,8 +6,32 @@
     <i><span class="fa fa-bookmark"></span></i>
   </div>
 </div>
-<div class="wrapper-grey flexboxify">
+<div class="wrapper-grey">
+
+
+  <!-- Latest loan overview -->
   <div class="white-box status-box text-center">
+
+    <!-- Loan status progress (PC)-->
+    <div class="container">
+      <div class="large-screen-progress-bar">
+        <ul class="status-progress-bar text-center padded">
+          <li class="status-progress-item active">
+            <span class="status-header">Applied</span>
+          </li>
+          <li class="status-progress-item active">
+            <span class="status-header">Approved</span>
+          </li>
+          <li class="status-progress-item active">
+            <span class="status-header">Granted</span>
+          </li>
+          <li class="status-progress-item">
+            <span class="status-header">Repaid</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <% if current_user.loans == [] %>
       <%= render 'empty' %>
     <% elsif current_user.loans.last.status == "Application Pending" %>

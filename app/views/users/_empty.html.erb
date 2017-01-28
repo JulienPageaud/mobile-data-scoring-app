@@ -11,12 +11,12 @@
   <% if @user.details_completed == true %>
       <p>You can now apply for a loan</p>
 
-      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-royal-blue btn-default", style: 'width: 100%' %>
+      <%= link_to "Ask for a loan", new_user_loan_path(@user), class: "btn btn-royal-blue btn-default" %>
       <br>
   <% else %>
     <p>Your still need to finalise your profile details before applying for a loan.</p>
     <br>
-    <%= link_to "Edit your details", profile_user_path(@user), class: "btn btn-royal-blue btn-default", style: 'width: 100%'   %>
+    <%= link_to "Edit your details", profile_user_path(@user), class: "btn btn-royal-blue btn-default"  %>
     <br>
   <% end %>
 </div>
