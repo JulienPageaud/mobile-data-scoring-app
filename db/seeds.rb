@@ -3,10 +3,10 @@ User.destroy_all
 BankUser.destroy_all
 Bank.destroy_all
 bank = Bank.create!(name: "FNB")
-BankUser.create!(email: "fnbemployee@fnb.com", password: "ilovemoney",
+BankUser.create!(email: "bankemployee@gmail.com", password: "ilovemoney",
   first_name: "Joel", last_name: "Banks", phone_number: '+27999785123',
   bank: bank)
-BankUser.create!(email: "fnbemployee@gmail.com", password: "ilovemoney",
+BankUser.create!(email: "bankemployee@bank.com", password: "ilovemoney",
   first_name: "Jan", last_name: "Mandela", phone_number: '+27999233233',
   bank: bank)
 User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
