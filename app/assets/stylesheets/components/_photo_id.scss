@@ -1,7 +1,11 @@
 .photo_id {
-  max-height: 200px;
-  max-width: 600px;
+  max-width: 80%;
 }
 .photo-id-div {
   margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .photo_id {
+    max-width: 30%;
+  }
 }
