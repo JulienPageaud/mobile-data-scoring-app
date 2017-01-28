@@ -18,6 +18,10 @@ class Loan < ApplicationRecord
               too_short: "You need to exceed %{count} characters in your description" }
   validate :when_declining_a_loan, on: :update
 
+  def live?
+    ["Application Declined", "Loan Repaid"].include?(status) ? false : true
+  end
+
   ## PAYMENT METHODS
 
   # Retrieve the next payment which is due

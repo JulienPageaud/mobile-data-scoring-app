@@ -120,7 +120,7 @@ describe Loan do
         end
         expect(subject).to respond_to(:amount_owed)
         expect(subject.amount_owed.class).to eql(Money)
-        expect(subject.amount_owed).to eql(920.to_money) # HARDCODED
+        expect(subject.amount_owed).to eql(816.to_money) # HARDCODED
       end
     end
 
@@ -142,7 +142,7 @@ describe Loan do
         end
         expect(subject).to respond_to(:remaining_capital)
         expect(subject.remaining_capital.class).to eql(Money)
-        expect(subject.remaining_capital).to eql(920.to_money) # HARDCODED
+        expect(subject.remaining_capital).to eql(816.to_money) # HARDCODED
       end
     end
 
@@ -157,7 +157,7 @@ describe Loan do
         end
         expect(subject).to respond_to(:total_capital_repaid)
         expect(subject.total_capital_repaid.class).to eql(Money)
-        expect(subject.total_capital_repaid).to eql(460.to_money)
+        expect(subject.total_capital_repaid).to eql(408.to_money)
       end
     end
 
@@ -165,7 +165,7 @@ describe Loan do
       it "returns the total amount to be repaid" do
         expect(subject).to respond_to(:total_capital)
         expect(subject.total_capital.class).to eql(Money)
-        expect(subject.total_capital).to eql(1380.to_money)
+        expect(subject.total_capital).to eql(1224.to_money)
       end
     end
 

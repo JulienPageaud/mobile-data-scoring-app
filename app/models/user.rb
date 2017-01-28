@@ -12,19 +12,20 @@ class User < ApplicationRecord
 
   phony_normalize :mobile_number, default_country_code: 'ZA'
   validates :mobile_number, presence: true, uniqueness: true
-  validates :title, presence: true, on: :update
-  validates :first_name, presence: true, on: :update
-  validates :last_name, presence: true, on: :update
-  validates :address, presence: true, on: :update
-  validates :city, presence: true, on: :update
-  validates :postcode, presence: true, on: :update
-  validates :employment, presence: true, on: :update
-  validates :date_of_birth, presence: true, on: :update
+
+  [:title, :first_name, :last_name, :address, :city, :postcode, :employment, :date_of_birth].each do |meth|
+    validates meth, presence: true, on: :update, unless: :updating_password?
+  end
+
   validates :email, presence: { message: 'Email can only be edited - not deleted' },
             if: -> {email_was.present?},
             on: :update
   validate :photo_id, :id_present?,
-            on: :update
+            on: :update, unless: :updating_password?
+
+  def updating_password?
+    @password_confirmation.present?
+  end
 
   def email_required?
     false
@@ -78,10 +79,8 @@ class User < ApplicationRecord
 
   def id_present?
     if photo_id.present? || photo_id.metadata.present?
-      check_facial_recognition
+      check_facial_recognition if photo_id_changed?
       return
-    else
-      errors.add(:photo_id, :blank, message: 'Please upload a photo ID')
     end
   end
 end

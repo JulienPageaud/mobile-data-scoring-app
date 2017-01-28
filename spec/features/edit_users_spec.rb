@@ -59,16 +59,34 @@ feature 'User Edit Page', js: false do
     expect(page).to have_content('Ask for a loan')
   end
 
+  scenario 'user uploads a bad photo should fail face recognition' do
+    user_fills_in_details
+    user_uploads_bad_photo
+    click_on 'Save'
+    expect(page).to have_content('Face recognition failed')
+  end
+
   scenario 'form is re-rendered if a required field is left blank (e.g. DoB)' do
     user_forgets_date_of_birth
     click_on 'Save'
     expect(page).to have_content('Please enter your date of birth')
   end
 
-  scenario 'user has not uploaded a photo ID' do
-    user_fills_in_details
-    click_on 'Save'
-    expect(page).to have_content('Please upload a photo ID')
+  scenario 'user wants to change his password' do
+    visit "/users/edit.#{user.id}"
+    expect(page).to have_content('Edit User')
+    fill_in 'user_current_password', with: 'password'
+    fill_in 'user_password', with: 'new_password'
+    fill_in 'user_password_confirmation', with: 'new_passwords'
+    click_on 'Update'
+
+    expect(page).to have_content("doesn't match Password")
+    fill_in 'user_current_password', with: 'password'
+    fill_in 'user_password', with: 'new_password'
+    fill_in 'user_password_confirmation', with: 'new_password'
+    click_on 'Update'
+
+    expect(current_path).to eq(user_path(user))
   end
 
   private
@@ -86,6 +104,10 @@ feature 'User Edit Page', js: false do
 
   def user_uploads_photo_id
     attach_file 'user_photo_id', 'spec/files/testpassport.jpg'
+  end
+
+  def user_uploads_bad_photo
+    attach_file 'user_photo_id', 'spec/files/badphoto.jpg'
   end
 
   def user_forgets_date_of_birth
