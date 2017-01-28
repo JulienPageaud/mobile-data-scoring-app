@@ -6,7 +6,7 @@
 
   <% if @delayed || @missed %>
     <p>Your payment is overdue since</p>
-    <p class="bold text-red"><%= @latest_loan.next_payment.due_date.strftime("%e %b %Y") %></p>
+    <p class="bold text-red"><%= @latest_loan.most_recent_payment.due_date.strftime("%e %b %Y") %></p>
     <%= link_to 'Pay now', '#', class: 'btn btn-red' %>
   <% else %>
     <p>Your next payment is due on</p>
