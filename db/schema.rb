@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208142449) do
+ActiveRecord::Schema.define(version: 20170128143611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,16 +63,16 @@ ActiveRecord::Schema.define(version: 20161208142449) do
     t.string   "category"
     t.string   "purpose"
     t.string   "description"
-    t.integer  "interest_rate",          default: 15
+    t.integer  "interest_rate",          default: 2
     t.datetime "start_date"
     t.datetime "final_date"
     t.integer  "bank_id"
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "requested_amount_cents", default: 0,  null: false
-    t.integer  "proposed_amount_cents",  default: 0,  null: false
-    t.integer  "agreed_amount_cents",    default: 0,  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "requested_amount_cents", default: 0, null: false
+    t.integer  "proposed_amount_cents",  default: 0, null: false
+    t.integer  "agreed_amount_cents",    default: 0, null: false
     t.integer  "duration_months",        default: 3
     t.string   "decline_reason"
     t.index ["bank_id"], name: "index_loans_on_bank_id", using: :btree
