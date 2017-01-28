@@ -68,23 +68,18 @@
     </div>
   </div><!--white-box-->
   <div class="white-box text-center" style="position: relative;">
-    <i class="fa fa-info-circle info-icon" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
+    <i class="fa fa-info-circle info-icon grey-tooltip" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
 
     <div class="badge-section">
       <h5 class="bold">Your current rating</h5>
       <div class="user-medals flexboxify-around">
-        <div class="user-medal">
-          <div class="empty-medal"></div>
+        <%= image_tag('iron_medal.png', class: 'medal') %>
+        <div class="empty-medal hidden">
         </div>
-        <div class="user-medal">
-          <div class="empty-medal"></div>
+        <div class="empty-medal">
         </div>
-        <div class="user-medal">
-          <div class="empty-medal"></div>
-        </div>
-        <div class="user-medal">
-          <div class="empty-medal"></div>
-        </div>
+        <div class="empty-medal"></div>
+        <div class="empty-medal"></div>
       </div>
     </div>
 
@@ -93,16 +88,16 @@
       <p class="text-grey">Click an icon to see how</p>
       <div class="improve-score-icons flexboxify-around">
         <div class="improve-score-icon">
-          <%= image_tag("pay_icon.png", class: "improve-score-icon", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Repay your loan on time") %>
+          <%= image_tag("pay_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Repay your loan on time") %>
         </div>
         <div class="improve-score-icon">
-          <%= image_tag("facebook_circle_icon.png", class: "improve-score-icon", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Give us access to your Facebook social data") %>
+          <%= image_tag("facebook_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Give us access to your Facebook social data") %>
         </div>
         <div class="improve-score-icon">
-          <%= image_tag("chronometer_icon.jpg", class: "improve-score-icon", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Leave the Stride app open on your phone for one month") %>
+          <%= image_tag("chrono_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Leave the Stride app open on your phone for one month") %>
         </div>
         <div class="improve-score-icon">
-          <%= image_tag("brain_icon.png", class: "improve-score-icon", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Take 5 minutes to answer some questions") %>
+          <%= image_tag("psychometric_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Take 5 minutes to answer some questions") %>
         </div>
       </div>
     </div>
