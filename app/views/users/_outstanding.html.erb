@@ -2,13 +2,17 @@
   <h2>Loan Outstanding</h2>
 
   <p>Your current balance is</p>
+  <p><strong><%= humanized_money_with_symbol(@latest_loan.agreed_amount) %></strong></p>
 
-  <p><strong><%= humanized_money_with_symbol(current_user.loans.last.agreed_amount) %></strong></p>
+  <% if @delayed || @missed %>
+    <p>Your payment is overdue since</p>
+    <p class="bold text-red"><%= @latest_loan.next_payment.due_date.strftime("%e %b %Y") %></p>
+    <%= link_to 'Pay now', '#', class: 'btn btn-red' %>
+  <% else %>
+    <p>Your next payment is due on</p>
 
-  <p>Your next payment is due on the</p>
-
-  <p><strong><%= current_user.loans.last.next_payment.due_date.strftime("%e %b %Y") %></strong></p>
-
+    <p class="bold"><%= @latest_loan.next_payment.due_date.strftime("%e %b %Y") %></p>
+  <% end %>
   <div class="row">
     <div class="col-xs-12 col-sm-offset-2 col-sm-8">
       <div class="standard-flexbox">
@@ -24,7 +28,7 @@
           </div>
         </div>
 
-        <% current_user.loans.last.payments.order(due_date: 'ASC').each do |payment| %>
+        <% @latest_loan.payments.order(due_date: 'ASC').each do |payment| %>
           <div class="flexrow">
             <div class="flexcell third-cell">
               <%= payment.due_date.strftime("%e %b") %>

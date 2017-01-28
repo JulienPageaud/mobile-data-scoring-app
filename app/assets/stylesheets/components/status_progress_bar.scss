@@ -64,6 +64,38 @@
 .status-progress-item.active:after {
   background-color: #55b776;
 }
+.status-progress-item.missed-payment:after {
+  background-color: red;
+  transition: background-color 0.5s ease-in;
+}
+.status-progress-item.missed-payment:before {
+  border-color: red;
+  color: red;
+  transition: all 0.5s ease-in;
+}
+.status-progress-item.missed-payment .status-header {
+  color: red;
+}
+.status-progress-item.delayed-payment:after {
+  background-color: #FF9A2B;
+  color: #FF9A2B;
+  transition: all 0.5s ease-in;
+}
+.status-progress-item.delayed-payment:before {
+  border-color: #FF9A2B;
+  transition: border-color 0.5s ease-in;
+}
+.status-progress-item.delayed-payment .status-header {
+  color: #FF9A2B;
+}
+.status-progress-item.ongoing:before {
+  border-color: #E8E628;
+  transition: border-color 0.5s ease-in;
+}
+.status-progress-item.ongoing:after {
+  background-color: #E8E628;
+  transition: background-color 0.5 ease-in;
+}
 .status-header {
   list-style: none;
   color: rgba(100, 100, 100, 0.9);
@@ -100,6 +132,34 @@
 
   span {
     color: #55b776;
+    transition: all 0.7s ease-in;
+  }
+}
+.progress-quarter.ongoing {
+  .progress-box {
+    background-color: #E8E628;
+    transition: all 0.7s ease-in;
+  }
+
+}
+.progress-quarter.delayed-payment {
+  .progress-box {
+    background-color: #FF9A2B;
+    transition: all 0.7s ease-in;
+  }
+  span {
+    color: #FF9A2B;
+    transition: all 0.7s ease-in;
+  }
+}
+.progress-quarter.missed-payment {
+  .progress-box {
+    background-color: red;
+    transition: all 0.7s ease-in;
+  }
+
+  span {
+    color: red;
     transition: all 0.7s ease-in;
   }
 }

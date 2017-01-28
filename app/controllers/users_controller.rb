@@ -37,16 +37,24 @@ class UsersController < ApplicationController
   def status
     authorize @user
     @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
+
+    # Used for the progress bar on status page
     if @latest_loan.present?
+      @loan_is_live = @latest_loan.live?
       case @latest_loan.status
       when "Application Pending" then @status_id = 1
       when "Application Accepted" then @status_id = 2
-      when "Loan Outstanding" then @status_id = 3
+      when "Loan Outstanding"
+        @status_id = 3
+        @delayed = @latest_loan.any_delayed_payment?
+        @missed = @latest_loan.any_missed_payment?
       when "Loan Repaid" then @status_id = 4
       end
     else
       @status_id = 0
     end
+
+
   end
 
   def profile

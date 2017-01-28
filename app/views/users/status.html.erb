@@ -117,6 +117,11 @@
 
       // sets the progress bar at correct point
       var status_id = <%= @status_id %>;
+      var loanIsLive = <%= @loan_is_live %>;
+      var missedPayment = <%= @missed %>;
+      console.log(missedPayment);
+      var delayedPayment = <%= @delayed %>;
+      console.log(delayedPayment);
       switch(status_id) {
         case 1:
           $('#1-lg, #1-m').addClass('active');
@@ -126,6 +131,15 @@
           break;
         case 3:
           $('#1-lg, #2-lg, #3-lg, #1-m, #2-m, #3-m').addClass('active');
+          if (missedPayment) {
+            $('#4-lg, #4-m').addClass('missed-payment');
+          }
+          else if (delayedPayment) {
+            $('#4-lg, #4-m').addClass('delayed-payment');
+          }
+          else {
+            $('#4-lg, #4-m').addClass('ongoing');
+          }
           break;
         case 4:
           $('#1-lg, #2-lg, #3-lg, #4-lg, #1-m, #2-m, #3-m, #4-m').addClass('active');
