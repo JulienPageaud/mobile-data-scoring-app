@@ -1,3 +1,4 @@
+// PROGRESS BAR FOR WIDE SCREENS
 .status-progress-bar {
   counter-reset: step;
   margin: 0 auto;
@@ -19,7 +20,7 @@
   line-height: 30px;
   content: counter(step);
   counter-increment: step;
-  border: 2px solid rgba(170, 170, 170, 0.9);
+  border: 2px solid rgba(170, 170, 170, 0.8);
   display: block;
   margin: 0 auto 10px auto;
   border-radius: 50%;
@@ -38,7 +39,7 @@
   height: 3px;
   content: '';
   position: absolute;
-  background-color: rgba(170, 170, 170, 0.9);;
+  background-color: rgba(170, 170, 170, 0.8);;
   top: 220%;
   left: -45%;
   z-index: 1;
@@ -68,6 +69,39 @@
 }
 @media (max-width: 768px) {
   .large-screen-progress-bar {
+    display: none;
+  }
+}
+// PROGRESS BAR FOR MOBILE DEVICES
+.mobile-progress-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto;
+  font-size: 13px;
+  color: rgba(170, 170, 170, 0.9);
+  font-weight: bolder;
+}
+.progress-quarter {
+  width: 25%;
+}
+.progress-box {
+  background-color: rgba(170, 170, 170, 0.8);
+  border-radius: 2px;
+  margin: 0 2px;
+  color: white;
+}
+.progress-quarter.active {
+  .progress-box {
+    background-color: #55b776;
+  }
+
+  span {
+    color: #55b776;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-progress-bar {
     display: none;
   }
 }
