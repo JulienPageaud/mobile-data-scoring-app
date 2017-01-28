@@ -24,7 +24,7 @@ class User < ApplicationRecord
             on: :update, unless: :updating_password?
 
   def updating_password?
-    @password.present?
+    @password_confirmation.present?
   end
 
   def email_required?
