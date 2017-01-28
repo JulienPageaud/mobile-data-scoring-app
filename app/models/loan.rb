@@ -22,6 +22,14 @@ class Loan < ApplicationRecord
     ["Application Declined", "Loan Repaid"].include?(status) ? false : true
   end
 
+  def any_missed_payment?
+    payments.any? { |payment| payment.missed_payment? }
+  end
+
+  def any_delayed_payment?
+    payments.any? { |payment| payment.delayed_payment? }
+  end
+
   ## PAYMENT METHODS
 
   # Retrieve the next payment which is due
