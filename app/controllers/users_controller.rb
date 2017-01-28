@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     # @user.photo_id = params[:user][:photo_id]
     if @user.update(user_params) && @user.errors.messages[:photo_id].blank?
       UserMailer.email_has_changed(@user).deliver_later if send_email
-      @user.update!(details_completed: true)
       redirect_to user_path(@user)
     else
       render :edit, user: @user
@@ -60,8 +59,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:mobile_number, :title, :email, :first_name, :last_name,
-      :address, :city, :postcode, :employment, :date_of_birth, :photo_id, :photo_id_cache)
+    params.require(:user).permit(:mobile_number, :title, :email,
+      :first_name, :last_name, :address, :city, :postcode,
+      :employment, :date_of_birth, :photo_id,
+      :photo_id_cache, :details_completed)
   end
 
   def user_photo_id_changed?

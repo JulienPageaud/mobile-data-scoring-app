@@ -60,6 +60,7 @@
         placeholder: 'Date of Birth *',
         label: false,
         error: "Please enter your date of birth (DD/MM/YYYY)" %>
+      <%= f.hidden_field :details_completed %>
 
       <!-- Photo ID field and preview -->
       <div class="container">
@@ -83,3 +84,14 @@
   </div>
 </div>
 
+<% content_for(:after_js) do%>
+  <script>
+    $(document).ready(function() {
+      var photoField = $('input#user_photo_id');
+      var hiddenField = $('input#user_details_completed');
+      photoField.on('change', function() {
+        hiddenField.val(true);
+      });
+    })
+  </script>
+<% end %>
