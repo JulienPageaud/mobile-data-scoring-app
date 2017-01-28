@@ -81,8 +81,6 @@ class User < ApplicationRecord
     if photo_id.present? || photo_id.metadata.present?
       check_facial_recognition if photo_id_changed?
       return
-    else
-      errors.add(:photo_id, :blank, message: 'Please upload a photo ID')
     end
   end
 end
