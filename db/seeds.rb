@@ -63,7 +63,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Application Accepted", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, updated_at: DateTime.now - rand(0..21).day)
   loan.category == "Personal" ? loan.update!(purpose: purpose_perso_ary.sample) : loan.update!(purpose: purpose_business_ary.sample)
@@ -82,7 +82,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Loan Outstanding", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..21).round.day))
@@ -106,7 +106,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Loan Outstanding", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..2).month + (rand(8..50).round.day)))
@@ -131,7 +131,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Loan Outstanding", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (1.month + (rand(1..7).round.day)))
@@ -156,7 +156,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Loan Repaid", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2))
   loan.update!(proposed_amount: loan.requested_amount, agreed_amount: loan.requested_amount,
     start_date: DateTime.now - (rand(1..50).round.day))
@@ -181,7 +181,7 @@ end
   category == "Personal" ? purpose = purpose_perso_ary.sample : purpose = purpose_business_ary.sample
   loan = user.loans.build(category: category,
     status: "Application Declined", purpose: purpose,
-    description: description_ary.sample, interest_rate: 15,
+    description: description_ary.sample,
     bank: bank, requested_amount: rand(100..15000).round(-2),
     decline_reason: decline_reason_ary.sample)
   loan.update!(created_at: DateTime.now - rand(0..19).day)
