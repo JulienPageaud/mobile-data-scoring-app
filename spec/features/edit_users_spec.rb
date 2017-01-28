@@ -71,6 +71,23 @@ feature 'User Edit Page', js: false do
     expect(page).to have_content('Please upload a photo ID')
   end
 
+  scenario 'user wants to change his password' do
+    visit "/users/edit.#{user.id}"
+    expect(page).to have_content('Edit User')
+    fill_in 'user_current_password', with: 'password'
+    fill_in 'user_password', with: 'new_password'
+    fill_in 'user_password_confirmation', with: 'new_passwords'
+    click_on 'Update'
+
+    expect(page).to have_content("doesn't match Password")
+    fill_in 'user_current_password', with: 'password'
+    fill_in 'user_password', with: 'new_password'
+    fill_in 'user_password_confirmation', with: 'new_password'
+    click_on 'Update'
+
+    expect(current_path).to eq(user_path(user))
+  end
+
   private
 
   def user_fills_in_details
