@@ -1,0 +1,6 @@
+.grey-tooltip + .tooltip > .tooltip-inner {
+  background-color: rgba(150, 150, 150, 1);
+}
+.grey-tooltip + .tooltip.top > .tooltip-arrow {
+  border-top-color: rgba(150, 150, 150, 1);
+}
