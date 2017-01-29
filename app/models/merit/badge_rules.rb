@@ -44,6 +44,15 @@ module Merit
       #
       #   user.name.length > 4
       # end
+
+      # Iron medal granted to all new users
+      grant_on 'users#edit', badge: 'iron-medal', model_name: 'User'
+
+      # Bronze medal granted on one repaid loan OR FB connect + psychometric test
+      grant_on ['users#status', 'users#profile'], badge: 'bronze-medal', temporary: true do |user|
+        user.loans.any? { |loan| loan.status == "Loan Repaid" } &&
+        user.loans.none? { |loan| loan.any_missed_payment? }
+      end
     end
   end
 end

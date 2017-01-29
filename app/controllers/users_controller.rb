@@ -54,8 +54,6 @@ class UsersController < ApplicationController
       @status_id = 0
       @loan_is_live = false
     end
-
-
   end
 
   def profile

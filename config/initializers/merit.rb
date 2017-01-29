@@ -4,7 +4,7 @@ Merit.setup do |config|
   # config.checks_on_each_request = true
 
   # Define ORM. Could be :active_record (default) and :mongoid
-  # config.orm = :active_record
+  config.orm = :active_record
 
   # Add application observers to get notifications when reputation changes.
   # config.add_observer 'MyObserverClassName'
@@ -31,3 +31,25 @@ end
 # }].each do |attrs|
 #   Merit::Badge.create! attrs
 # end
+
+Merit::Badge.create!(
+  id: 1,
+  name: "iron-medal",
+  description: "basic status"
+)
+Merit::Badge.create!(
+  id: 2,
+  name: "bronze-medal",
+  description: "facebook connected and psychometric test completed OR one loan repaid"
+)
+Merit::Badge.create!(
+  id: 3,
+  name: "silver-medal",
+  description: "facebook connected, psychometric test completed and one loan repaid OR two loans repaid"
+)
+Merit::Badge.create!(
+  id: 4,
+  name: "gold-medal",
+  description: "facebook connected, psychometric test completed and two loans repaid OR three loans repaid"
+)
+
