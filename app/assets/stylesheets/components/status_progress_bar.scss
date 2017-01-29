@@ -64,6 +64,17 @@
 .status-progress-item.active:after {
   background-color: #55b776;
 }
+@media (min-width: 1300px) {
+  .status-progress-item.active:after {
+    left: -50%;
+  }
+  .status-progress-item.active:before {
+    left: 44%;
+  }
+  .status-progress-item:after {
+    left: -50%;
+  }
+}
 .status-progress-item.missed-payment:after {
   background-color: red;
   transition: background-color 0.5s ease-in;
