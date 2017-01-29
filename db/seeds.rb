@@ -192,13 +192,13 @@ demo_user_1 = User.create!(
   mobile_number: '+123123', password: 'stride', first_name: 'John',
   last_name: 'Smith', city: 'Johannesburg',
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
-  credit_score: 97, address: '63 Plein St', postcode: '2000'
+  credit_score: 0.97, address: '63 Plein St', postcode: '2000'
 )
 demo_user_2 = User.create!(
   mobile_number: '+456456', password: 'stride', first_name: 'John',
-  last_name: 'Smith', city: 'Johannesburg',
+  last_name: 'Smith', city: 'Johannesburg', employment: 'cook', title: 'male'
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
-  credit_score: 97, address: '63 Plein St', postcode: '2000'
+  credit_score: 0.97, address: '63 Plein St', postcode: '2000'
 )
 2.times do
   loan = demo_user_2.loans.build({
