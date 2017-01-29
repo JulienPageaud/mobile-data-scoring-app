@@ -2,14 +2,13 @@ Loan.destroy_all
 User.destroy_all
 BankUser.destroy_all
 Bank.destroy_all
-bank = Bank.create!(name: "FNB")
+bank = Bank.create!(name: "Bank")
 BankUser.create!(email: "bankemployee@gmail.com", password: "ilovemoney",
   first_name: "Joel", last_name: "Banks", phone_number: '+27999785123',
   bank: bank)
 BankUser.create!(email: "bankemployee@bank.com", password: "ilovemoney",
   first_name: "Jan", last_name: "Mandela", phone_number: '+27999233233',
   bank: bank)
-User.create!(mobile_number: 1234560, password: 123456, first_name: "Tom", last_name: "Cruise", )
 
 cities_ary = ["Johannesburg", 'Cape Town', 'Durban', 'Pretoria', 'Port Elizabeth', 'Bloemfontein']
 
@@ -187,4 +186,32 @@ end
   loan.update!(created_at: DateTime.now - rand(0..19).day)
   loan.update!(final_date: loan.created_at + rand(1..5).day)
   loan.update!(updated_at: loan.final_date)
+end
+
+demo_user_1 = User.create!(
+  mobile_number: '+123123', password: 'stride', first_name: 'John',
+  last_name: 'Smith', city: 'Johannesburg',
+  date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
+  credit_score: 97, address: '63 Plein St', postcode: '2000'
+)
+demo_user_2 = User.create!(
+  mobile_number: '+456456', password: 'stride', first_name: 'John',
+  last_name: 'Smith', city: 'Johannesburg',
+  date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
+  credit_score: 97, address: '63 Plein St', postcode: '2000'
+)
+2.times do
+  loan = demo_user_2.loans.build({
+    category: 'Personal',
+    status: "Loan Repaid", purpose: 'Medical Expenses',
+    description: 'I would like to pay for a surgery',
+    bank: bank, requested_amount: 10000
+  })
+  loan.update!({
+    proposed_amount: loan.requested_amount,
+    agreed_amount: loan.requested_amount,
+    start_date: DateTime.now - 3.month, final_date: DateTime.now
+  })
+  loan.update_payments_to_agreed_amount
+  loan.payments.each { |p| p.update(paid: true, paid_date: DateTime.now) }
 end
