@@ -46,7 +46,7 @@ module Merit
       # end
 
       # Iron medal granted to all new users
-      grant_on 'users#edit', badge: 'iron-medal', model_name: 'User'
+      grant_on 'registrations#create', badge: 'iron-medal', model_name: 'User'
 
       # Bronze medal granted on one repaid loan OR FB connect + psychometric test
       grant_on ['users#status', 'users#profile'], badge: 'bronze-medal', temporary: true do |user|
