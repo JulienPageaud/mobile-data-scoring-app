@@ -1,13 +1,10 @@
-<div class="container">
   <div class="round-icon-status">
     <i><span class="fa fa-times"></span></i>
   </div>
-</div>
 <h2>No Loans to Report</h2>
 <br>
 
 
-<div class="container">
   <% if @user.details_completed == true %>
       <p>You can now apply for a loan</p>
 
@@ -19,6 +16,5 @@
     <%= link_to "Edit your details", profile_user_path(@user), class: "btn btn-royal-blue btn-default"  %>
     <br>
   <% end %>
-</div>
 
 

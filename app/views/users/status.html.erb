@@ -71,7 +71,7 @@
     <i class="fa fa-info-circle info-icon grey-tooltip" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
 
     <div class="badge-section">
-      <h5 class="bold">Your current rating</h5>
+      <h5 class="bold">Your current rating:</h5>
       <div class="user-medals flexboxify-around">
         <% if @user.badges.any? { |badge| badge.id == 1 } %>
           <%= image_tag('iron_medal.png', class: 'medal') %>

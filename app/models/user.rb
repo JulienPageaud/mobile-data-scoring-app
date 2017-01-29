@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   # for badges/medals using the merit gems
+  include Merit
   has_merit
 
   # Include default devise modules. Others available are:
