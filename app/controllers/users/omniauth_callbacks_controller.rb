@@ -11,8 +11,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # end
 
     # We already have a current_user  (we're just updating fields)
-    current_user.update_with_facebook(request.env['omniauth.auth'])
+    @user = current_user
+    user_params = current_user.update_with_facebook(request.env['omniauth.auth'])
+    @user.update_attributes(user_params)
     flash[:notice] = "Succesfully authenticated with facebook"
-    redirect_to edit_user_path(current_user)
+    render 'users/edit'
   end
 end
