@@ -60,12 +60,12 @@ module Merit
       end
       # Silver medal granted on two repaid loans OR FB connect + psychometric tests + one repaid loan
       grant_on ['users#status', 'users#profile', 'users#show'], badge: 'silver-medal', temporary: true do |user|
-        (user.loans.count { |loan| loan.status == "Loan Repaid" } >= 2) &&
+        (user.loans.select { |loan| loan.status == "Loan Repaid" }.count >= 2) &&
         user.loans.none? { |loan| loan.any_missed_payment? }
       end
       # Gold medal granted on three repaid loans OR FB connect + psychometric test + two repaid loans
       grant_on ['users#status', 'users#profile', 'users#show'], badge: 'gold-medal', temporary: true do |user|
-        (user.loans.count { |loan| loan.status == "Loan Repaid" } >= 3) &&
+        (user.loans.select { |loan| loan.status == "Loan Repaid" }.count >= 3) &&
         user.loans.none? { |loan| loan.any_missed_payment? }
       end
     end

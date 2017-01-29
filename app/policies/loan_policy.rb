@@ -25,6 +25,10 @@ class LoanPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def decline?
+    accept?
+  end
+
   def applications?
     true
   end

@@ -48,17 +48,17 @@
       </div>
     </div>
 
-    <% if current_user.loans == [] %>
+    <% if @user.loans.empty? %>
       <%= render 'empty' %>
-    <% elsif current_user.loans.last.status == "Application Pending" %>
+    <% elsif @latest_loan.status == "Application Pending" %>
       <%= render 'pending' %>
-    <% elsif current_user.loans.last.status == "Application Accepted" %>
+    <% elsif @latest_loan.status == "Application Accepted" %>
       <%= render 'accepted' %>
-    <% elsif current_user.loans.last.status == "Loan Outstanding" %>
+    <% elsif @latest_loan.status == "Loan Outstanding" %>
       <%= render 'outstanding' %>
-    <% elsif current_user.loans.last.status == "Application Declined" %>
+    <% elsif @latest_loan.status == "Application Declined" %>
       <%= render 'declined' %>
-    <% elsif current_user.loans.last.status == "Loan Repaid" %>
+    <% elsif @latest_loan.status == "Loan Repaid" %>
       <%= render 'repaid' %>
     <% end %>
     <div class="back-button text-center">

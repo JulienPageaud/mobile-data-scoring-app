@@ -12,7 +12,12 @@
   background-color: $table-grey;
  }
 .flexcell {
-  padding: 0 20px;
+  padding: 0 5px;
+}
+@media (min-width: 768px) {
+  .flexcell {
+    padding: 0 20px;
+  }
 }
 .confirm-cell {
   width: 50%;

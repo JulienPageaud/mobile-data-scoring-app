@@ -79,7 +79,7 @@
                     <p>Amount</p>
                   </div>
                   <div class="flexcell third-cell blue-header">
-                    <p>Duration</p>
+                    <p>Status</p>
                   </div>
                 </div>
 
@@ -98,7 +98,7 @@
                         </div>
                       <% when "Application Accepted" %>
                         <div class="flexcell third-cell">
-                          <%= loan.final_date.strftime("%e %b") %>
+                          N/A
                         </div>
                         <div class="flexcell third-cell">
                           <%= humanized_money_with_symbol(loan.proposed_amount) %>
@@ -117,6 +117,16 @@
                           <%= "Ongoing" %>
                         </div>
                       <% when "Application Declined" %>
+                        <div class="flexcell third-cell">
+                          <%= loan.updated_at.strftime("%e %b") %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= humanized_money_with_symbol(loan.requested_amount) %>
+                        </div>
+                        <div class="flexcell third-cell">
+                          <%= "Declined" %>
+                        </div>
+                        <% when "Loan Declined" %>
                         <div class="flexcell third-cell">
                           <%= loan.updated_at.strftime("%e %b") %>
                         </div>
