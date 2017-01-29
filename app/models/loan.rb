@@ -19,7 +19,7 @@ class Loan < ApplicationRecord
   validate :when_declining_a_loan, on: :update
 
   def live?
-    ["Application Declined", "Loan Repaid"].include?(status) ? false : true
+    status == "Loan Outstanding"
   end
 
   def any_missed_payment?
