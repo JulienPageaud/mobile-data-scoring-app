@@ -76,7 +76,7 @@
         <% if @user.badges.any? { |badge| badge.id == 1 } %>
           <%= image_tag('iron_medal.png', class: 'medal') %>
         <% else %>
-          <div class="empty-medal hidden">
+          <div class="empty-medal">
           </div>
         <% end %>
         <% if @user.badges.any? { |badge| badge.id == 2 } %>
