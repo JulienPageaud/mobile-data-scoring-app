@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   skip_before_action :authenticate_bank_user!
   skip_before_action :authenticate_user!
-  before_action :set_loan, only: [:show, :update, :accept]
+  before_action :set_loan, only: [:show, :update, :accept, :decline]
 
   include SmsSender
 
@@ -68,6 +68,12 @@ class LoansController < ApplicationController
     authorize @loan
     @loan.accept(accept_loan_params)
     SmsSender.confirm_loan(current_user, @loan)
+    redirect_to status_user_path(current_user)
+  end
+
+  def decline
+    authorize @loan
+    @loan.update(status: "Loan Declined", start_date: DateTime.now, final_date: DateTime.now)
     redirect_to status_user_path(current_user)
   end
 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       member do
         patch 'accept', to: 'loans#accept'
         put 'accept', to: 'loans#accept'
+        get 'decline', to: 'loans#decline'
       end
     end
 
