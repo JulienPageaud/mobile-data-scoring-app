@@ -1,28 +1,17 @@
 <h2>Loan Repaid</h2>
 
 <div class="container">
-  <div class="status-button">
-    <i>PAID ICON</i>
+  <div class="status-button improve-score-icons">
+    <%= image_tag("pay_icon.png", class: "improve-score-icon") %>
   </div>
 
-  <div>
-    <p>As of <%= current_user.loans.last.payments.last.paid_date %></p>
-  </div>
-
-  <div>
-    <p>Your loan of</p>
-  </div>
+  <p>Your loan of</p>
 
   <div class="loan-amount">
-    <p><strong><%= current_user.loans.last.agreed_amount_cents %></strong></p>
-  </div>
-
-  <div>
-    <p>has been repaid.</p>
+    <p class="bold"><%= humanized_money_with_symbol(@latest_loan.agreed_amount) %></p>
+    <p>was repaid on <%= current_user.loans.last.payments.last.paid_date.strftime("%e %b %Y") %></p>
   </div>
 
 </div>
 
-<div class="banner">
-  <button class="btn btn-secondary">Apply for a new loan</button>
-</div>
+<button class="btn btn-royal-blue btn-default">Apply for a new loan</button>
