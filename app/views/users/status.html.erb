@@ -73,11 +73,18 @@
     <div class="badge-section">
       <h5 class="bold">Your current rating</h5>
       <div class="user-medals flexboxify-around">
-        <%= image_tag('iron_medal.png', class: 'medal') %>
-        <div class="empty-medal hidden">
-        </div>
-        <div class="empty-medal">
-        </div>
+        <% if @user.badges.any? { |badge| badge.id == 1 } %>
+          <%= image_tag('iron_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal hidden">
+          </div>
+        <% end %>
+        <% if @user.badges.any? { |badge| badge.id == 2 } %>
+          <%= image_tag('bronze_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
         <div class="empty-medal"></div>
         <div class="empty-medal"></div>
       </div>
