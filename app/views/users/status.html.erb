@@ -13,23 +13,21 @@
   <div class="white-box status-box text-center">
 
     <!-- Loan status progress (PC)-->
-    <div class="container">
-      <div class="large-screen-progress-bar">
-        <ul class="status-progress-bar text-center padded">
-          <li class="status-progress-item" id="1-lg">
-            <span class="status-header">Applied</span>
-          </li>
-          <li class="status-progress-item" id="2-lg">
-            <span class="status-header">Approved</span>
-          </li>
-          <li class="status-progress-item" id="3-lg">
-            <span class="status-header">Granted</span>
-          </li>
-          <li class="status-progress-item" id="4-lg">
-            <span class="status-header">Repaid</span>
-          </li>
-        </ul>
-      </div>
+    <div class="large-screen-progress-bar">
+      <ul class="status-progress-bar text-center padded">
+        <li class="status-progress-item" id="1-lg">
+          <span class="status-header">Applied</span>
+        </li>
+        <li class="status-progress-item" id="2-lg">
+          <span class="status-header">Approved</span>
+        </li>
+        <li class="status-progress-item" id="3-lg">
+          <span class="status-header">Granted</span>
+        </li>
+        <li class="status-progress-item" id="4-lg">
+          <span class="status-header">Repaid</span>
+        </li>
+      </ul>
     </div>
     <div class="mobile-progress-bar text-center">
       <div class="progress-quarter" id="1-m">
@@ -67,6 +65,8 @@
       <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
     </div>
   </div><!--white-box-->
+
+  <!-- Medals and improvements section -->
   <div class="white-box text-center" style="position: relative;">
     <i class="fa fa-info-circle info-icon grey-tooltip" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
 

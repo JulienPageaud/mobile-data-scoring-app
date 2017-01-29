@@ -1,6 +1,5 @@
 <h2>Loan Repaid</h2>
 
-<div class="container">
   <div class="status-button improve-score-icons">
     <%= image_tag("pay_icon.png", class: "improve-score-icon") %>
   </div>
@@ -12,6 +11,6 @@
     <p>was repaid on <%= current_user.loans.last.payments.last.paid_date.strftime("%e %b %Y") %></p>
   </div>
 
-</div>
-
-<button class="btn btn-royal-blue btn-default">Apply for a new loan</button>
+<%= link_to new_user_loan_path(current_user) do %>
+  <button class="btn btn-royal-blue btn-default">Apply for a new loan</button>
+<% end %>

@@ -48,9 +48,24 @@ module Merit
       # Iron medal granted to all new users
       grant_on 'registrations#create', badge: 'iron-medal', model_name: 'User'
 
+      #TO DO - When the fb connect/psycometric tests are implemented
+      # add the controller action which handles those to grant_on's
+      #TO DO - When the repayment functionality is added
+      # add the controller action which handles that to grant_on's
+
       # Bronze medal granted on one repaid loan OR FB connect + psychometric test
-      grant_on ['users#status', 'users#profile'], badge: 'bronze-medal', temporary: true do |user|
+      grant_on ['users#status', 'users#profile', 'users#show'], badge: 'bronze-medal', temporary: true do |user|
         user.loans.any? { |loan| loan.status == "Loan Repaid" } &&
+        user.loans.none? { |loan| loan.any_missed_payment? }
+      end
+      # Silver medal granted on two repaid loans OR FB connect + psychometric tests + one repaid loan
+      grant_on ['users#status', 'users#profile', 'users#show'], badge: 'silver-medal', temporary: true do |user|
+        (user.loans.count { |loan| loan.status == "Loan Repaid" } >= 2) &&
+        user.loans.none? { |loan| loan.any_missed_payment? }
+      end
+      # Gold medal granted on three repaid loans OR FB connect + psychometric test + two repaid loans
+      grant_on ['users#status', 'users#profile', 'users#show'], badge: 'gold-medal', temporary: true do |user|
+        (user.loans.count { |loan| loan.status == "Loan Repaid" } >= 3) &&
         user.loans.none? { |loan| loan.any_missed_payment? }
       end
     end
