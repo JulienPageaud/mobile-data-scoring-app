@@ -1,0 +1,51 @@
+.info-icon {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 25px;
+  color: #5BC0BE;
+}
+@media (min-width: 768px) {
+  .info-icon {
+    font-size: 35px;
+  }
+}
+.badge-section {
+  margin: 30px auto;
+}
+.improve-score-icon {
+  max-width: 50px;
+}
+.improve-score-icons {
+  margin: 20px 0;
+}
+.user-medals {
+  margin: 10px auto;
+}
+.empty-medal {
+  margin-top: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: inset 2px 2px 10px 2px rgba(220, 220, 220, 0.8);
+}
+.medal {
+  max-height: 75px;
+}
+@media (min-width: 768px) {
+  .user-medals, .improve-score-icons {
+    max-width: 60%;
+    margin: 30px auto;
+  }
+  .empty-medal {
+    margin-top: 25px;
+    width: 75px;
+    height: 75px;
+  }
+  .improve-score-icon {
+    max-width: 100px;
+  }
+  .medal {
+    max-height: 100px;
+  }
+}

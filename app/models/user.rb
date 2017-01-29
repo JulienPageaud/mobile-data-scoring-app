@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # for badges/medals using the merit gems
+  include Merit
+  has_merit
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -14,17 +18,21 @@ class User < ApplicationRecord
   validates :mobile_number, presence: true, uniqueness: true
 
   [:title, :first_name, :last_name, :address, :city, :postcode, :employment, :date_of_birth].each do |meth|
-    validates meth, presence: true, on: :update, unless: :updating_password?
+    validates meth, presence: true, on: :update, unless: -> user { user.updating_password? || user.updating_medals? }
   end
 
   validates :email, presence: { message: 'Email can only be edited - not deleted' },
             if: -> {email_was.present?},
             on: :update
   validate :photo_id, :id_present?,
-            on: :update, unless: :updating_password?
+            on: :update, unless: -> user { user.updating_password? || user.updating_medals? }
 
   def updating_password?
     @password_confirmation.present?
+  end
+
+  def updating_medals?
+    sash_id_changed?
   end
 
   def email_required?
@@ -32,24 +40,24 @@ class User < ApplicationRecord
   end
 
   mount_uploader :photo_id, PhotoUploader
-  # def self.find_for_facebook_oauth(auth)
-  #   user_params = auth.to_h.slice(:provider, :uid)
-  #   user_params.merge! auth.info.slice(:email, :first_name, :last_name)
-  #   user_params[:token] = auth.credentials.token
-  #   user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+  def self.find_for_facebook_oauth(auth)
+    user_params = auth.to_h.slice(:provider, :uid)
+    user_params.merge! auth.info.slice(:email, :first_name, :last_name)
+    user_params[:token] = auth.credentials.token
+    user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
 
-  #   user = User.where(provider: auth.provider, uid: auth.uid).first
-  #   user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
-  #   if user
-  #     user.update(user_params)
-  #   else
-  #     user = User.new(user_params)
-  #     user.password = Devise.friendly_token[0,20]  # Fake password for validation
-  #     user.save
-  #   end
+    user = User.where(provider: auth.provider, uid: auth.uid).first
+    user ||= User.where(email: auth.info.email).first # User did a regular sign up in the past.
+    if user
+      user.update(user_params)
+    else
+      user = User.new(user_params)
+      user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.save
+    end
 
-  #   return user
-  # end
+    return user
+  end
 
   def full_name
     (first_name + ' ' + last_name).titleize
@@ -63,6 +71,7 @@ class User < ApplicationRecord
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     self.update(user_params)
+    return user_params
   end
 
   def check_facial_recognition
