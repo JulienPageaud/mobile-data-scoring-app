@@ -85,8 +85,18 @@
           <div class="empty-medal">
           </div>
         <% end %>
-        <div class="empty-medal"></div>
-        <div class="empty-medal"></div>
+        <% if @user.badges.any? { |badge| badge.id == 3 } %>
+          <%= image_tag('silver_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
+        <% if @user.badges.any? { |badge| badge.id == 4 } %>
+          <%= image_tag('gold_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
       </div>
     </div>
 
