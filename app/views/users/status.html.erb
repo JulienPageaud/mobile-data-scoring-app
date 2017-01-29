@@ -112,11 +112,15 @@
 
       // sets the progress bar at correct point
       var status_id = <%= @status_id %>;
-      var loanIsLive = <%= @loan_is_live %>;
-      var missedPayment = <%= @missed %>;
-      console.log(missedPayment);
-      var delayedPayment = <%= @delayed %>;
-      console.log(delayedPayment);
+
+      <% if @loan_is_live %>
+        var loanIsLive = <%= @loan_is_live %>;
+        var missedPayment = <%= @missed %>;
+        console.log(missedPayment);
+        var delayedPayment = <%= @delayed %>;
+        console.log(delayedPayment);
+      <% end %>
+
       switch(status_id) {
         case 1:
           $('#1-lg, #1-m').addClass('active');

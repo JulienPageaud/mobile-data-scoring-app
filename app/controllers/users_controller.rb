@@ -52,6 +52,7 @@ class UsersController < ApplicationController
       end
     else
       @status_id = 0
+      @loan_is_live = false
     end
 
 
