@@ -3,7 +3,7 @@
 <% if @loan.status == "Application Accepted" %>
   <p>Congratulations! Your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
   has been accepted.</p>
-  <p>Please click <%= link_to "here", user_status_url(@user), target: '_blank' %> to view your loan details and confirm you would like to accept this money.</p>
+  <p>Please click <%= link_to "here", status_user_url(@user), target: '_blank' %> to view your loan details and confirm you would like to accept this money.</p>
 <% else %>
   <p>Unfortunately your loan application for <%= humanized_money_with_symbol(@loan.requested_amount) %>
   has been declined for the following reason:</p>
