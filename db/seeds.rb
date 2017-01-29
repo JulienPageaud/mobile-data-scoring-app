@@ -205,11 +205,11 @@ demo_user_2 = User.create!(
     category: 'Personal',
     status: "Loan Repaid", purpose: 'Medical Expenses',
     description: 'I would like to pay for a surgery',
-    bank: bank, requested_amount: 100000
+    bank: bank, requested_amount: 10000
   })
   loan.update!({
     proposed_amount: loan.requested_amount,
     agreed_amount: loan.requested_amount,
-    start_date: DateTime.now - 3.month, final_date: DateTime.now)
+    start_date: DateTime.now - 3.month, final_date: DateTime.now
   })
 end
