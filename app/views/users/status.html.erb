@@ -6,8 +6,48 @@
     <i><span class="fa fa-bookmark"></span></i>
   </div>
 </div>
-<div class="wrapper-grey flexboxify">
+<div class="wrapper-grey">
+
+
+  <!-- Latest loan overview -->
   <div class="white-box status-box text-center">
+
+    <!-- Loan status progress (PC)-->
+    <div class="large-screen-progress-bar">
+      <ul class="status-progress-bar text-center padded">
+        <li class="status-progress-item" id="1-lg">
+          <span class="status-header">Applied</span>
+        </li>
+        <li class="status-progress-item" id="2-lg">
+          <span class="status-header">Approved</span>
+        </li>
+        <li class="status-progress-item" id="3-lg">
+          <span class="status-header">Granted</span>
+        </li>
+        <li class="status-progress-item" id="4-lg">
+          <span class="status-header">Repaid</span>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-progress-bar text-center">
+      <div class="progress-quarter" id="1-m">
+        <span>Applied</span>
+        <div class="progress-box">1</div>
+      </div>
+      <div class="progress-quarter" id="2-m">
+        <span>Approved</span>
+        <div class="progress-box">2</div>
+      </div>
+      <div class="progress-quarter" id="3-m">
+        <span>Granted</span>
+        <div class="progress-box">3</div>
+      </div>
+      <div class="progress-quarter" id="4-m">
+        <span>Repaid</span>
+        <div class="progress-box">4</div>
+      </div>
+    </div>
+
     <% if current_user.loans == [] %>
       <%= render 'empty' %>
     <% elsif current_user.loans.last.status == "Application Pending" %>
@@ -24,7 +64,109 @@
     <div class="back-button text-center">
       <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
     </div>
+  </div><!--white-box-->
+
+  <!-- Medals and improvements section -->
+  <div class="white-box text-center" style="position: relative;">
+    <i class="fa fa-info-circle info-icon grey-tooltip" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
+
+    <div class="badge-section">
+      <h5 class="bold">Your current rating: <%= @rating %></h5>
+      <div class="user-medals flexboxify-around">
+        <% if @user.badges.any? { |badge| badge.id == 1 } %>
+          <%= image_tag('iron_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
+        <% if @user.badges.any? { |badge| badge.id == 2 } %>
+          <%= image_tag('bronze_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
+        <% if @user.badges.any? { |badge| badge.id == 3 } %>
+          <%= image_tag('silver_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
+        <% if @user.badges.any? { |badge| badge.id == 4 } %>
+          <%= image_tag('gold_medal.png', class: 'medal') %>
+        <% else %>
+          <div class="empty-medal">
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="badge-section">
+      <h5 class="bold">Help us to improve your score</h5>
+      <p class="text-grey">Tap an icon to see how</p>
+      <div class="improve-score-icons flexboxify-around">
+        <div class="improve-score-icon">
+          <%= image_tag("pay_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Repay your loan on time") %>
+        </div>
+        <div class="improve-score-icon">
+          <%= image_tag("facebook_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Give us access to your Facebook social data") %>
+        </div>
+        <div class="improve-score-icon">
+          <%= image_tag("chrono_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Leave the Stride app open on your phone for one month") %>
+        </div>
+        <div class="improve-score-icon">
+          <%= image_tag("psychometric_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Take 5 minutes to answer some questions") %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 
+<% content_for(:after_js) do %>
+  <script>
+
+    $(document).ready(function() {
+
+      // sets the progress bar at correct point
+      var status_id = <%= @status_id %>;
+
+      <% if @loan_is_live %>
+        var loanIsLive = <%= @loan_is_live %>;
+        var missedPayment = <%= @missed %>;
+        console.log(missedPayment);
+        var delayedPayment = <%= @delayed %>;
+        console.log(delayedPayment);
+      <% end %>
+
+      switch(status_id) {
+        case 1:
+          $('#1-lg, #1-m').addClass('active');
+          break;
+        case 2:
+          $('#1-lg, #2-lg, #1-m, #2-m').addClass('active');
+          break;
+        case 3:
+          $('#1-lg, #2-lg, #3-lg, #1-m, #2-m, #3-m').addClass('active');
+          if (missedPayment) {
+            $('#4-lg, #4-m').addClass('missed-payment');
+          }
+          else if (delayedPayment) {
+            $('#4-lg, #4-m').addClass('delayed-payment');
+          }
+          else {
+            $('#4-lg, #4-m').addClass('ongoing');
+          }
+          break;
+        case 4:
+          $('#1-lg, #2-lg, #3-lg, #4-lg, #1-m, #2-m, #3-m, #4-m').addClass('active');
+          break;
+      }
+
+      // active tooltip
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    })
+
+  </script>
+<% end %>

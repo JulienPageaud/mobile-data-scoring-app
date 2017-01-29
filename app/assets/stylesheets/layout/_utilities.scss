@@ -40,7 +40,13 @@
   display: none;
 }
 
-// Text colours
+// Text
 .text-red {
   color: red;
+}
+.text-grey {
+  color: rgba(120, 120, 120, 0.8);
+}
+.bold {
+  font-weight: bolder;
 }
