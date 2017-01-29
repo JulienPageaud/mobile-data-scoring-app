@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :bank do |b|
-    b.name { "FNB" }
+    b.name { "Bank" }
   end
 end
