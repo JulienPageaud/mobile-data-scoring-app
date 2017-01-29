@@ -37,7 +37,10 @@ class UsersController < ApplicationController
   def status
     authorize @user
     @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
-    @rating = @user.badges.last.name.gsub(/-medal$/, '').capitalize
+
+    if @user.badges.present?
+      @rating = @user.badges.last.name.gsub(/-medal$/, '').capitalize
+    end
     # Used for the progress bar on status page
     if @latest_loan.present?
       @loan_is_live = @latest_loan.live?
