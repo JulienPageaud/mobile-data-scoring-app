@@ -1,26 +1,28 @@
-<div class="container">
-  <div class="white-box">
-    <div class="row">
-      <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-        <div class="devise-container width-alter">
-          <h2>Log in</h2>
+<div class="wrapper-grey flexboxify">
+  <div class="container">
+    <div class="white-box">
+      <div class="row">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+          <div class="devise-container width-alter">
+            <h2>Log in</h2>
 
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="form-inputs">
-              <%= f.input :email, required: false, autofocus: true %>
-              <%= f.input :password, required: false %>
-              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-            </div>
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-inputs">
+                <%= f.input :email, required: false, autofocus: true %>
+                <%= f.input :password, required: false %>
+                <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              </div>
 
-            <div class="form-actions">
-              <%= f.button :submit, "Log in" %>
+              <div class="form-actions">
+                <%= f.button :submit, "Log in" %>
+              </div>
+            <% end %>
+            <div class="links">
+              <%= render "bank_users/shared/links" %>
             </div>
-          <% end %>
-          <div class="links">
-            <%= render "bank_users/shared/links" %>
           </div>
         </div>
       </div>
-    </div>
-  </div> <!-- white-box -->
-</div> <!-- container -->
+    </div> <!-- white-box -->
+  </div> <!-- container -->
+</div>

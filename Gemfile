@@ -61,6 +61,9 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', '>= 2.0.0.beta2', require: false
 
+# Badges/Medals
+gem 'merit'
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

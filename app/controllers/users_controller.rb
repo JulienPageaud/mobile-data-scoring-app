@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   # Authentication is on user not bank_user in this case
   skip_before_action :authenticate_bank_user!
 
-  before_action :set_user_and_latest_loan, only: [:show, :profile]
-  before_action :set_user, only: [:edit, :update, :status, :share]
+  before_action :set_user_and_latest_loan, only: [:show, :profile, :status]
+  before_action :set_user, only: [:edit, :update, :share]
 
   def show
     authorize @user
@@ -37,6 +37,26 @@ class UsersController < ApplicationController
   def status
     authorize @user
     @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
+
+    if @user.badges.present?
+      @rating = @user.badges.last.name.gsub(/-medal$/, '').capitalize
+    end
+    # Used for the progress bar on status page
+    if @latest_loan.present?
+      @loan_is_live = @latest_loan.live?
+      case @latest_loan.status
+      when "Application Pending" then @status_id = 1
+      when "Application Accepted" then @status_id = 2
+      when "Loan Outstanding"
+        @status_id = 3
+        @delayed = @latest_loan.any_delayed_payment?
+        @missed = @latest_loan.any_missed_payment?
+      when "Loan Repaid" then @status_id = 4
+      end
+    else
+      @status_id = 0
+      @loan_is_live = false
+    end
   end
 
   def profile

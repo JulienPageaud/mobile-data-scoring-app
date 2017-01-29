@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # for badges/medals using the merit gems
+  include Merit
+  has_merit
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -14,17 +18,21 @@ class User < ApplicationRecord
   validates :mobile_number, presence: true, uniqueness: true
 
   [:title, :first_name, :last_name, :address, :city, :postcode, :employment, :date_of_birth].each do |meth|
-    validates meth, presence: true, on: :update, unless: :updating_password?
+    validates meth, presence: true, on: :update, unless: -> user { user.updating_password? || user.updating_medals? }
   end
 
   validates :email, presence: { message: 'Email can only be edited - not deleted' },
             if: -> {email_was.present?},
             on: :update
   validate :photo_id, :id_present?,
-            on: :update, unless: :updating_password?
+            on: :update, unless: -> user { user.updating_password? || user.updating_medals? }
 
   def updating_password?
     @password_confirmation.present?
+  end
+
+  def updating_medals?
+    sash_id_changed?
   end
 
   def email_required?

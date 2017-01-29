@@ -7,7 +7,6 @@
     <i><span class="fa fa-id-card"></span></i>
   </div>
 </div>
-<%= render "shared/flashes" %>
 <div class="facebook-container" style="padding: 10px;margin-top: 20px;">
   <%= link_to omniauth_authorize_path(current_user, :facebook), class: 'btn btn-block btn-social btn-facebook facebook-button' do %>
   <i class="fa fa-facebook"></i><div>Complete using Facebook</div>
