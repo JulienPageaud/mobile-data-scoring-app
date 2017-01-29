@@ -59,10 +59,11 @@ module SmsSender
   end
 
   def self.application_sent_sms(user, loan)
-    body = "Your loan application for
+    body = "Hello! Your loan application for
             #{ActionController::Base.helpers.humanized_money_with_symbol(loan.requested_amount)}
             has been sent successfully.
-            You will receive another message once it has been reviewed."
+            You will receive another message shortly once it has been reviewed.
+            Stride"
     SmsJob.perform_later(user.mobile_number, body.squish)
   end
 
