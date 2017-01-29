@@ -212,4 +212,6 @@ demo_user_2 = User.create!(
     agreed_amount: loan.requested_amount,
     start_date: DateTime.now - 3.month, final_date: DateTime.now
   })
+  loan.update_payments_to_agreed_amount
+  loan.payments.each { |p| p.update(paid: true, paid_date: DateTime.now) }
 end

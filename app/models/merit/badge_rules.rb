@@ -46,7 +46,7 @@ module Merit
       # end
 
       # Iron medal granted to all new users
-      grant_on 'registrations#create', badge: 'iron-medal', model_name: 'User'
+      grant_on ['registrations#create', 'users#show'], badge: 'iron-medal', model_name: 'User'
 
       #TO DO - When the fb connect/psycometric tests are implemented
       # add the controller action which handles those to grant_on's
