@@ -50,6 +50,8 @@
 
     <% if @user.loans.empty? %>
       <%= render 'empty' %>
+    <% elsif @latest_loan.status == "Loan Declined" %>
+      <%= render 'empty' %>
     <% elsif @latest_loan.status == "Application Pending" %>
       <%= render 'pending' %>
     <% elsif @latest_loan.status == "Application Accepted" %>
