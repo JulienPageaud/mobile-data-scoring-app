@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def email_has_changed(user)
     @user = user
-    mail to: @user.email
+    mail to: @user.email if @user.email.present?
   end
 
   def application_confirmation_email(arguments)
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
   def application_reviewed(arguments)
     @user = arguments[:user]
     @loan = arguments[:loan]
-    mail to: @user.email
+    mail to: @user.email if @user.email.present?
   end
 
   private
