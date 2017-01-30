@@ -153,11 +153,15 @@
             <% end %>
           </div>
         </div>
+
       <div class="row">
         <div class="back-button text-center small-margin">
           <%= link_to "Go back", user_path(current_user), class: 'btn-grey' %>
         </div>
       </div>
     </div> <!-- white-box -->
+
+    <%= render 'rankings' %>
+
   </div> <!-- container -->
 </div> <!-- wrapper -->
