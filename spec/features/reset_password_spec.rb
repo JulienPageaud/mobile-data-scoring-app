@@ -42,7 +42,29 @@ feature 'Password reset' do
     expect(current_path).to eq(user_path(user))
   end
 
-  scenario 'visitor can reset his password through SMS'
+  scenario 'visitor can reset his password through SMS' do
+    user = FactoryGirl.create(:user)
+    user_can_enter_reset_information_and_submit(user.mobile_number)
+    expect(ActionMailer::Base.deliveries.count).to eq(0)
+
+    # link = ActionMailer::Base.deliveries.last.body.raw_source.match(/href="(?<url>.+?)">/)[:url]
+    # visit link.gsub('http://test.yourhost.com', '')
+
+    # expect(current_path).to eq('/users/password/edit')
+    # expect(page).to have_content('Change your password')
+
+    # fill_in 'user[password]', with: 'dadada'
+    # fill_in 'user[password_confirmation]', with: 'dadadas'
+    # click_on 'Change my password'
+
+    # expect(page).to have_content('doesn\'t match Password')
+    # fill_in 'user[password]', with: 'dadada'
+    # fill_in 'user[password_confirmation]', with: 'dadada'
+    # click_on 'Change my password'
+
+    # expect(page).to have_content('Your password has been changed successfully. You are now signed in.')
+    # expect(current_path).to eq(user_path(user))
+  end
 
   private
 

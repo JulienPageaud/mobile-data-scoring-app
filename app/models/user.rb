@@ -39,6 +39,18 @@ class User < ApplicationRecord
     false
   end
 
+  def self.send_reset_password_instructions(attributes={})
+    recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
+    if recoverable.persisted?
+      if recoverable.email.present?
+        recoverable.send_reset_password_instructions
+      else
+        # Send SMS
+      end
+    end
+    recoverable
+  end
+
   mount_uploader :photo_id, PhotoUploader
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
@@ -57,6 +69,15 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if email = conditions.delete(:email)
+      where((email.include?('@') ? :email : :mobile_number) => email).first
+    else
+      super
+    end
   end
 
   def full_name
