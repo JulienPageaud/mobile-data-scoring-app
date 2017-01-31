@@ -45,7 +45,16 @@ class User < ApplicationRecord
       if recoverable.email.present?
         recoverable.send_reset_password_instructions
       else
-        # Send SMS
+        link = Rails.application.routes.url_helpers.edit_user_password_url(
+          ActionMailer::Base.default_url_options.merge(
+            reset_password_token: recoverable.send(:set_reset_password_token)
+          )
+        )
+
+        SmsJob.perform_later(
+          recoverable.mobile_number,
+          "Stride Password Reset: #{link}"
+        )
       end
     end
     recoverable
