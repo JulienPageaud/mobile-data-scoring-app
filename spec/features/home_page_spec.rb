@@ -26,7 +26,26 @@ feature 'Home Page' do
     click_on('Log in')
   end
 
-  scenario 'error is shown on form when no mobile number entered'
+  scenario 'error is shown on form when no mobile number entered' do
+    user_can_complete_mobile_number_and_click_apply
+    fill_in 'user_mobile_number', with: ' '
+    user_can_see_modal_and_complete_sign_up
+    click_on('Apply for a loan')
+    expect(page).to have_css('.modal-dialog')
+    expect(page).to have_content("Please review the problems below")
+    expect(page).to have_content("can't be blank")
+  end
+
+  scenario 'error is shown on form when mobile number is taken' do
+    user = FactoryGirl.create(:user)
+    user_can_complete_mobile_number_and_click_apply
+    fill_in 'user_mobile_number', with: user.mobile_number
+    user_can_see_modal_and_complete_sign_up
+    click_on('Apply for a loan')
+    expect(page).to have_css('.modal-dialog')
+    expect(page).to have_content("Please review the problems below")
+    expect(page).to have_content("has already been taken")
+  end
 
   scenario 'error is shown on form when no password entered' do
     user_can_complete_mobile_number_and_click_apply
