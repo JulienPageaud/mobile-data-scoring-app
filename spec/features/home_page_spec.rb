@@ -68,7 +68,7 @@ feature 'Home Page' do
     click_on('Apply for a loan')
     expect(page).to have_css('.modal-dialog')
     expect(page).to have_content("Please review the problems below")
-    expect(page).to have_content("is invalid")
+    expect(page).to have_content("Mobile number is an invalid number")
   end
 
   private
