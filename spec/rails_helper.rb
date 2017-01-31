@@ -7,9 +7,11 @@ require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+require 'fake_sms'
 require 'support/factory_girl'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'sidekiq/testing'
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 30
@@ -41,9 +43,18 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  config.before(:each) do
+    stub_const("Twilio::REST::Client", FakeSMS)
+  end
+
+  config.before :each, type: :feature do
+    FakeSMS.messages = []
+    ActionMailer::Base.deliveries = []
+  end
 
   config.include Warden::Test::Helpers
   Warden.test_mode!
+  Sidekiq::Testing.inline!
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
