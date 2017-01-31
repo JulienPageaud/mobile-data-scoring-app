@@ -14,7 +14,7 @@
   <div class="modal fade bd-example-modal-sm" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <%= render 'devise/registrations/new', resource: User.new, resource_name: :user %>
+        <%= render 'devise/registrations/new', resource: (@user || User.new), resource_name: :user %>
       </div>
     </div>
   </div>
