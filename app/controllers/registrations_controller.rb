@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.save
       redirect_to edit_user_path(resource)
     else
-      redirect_to root_path(sign_up: true)
+      redirect_to root_path(sign_up: true, number: resource.mobile_number)
     end
 
     yield resource if block_given?
