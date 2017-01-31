@@ -38,9 +38,7 @@ class UsersController < ApplicationController
     authorize @user
     @user.notifications.each { |n| n.update(read: true)} if @user.notifications.present?
 
-    if @user.badges.present?
-      @rating = @user.badges.last.name.gsub(/-medal$/, '').capitalize
-    end
+    @rating = get_user_rating
     # Used for the progress bar on status page
     if @latest_loan.present?
       @loan_is_live = @latest_loan.live?
@@ -61,6 +59,8 @@ class UsersController < ApplicationController
 
   def profile
     authorize @user
+
+    @rating = get_user_rating
   end
 
   def share
@@ -76,6 +76,14 @@ class UsersController < ApplicationController
   def set_user_and_latest_loan
     @user = User.find(params[:id])
     @latest_loan = @user.loans.last
+  end
+
+  def get_user_rating
+    if @user.badges.present?
+      @user.badges.last.name.gsub(/-medal$/, '').capitalize
+    else
+      nil
+    end
   end
 
   def user_params

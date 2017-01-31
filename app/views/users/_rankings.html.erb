@@ -1,0 +1,64 @@
+<!-- Medals and improvements section -->
+<div class="white-box text-center" style="position: relative;">
+  <i class="fa fa-info-circle info-icon grey-tooltip" role="button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Improving your score increases your eligibility for a loan and reduces the interest rate applied. Various ways to improve your score are listed below"></i>
+
+  <div class="badge-section">
+    <h5 class="bold">Your current rating: <%= @rating %></h5>
+    <div class="user-medals flexboxify-around">
+      <% if @user.badges.any? { |badge| badge.id == 1 } %>
+        <%= image_tag('iron_medal.png', class: 'medal') %>
+      <% else %>
+        <div class="empty-medal">
+        </div>
+      <% end %>
+      <% if @user.badges.any? { |badge| badge.id == 2 } %>
+        <%= image_tag('bronze_medal.png', class: 'medal') %>
+      <% else %>
+        <div class="empty-medal">
+        </div>
+      <% end %>
+      <% if @user.badges.any? { |badge| badge.id == 3 } %>
+        <%= image_tag('silver_medal.png', class: 'medal') %>
+      <% else %>
+        <div class="empty-medal">
+        </div>
+      <% end %>
+      <% if @user.badges.any? { |badge| badge.id == 4 } %>
+        <%= image_tag('gold_medal.png', class: 'medal') %>
+      <% else %>
+        <div class="empty-medal">
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="badge-section">
+    <h5 class="bold">Help us to improve your score</h5>
+    <p class="text-grey">Tap an icon to see how</p>
+    <div class="improve-score-icons flexboxify-around">
+      <div class="improve-score-icon">
+        <%= image_tag("pay_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Repay your loan on time") %>
+      </div>
+      <div class="improve-score-icon">
+        <%= image_tag("facebook_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Give us access to your Facebook social data") %>
+      </div>
+      <div class="improve-score-icon">
+        <%= image_tag("chrono_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Leave the Stride app open on your phone for one month") %>
+      </div>
+      <div class="improve-score-icon">
+        <%= image_tag("psychometric_icon.png", class: "improve-score-icon grey-tooltip", 'data-toggle' => "tooltip", 'data-placement' => "top", title: "Take 5 minutes to answer some questions") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      // active tooltip
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    })
+  </script>
+<% end %>
