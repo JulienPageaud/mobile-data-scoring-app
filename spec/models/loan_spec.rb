@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Loan do
+  include ActiveSupport::Testing::TimeHelpers
 
   it 'has a valid factory' do
     expect(FactoryGirl.build(:loan)).to be_valid
@@ -89,20 +90,23 @@ describe Loan do
 
   context "outstanding loan" do
     subject { FactoryGirl.create(:loan, :outstanding_good_book) }
+    let (:today) { DateTime.new(2017, 01, 15, 12, 00) }
 
     describe '#next_payment' do
       it "returns the next due payment" do
+        travel_to today
         expect(subject).to respond_to(:next_payment)
         expect(subject.next_payment.class).to eql(Payment)
-        expect(subject.next_payment.due_date).to be > DateTime.now
+        expect(subject.next_payment.due_date).to be > today
       end
     end
 
     describe '#most_recent_payment' do
       it "returns the payment which was most recently due" do
+        travel_to today
         expect(subject).to respond_to(:most_recent_payment)
         expect(subject.most_recent_payment.class).to eql(Payment)
-        expect(subject.most_recent_payment.due_date).to be < DateTime.now
+        expect(subject.most_recent_payment.due_date).to be < today
       end
     end
 
@@ -115,8 +119,9 @@ describe Loan do
       end
 
       it "calculates the sum of unpaid payments" do
+        travel_to today
         subject.payments.each do |p|
-          p.update(paid: true) if p.due_date < DateTime.now
+          p.update(paid: true) if p.due_date < today
         end
         expect(subject).to respond_to(:amount_owed)
         expect(subject.amount_owed.class).to eql(Money)
@@ -137,8 +142,9 @@ describe Loan do
       end
 
       it "calculates the remaining capital" do
+        travel_to today
         subject.payments.each do |p|
-          p.update(paid: true) if p.due_date < DateTime.now
+          p.update(paid: true) if p.due_date < today
         end
         expect(subject).to respond_to(:remaining_capital)
         expect(subject.remaining_capital.class).to eql(Money)
@@ -152,8 +158,9 @@ describe Loan do
       end
 
       it "calculates the total repaid capital" do
+        travel_to today
         subject.payments.each do |p|
-          p.update(paid: true) if p.due_date < DateTime.now
+          p.update(paid: true) if p.due_date < today
         end
         expect(subject).to respond_to(:total_capital_repaid)
         expect(subject.total_capital_repaid.class).to eql(Money)
@@ -177,15 +184,18 @@ describe Loan do
       end
 
       it "returns the string 'Good Book' if no missed/delayed payments" do
-        subject.payments.each { |p| p.update(paid: true) if p.due_date < DateTime.now }
+        travel_to today
+        subject.payments.each { |p| p.update(paid: true) if p.due_date < today.end_of_day }
         expect(subject.loan_classification).to eql('Good Book')
       end
 
       it "returns the string 'Missed Payment' if a payment has been missed" do
+        travel_to today
         expect(missed_payment.loan_classification).to eql('Missed Payment')
       end
 
       it "returns the string 'Delayed Payment' if a payment is overdue by less than 7 days" do
+        travel_to today
         expect(delayed_payment.loan_classification).to eql('Delayed Payment')
       end
     end

@@ -132,9 +132,9 @@ class Loan < ApplicationRecord
   ## OUTSTANDING LOAN CLASSIFICATION METHODS
   def loan_classification
     if status == "Loan Outstanding" && most_recent_payment.present?
-      if Loan.missed_payment_loans.include?(self)
+      if any_missed_payment?
         "Missed Payment"
-      elsif Loan.delayed_payment_loans.include?(self)
+      elsif any_delayed_payment?
         "Delayed Payment"
       else
         "Good Book"

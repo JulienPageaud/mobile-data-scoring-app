@@ -24,7 +24,7 @@ FactoryGirl.define do
       status { "Loan Outstanding" }
       proposed_amount { requested_amount }
       agreed_amount { requested_amount }
-      start_date { DateTime.now - 2.month }
+      start_date { DateTime.new(2017, 01, 15, 12, 00) - 2.month }
       final_date { start_date + 3.month }
       loan.after(:create) do |loan|
         loan.update_payments_to_agreed_amount
@@ -40,7 +40,7 @@ FactoryGirl.define do
       status { "Loan Outstanding" }
       proposed_amount { requested_amount }
       agreed_amount { requested_amount }
-      start_date { DateTime.now - 1.month - 10.day }
+      start_date { DateTime.new(2017, 01, 15, 12, 00) - 1.month - 10.day }
       final_date { start_date + 3.month }
       loan.after(:create) do |loan|
         loan.update_payments_to_agreed_amount
@@ -52,7 +52,7 @@ FactoryGirl.define do
       status { "Loan Outstanding" }
       proposed_amount { requested_amount }
       agreed_amount { requested_amount }
-      start_date { DateTime.now - 1.month - 3.day }
+      start_date { DateTime.new(2017, 01, 15, 12, 00) - 1.month - 3.day }
       final_date { start_date + 3.month }
       loan.after(:create) do |loan|
         loan.update_payments_to_agreed_amount
