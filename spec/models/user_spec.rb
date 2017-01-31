@@ -20,6 +20,11 @@ describe User do
       expect(subject).to_not be_valid
     end
 
+    it "has a valid mobile number" do
+      subject.mobile_number = "+27"
+      expect(subject).to_not be_valid
+    end
+
     it "has a unique mobile number" do
       user1 = subject
       user1.save

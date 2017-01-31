@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :user do |f|
-    f.mobile_number { '+27' + '7' + ('%010d' % rand(10 ** 9)).to_s }
+    f.mobile_number { '+27' + '7' + ('%08d' % rand(10 ** 9))[0..7].to_s }
     f.password { "password" }
 
     trait :with_details do

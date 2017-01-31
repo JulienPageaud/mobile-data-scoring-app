@@ -15,7 +15,7 @@ class User < ApplicationRecord
   after_validation :geocode, if: :city_changed?
 
   phony_normalize :mobile_number, default_country_code: 'ZA'
-  validates :mobile_number, presence: true, uniqueness: true
+  validates :mobile_number, presence: true, uniqueness: true, phony_plausible: true
 
   [:title, :first_name, :last_name, :address, :city, :postcode, :employment, :date_of_birth].each do |meth|
     validates meth, presence: true, on: :update, unless: -> user { user.updating_password? || user.updating_medals? }

@@ -42,6 +42,16 @@ feature 'Home Page' do
     expect(page).to have_css('label.text-red')
   end
 
+  scenario 'error is shown on form when mobile number is invalid' do
+    user_can_complete_mobile_number_and_click_apply
+    fill_in 'user_mobile_number', with: '+27'
+    user_can_see_modal_and_complete_sign_up
+    click_on('Apply for a loan')
+    expect(page).to have_css('.modal-dialog')
+    expect(page).to have_content("Please review the problems below")
+    expect(page).to have_content("is invalid")
+  end
+
   private
 
   def user_can_complete_mobile_number_and_click_apply
