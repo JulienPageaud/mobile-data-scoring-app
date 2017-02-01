@@ -114,7 +114,7 @@
               <%= loan.user.first_name + ' ' + loan.user.last_name %>
             </div>
 
-              <% if loan.most_recent_payment.missed_payment? %>
+              <% if loan.most_recent_payment.delayed_payment? %>
                 <div class="flexcell loans-cell">
                   <%= loan.most_recent_payment.due_date.strftime("%e %b %Y") %>
                 </div>
