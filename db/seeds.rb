@@ -34,7 +34,7 @@ start_date_repaid_ary = [(DateTime.now - 1.month), (DateTime.now - 2.month),
 
 # Pending Applications
 41.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -52,7 +52,7 @@ end
 
 # Accepted Application
 22.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -71,7 +71,7 @@ end
 
 # Good Book Loans
 92.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -95,7 +95,7 @@ end
 
 # Missed Payment Loans
 2.times do
-    mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+    mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -120,7 +120,7 @@ end
 
 # Delayed Payment Loans
 5.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -145,7 +145,7 @@ end
 
 # Repaid Payment Loans
 20.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -170,7 +170,7 @@ end
 
 # Declined Payment Loans
 40.times do
-  mobile_string = '7' + ('%010d' % rand(10 ** 9)).to_s
+  mobile_string = '6' + ('%08d' % rand(10 ** 8)).to_s
   user = User.create!(mobile_number: '+27' + mobile_string,
     password: 'testtest', first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, city: cities_ary.sample,
@@ -189,13 +189,13 @@ end
 end
 
 demo_user_1 = User.create!(
-  mobile_number: '+123123', password: 'stride', first_name: 'John',
+  mobile_number: '+27123123123', password: 'stride', first_name: 'John',
   last_name: 'Smith', city: 'Johannesburg',
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
   credit_score: 0.97, address: '63 Plein St', postcode: '2000'
 )
 demo_user_2 = User.create!(
-  mobile_number: '+456456', password: 'stride', first_name: 'John',
+  mobile_number: '+27456456456', password: 'stride', first_name: 'John',
   last_name: 'Smith', city: 'Johannesburg', employment: 'cook', title: 'male',
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
   credit_score: 0.97, address: '63 Plein St', postcode: '2000'
