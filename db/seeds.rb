@@ -196,7 +196,7 @@ demo_user_1 = User.create!(
 )
 demo_user_2 = User.create!(
   mobile_number: '+456456', password: 'stride', first_name: 'John',
-  last_name: 'Smith', city: 'Johannesburg', employment: 'cook', title: 'male'
+  last_name: 'Smith', city: 'Johannesburg', employment: 'cook', title: 'male',
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
   credit_score: 0.97, address: '63 Plein St', postcode: '2000'
 )
