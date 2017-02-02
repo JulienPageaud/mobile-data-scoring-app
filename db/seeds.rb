@@ -16,14 +16,13 @@ status_ary = ["Application Pending", "Application Accepted", "Loan Outstanding",
 category_ary = ["Personal", "Business"]
 purpose_perso_ary = ["Medical Expenses", "School Fees", "Transportation Expenses", "Other"]
 purpose_business_ary = ["New Equipment", "Inventory Purposes", "Refurbishment Work", "Liability Management", "Other"]
-description_ary = ["I need to pay for a organ transplant for my son",
+description_ary = ["I need to pay for an important surgery",
   "I want to buy a large amount of cooking utensils for my kitchen as the restaurant is expanding",
   "I would like to open a clothes shop as there are none in this area",
   "I want to start my own tech business and I need the money to launch my product",
-  "I want to learn how to code Ruby on Rails applications at Le Wagon",
-  "I'm really thirsty so I want to buy lots of beer"]
+  "I want to learn how to code Ruby on Rails applications at Le Wagon"]
 decline_reason_ary = ["Credit score too low",
-  "Insufficient mobile data", "Criminal record"]
+  "Insufficient mobile data", "Applicant has a criminal record"]
 
 start_date_outstanding_ary = [(DateTime.now - 3.day), (DateTime.now - 1.month),
   (DateTime.now - 2.month), (DateTime.now - 15.day),
