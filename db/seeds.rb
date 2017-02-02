@@ -199,18 +199,31 @@ demo_user_2 = User.create!(
   date_of_birth: Faker::Date.between(18.years.ago, 40.years.ago),
   credit_score: 0.97, address: '63 Plein St', postcode: '2000'
 )
-2.times do
-  loan = demo_user_2.loans.build({
-    category: 'Personal',
-    status: "Loan Repaid", purpose: 'Medical Expenses',
-    description: 'I would like to pay for a surgery',
-    bank: bank, requested_amount: 10000
-  })
-  loan.update!({
-    proposed_amount: loan.requested_amount,
-    agreed_amount: loan.requested_amount,
-    start_date: DateTime.now - 3.month, final_date: DateTime.now
-  })
-  loan.update_payments_to_agreed_amount
-  loan.payments.each { |p| p.update(paid: true, paid_date: DateTime.now) }
-end
+
+loan = demo_user_2.loans.build({
+  category: 'Personal',
+  status: "Loan Repaid", purpose: 'Medical Expenses',
+  description: 'I would like to pay for a surgery',
+  bank: bank, requested_amount: 10000
+})
+loan.update!({
+  proposed_amount: loan.requested_amount,
+  agreed_amount: loan.requested_amount,
+  start_date: DateTime.new(2016, 07, 15), final_date: DateTime.new(2016, 10, 15)
+})
+loan.update_payments_to_agreed_amount
+loan.payments.each { |p| p.update(paid: true, paid_date: DateTime.new(2016, 8, 15)) }
+
+loan2 = demo_user_2.loans.build({
+  category: 'Personal',
+  status: "Loan Repaid", purpose: 'Medical Expenses',
+  description: 'I would like to pay for another operation',
+  bank: bank, requested_amount: 10000
+})
+loan2.update!({
+  proposed_amount: loan.requested_amount,
+  agreed_amount: loan.requested_amount,
+  start_date: DateTime.new(2016, 10, 20), final_date: DateTime.new(2017, 1, 20)
+})
+loan2.update_payments_to_agreed_amount
+loan2.payments.each { |p| p.update(paid: true, paid_date: DateTime.new(2016, 11, 20))}
