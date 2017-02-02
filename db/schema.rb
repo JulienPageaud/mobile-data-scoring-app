@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129144838) do
+ActiveRecord::Schema.define(version: 20170202192722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20170129144838) do
     t.datetime "date_of_birth"
     t.string   "employment"
     t.string   "photo_id"
-    t.string   "credit_score",           default: "0.98"
+    t.string   "credit_score",           default: "0.90"
     t.boolean  "details_completed"
     t.boolean  "facebook_account"
     t.datetime "created_at",                              null: false
